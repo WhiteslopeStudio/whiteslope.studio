@@ -16,8 +16,6 @@ export default function HomePage() {
       {/* 🚀 (ale dojebana rakieta) HERO SECTION */}
       <HeroSection />
 
-      
-
       {/* 🎨 PORTFOLIO SECTION - "CO MY ZROBILI" */}
       <PortfolioSection />
       
