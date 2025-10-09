@@ -172,14 +172,9 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                   </div>
                   
                   <div className='text-center justify-center'>
-                    <a href="/contact"
-                        className=" hover:text-white underline cursor-pointer text-gray-300 text-sm"
-                    >
-                      
-                      umów darmową konsultację
-                      
-
-                    </a>
+                    <span className="text-gray-300 text-sm">
+                      lub umów darmową konsultację
+                    </span>
                   </div>
 
                   
