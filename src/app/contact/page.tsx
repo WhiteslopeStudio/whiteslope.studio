@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -245,7 +245,8 @@ const Select: React.FC<{
   );
 };
 
-export default function ContactPage() {
+// GŁÓWNY KOMPONENT Z LOGIKĄ - musi być wydzielony
+function ContactContent() {
   const searchParams = useSearchParams();
   const [ref, inView] = useAdvancedInView() as [React.RefObject<HTMLDivElement>, boolean];
   const isMobile = useMobileDetection();
@@ -1722,7 +1723,8 @@ export default function ContactPage() {
                 )}
               </div>
             </motion.div>
-{/* Contact Info */}
+
+            {/* Contact Info */}
             <div 
               className="space-y-8"
             >
@@ -1828,5 +1830,21 @@ export default function ContactPage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+// EKSPORT DOMYŚLNY Z SUSPENSE - TO JEST KLUCZOWA ZMIANA
+export default function ContactPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white">Ładowanie formularza...</p>
+        </div>
+      </div>
+    }>
+      <ContactContent />
+    </Suspense>
   );
 }
