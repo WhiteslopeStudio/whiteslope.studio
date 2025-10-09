@@ -713,7 +713,7 @@ export const HeroSection = () => {
         </div>
       )}
 
-      // 4. PRZYCISK NETFLIX STYLE (dodaj przed zamknięciem głównej sekcji, ale po animacji)
+      {/* // 4. PRZYCISK NETFLIX STYLE (dodaj przed zamknięciem głównej sekcji, ale po animacji) */}
       
       {/* Netflix-style Skip Intro Button - WIĘKSZY */}
       {showSkipButton && !animationCompleted && (
