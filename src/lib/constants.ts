@@ -34,8 +34,8 @@ export const SUBPAGES_MENU_ITEMS = [
 
 export const APP_CONFIG = {
      name: 'WHITESLOPE STUDIO',
-     tagline: 'TWORZYMY STRONY SZYBSZE NIŻ CHIŃCZYCY Z TEMU',
+     tagline: 'Wspaniali ludzie dostają wspaniałe strony',
      description: 'Profesjonalne strony internetowe i aplikacje webowe',
-     email: 'kontakt@whiteslope.pl',
-     phone: '+48 123 456 789'
+     email: 'kontakt@whiteslope.studio',
+     phone: '+48 507 311 557, +48 731 721 760'
 } as const;

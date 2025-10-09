@@ -368,7 +368,7 @@ export async function POST(request: Request) {
     console.log('📧 Wysyłanie emaila do admina...');
     const adminEmailResult = await resend.emails.send({
       from: 'Formularz WhiteSlope <onboarding@resend.dev>',
-      to: ['patryk27_2003@o2.pl'],
+      to: ['kontakt@whiteslope.studio'],
       subject: subject,
       html: emailContent,
       replyTo: sanitizedData.email,
