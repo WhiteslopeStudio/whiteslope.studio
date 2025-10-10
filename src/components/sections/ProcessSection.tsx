@@ -71,6 +71,31 @@ export const ProcessSection = () => {
     };
   }, [updateActiveIndex]);
 
+  // AUTO-SCROLL TO CENTER AFTER DRAG (MOBILE ONLY)
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const container = scrollContainerRef.current;
+    if (!container || isDragging) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScrollEnd = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (!isDragging && isMobile) {
+          scrollToIndex(activeIndex);
+        }
+      }, 150);
+    };
+
+    container.addEventListener('scroll', handleScrollEnd);
+    return () => {
+      container.removeEventListener('scroll', handleScrollEnd);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isDragging, activeIndex, isMobile]);
+
   useEffect(() => {
     if (!autoPlayEnabled || !inView) return;
     
@@ -164,14 +189,12 @@ export const ProcessSection = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl md:text-4xl lg:text-6xl font-thin text-white mb-4 tracking-tight leading-tight">
+            <h2 className="text-3xl lg:text-6xl font-normal md:font-thin text-white mb-4 tracking-tight leading-tight">
               Odkryj proces{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                 współpracy
               </span>
             </h2>
-            
-            
           </motion.div>
         </div>
 
@@ -215,6 +238,10 @@ export const ProcessSection = () => {
             style={{
               paddingLeft: 'calc(50% - (min(340px, 90vw) / 2))',
               paddingRight: 'calc(50% - (min(340px, 90vw) / 2))',
+              // Scroll snap tylko na mobile
+              ...(isMobile && {
+                scrollSnapType: 'x mandatory',
+              })
             }}
           >
             {PROCESS_STEPS.map((step, index) => (
@@ -225,7 +252,13 @@ export const ProcessSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="scroll-item flex-shrink-0 group cursor-pointer"
                 onClick={() => handleItemClick(step, handleStepClick)}
-                style={{ scrollSnapAlign: 'center' }}
+                style={{ 
+                  // Scroll snap tylko na mobile
+                  ...(isMobile && {
+                    scrollSnapAlign: 'center',
+                    scrollSnapStop: 'always'
+                  })
+                }}
               >
                 <div 
                   className={`relative min-w-[320px] w-[90vw] sm:w-[340px] h-[380px] overflow-hidden transform transition-all duration-300 ${
@@ -354,8 +387,6 @@ export const ProcessSection = () => {
             </button>
           </div>
         </div>
-
-        
       </div>
     </section>
   );

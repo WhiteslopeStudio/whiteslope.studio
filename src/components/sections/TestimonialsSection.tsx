@@ -61,13 +61,13 @@ const AnimatedNumber = ({ value, suffix = "", inView }: { value: number, suffix?
 export const TestimonialsSection = () => {
   const [ref, inView] = useAdvancedInView();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false); // NOWE: stan animacji
+  const [animatingDirection, setAnimatingDirection] = useState<'left' | 'right' | null>(null); // NOWE: kierunek animacji
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isProgrammaticScrollRef = useRef(false); // NOWE: flaga programowego scrolla
   const totalCards = 2;
 
   const updateActiveIndex = () => {
-    // NOWE: Ignoruj update podczas programowego scrolla
-    if (isProgrammaticScrollRef.current || !scrollContainerRef.current) return;
+    if (!scrollContainerRef.current) return;
     
     const container = scrollContainerRef.current;
     const containerCenter = container.scrollLeft + container.clientWidth / 2;
@@ -105,10 +105,11 @@ export const TestimonialsSection = () => {
   }, []);
 
   const scrollToIndex = (index: number) => {
-    if (!scrollContainerRef.current) return;
+    if (!scrollContainerRef.current || isAnimating) return;
     
-    // NOWE: Ustaw flagę programowego scrolla
-    isProgrammaticScrollRef.current = true;
+    // NOWE: Ustaw animację jak w portfolio
+    setIsAnimating(true);
+    setAnimatingDirection(index > activeIndex ? 'right' : 'left');
     setActiveIndex(index);
 
     const container = scrollContainerRef.current;
@@ -125,10 +126,11 @@ export const TestimonialsSection = () => {
       });
     }
 
-    // NOWE: Wyłącz flagę po zakończeniu scrolla
+    // NOWE: Reset animacji po 200ms
     setTimeout(() => {
-      isProgrammaticScrollRef.current = false;
-    }, 500);
+      setIsAnimating(false);
+      setAnimatingDirection(null);
+    }, 200);
   };
 
   const scrollLeft = () => {
@@ -208,15 +210,15 @@ export const TestimonialsSection = () => {
         </span>
       </div>
 
-      {/* NAGŁÓWEK - POPRAWIONE CZCIONKI */}
+      {/* NAGŁÓWEK */}
       <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-        <h2 className="text-3xl lg:text-6xl md:font-thin text-white tracking-tight mb-8">
+        <h2 className="text-4xl lg:text-6xl font-normal lg:font-thin text-white tracking-tight mb-4">
           Zobacz jak pomagamy{" "}
           <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
             rozwijać biznesy
           </span>
         </h2>
-        <p className="text-base lg:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
           Realne wyniki, mierzalne rezultaty i zadowolnie. Tak pracujemy z każdym klientem.
         </p>
       </div>
@@ -257,7 +259,6 @@ export const TestimonialsSection = () => {
         }
       `}} />
 
-      {/* STATYSTYKI - CZCIONKI ZOSTAJĄ BEZ ZMIAN */}
       <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-12 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
@@ -525,7 +526,7 @@ export const TestimonialsSection = () => {
             </motion.div>
           </div>
 
-          {/* Nawigacja - Strzałki i Dots - UPROSZCZONA ANIMACJA */}
+          {/* Nawigacja - Strzałki i Dots */}
           <div className="flex justify-center items-center gap-3 pb-4 mt-4">
             <button
               onClick={scrollLeft}
@@ -539,20 +540,30 @@ export const TestimonialsSection = () => {
               <ChevronLeft className="w-4 h-4" />
             </button>
 
-            {/* NOWA: Uproszczone kropki - TYLKO JEDNA ANIMACJA */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 relative">
+            {/* NOWA: Animowane kropki w stylu macOS */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 relative overflow-hidden">
               {[...Array(totalCards)].map((_, index) => (
                 <button
                   key={`dot-${index}`}
                   onClick={() => scrollToIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === index 
-                      ? 'bg-white scale-110' 
-                      : 'bg-white/30 hover:bg-white/50'
-                  }`}
+                  className="w-2 h-2 rounded-full bg-white/30 transition-all duration-200 hover:bg-white/50 cursor-pointer" // ZMIANA: Stała szerokość, zawsze /30
                   aria-label={`Przejdź do opinii ${index + 1}`}
                 />
               ))}
+              
+              {/* NOWY: Animowany wskaźnik overlay */}
+              <div
+                className={`absolute w-2 h-2 bg-white pointer-events-none transition-all ease-out ${
+                  isAnimating ? 'duration-150 rounded-lg' : 'duration-200 rounded-full'
+                }`}
+                style={{
+                  left: `${16 + (activeIndex * 16)}px`, // Dostosuj 16px jeśli gap między kropkami jest inny (tu gap-2 = 8px, ale dla animacji 16px jak w portfolio)
+                  transform: isAnimating
+                    ? `translateX(${animatingDirection === 'right' ? '4px' : '-4px'}) scaleX(1.6)`
+                    : 'translateX(0) scaleX(1)',
+                  transformOrigin: 'center',
+                }}
+              />
             </div>
 
             <button
