@@ -160,14 +160,14 @@ export default function ExperienceSection() {
 
         {/* Header - Geist font family */}
         <div
-          className="text-center mb-12 md:mb-20 overflow-hidden"
+          className="text-center mb-12 md:mb-20 overflow-hidden "
           style={{
             fontFamily:
               'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
           }}
         >
-          <h2 className="text-3xl lg:text-6xl md:font-thin text-white mb-8 tracking-tight m-10">
-            Wyskaluj z nami swój biznes <GiCutDiamond className="inline w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ml-2" /> już
+          <h2 className="text-3xl lg:text-6xl md:font-thin text-white mb-8 tracking-tight my-10">
+            Wyskaluj z nami swój biznes<GiCutDiamond className="inline w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ml-2" /> już
             <span> </span>
             <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
               dzisiaj!
@@ -175,7 +175,7 @@ export default function ExperienceSection() {
           </h2>
           <p
             className={`leading-relaxed text-gray-300 mx-auto ${
-              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-4xl"
+              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-5xl"
             }`}
             style={{
               fontWeight: 400,
@@ -184,11 +184,11 @@ export default function ExperienceSection() {
             }}
           >
             <span className="font-bold">Twoja strona musi być widoczna w erze nowych wyszukiwarek.{" "}</span>
-            W 2025 roku to najważniejszy czynnik rankingowy w Google - więc jak i również Twoich dochodów.
+            W 2025 roku to najważniejszy <br />czynnik rankingowy w Google - więc jak i również Twoich dochodów.
           </p>
           <p
             className={`leading-relaxed text-gray-300 mx-auto mt-4 ${
-              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-4xl"
+              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-2xl"
             }`}
             style={{
               fontWeight: 400,
