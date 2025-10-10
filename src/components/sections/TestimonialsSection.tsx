@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Star, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 // Hook do sprawdzania czy element jest widoczny
 const useAdvancedInView = () => {
@@ -34,18 +34,18 @@ const AnimatedNumber = ({ value, suffix = "", inView }: { value: number, suffix?
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!inView || hasAnimated) return; // Jeśli już było, nie animuj ponownie!
+    if (!inView || hasAnimated) return;
     
     let start = 0;
     const end = value;
-    const duration = 3500; // 3.5 sekundy - wolniej!
-    const increment = end / (duration / 16); // 60 FPS
+    const duration = 3500;
+    const increment = end / (duration / 16);
     
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
         setCount(end);
-        setHasAnimated(true); // Oznacz że animacja się wykonała
+        setHasAnimated(true);
         clearInterval(timer);
       } else {
         setCount(Math.floor(start));
@@ -60,6 +60,90 @@ const AnimatedNumber = ({ value, suffix = "", inView }: { value: number, suffix?
 
 export const TestimonialsSection = () => {
   const [ref, inView] = useAdvancedInView();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false); // NOWE: stan animacji
+  const [animatingDirection, setAnimatingDirection] = useState<'left' | 'right' | null>(null); // NOWE: kierunek animacji
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const totalCards = 2;
+
+  const updateActiveIndex = () => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+    const cards = container.querySelectorAll('.testimonial-card');
+    
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    
+    cards.forEach((card, index) => {
+      const cardElement = card as HTMLElement;
+      const cardCenter = cardElement.offsetLeft + cardElement.offsetWidth / 2;
+      const distance = Math.abs(cardCenter - containerCenter);
+      
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+    
+    setActiveIndex(closestIndex);
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    
+    const handleScroll = () => {
+      updateActiveIndex();
+    };
+    
+    container.addEventListener('scroll', handleScroll);
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToIndex = (index: number) => {
+    if (!scrollContainerRef.current || isAnimating) return;
+    
+    // NOWE: Ustaw animację jak w portfolio
+    setIsAnimating(true);
+    setAnimatingDirection(index > activeIndex ? 'right' : 'left');
+    setActiveIndex(index);
+
+    const container = scrollContainerRef.current;
+    const targetCard = container.querySelector(`.testimonial-card:nth-child(${index + 1})`) as HTMLElement;
+    
+    if (targetCard) {
+      const containerCenter = container.clientWidth / 2;
+      const cardCenter = targetCard.offsetLeft + targetCard.offsetWidth / 2;
+      const scrollLeft = cardCenter - containerCenter;
+      
+      container.scrollTo({ 
+        left: Math.max(0, scrollLeft), 
+        behavior: 'smooth' 
+      });
+    }
+
+    // NOWE: Reset animacji po 200ms
+    setTimeout(() => {
+      setIsAnimating(false);
+      setAnimatingDirection(null);
+    }, 200);
+  };
+
+  const scrollLeft = () => {
+    if (activeIndex > 0) {
+      scrollToIndex(activeIndex - 1);
+    }
+  };
+
+  const scrollRight = () => {
+    if (activeIndex < totalCards - 1) {
+      scrollToIndex(activeIndex + 1);
+    }
+  };
 
   return (
     <section 
@@ -126,9 +210,9 @@ export const TestimonialsSection = () => {
         </span>
       </div>
 
-      {/* NOWY NAGŁÓWEK - bardziej biznesowy */}
+      {/* NAGŁÓWEK */}
       <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-        <h2 className="text-4xl lg:text-6xl font-thin text-white tracking-tight mb-4">
+        <h2 className="text-4xl lg:text-6xl font-normal lg:font-thin text-white tracking-tight mb-4">
           Zobacz jak pomagamy{" "}
           <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
             rozwijać biznesy
@@ -139,7 +223,6 @@ export const TestimonialsSection = () => {
         </p>
       </div>
 
-      {/* Statystyki - ANIMOWANE z platynowym kolorem! */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes platinum-shine {
           0% {
@@ -165,34 +248,43 @@ export const TestimonialsSection = () => {
           -webkit-text-fill-color: transparent;
           animation: platinum-shine 6s linear infinite;
         }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}} />
 
-      <div className="flex justify-center gap-12 mb-12 flex-wrap px-4 relative z-10">
-        <div className="text-center group/stat">
-          <div className="text-4xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+      <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-12 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
+        <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
+          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={24} suffix="h" inView={inView} />
           </div>
-          <div className="text-sm text-gray-400 font-medium">Pierwsze zapytania</div>
+          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Pierwsze zapytania</div>
         </div>
-        <div className="text-center group/stat">
-          <div className="text-4xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+        <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
+          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={100} suffix="%" inView={inView} />
           </div>
-          <div className="text-sm text-gray-400 font-medium">Zadowolonych klientów</div>
+          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Zadowolonych klientów</div>
         </div>
-        <div className="text-center group/stat">
-          <div className="text-4xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+        <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
+          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={3} suffix=" dni" inView={inView} />
           </div>
-          <div className="text-sm text-gray-400 font-medium">Do pierwszych efektów</div>
+          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych efektów</div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 lg:px-6 relative z-10">
-        {/* OPINIE */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        {/* OPINIE - Desktop Grid */}
+        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           
-          {/* Karta 1 - Sławek - NOWY STYL HOVER */}
+          {/* Karta 1 - Sławek */}
           <motion.div
             className="rounded-2xl p-6 lg:p-8 w-full flex flex-col relative group/card transition-all duration-300"
             style={{
@@ -201,8 +293,6 @@ export const TestimonialsSection = () => {
               backdropFilter: 'blur(10px)'
             }}
           >
-            
-
             {/* Subtelny border glow na hover */}
             <div 
               className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -253,7 +343,7 @@ export const TestimonialsSection = () => {
             </div>
           </motion.div>
 
-          {/* Karta 2 - Patryk - NOWY STYL HOVER */}
+          {/* Karta 2 - Patryk */}
           <motion.div
             className="rounded-2xl p-6 lg:p-8 w-full flex flex-col relative group/card transition-all duration-300"
             style={{
@@ -262,8 +352,6 @@ export const TestimonialsSection = () => {
               backdropFilter: 'blur(10px)'
             }}
           >
-            
-
             {/* Subtelny border glow na hover */}
             <div 
               className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -314,10 +402,187 @@ export const TestimonialsSection = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* OPINIE - Mobile Scroll (tylko na mobile) */}
+        <div className="lg:hidden relative">
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 overflow-x-auto py-6 px-4 snap-x snap-mandatory scrollbar-hide"
+            style={{
+              paddingLeft: 'calc(50% - 160px)',
+              paddingRight: 'calc(50% - 160px)',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
+          >
+            {/* Karta 1 - Sławek */}
+            <motion.div
+              className="testimonial-card rounded-2xl p-6 w-[320px] flex-shrink-0 flex flex-col relative group/card transition-all duration-300 snap-center"
+              style={{
+                background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.08) 0%, #0f0f0f 70%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <div 
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  boxShadow: '0 0 20px rgba(255, 116, 95, 0.3)',
+                  border: '1px solid rgba(255, 116, 95, 0.3)'
+                }}
+              />
+
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <p className="font-bold text-lg text-white mb-1">
+                    Sławek Wiesławski
+                  </p>
+                  <p className="text-sm text-gray-400">
+                    Wiesławski Studio
+                  </p>
+                </div>
+                
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" style={{ color: '#ffae00ff' }} />
+                  ))}
+                </div>
+              </div>
+              
+              <blockquote className="text-gray-300 text-base leading-relaxed mb-6 flex-grow">
+                <span className="text-white font-semibold">Szybkość działania jest świetna.</span> Bardzo szybko otrzymywałem odpowiedzi na pytania. Pierwsze <span className="text-white font-semibold">zapytania od klientów</span> pojawiły się po <span className="text-white font-semibold">24h</span> od uruchomienia strony.
+              </blockquote>
+              
+              <div className="flex justify-start mt-4 pt-4 border-t border-white/5">
+                <a 
+                  href="https://wieslawski.studio" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="cursor-pointer group/logo"
+                >
+                  <img 
+                    src="_resources/wieslawski-studio-logo.webp" 
+                    alt="Wiesławski Studio"
+                    className="h-7 w-auto object-contain opacity-50 group-hover/logo:opacity-100 transition-opacity"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                  />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Karta 2 - Patryk */}
+            <motion.div
+              className="testimonial-card rounded-2xl p-6 w-[320px] flex-shrink-0 flex flex-col relative group/card transition-all duration-300 snap-center"
+              style={{
+                background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.08) 0%, #0f0f0f 70%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <div 
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  boxShadow: '0 0 20px rgba(255, 116, 95, 0.3)',
+                  border: '1px solid rgba(255, 116, 95, 0.3)'
+                }}
+              />
+
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <p className="font-bold text-lg text-white mb-1">
+                    Patryk Kulesza
+                  </p>
+                  <p className="text-sm text-gray-400">
+                    Korepetycje matematyka, informatyka, angielski
+                  </p>
+                </div>
+                
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" style={{ color: '#ffae00ff' }} />
+                  ))}
+                </div>
+              </div>
+              
+              <blockquote className="text-gray-300 text-base leading-relaxed mb-6 flex-grow">
+                <span className="text-white font-semibold">Już po 3 dniach dostałem bardzo korzystną ofertę pracy.</span> Jestem bardzo zadowolony i strona w końcu sprawia, że <span className="text-white font-semibold">jestem widoczny dla wielu osób.</span>
+              </blockquote>
+              
+              <div className="flex justify-start mt-4 pt-4 border-t border-white/5">
+                <a 
+                  href="https://patrykkulesza.pl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="cursor-pointer group/logo"
+                >
+                  <img 
+                    src="_resources/logo-PatrykKulesza.webp" 
+                    alt="Patryk Kulesza - Korepetacje"
+                    className="h-7 w-auto object-contain opacity-50 group-hover/logo:opacity-100 transition-opacity"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                  />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Nawigacja - Strzałki i Dots */}
+          <div className="flex justify-center items-center gap-3 pb-4 mt-4">
+            <button
+              onClick={scrollLeft}
+              disabled={activeIndex === 0}
+              className={`w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200 ${
+                activeIndex === 0 
+                  ? 'text-white/30 cursor-not-allowed' 
+                  : 'text-white/60 hover:text-white cursor-pointer'
+              }`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* NOWA: Animowane kropki w stylu macOS */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 relative overflow-hidden">
+              {[...Array(totalCards)].map((_, index) => (
+                <button
+                  key={`dot-${index}`}
+                  onClick={() => scrollToIndex(index)}
+                  className="w-2 h-2 rounded-full bg-white/30 transition-all duration-200 hover:bg-white/50 cursor-pointer" // ZMIANA: Stała szerokość, zawsze /30
+                  aria-label={`Przejdź do opinii ${index + 1}`}
+                />
+              ))}
+              
+              {/* NOWY: Animowany wskaźnik overlay */}
+              <div
+                className={`absolute w-2 h-2 bg-white pointer-events-none transition-all ease-out ${
+                  isAnimating ? 'duration-150 rounded-lg' : 'duration-200 rounded-full'
+                }`}
+                style={{
+                  left: `${16 + (activeIndex * 16)}px`, // Dostosuj 16px jeśli gap między kropkami jest inny (tu gap-2 = 8px, ale dla animacji 16px jak w portfolio)
+                  transform: isAnimating
+                    ? `translateX(${animatingDirection === 'right' ? '4px' : '-4px'}) scaleX(1.6)`
+                    : 'translateX(0) scaleX(1)',
+                  transformOrigin: 'center',
+                }}
+              />
+            </div>
+
+            <button
+              onClick={scrollRight}
+              disabled={activeIndex === totalCards - 1}
+              className={`w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-200 ${
+                activeIndex === totalCards - 1
+                  ? 'text-white/30 cursor-not-allowed'
+                  : 'text-white/60 hover:text-white cursor-pointer'
+              }`}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Loga - PRZENIESIONE POD KARTY */}
-      <div className="text-center mt-16 p-4 relative z-10">
+      <div className="text-center mt-16 p-4 relative z-10 lg:block">
         <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">Zaufali nam</p>
         <div className="flex gap-8 justify-center flex-wrap">
           <a 
