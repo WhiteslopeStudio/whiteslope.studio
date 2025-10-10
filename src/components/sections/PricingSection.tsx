@@ -4,6 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, Globe, Wrench, Palette, Brain, User, Mail, Sparkles, ChevronDown, Check, Zap, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { MAIN_SERVICES } from "@/lib/data";
+import { PiCheckCircleBold, PiCheckCircleDuotone, PiCheckCircleFill, PiCheckFill } from "react-icons/pi";
+import { MdPlaylistAddCheckCircle } from "react-icons/md";
+import { BsCheck2All, BsCheck2Circle } from "react-icons/bs";
 
 // Hook do sprawdzania czy element jest widoczny
 const useAdvancedInView = () => {
@@ -165,8 +168,8 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
 
           {/* Social Proof */}
           <div className="mb-4 flex items-center gap-2">
-            <Check className="w-4 h-4 text-[#00D9A3]" />
-            <span className="text-xs text-black/70 font-medium">Wybrane przez 50+ firm w 2024</span>
+            <BsCheck2All className="w-4 h-4 text-[#2DE56B]" />
+            <span className="text-xs text-black/70 font-medium">Wybrało już kilka osób w 2025</span>
           </div>
 
           {/* Description */}
@@ -182,7 +185,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
             <div className="space-y-2.5">
               {service.features.map((feature: string, index: number) => (
                 <div key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D9A3] flex-shrink-0 mt-0.5" />
+                  <PiCheckCircleFill className="w-5 h-5 text-[#2DE56B] flex-shrink-0 mt-0.5" />
                   <span className="text-black/80 text-sm leading-relaxed flex-1">{feature}</span>
                 </div>
               ))}
@@ -200,7 +203,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Check className="w-5 h-5 text-[#00D9A3] flex-shrink-0" />
+                <Check className="w-5 h-5 text-[#2DE56B] flex-shrink-0" />
                 <div className="flex-1">
                   <div className="text-black font-semibold text-sm">Gwarancja jakości</div>
                   <div className="text-black/60 text-xs">100% satysfakcji</div>
@@ -291,7 +294,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
             className="block w-full"
             onClick={onClose}
           >
-            <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#00D9A3] text-black font-semibold text-base transition-all duration-150 hover:bg-[#00F5B8] hover:scale-105 active:scale-95">
+            <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#2DE56B] text-black font-semibold text-base transition-all duration-150 hover:bg-[#00F5B8] hover:scale-105 active:scale-95">
               {service.ctaText}
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -668,7 +671,7 @@ export const PricingSection = () => {
                         href={`/pricing/${service.id}`}
                         className="block w-full"
                       >
-                        <button className="w-full flex items-center justify-center gap-1 bg-[#00D9A3] hover:bg-[#00F5B8] text-black text-xs font-semibold py-2 px-2 rounded-full transition-colors">
+                        <button className="w-full flex items-center justify-center gap-1 bg-[#2DE56B] hover:bg-[#00F5B8] text-black text-xs font-semibold py-2 px-2 rounded-full transition-colors">
                           <span>Wybierz</span>
                           <Check className="w-3 h-3" />
                         </button>
@@ -708,7 +711,7 @@ export const PricingSection = () => {
 
             <div className="space-y-2.5 pt-3 border-t border-white/10">
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-[#00D9A3] flex-shrink-0" />
+                <Check className="w-4 h-4 text-[#2DE56B] flex-shrink-0" />
                 <div>
                   <div className="text-white font-semibold text-xs">Profesjonalnie</div>
                   <div className="text-white/60 text-xs">Dopracowane w każdym detalu</div>
