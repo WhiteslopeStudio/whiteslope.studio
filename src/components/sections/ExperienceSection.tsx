@@ -130,11 +130,7 @@ export default function ExperienceSection() {
       <div 
         className="absolute inset-0"
         style={{
-          background: `
-            radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom right, rgba(184, 211, 255, 0.05) 0%, transparent 50%),
-            radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%)
-          `
+          
         }}
       />
       
