@@ -173,7 +173,7 @@ export const ProcessSection = () => {
 
   return (
     <section id="process" ref={ref} className="py-20 bg-black relative overflow-hidden" style={{
-        background: 'linear-gradient(0deg, #080808ff 0%, #080808ff 100%)'
+        background: 'linear-gradient(0deg, #000000ff 0%, #000000ff 100%)'
       }}>
       
       {/* Gradienty po bokach */}

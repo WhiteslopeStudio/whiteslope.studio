@@ -22,12 +22,14 @@ export default function HomePage() {
       {/* 💬 TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
+      {/* 🔄 PROCESS SECTION */}
+      <ProcessSection />
+
       <ExperienceSection />
 
       
 
-      {/* 🔄 PROCESS SECTION */}
-      <ProcessSection />
+      
 
       
       
