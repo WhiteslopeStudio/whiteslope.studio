@@ -173,7 +173,7 @@ const solutions = [
     }
 
     const viewportHeight = window.innerHeight;
-    const sectionMiddle = viewportHeight * 0.42; // Zmiana z 1/2 na 1/3 wysokości ekranu
+    const sectionMiddle = viewportHeight * 0.4; // Zmiana z 1/2 na 1/3 wysokości ekranu
 
     // Pobierz wszystkie karty problemów
     const problemCards = container.querySelectorAll('[data-problem-card]');
@@ -387,7 +387,7 @@ const solutions = [
             {/* LEWA KOLUMNA - PROBLEMY */}
             <div className="grid grid-rows-[auto_1fr_1fr_1fr_1fr] gap-4">
               <h3 
-                className="text-2xl font-bold text-red-400 mb-2 flex items-center gap-3"
+                className="text-2xl font-bold text-red-300 mb-2 flex items-center gap-3"
                 style={{
                     fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
                     textShadow: '0 0 15px rgba(239, 68, 68, 0.29), 0 0 30px rgba(239, 68, 68, 0.3)'
@@ -455,7 +455,7 @@ const solutions = [
 
             {/* PRAWA KOLUMNA - ROZWIĄZANIA */}
             <div className="grid grid-rows-[auto_1fr_1fr_1fr_1fr] gap-4">
-              <h3 className="text-2xl font-bold text-green-400 mb-2 flex items-center gap-3"
+              <h3 className="text-2xl font-bold text-green-300 mb-2 flex items-center gap-3"
                 style={{
                     fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
                     textShadow: '0 0 15px rgba(34, 197, 94, 0.29), 0 0 30px rgba(34, 197, 94, 0.3)'
@@ -523,7 +523,7 @@ const solutions = [
           </div>
         </div>
 
-<div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-16 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
+{/* <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-16 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
           <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
             <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
               <AnimatedNumber value={24} suffix="h" inView={inView} />
@@ -542,11 +542,11 @@ const solutions = [
             </div>
             <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych efektów</div>
           </div>
-        </div>
+        </div> */}
 
 
         {/* CTA */}
-        <div className="flex flex-col items-center justify-center relative z-20">
+        {/* <div className="flex flex-col items-center justify-center relative z-20">
           <div
             className="transition-all duration-500 ease-out"
             style={{ fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)' }}
@@ -565,7 +565,7 @@ const solutions = [
           <p className="text-sm text-gray-500 mt-4 text-center">
             Bezpłatna konsultacja • Gwarancja satysfakcji
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   );
