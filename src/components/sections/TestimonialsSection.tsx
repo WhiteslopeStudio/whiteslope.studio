@@ -151,7 +151,7 @@ export const TestimonialsSection = () => {
       id="testimonials" 
       className="py-16 relative overflow-hidden"
       style={{
-        background: 'radial-gradient(ellipse at top, rgba(255, 116, 95, 0.06) 0%, #080808 50%)'
+        // background: 'radial-gradient(ellipse at top, rgba(255, 116, 95, 0.06) 0%, #080808 50%)'
       }}
     >
       {/* Siatka EKG w tle - subtelna */}

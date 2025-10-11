@@ -19,10 +19,12 @@ export default function HomePage() {
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
       <ProblemSolutionSection /> {/* ← DODAJ TO TUTAJ, ZARAZ PO HERO */}
 
-      <ExperienceSection />
-
       {/* 💬 TESTIMONIALS SECTION */}
       <TestimonialsSection />
+
+      <ExperienceSection />
+
+      
 
       {/* 🔄 PROCESS SECTION */}
       <ProcessSection />
