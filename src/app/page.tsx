@@ -1,43 +1,40 @@
-import {HeroSection} from '@/components/sections//HeroSection';
-import {TestimonialsSection} from '@/components/sections//TestimonialsSection';
-import {ProcessSection} from '@/components/sections//ProcessSection';
-import {PortfolioSection} from '@/components/sections//PortfolioSection';
-import {PricingSection} from '@/components/sections//PricingSection';
-import {FAQSection} from '@/components/sections//FaqSection';
-import {BlogSection} from '@/components/sections//BlogSection';
+import {HeroSection} from '@/components/sections/HeroSection';
+import {ProblemSolutionSection} from '@/components/sections/ProblemSolutionSection'; // ← DODAJ TO
+import {TestimonialsSection} from '@/components/sections/TestimonialsSection';
+import {ProcessSection} from '@/components/sections/ProcessSection';
+import {PortfolioSection} from '@/components/sections/PortfolioSection';
+import {PricingSection} from '@/components/sections/PricingSection';
+import {FAQSection} from '@/components/sections/FaqSection';
+import {BlogSection} from '@/components/sections/BlogSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 
-// ==========================================
-// 🏠 MAIN PAGE COMPONENT
-// ==========================================
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-black">
-      {/* 🚀 (ale dojebana rakieta) HERO SECTION */}
+      {/* 🚀 HERO SECTION */}
       <HeroSection />
-
-      {/* 🎨 PORTFOLIO SECTION - "CO MY ZROBILI" */}
+      {/* 🎨 PORTFOLIO SECTION */}
       <PortfolioSection />
-      
-      
 
-      
+      {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
+      <ProblemSolutionSection /> {/* ← DODAJ TO TUTAJ, ZARAZ PO HERO */}
 
       <ExperienceSection />
 
       {/* 💬 TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
-      {/* 💰 PRICING SECTION - "NASZE USŁUGI" */}
-      <PricingSection />
-
-      {/* 🔄 PROCESS SECTION - "JAK PODCHODZIMY DO PROJEKTU" */}
+      {/* 🔄 PROCESS SECTION */}
       <ProcessSection />
+
       
-    
+      
       
 
       
+
+      {/* 💰 PRICING SECTION */}
+      <PricingSection />
 
       
 
