@@ -151,7 +151,7 @@ export const TestimonialsSection = () => {
       id="testimonials" 
       className="py-16 relative overflow-hidden"
       style={{
-        // background: 'radial-gradient(ellipse at top, rgba(255, 116, 95, 0.06) 0%, #080808 50%)'
+        background: 'radial-gradient(ellipse at top, #000000ff 0%, #000000ff 50%)'
       }}
     >
       {/* Siatka EKG w tle - subtelna */}
@@ -264,7 +264,7 @@ export const TestimonialsSection = () => {
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={24} suffix="h" inView={inView} />
           </div>
-          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Pierwsze zapytania</div>
+          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Pierwsze zapytania<br />po starcie strony</div>
         </div>
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
@@ -276,7 +276,7 @@ export const TestimonialsSection = () => {
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={3} suffix=" dni" inView={inView} />
           </div>
-          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych efektów</div>
+          <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych ofert<br /> pracy</div>
         </div>
       </div>
 

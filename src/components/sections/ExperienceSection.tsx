@@ -50,7 +50,7 @@ function StatsCarousel({ stats }: { stats: StatData[] }) {
 
   return (
     <div className="relative overflow-hidden rounded-2xl" style={{ 
-      background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.1) 0%, #0f0f0f 38%)',
+      background: 'radial-gradient(circle at left bottom, rgba(112, 112, 112, 0.1) 0%,rgba(88, 88, 88, 1)f 38%)',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       height: '120px'
     }}>
