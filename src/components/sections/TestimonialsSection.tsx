@@ -198,7 +198,7 @@ export const TestimonialsSection = () => {
 
       {/* NAGŁÓWEK */}
       <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-        <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
+        <h2 className="text-4xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
           Zobacz jak pomagamy{" "}
           <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
             rozwijać biznesy
@@ -247,19 +247,19 @@ export const TestimonialsSection = () => {
 
       <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-4 py-10 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+          <div className="text-3xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={24} suffix="h" inView={inView} />
           </div>
           <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Pierwsze zapytania<br />po starcie strony</div>
         </div>
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+          <div className="text-3xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={100} suffix="%" inView={inView} />
           </div>
           <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Zadowolonych klientów</div>
         </div>
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-          <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
+          <div className="text-3xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={3} suffix=" dni" inView={inView} />
           </div>
           <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych ofert<br /> pracy</div>

@@ -114,9 +114,9 @@ export const ProcessSection = () => {
         <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
           <div className="text-left max-w-5xl mx-auto">
             <h2 className="text-2xl lg:text-4xl font-semibold text-white mb-4 tracking-tight">
-              Proces{" "}
+              Proces współpracy
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                współpracy
+                
               </span>
             </h2>
           </div>
