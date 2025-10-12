@@ -3,9 +3,17 @@
 import { useState } from 'react';
 import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
 
+interface ChatButton {
+  text: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  icon?: string;
+}
+
 interface Message {
   role: 'user' | 'bot';
   content: string;
+  buttons?: ChatButton[];
 }
 
 export default function Chatbot() {
@@ -13,7 +21,27 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'bot', 
-      content: '👋 Cześć! Jestem AI chatbotem WhiteSlope!\n\n💡 Zapytaj mnie o nasze usługi tworzenia stron internetowych i integracji AI!\n\nSam jestem dowodem na to, co możemy zrobić dla Twojej strony! 🚀' 
+      content: '👋 Cześć! Jestem AI chatbotem WhiteSlope!\n\n💡 Zapytaj mnie o nasze usługi tworzenia stron internetowych i integracji AI!\n\nSam jestem dowodem na to, co możemy zrobić dla Twojej strony! 🚀',
+      buttons: [
+        {
+          text: '💰 Zobacz cennik',
+          href: '/pricing',
+          variant: 'primary',
+          icon: '💰'
+        },
+        {
+          text: '🤖 Integracje AI',
+          href: '/pricing/ai-integration',
+          variant: 'secondary',
+          icon: '🤖'
+        },
+        {
+          text: '📞 Umów konsultację',
+          href: '/contact?tab=meeting',
+          variant: 'outline',
+          icon: '📞'
+        }
+      ]
     }
   ]);
   const [input, setInput] = useState('');
@@ -38,23 +66,112 @@ export default function Chatbot() {
       const data = await res.json();
       
       if (res.ok) {
-        setMessages(prev => [...prev, { role: 'bot', content: data.response }]);
-      } else {
+        // Use buttons from API if available, otherwise generate locally
+        const buttons = data.buttons || generateContextButtons(currentInput, data.response);
         setMessages(prev => [...prev, { 
           role: 'bot', 
-          content: data.response || '😴 Ups, coś poszło nie tak... Spróbuj ponownie!' 
+          content: data.response,
+          buttons: buttons
+        }]);
+      } else {
+        const buttons = data.buttons || generateContextButtons(currentInput, data.response || '');
+        setMessages(prev => [...prev, { 
+          role: 'bot', 
+          content: data.response || '😴 Ups, coś poszło nie tak... Spróbuj ponownie!',
+          buttons: buttons
         }]);
       }
       
     } catch (error) {
       console.error('Błąd chatbota:', error);
+      const fallbackButtons = generateContextButtons(currentInput, '');
       setMessages(prev => [...prev, { 
         role: 'bot', 
-        content: '😴 Nie mogę się połączyć z serwerem...\n\n💡 Ale widzisz potencjał? Taki chatbot może działać na TWOJEJ stronie!\n\n📞 Skontaktuj się z nami po więcej informacji!' 
+        content: '😴 Nie mogę się połączyć z serwerem...\n\n💡 Ale widzisz potencjał? Taki chatbot może działać na TWOJEJ stronie!\n\n📞 Skontaktuj się z nami po więcej informacji!',
+        buttons: fallbackButtons
       }]);
     }
     
     setLoading(false);
+  };
+
+  // Funkcja analizująca kontekst i generująca przyciski
+  const generateContextButtons = (userMessage: string, botResponse: string): ChatButton[] => {
+    const message = (userMessage + ' ' + botResponse).toLowerCase();
+    const buttons: ChatButton[] = [];
+
+    // AI/Chatbot related
+    if (message.includes('ai') || message.includes('chatbot') || message.includes('sztuczn') || message.includes('inteligenc') || message.includes('automatyz')) {
+      buttons.push({
+        text: '🤖 Integracje AI',
+        href: '/pricing/ai-integration',
+        variant: 'primary',
+        icon: '🤖'
+      });
+    }
+
+    // Pricing/Cost related
+    if (message.includes('cen') || message.includes('koszt') || message.includes('ile') || message.includes('budżet') || message.includes('prici')) {
+      buttons.push({
+        text: '💰 Zobacz cennik',
+        href: '/pricing',
+        variant: 'secondary',
+        icon: '💰'
+      });
+    }
+
+    // Website/Development related
+    if (message.includes('stron') || message.includes('website') || message.includes('witryn') || message.includes('rozwój') || message.includes('tworzenie')) {
+      buttons.push({
+        text: '🌐 Strony internetowe',
+        href: '/pricing/website',
+        variant: 'secondary',
+        icon: '🌐'
+      });
+    }
+
+    // Ecommerce/Shop related
+    if (message.includes('sklep') || message.includes('ecommerce') || message.includes('sprzedaż') || message.includes('produkty')) {
+      buttons.push({
+        text: '🛒 Sklepy online',
+        href: '/pricing/ecommerce',
+        variant: 'secondary',
+        icon: '🛒'
+      });
+    }
+
+    // Contact/Meeting related
+    if (message.includes('kontakt') || message.includes('spotkanie') || message.includes('rozmow') || message.includes('konsultacj') || message.includes('umówi')) {
+      buttons.push({
+        text: '📞 Umów konsultację',
+        href: '/contact?tab=meeting',
+        variant: 'primary',
+        icon: '📞'
+      });
+    }
+
+    // General services
+    if (message.includes('usług') || message.includes('offer') || message.includes('co robi') || message.includes('specjalizuj')) {
+      buttons.push({
+        text: '💼 Nasze usługi',
+        href: '/pricing',
+        variant: 'outline',
+        icon: '💼'
+      });
+    }
+
+    // Always add contact if no other buttons or if asking about chatbot specifically
+    if (buttons.length === 0 || message.includes('taki chatbot') || message.includes('chcesz chatbot')) {
+      buttons.push({
+        text: '💬 Chcę taki chatbot!',
+        href: '/contact?tab=quote&service=ai-integration',
+        variant: 'primary',
+        icon: '💬'
+      });
+    }
+
+    // Limit to max 3 buttons to avoid clutter
+    return buttons.slice(0, 3);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -110,7 +227,7 @@ export default function Chatbot() {
               <MessageSquare className="w-5 h-5 text-black font-bold" />
             </div>
             <div>
-              <h3 className="font-bold text-white text-lg">WhiteSlope AI</h3>
+              <h3 className="font-bold text-white text-lg">SLOPUŚ AI</h3>
               <div className="flex items-center gap-2 text-xs text-white/60">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 Twój ekspert digital marketingu
@@ -141,12 +258,38 @@ export default function Chatbot() {
                   <div className="w-6 h-6 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full flex items-center justify-center">
                     <MessageSquare className="w-3 h-3 text-black" />
                   </div>
-                  <span className="text-xs text-white/60 font-medium">WhiteSlope AI</span>
+                  <span className="text-xs text-white/60 font-medium">SLOPUŚ</span>
                 </div>
               )}
               <div className={msg.role === 'user' ? 'text-black' : 'text-white'}>
                 {msg.content}
               </div>
+              
+              {/* Dynamic buttons for bot messages */}
+              {msg.role === 'bot' && msg.buttons && msg.buttons.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/10">
+                  {msg.buttons.map((button, btnIndex) => (
+                    <a
+                      key={btnIndex}
+                      href={button.href}
+                      className={`
+                        inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95
+                        ${button.variant === 'primary' 
+                          ? 'bg-gradient-to-r from-orange-300 to-pink-400 text-black hover:shadow-lg' 
+                          : button.variant === 'secondary'
+                          ? 'bg-white/15 text-white hover:bg-white/25 border border-white/20'
+                          : 'border border-white/30 text-white/80 hover:text-white hover:border-white/50'
+                        }
+                      `}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>{button.icon}</span>
+                      {button.text}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -158,7 +301,7 @@ export default function Chatbot() {
                 <div className="w-6 h-6 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full flex items-center justify-center animate-pulse">
                   <MessageSquare className="w-3 h-3 text-black" />
                 </div>
-                <span className="text-xs text-white/60 font-medium">WhiteSlope AI pisze...</span>
+                <span className="text-xs text-white/60 font-medium">SLOPUŚ pisze...</span>
               </div>
               <div className="flex space-x-1 mt-2">
                 <div className="w-2 h-2 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full animate-bounce"></div>
@@ -238,7 +381,7 @@ export default function Chatbot() {
           <div className="text-xs text-white/40 text-center space-y-1">
             <p>⚡ Powered by <span className="bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent font-bold">WhiteSlope</span> AI</p>
             <p>
-              <a href="/contact?tab=quote" className="text-orange-300 hover:text-pink-400 underline font-medium transition-colors duration-200">
+              <a href="/pricing/ai-integration" className="text-orange-300 hover:text-pink-400 underline font-medium transition-colors duration-200">
                 Chcesz taki chatbot?
               </a> • {' '}
               <a href="/contact?tab=meeting" className="text-orange-300 hover:text-pink-400 underline font-medium transition-colors duration-200">
