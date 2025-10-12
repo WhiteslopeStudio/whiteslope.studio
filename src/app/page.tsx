@@ -41,7 +41,6 @@ export default function HomePage() {
       {isMobile ? <HeroSectionMobile /> : <HeroSection />}
       {/* 🎨 PORTFOLIO SECTION */}
 
-      <HeroSectionMobile />
       <PortfolioSection />
 
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
