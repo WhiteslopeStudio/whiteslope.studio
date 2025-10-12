@@ -97,7 +97,7 @@ export default function CennikPage() {
                           <div key={idx} className="flex items-center gap-2 mb-2">
                             <Check className="w-4 h-4 flex-shrink-0 text-[#fd9f91]" />
                             <span className="text-base font-light text-gray-300" style={{ fontFamily: 'inherit' }}>
-                              {feature}
+                              {feature.title}
                             </span>
                           </div>
                         ))}
@@ -253,7 +253,7 @@ export default function CennikPage() {
                               className="text-white text-lg font-light"
                               style={{ fontFamily: 'inherit' }}
                             >
-                              {feature}
+                              {feature.title}
                             </span>
                           </div>
                         ))}
@@ -324,7 +324,7 @@ export default function CennikPage() {
                             <div key={idx} className="flex items-center gap-3 mb-3">
                               <Check className="w-5 h-5 flex-shrink-0 text-[#fd9f91]" />
                               <span className="text-lg font-light text-gray-200" style={{ fontFamily: 'inherit' }}>
-                                {feature}
+                                {feature.title}
                               </span>
                             </div>
                           ))}

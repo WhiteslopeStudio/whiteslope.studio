@@ -237,9 +237,9 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                     <Star className="w-5 h-5 text-[#fd9f91]" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-white text-lg mb-2">{feature}</h3>
+                    <h3 className="font-medium text-white text-lg mb-2">{feature.title}</h3>
                     <p className="text-gray-400 leading-relaxed font-light">
-                      Profesjonalne wykonanie gwarantujące najwyższą jakość, satysfakcję klientów i długoterminowy sukces.
+                      {feature.description}
                     </p>
                   </div>
                 </div>

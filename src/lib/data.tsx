@@ -377,53 +377,49 @@ export const SERVICE_PACKAGES = [
       {
         id: "ai-chatbot",
         name: "Chatbot AI",
-        price: "od 1800 zł",
+        price: "od 1000 zł",
         description: "Inteligentny asystent na Twoją stronę",
         features: [
           "Chatbot AI dostępny 24/7",
-          "Integracja z ChatGPT/Claude",
+          "Integracja z ChatGPT/Claude/Gemini",
           "Personalizacja dla Twojej branży",
           "Automatyczne odpowiedzi na FAQ",
-          "Przekierowanie do formularza kontaktowego",
-          "Panel statystyk rozmów",
+          "Przekierowania do formularzy i sprzedaży",
           "Konfiguracja i szkolenie",
+        ],
+        timeline: "1-2 tygodni",
+      },
+      {
+        id: "ai-content-generation",
+        name: "Ai Generowanie Treści",
+        price: "od 2000 zł",
+        description: "Kompleksowe rozwiązania AI dopasowane do Twoich potrzeb",
+        features: [
+          "Generowanie obrazów z tekstu",
+          "Tworzenie wideo z obrazów/tekstu",
+          "Rozpoznawanie obiektów i analiza zdjęć",
+          "Przetwarzanie i analiza tekstu",
+          "Modele z Hugging Face i inne open source",
+          "Pełna integracja z Twoją aplikacją/stroną",
+          "Infrastruktura w chmurze (Azure/AWS/Colab) lub lokalna",
         ],
         timeline: "2-3 tygodni",
       },
       {
         id: "ai-automation",
-        name: "Automatyzacja procesów",
-        price: "od 3500 zł",
-        description: "AI w służbie Twojego biznesu",
+        name: "AI Automatyzacja Procesów",
+        price: "od 1500 zł",
+        description: "Zautomatyzuj powtarzalne zadania i zaoszczędź czas",
         features: [
-          "Wszystko z pakietu Chatbot",
-          "Automatyzacja obsługi email",
-          "AI-powered analiza klientów",
-          "Integracja z CRM/systemami",
-          "Automatyczne generowanie raportów",
-          "Personalizacja treści dla użytkowników",
-          "Custom AI dla specyficznych zadań",
-          "Szkolenia zespołu",
+          "Automatyczne przetwarzanie dokumentów",
+          "Ekstrakcja danych z PDF, zdjęć, skanów itp.",
+          "Automatyczna kategoryzacja i tagowanie treści",
+          "Inteligentne sortowanie i filtrowanie danych",
+          "Automatyczne generowanie raportów i podsumowań",
+          "Integracja z Bazą danych",
+          "Oszczędność dziesiątek godzin pracy miesięcznie",
         ],
-        timeline: "4-6 tygodni",
-        highlighted: true,
-      },
-      {
-        id: "ai-enterprise",
-        name: "Rozwiązania Enterprise",
-        price: "od 8000 zł",
-        description: "Zaawansowana automatyzacja na miarę korporacji",
-        features: [
-          "Wszystko z pakietu Automatyzacji",
-          "Custom AI models dla Twojej firmy",
-          "Integracja z wieloma systemami",
-          "Zaawansowana analiza danych",
-          "Predykcje i prognozy biznesowe",
-          "AI-driven insights i rekomendacje",
-          "Dedykowany AI specialist",
-          "Wsparcie i rozwój przez 12 miesięcy",
-        ],
-        timeline: "6-10 tygodni",
+        timeline: "2-3 tygodni",
       },
     ],
   },
@@ -628,12 +624,30 @@ export const MAIN_SERVICES: MainService[] = [
     description:
       "Nowoczesne, responsywne strony internetowe zaprojektowane z myślą o Twoich klientach. Od prostych wizytówek po zaawansowane portale biznesowe.",
     features: [
-      "Responsywny design",
-      "Optymalizacja SEO",
-      "System CMS do zarządzania treścią",
-      "Certyfikat SSL i bezpieczeństwo",
-      "Next.js / WordPress / Buildery",
-      "Wsparcie techniczne",
+      {
+        title: "Responsywny design",
+        description: "Twoja strona będzie doskonale wyglądać na każdym urządzeniu - od smartfonów po duże monitory."
+      },
+      {
+        title: "Optymalizacja SEO",
+        description: "Zadbamy o wysokie pozycje w Google dzięki nowoczesnym technikom pozycjonowania."
+      },
+      {
+        title: "System CMS do zarządzania treścią",
+        description: "Łatwy w obsłudze panel administracyjny pozwoli Ci samodzielnie zarządzać treściami."
+      },
+      {
+        title: "Certyfikat SSL i bezpieczeństwo",
+        description: "Bezpieczeństwo danych Twoich klientów i wyższe pozycje w wynikach wyszukiwania."
+      },
+      {
+        title: "Next.js / WordPress / Buildery",
+        description: "Używamy najnowszych technologii zapewniających szybkość i stabilność."
+      },
+      {
+        title: "Wsparcie techniczne",
+        description: "Pełne wsparcie po uruchomieniu strony, pomoc i regularne aktualizacje."
+      },
     ],
     ctaText: "Zgłoś projekt",
     animationDirection: "left",
@@ -648,12 +662,30 @@ export const MAIN_SERVICES: MainService[] = [
     description:
       "Masz już stronę, ale nie działa jak powinna? Oferujemy kompleksową optymalizację, migrację na nowoczesne technologie oraz poprawę SEO.",
     features: [
-      "Migracja Strony",
-      "Optymalizacja",
-      "Pozycja w Google",
-      "Responsywność mobile, tablet, desktop",
-      "Bezpieczeństwo i backup",
-      "Audyt techniczny i raport",
+      {
+        title: "Migracja Strony",
+        description: "Bezpieczne przeniesienie na nowoczesne technologie bez utraty pozycji SEO i danych."
+      },
+      {
+        title: "Optymalizacja",
+        description: "Drastyczna poprawa szybkości ładowania - nawet 3x szybciej niż przed modernizacją."
+      },
+      {
+        title: "Pozycja w Google",
+        description: "Kompleksowa optymalizacja SEO dla lepszej widoczności w wynikach wyszukiwania."
+      },
+      {
+        title: "Responsywność mobile, tablet, desktop",
+        description: "Twoja strona będzie idealnie działać na wszystkich urządzeniach i rozdzielczościach."
+      },
+      {
+        title: "Bezpieczeństwo i backup",
+        description: "Nowoczesne zabezpieczenia, regularne kopie zapasowe i ochrona przed atakami."
+      },
+      {
+        title: "Audyt techniczny i raport",
+        description: "Szczegółowa analiza problemów i raport z wykonanych usprawnień."
+      },
     ],
     ctaText: "Wybierz pakiet",
     animationDirection: "right",
@@ -661,18 +693,36 @@ export const MAIN_SERVICES: MainService[] = [
   {
     id: "ai-integration",
     title: "Integracja AI",
-    subtitle: "Automatyzacja, chatboty, generatory...",
-    price: "od 1500 zł",
+    subtitle: "Chatboty, automatyzacja procesów i generatory treści",
+    price: "od 1000 zł",
     picture: "_resources/usluga-ai.webp",
     description:
-      "Wdrażamy AI do Twojej strony i aplikacji: chatboty 24/7, generatory treści, inteligentne formularze i personalizacja treści. Zwiększ efektywność, sprzedaż i zadowolenie klientów dzięki nowoczesnym rozwiązaniom AI.",
+      "Wdrażamy rozwiązania AI dopasowane do Twoich potrzeb. Zaoszczędź czas, zwiększ efektywność i zadowolenie klientów dzięki inteligentnym narzędziom AI.",
     features: [
-      "Integracja AI przez API",
-      "Generatory treści, obrazów i wideo",
-      "Inteligentne formularze",
-      "Personalizacja treści dla użytkowników",
-      "Integracja AI z no-code/builder",
-      "Chatboty obsługujące klientów 24/7",
+      {
+        title: "Chatboty AI dostępne 24/7 (ChatGPT, Claude, Gemini)",
+        description: "Inteligentne chatboty obsługujące klientów przez całą dobę w Twoim stylu komunikacji."
+      },
+      {
+        title: "Automatyzacja dokumentów i ekstrakcja danych (OCR)",
+        description: "Automatyczne przetwarzanie dokumentów, wyciąganie danych z PDF i obrazów."
+      },
+      {
+        title: "Generowanie obrazów i wideo z tekstu",
+        description: "Tworzenie unikalnych grafik i materiałów wideo na podstawie opisów tekstowych."
+      },
+      {
+        title: "Rozpoznawanie obiektów i analiza zdjęć",
+        description: "Zaawansowana analiza wizualna - identyfikacja obiektów, tekstu i szczegółów na zdjęciach."
+      },
+      {
+        title: "Inteligentne przetwarzanie i analiza tekstu",
+        description: "Automatyczna analiza treści, tłumaczenia, streszczenia i kategoryzacja tekstów."
+      },
+      {
+        title: "Pełna integracja z Twoją stroną/aplikacją",
+        description: "Seamless wdrożenie AI w istniejącą infrastrukturę bez zakłócania działania."
+      },
     ],
     ctaText: "Wdróż AI w swojej firmie",
     animationDirection: "left",
@@ -686,12 +736,30 @@ export const MAIN_SERVICES: MainService[] = [
     description:
       "Potrzebujesz grafik, logo czy kompleksowej identyfikacji wizualnej? Nasz zespół graficzny stworzy materiały, które wyróżnią Twoją markę.",
     features: [
-      "Projektowanie logo",
-      "Grafiki na social media",
-      "Banery reklamowe i materiały promocyjne",
-      "Ikony i ilustracje",
-      "Wektory w wysokiej rozdzielczości",
-      "Grafiki 2D i modele 3D",
+      {
+        title: "Projektowanie logo",
+        description: "Unikalne logo odzwierciedlające charakter Twojej marki z pełnymi prawami autorskimi."
+      },
+      {
+        title: "Grafiki na social media",
+        description: "Spójne materiały wizualne dla wszystkich platform społecznościowych w różnych formatach."
+      },
+      {
+        title: "Banery reklamowe i materiały promocyjne",
+        description: "Efektowne banery do kampanii reklamowych i materiały promocyjne zwiększające konwersję."
+      },
+      {
+        title: "Ikony i ilustracje",
+        description: "Niestandardowe ikony i ilustracje doskonale dopasowane do stylu Twojej marki."
+      },
+      {
+        title: "Wektory w wysokiej rozdzielczości",
+        description: "Skalowalne grafiki wektorowe idealne do druku i wyświetlania na każdym urządzeniu."
+      },
+      {
+        title: "Grafiki 2D i modele 3D",
+        description: "Zaawansowane grafiki płaskie i trójwymiarowe modele dla nowoczesnej prezentacji."
+      },
     ],
     ctaText: "Zgłoś projekt",
     animationDirection: "right",
@@ -705,11 +773,26 @@ export const MAIN_SERVICES: MainService[] = [
     description:
       "Żaden z naszych pakietów nie odpowiada Twoim potrzebom? Stwórzmy coś wyjątkowego razem. Indywidualne podejście do każdego projektu.",
     features: [
-      "Bezpłatna konsultacja ",
-      "Analiza potrzeb biznesowych",
-      "Dedykowane rozwiązanie",
-      "Elastyczny zakres prac",
-      "Indywidualna wycena projektu",
+      {
+        title: "Bezpłatna konsultacja",
+        description: "Szczegółowa rozmowa o Twoich potrzebach bez żadnych zobowiązań finansowych."
+      },
+      {
+        title: "Analiza potrzeb biznesowych",
+        description: "Dogłębne zrozumienie Twojego biznesu i celów dla optymalnego rozwiązania."
+      },
+      {
+        title: "Dedykowane rozwiązanie",
+        description: "Projekt stworzony specjalnie pod Twoje unikalne wymagania i specyfikę branży."
+      },
+      {
+        title: "Elastyczny zakres prac",
+        description: "Dostosowanie zakresu usług do Twojego budżetu i priorytetów biznesowych."
+      },
+      {
+        title: "Indywidualna wycena projektu",
+        description: "Transparentna wycena oparta na rzeczywistym zakresie prac bez ukrytych kosztów."
+      },
     ],
     ctaText: "Omów swój pomysł",
     animationDirection: "left",
@@ -723,12 +806,30 @@ export const MAIN_SERVICES: MainService[] = [
     description:
       "Profesjonalna integracja z MailerLite, automatyczne newslettery i kampanie email marketingowe dla zwiększenia konwersji.",
     features: [
-      "Integracja z MailerLite",
-      "Automatyczne newslettery",
-      "Segmentacja kontaktów",
-      "Kampanie email marketing",
-      "Analytics i raporty",
-      "Responsywne szablony email",
+      {
+        title: "Integracja z MailerLite",
+        description: "Pełna integracja z profesjonalną platformą email marketingu z automatyzacjami."
+      },
+      {
+        title: "Automatyczne newslettery",
+        description: "Automatyczne wysyłanie newsletterów zgodnie z harmonogramem bez Twojej interwencji."
+      },
+      {
+        title: "Segmentacja kontaktów",
+        description: "Inteligentne dzielenie kontaktów na grupy dla lepszego targetowania wiadomości."
+      },
+      {
+        title: "Kampanie email marketing",
+        description: "Profesjonalne kampanie e-mailowe z wysoką skutecznością konwersji."
+      },
+      {
+        title: "Analytics i raporty",
+        description: "Szczegółowe analizy otwarć, kliknięć i konwersji dla optymalizacji kampanii."
+      },
+      {
+        title: "Responsywne szablony email",
+        description: "Piękne szablony e-maili idealnie wyświetlające się na wszystkich urządzeniach."
+      },
     ],
     ctaText: "Rozpocznij kampanię",
     animationDirection: "right",

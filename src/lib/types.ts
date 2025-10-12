@@ -52,6 +52,11 @@ export interface BlogPost {
   tags?: string[];
 }
 
+export interface ServiceFeature {
+  title: string;
+  description: string;
+}
+
 export interface MainService {
   id: string;
   title: string;
@@ -59,9 +64,8 @@ export interface MainService {
   price: string;
   picture: string;
   description: string;
-  features: string[];
+  features: ServiceFeature[];
   ctaText: string;
   animationDirection: 'left' | 'right';
   highlighted?: boolean;
-
 }
