@@ -13,6 +13,7 @@ import {
   DiamondPercentIcon,
   Diamond,
   DiamondPlus,
+  Link,
 } from "lucide-react";
 import { useMobileDetection } from "@/utils/hooks";
 import { GiCutDiamond, GiDiamondHard, GiEmerald, GiEmeraldNecklace, GiFoxTail } from 'react-icons/gi';
@@ -131,7 +132,7 @@ export default function ExperienceSection() {
         className="absolute inset-0"
         style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,
@@ -149,7 +150,7 @@ export default function ExperienceSection() {
       }}  
       />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 pt-4 relative z-10">
         {/* Badge z ikoną Sparkles z gradientem */}
         <div className="flex justify-center ">
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-sm text-white/60 backdrop-blur-sm border border-white/10">
@@ -171,7 +172,7 @@ export default function ExperienceSection() {
 
         {/* Header - Geist font family */}
         <div
-          className="text-center mb-12 md:mb-20 overflow-hidden "
+          className="text-center my-12 mt-10 md:my-14 md:mt-10 overflow-hidden "
           style={{
             fontFamily:
               'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
@@ -195,7 +196,7 @@ export default function ExperienceSection() {
             }}
           >
             <span className="font-bold">Twoja strona musi być widoczna w erze nowych wyszukiwarek.{" "}</span>
-            W 2025 roku<br/> to najważniejsze, aby być widocznym w rankingach AI.
+            W 2025 roku to najważniejsze, aby być widocznym w rankingach AI.
           </p>
           <p
             className={`leading-relaxed text-gray-300 mx-auto mt-4 ${
@@ -218,14 +219,21 @@ export default function ExperienceSection() {
             style={{ fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)' }}
           >
             {/* Główny CTA - prosty bez rozszerzenia */}
+
+            
             <a
               href="#services"
-              className="group relative cursor-pointer transition-all duration-150 inline-block hover:scale-105 z-30"
+              className="group relative cursor-pointer transition-all duration-150 inline-block z-30 hover:cursor-pointer"
               style={{ pointerEvents: "auto" }}
             >
-              <button className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-full bg-[#fd9f91] text-black font-medium text-base transition-all duration-150 hover:bg-[#fc8a7a] hover:shadow-lg active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#fd9f91]/30">
-                <span className="select-none">Wybierz usługi</span>
-                <ArrowRight className="w-4 h-4 transition-all duration-150 group-hover:translate-x-1" />
+              <button className="w-full h-16 rounded-full bg-gradient-to-r from-[#fd9f91] via-[#ff6b6b] to-[#fd9f91] text-black font-medium text-lg transition-all duration-300 hover:shadow-2xl active:scale-95 relative p-0.5 group hover:cursor-pointer">
+                <div className="relative bg-black rounded-full h-full w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#fd9f91] to-[#ff6b6b] rounded-full transform transition-transform duration-700 group-hover:scale-110"></div>
+                  <span className="relative z-10 text-black rounded-full h-full w-full flex items-center justify-center gap-2 transition-all duration-300 group-hover:bg-transparent group-hover:text-black px-10">
+                    Wybierz usługi
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </div>
               </button>
             </a>
           </div>

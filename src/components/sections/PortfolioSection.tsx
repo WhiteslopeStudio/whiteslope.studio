@@ -215,7 +215,7 @@ export const PortfolioSection = () => {
               >
                 {/* Project Card */}
                 <div
-                  className="relative w-[90vw] md:w-[80vw] sm:w-[70vw] lg:w-[60vw] xl:w-[55vw] overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]"
+                  className="relative w-[90vw] md:w-[80vw] sm:w-[70vw] lg:w-[60vw] xl:w-[vw] overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]"
                   style={{ 
                     borderRadius: isMobile ? "8px" : "20px",
                     width: isMobile ? '90vw' : undefined,

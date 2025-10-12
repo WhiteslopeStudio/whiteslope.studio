@@ -582,37 +582,37 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     id: "1",
-    title: "ANALIZA",
+    title: "Analiza",
     description:
       "Poznajemy Twoje potrzeby biznesowe, cele oraz grupę docelową. Analizujemy konkurencję i definiujemy wymagania funkcjonalne.",
   },
   {
     id: "2",
-    title: "PLANOWANIE I CEL",
+    title: "Planowanie i cel",
     description:
       "Tworzymy strategię projektu, architekturę informacyjną oraz plan działania. Ustalamy harmonogram i kamienie milowe.",
   },
   {
     id: "3",
-    title: "PROJEKTOWANIE",
+    title: "Projektowanie",
     description:
       "Projektujemy unikalny design dopasowany do Twojej marki. Tworzymy wireframes, makiety i system design.",
   },
   {
     id: "4",
-    title: "PROGRAMOWANIE",
+    title: "Programowanie",
     description:
       "Kodujemy stronę używając najnowszych technologii: Next.js, React, TypeScript. Dbamy o wydajność i SEO.",
   },
   {
     id: "5",
-    title: "TESTY I AKCEPTACJA",
+    title: "Testy i akceptacja",
     description:
       "Testujemy wszystkie funkcjonalności na różnych urządzeniach. Sprawdzamy wydajność, bezpieczeństwo i zgodność z najlepszymi praktykami.",
   },
   {
     id: "6",
-    title: "WDROŻENIE I WSPARCIE",
+    title: "Wdrożenie i wsparcie",
     description:
       "Uruchamiamy stronę na produkcyjnym serwerze. Zapewniamy pełne wsparcie techniczne, szkolenia i dokumentację.",
   },

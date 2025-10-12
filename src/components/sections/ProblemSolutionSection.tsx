@@ -177,7 +177,7 @@ export const ProblemSolutionSection = () => {
         className="py-12 md:py-20 relative overflow-hidden hidden lg:block"
         style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,
@@ -201,8 +201,8 @@ export const ProblemSolutionSection = () => {
             <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
               Transformacja Twojej{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                marki online
-              </span>
+                marki online!
+              </span><br/>trzy, dwa, jeden...
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie
@@ -228,7 +228,7 @@ export const ProblemSolutionSection = () => {
                   backgroundPosition: 'center',
                 }}
               />
-              <div className="absolute inset-0 group-hover:bg-black/85 transition-colors duration-500" />
+              <div className="absolute inset-0 backdrop-blur-none bg-transparent group-hover:bg-black/75 group-hover:backdrop-blur-md transition-all duration-500" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <div 
@@ -239,7 +239,7 @@ export const ProblemSolutionSection = () => {
                   }`}
                 >
                   <h3 className="font-bold text-white mb-6 text-2xl">
-                    Wyzwania z którymi prawdopodobnie się zmagasz
+                    Znamy wyzwania z którymi prawdopodobnie się zmagasz
                   </h3>
                   <div className={`transition-opacity duration-300 ${expandedCard === 0 ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="space-y-4 mb-6 max-h-[400px] overflow-y-auto">
@@ -249,7 +249,7 @@ export const ProblemSolutionSection = () => {
                             {problem.icon}
                           </div>
                           <div>
-                            <h4 className="text-white font-semibold text-sm mb-1">{problem.title}</h4>
+                            <h4 className="text-white font-semibold text-base mb-1">{problem.title}</h4>
                             <p className="text-gray-400 text-xs">{problem.description}</p>
                           </div>
                         </div>
@@ -264,7 +264,7 @@ export const ProblemSolutionSection = () => {
                   <button 
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                       expandedCard === 0 
-                        ? 'bg-gradient-to-br from-orange-500/85 to-blue-500/85 rotate-180' 
+                        ? 'bg-white/20 rotate-180' 
                         : 'bg-white/20'
                     }`}
                   >
@@ -295,7 +295,7 @@ export const ProblemSolutionSection = () => {
                   backgroundPosition: 'center'
                 }}
               />
-              <div className="absolute inset-0 group-hover:bg-black/85 transition-colors duration-500" />
+              <div className="absolute inset-0 backdrop-blur-none bg-transparent group-hover:bg-black/75 group-hover:backdrop-blur-md transition-all duration-500" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <div 
@@ -316,7 +316,7 @@ export const ProblemSolutionSection = () => {
                             {solution.icon}
                           </div>
                           <div>
-                            <h4 className="text-white font-semibold text-sm mb-1">{solution.title}</h4>
+                            <h4 className="text-white font-semibold text-base mb-1">{solution.title}</h4>
                             <p className="text-gray-400 text-xs">{solution.description}</p>
                           </div>
                         </div>
@@ -331,7 +331,7 @@ export const ProblemSolutionSection = () => {
                   <button 
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                       expandedCard === 1 
-                        ? 'bg-gradient-to-br from-orange-500/85 to-blue-500/85 rotate-180'  
+                        ? 'bg-white/20 rotate-180'  
                         : 'bg-white/20'
                     }`}
                   >
@@ -362,7 +362,7 @@ export const ProblemSolutionSection = () => {
                   backgroundPosition: 'center'
                 }}
               />
-              <div className="absolute inset-0 group-hover:bg-black/85 transition-colors duration-500" />
+              <div className="absolute inset-0 backdrop-blur-none bg-transparent group-hover:bg-black/75 group-hover:backdrop-blur-md transition-all duration-500" />
 
               <div className="relative h-full flex flex-col justify-end p-6">
                 <div 
@@ -395,7 +395,7 @@ export const ProblemSolutionSection = () => {
                               {feature.icon}
                             </div>
                             <div>
-                              <h4 className="text-white font-semibold text-sm mb-1">{feature.title}</h4>
+                              <h4 className="text-white font-semibold text-base mb-1">{feature.title}</h4>
                               <p className="text-gray-400 text-xs">{feature.description}</p>
                             </div>
                           </div>
@@ -411,7 +411,7 @@ export const ProblemSolutionSection = () => {
                   <button 
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                       expandedCard === 2 
-                        ? 'bg-gradient-to-br from-orange-500/85 to-blue-500/85 rotate-180'  
+                        ? 'bg-white/20 rotate-180'  
                         : 'bg-white/20'
                     }`}
                   >
@@ -429,29 +429,7 @@ export const ProblemSolutionSection = () => {
 
           </div>
 
-         {/* OPIS NA DOLE */}
-          <div className="container mx-auto pt-12">
-            <div
-              
-              className="max-w-2xl mx-auto"
-            >
-              <div className="rounded-2xl ">
-                
-                {/* Opis */}
-                <p className="text-white/70 text-lg leading-relaxed">
-                  Naszym celem jest dostarczenie tobie najlepszej usługi, wsparcia i pomocy przy projekcie na każdym etapie jego produkowania. 
-                </p>
-                
-                {/* Podpis */}
-                <div className="flex items-center justify-end gap-3">
-                  <div className="w-12 h-px bg-white/20"></div>
-                  <p className="text-white/50 text-base italic">
-                    Zespół <span className="font-medium">Whiteslope</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
       </section>
 
@@ -460,7 +438,7 @@ export const ProblemSolutionSection = () => {
         className="py-12 relative overflow-hidden block lg:hidden"
         style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,
@@ -481,10 +459,10 @@ export const ProblemSolutionSection = () => {
           {/* NAGŁÓWEK SEKCJI */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-semibold text-white mb-4 tracking-tight">
-              Transformacja Twojej{" "}
+              Transformacja {" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                marki online
-              </span>
+                 Twojej marki 
+              </span> {" "}online!{" "}trzy, dwa, jeden...
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie
@@ -494,16 +472,16 @@ export const ProblemSolutionSection = () => {
           {/* SEKCJA 1 - WYZWANIA */}
           <div className="mb-12">
             <h3 className="font-bold text-white mb-6 text-base">
-              Wyzwania z którymi prawdopodobnie się zmagasz
+              Znamy wyzwania z którymi prawdopodobnie się zmagasz
             </h3>
             <div className="space-y-4 mb-6">
               {problems.map((problem, idx) => (
                 <div key={idx} className="flex gap-3 items-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-red-500/90">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-red-500/70">
                     {problem.icon}
                   </div>
                   <div>
-                    <h4 className="text-white/90 font-semibold text-sm mb-1">{problem.title}</h4>
+                    <h4 className="text-white/70 font-semibold text-sm mb-1">{problem.title}</h4>
                   </div>
                 </div>
               ))}
@@ -521,11 +499,11 @@ export const ProblemSolutionSection = () => {
             <div className="space-y-4 mb-6">
               {solutions.map((solution, idx) => (
                 <div key={idx} className="flex gap-3 items-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-green-500/90">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-green-500/70">
                     {solution.icon}
                   </div>
                   <div>
-                    <h4 className="text-white/90 font-semibold text-sm mb-1">{solution.title}</h4>
+                    <h4 className="text-white/70 font-semibold text-sm mb-1">{solution.title}</h4>
                   </div>
                 </div>
               ))}
@@ -555,12 +533,12 @@ export const ProblemSolutionSection = () => {
               <div className="space-y-4">
                 {aiFuture.features.map((feature, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-blue-500/90">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-blue-500/70">
                       {feature.icon}
                     </div>
                     <div>
-                      <h4 className="text-white/90 font-semibold text-sm mb-1">{feature.title}</h4>
-                      <p className="text-gray-400/90 text-xs">{feature.description}</p>
+                      <h4 className="text-white/70 font-semibold text-sm mb-1">{feature.title}</h4>
+                      <p className="text-gray-400/70 text-xs">{feature.description}</p>
                     </div>
                   </div>
                 ))}
