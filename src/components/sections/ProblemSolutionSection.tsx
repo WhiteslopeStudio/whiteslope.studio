@@ -71,11 +71,7 @@ export const ProblemSolutionSection = () => {
     title: "Twoja firma jest niewidoczna online?",
     description: "Klienci nie znajdują Twojej firmy w internecie, a Ty chcesz to zmienić.",
   },
-  {
-    icon: <MousePointer className="w-6 h-6" />,
-    title: "Klienci nie kontaktują się przez stronę?",
-    description: "Masz stronę, ale klienci szybko z niej wychodzą i nie zostawiają zapytań.",
-  },
+  
   {
     icon: <BarChart3 className="w-6 h-6" />,
     title: "Nie wiesz, co działa na Twojej stronie?",
@@ -104,11 +100,7 @@ const solutions = [
     title: "Pomagamy zwiększyć widoczność firmy",
     description: "Stworzymy stronę, która ułatwi klientom znalezienie Twojej oferty w sieci.",
   },
-  {
-    icon: <Rocket className="w-6 h-6" />,
-    title: "Budujemy relacje z klientami",
-    description: "Zaprojektujemy stronę, która zachęci do kontaktu i wzmocni zaufanie do Twojej firmy.",
-  },
+  
   {
     icon: <LineChart className="w-6 h-6" />,
     title: "Pokazujemy proste wyniki",
