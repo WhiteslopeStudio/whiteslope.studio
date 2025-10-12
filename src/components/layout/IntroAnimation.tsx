@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useAdvancedInView, useMobileDetection } from '@/utils/hooks';
+import { useAdvancedInView } from '@/utils/hooks';
 import { Check, PersonStanding, Globe, MessageCircle, Settings } from 'lucide-react';
 
 // Typy i dane
@@ -10,9 +10,30 @@ interface AnimatedWord {
   visible: boolean;
 }
 
+// Własny hook do szybkiego wykrywania mobilnego
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+
+    // Sprawdź natychmiast
+    checkMobile();
+    
+    // Dodaj listener dla resize
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
 const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const [ref, inView] = useAdvancedInView() as [React.RefObject<HTMLDivElement>, boolean];
-  const isMobile = useMobileDetection();
+  const isMobile = useIsMobile();
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showCheckMark, setShowCheckMark] = useState(false);
@@ -26,13 +47,27 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const [isTextVisible, setIsTextVisible] = useState(true);
   const [currentAnimationId, setCurrentAnimationId] = useState(0);
   const [showSkipButton, setShowSkipButton] = useState(false);
+  const [mobileChecked, setMobileChecked] = useState(false);
 
   const textRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // NATYCHMIASTOWE WYŁĄCZENIE NA MOBILE
+  useEffect(() => {
+    if (isMobile && !mobileChecked) {
+      console.log('Mobile detected - skipping cinematic animation');
+      setAnimationCompleted(true);
+      setIsTextVisible(false);
+      setMobileChecked(true);
+      onComplete();
+    }
+  }, [isMobile, mobileChecked, onComplete]);
+
   // Sprawdzenie, czy animacja była już widziana
   useEffect(() => {
+    if (isMobile) return; // Nie sprawdzaj na mobile
+    
     const animationData = localStorage.getItem('hero-animation-data');
     if (animationData) {
       const { seen, timestamp } = JSON.parse(animationData);
@@ -42,10 +77,10 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
       } else {
         setAnimationCompleted(true);
         setIsTextVisible(false);
-        onComplete(); // Wywołaj onComplete, jeśli animacja była widziana
+        onComplete();
       }
     }
-  }, [onComplete]);
+  }, [onComplete, isMobile]);
 
   // Funkcja pomijania animacji
   const skipIntro = useCallback(() => {
@@ -65,10 +100,10 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
         timestamp: Date.now(),
       })
     );
-    onComplete(); // Wywołaj onComplete po pominięciu
+    onComplete();
   }, [onComplete]);
 
-  // Funkcje animacji (przeniesione z Twojego kodu)
+  // Funkcje animacji
   const animateWordsSequentially = useCallback(
     (text: string, animationId: number, onComplete?: () => void) => {
       const words = text.split(' ');
@@ -366,13 +401,9 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     );
   }, [animatedWords, currentAnimationId, currentStep]);
 
-  // Logika animacji
+  // Logika animacji TYLKO dla desktop
   useEffect(() => {
-    if (!inView || animationCompleted || isMobile) {
-      if (isMobile) {
-        setAnimationCompleted(true);
-        onComplete();
-      }
+    if (isMobile || animationCompleted || !inView) {
       return;
     }
 
@@ -450,6 +481,11 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     createBackgroundParticles,
     onComplete,
   ]);
+
+  // NIE RENDERUJ NIC NA MOBILE
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
