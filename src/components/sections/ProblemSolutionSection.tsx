@@ -215,7 +215,7 @@ export const ProblemSolutionSection = () => {
             <div 
               ref={card1Ref}
               className="relative rounded-2xl overflow-hidden group cursor-pointer"
-              style={{ aspectRatio: '7/11' }}
+              style={{ aspectRatio: '15/22' }}
               onClick={() => toggleCard(0)}
               onMouseEnter={() => setExpandedCard(0)}
               onMouseLeave={() => setExpandedCard(null)}
@@ -282,7 +282,7 @@ export const ProblemSolutionSection = () => {
             <div 
               ref={card2Ref}
               className="relative rounded-2xl overflow-hidden group cursor-pointer"
-              style={{ aspectRatio: '7/11' }}
+              style={{ aspectRatio: '15/22' }}
               onClick={() => toggleCard(1)}
               onMouseEnter={() => setExpandedCard(1)}
               onMouseLeave={() => setExpandedCard(null)}
@@ -349,7 +349,7 @@ export const ProblemSolutionSection = () => {
             <div 
               ref={card3Ref}
               className="relative rounded-2xl overflow-hidden group cursor-pointer"
-              style={{ aspectRatio: '7/11' }}
+              style={{ aspectRatio: '15/22' }}
               onClick={() => toggleCard(2)}
               onMouseEnter={() => setExpandedCard(2)}
               onMouseLeave={() => setExpandedCard(null)}
