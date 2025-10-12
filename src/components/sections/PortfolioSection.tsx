@@ -165,10 +165,27 @@ export const PortfolioSection = () => {
       {/* Zawartość */}
       <div className="relative z-10 pb-6 md:pb-20">
         {/* Nagłówek */}
+        <style jsx>{`
+          .platinum-text {
+            background: linear-gradient(
+              90deg,
+              #94a3b8 0%,
+              #e2e8f0 25%,
+              #f8fafc 50%,
+              #e2e8f0 75%,
+              #94a3b8 100%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+          }
+        `}</style>
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-6 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-normal md:font-thin text-white tracking-tight m-2 md:m-10">
-              Odkryj strony od<span className="font-normal"> Whiteslope Studio</span>
+            <h2 className="text-3xl lg:text-5xl font-semibold">
+              <span className="platinum-text">
+                Odkryj strony od <span className="font-semibold">Whiteslope Studio</span>
+              </span>
             </h2>
           </div>
         </div>
@@ -198,7 +215,7 @@ export const PortfolioSection = () => {
               >
                 {/* Project Card */}
                 <div
-                  className="relative w-[90vw] md:w-[80vw] sm:w-[70vw] lg:w-[50vw] xl:w-[45vw] overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]"
+                  className="relative w-[90vw] md:w-[80vw] sm:w-[70vw] lg:w-[60vw] xl:w-[55vw] overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]"
                   style={{ 
                     borderRadius: isMobile ? "8px" : "20px",
                     width: isMobile ? '90vw' : undefined,

@@ -3,7 +3,7 @@
 import { useAdvancedInView, useDragScroll, useScrollContainerStyles } from '@/utils/hooks';
 import { motion } from 'framer-motion';
 import { PROCESS_STEPS } from '@/lib/data';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles, Play, Pause } from 'lucide-react';
 
 export const ProcessSection = () => {
@@ -13,6 +13,8 @@ export const ProcessSection = () => {
   const [animatingDirection, setAnimatingDirection] = useState<'left' | 'right' | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [autoPlayEnabled, setAutoPlayEnabled] = useState(true);
+  const [hasVisited, setHasVisited] = useState(false); // NOWE: czy użytkownik już był na sekcji
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
     scrollContainerRef,
@@ -32,6 +34,18 @@ export const ProcessSection = () => {
   }, []);
 
   useScrollContainerStyles(isMobile);
+
+  // NOWE: Reset do pierwszej karty gdy użytkownik pierwszy raz wchodzi na sekcję
+  useEffect(() => {
+    if (inView && !hasVisited) {
+      setHasVisited(true);
+      setActiveIndex(0);
+      // Scrolluj do pierwszej karty
+      setTimeout(() => {
+        scrollToIndex(0);
+      }, 100);
+    }
+  }, [inView, hasVisited]);
 
   const updateActiveIndex = useCallback(() => {
     if (!scrollContainerRef.current) return;
@@ -96,10 +110,21 @@ export const ProcessSection = () => {
     };
   }, [isDragging, activeIndex, isMobile]);
 
+  // ZMIENIONE: Autoplay startuje tylko gdy użytkownik był na sekcji
   useEffect(() => {
-    if (!autoPlayEnabled || !inView) return;
+    // Wyczyść poprzedni interval
+    if (autoPlayIntervalRef.current) {
+      clearInterval(autoPlayIntervalRef.current);
+      autoPlayIntervalRef.current = null;
+    }
+
+    // Autoplay działa tylko gdy:
+    // 1. Jest włączony
+    // 2. Sekcja jest widoczna
+    // 3. Użytkownik już był na sekcji
+    if (!autoPlayEnabled || !inView || !hasVisited) return;
     
-    const autoScrollInterval = setInterval(() => {
+    autoPlayIntervalRef.current = setInterval(() => {
       if (!scrollContainerRef.current) return;
       
       const container = scrollContainerRef.current;
@@ -118,8 +143,13 @@ export const ProcessSection = () => {
       }
     }, 6000);
 
-    return () => clearInterval(autoScrollInterval);
-  }, [activeIndex, autoPlayEnabled, Boolean(inView)]);
+    return () => {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+    };
+  }, [activeIndex, autoPlayEnabled, inView, hasVisited]);
 
   const scrollToIndex = (index: number) => {
     if (!scrollContainerRef.current) return;
@@ -172,25 +202,42 @@ export const ProcessSection = () => {
   };
 
   return (
-    <section id="process" ref={ref} className="py-20 bg-black relative overflow-hidden" style={{
-        background: 'linear-gradient(0deg, #000000ff 0%, #000000ff 100%)'
-      }}>
+    <section id="process" ref={ref} className="py-20 bg-black relative overflow-hidden" 
+        style={{
+        background: `
+          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
+        `
+      }}  
+      >
       
       {/* Gradienty po bokach */}
       <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-40 pointer-events-none" />
       <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-40 pointer-events-none" />
       
       <div className="relative z-10">
-        {/* NOWY NAGŁÓWEK NA GÓRZE */}
-        <div className="container mx-auto px-6">
+        {/* NAGŁÓWEK NA GÓRZE */}
+        <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl lg:text-6xl font-normal md:font-thin text-white mb-4 tracking-tight leading-tight">
-              Odkryj proces{" "}
+
+            <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">              Odkryj proces{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                 współpracy
               </span>
@@ -198,31 +245,7 @@ export const ProcessSection = () => {
           </motion.div>
         </div>
 
-        {/* OPIS NA DOLE */}
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="rounded-2xl p-8 ">
-              
-              {/* Opis */}
-              <p className="text-white/70 text-base leading-relaxed">
-                Naszym celem jest dostarczenie tobie najlepszej usługi, wsparcia i pomocy przy projekcie na każdym etapie jego produkowania.
-              </p>
-              
-              {/* Podpis */}
-              <div className="flex items-center justify-end gap-3">
-                <div className="w-12 h-px bg-white/20"></div>
-                <p className="text-white/50 text-sm italic">
-                  Zespół <span className="font-medium">Whiteslope</span>
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        
 
         {/* Karty procesów */}
         <div className={`relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'} transition-all duration-700 ease-out mb-16`}>
@@ -387,6 +410,8 @@ export const ProcessSection = () => {
             </button>
           </div>
         </div>
+
+        
       </div>
     </section>
   );

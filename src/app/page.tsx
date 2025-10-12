@@ -46,11 +46,15 @@ export default function HomePage() {
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
       <ProblemSolutionSection />
 
+      
+
       {/* 💬 TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
       {/* 🔄 PROCESS SECTION */}
       <ProcessSection />
+
+      
 
       <ExperienceSection />
 

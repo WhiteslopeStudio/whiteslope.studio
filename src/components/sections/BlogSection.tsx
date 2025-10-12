@@ -29,11 +29,30 @@ export const BlogSection = () => {
   const featuredPosts = BLOG_POSTS.slice(0, 3);
 
   return (
-    <section id="blog" className="py-20 bg-black">
+    <section id="blog" className="py-20 bg-black"
+    style={{
+        background: `
+          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
+        `
+      }}  
+    >
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-thin text-white mb-6">
+          <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
             Najnowsze wpisy z bloga
           </h2>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">

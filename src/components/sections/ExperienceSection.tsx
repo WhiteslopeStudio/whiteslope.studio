@@ -130,8 +130,23 @@ export default function ExperienceSection() {
       <div 
         className="absolute inset-0"
         style={{
-          
-        }}
+        background: `
+          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
+        `
+      }}  
       />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -162,7 +177,7 @@ export default function ExperienceSection() {
               'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
           }}
         >
-          <h2 className="text-3xl lg:text-6xl md:font-thin text-white mb-8 tracking-tight my-10">
+          <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
             Wyskaluj z nami swój biznes<GiCutDiamond className="inline w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 ml-2" /> już
             <span> </span>
             <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
@@ -171,7 +186,7 @@ export default function ExperienceSection() {
           </h2>
           <p
             className={`leading-relaxed text-gray-300 mx-auto ${
-              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-5xl"
+              isMobile ? "text-base px-4" : "text-lg md:text-xl max-w-3xl"
             }`}
             style={{
               fontWeight: 400,
@@ -180,7 +195,7 @@ export default function ExperienceSection() {
             }}
           >
             <span className="font-bold">Twoja strona musi być widoczna w erze nowych wyszukiwarek.{" "}</span>
-            W 2025 roku to najważniejszy <br />czynnik rankingowy w Google - więc jak i również Twoich dochodów.
+            W 2025 roku<br/> to najważniejsze, aby być widocznym w rankingach AI.
           </p>
           <p
             className={`leading-relaxed text-gray-300 mx-auto mt-4 ${
