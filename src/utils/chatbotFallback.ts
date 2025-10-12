@@ -13,21 +13,21 @@ export const fallbackResponses = {
   ],
   
   pricing: [
-    "💰 **Cennik WhiteSlope:**\n\n🌱 **Strona wizytówka:** od 2000 zł\n🚀 **Strona biznesowa:** od 4000 zł\n🛒 **Sklep online:** od 8000 zł\n🤖 **+ Chatbot AI:** +1500 zł\n\n✅ Wszystko z SEO i responsywnością!\n\n📞 Bezpłatna konsultacja - umówimy się?",
-    "📊 **Pakiety cenowe:**\n\n💎 **Premium:** Pełna strona + AI + SEO\n⚡ **Standard:** Strona + podstawowy SEO\n🌟 **Starter:** Strona wizytówka\n\n🎁 **Bonus:** Pierwszy miesiąc hostingu gratis!\n\n📋 Chcesz szczegółową wycenę?",
-    "🏷️ **Transparent pricing:**\n\n• Bez ukrytych kosztów\n• Płatność po etapach\n• 30 dni gwarancji\n• Darmowe poprawki (do 30 dni)\n\n💡 **AI chatbot:** Taki jak ja - 1500 zł\n\n🤔 Masz pytania o koszty?"
+    "💰 **Cennik WhiteSlope:**\n\n🌱 **Strona internetowa:** od 2499 zł\n🚀 **Sklep e-commerce:** od 4999 zł\n🤖 **Integracje AI:** od 1999 zł\n📱 **Aplikacje mobilne:** od 7999 zł\n\n✅ Wszystko z SEO i responsywnością!\n\n📞 Bezpłatna konsultacja - umówimy się?",
+    "📊 **Nasze pakiety:**\n\n💎 **Website:** Profesjonalne strony internetowe\n🛒 **E-commerce:** Sklepy online z płatnościami\n🤖 **AI Integration:** Chatboty i automatyzacja\n📱 **Mobile App:** Aplikacje iOS i Android\n\n📋 Chcesz szczegółową wycenę?",
+    "🏷️ **Przejrzyste ceny:**\n\n• Bez ukrytych kosztów\n• Płatność po etapach realizacji\n• Gwarancja jakości\n• Wsparcie po wdrożeniu\n\n💡 **Chatbot jak ja:** od 1999 zł\n\n🤔 Masz pytania o konkretny projekt?"
   ],
   
   ai_chat: [
-    "🤖 Widzę, że interesuje Cię AI!\n\n✨ **Chatbot jak ja może:**\n• Obsłużyć klientów 24/7\n• Odpowiadać na FAQ\n• Zbierać leady\n• Umówić spotkania\n\n🎯 **Efekt:** Więcej konwersji, mniej pracy!\n\n💵 Koszt: tylko 1500 zł setup + 200 zł/miesiąc\n\n🚀 Chcesz to na swojej stronie?",
-    "🧠 **AI to przyszłość biznesu!**\n\nTaki chatbot jak ja:\n• Nie śpi, nie ma urlopu 😄\n• Mówi w Twoim stylu\n• Uczy się z rozmów\n• Integruje się z CRM\n\n📈 **Rezultat:** +40% więcej zapytań!\n\n🤝 Umówimy prezentację na żywo?",
-    "💬 **Chatbot dla Twojej firmy:**\n\n🎨 Personalizacja wyglądu\n🗣️ Naturalny język polski\n📊 Analityka rozmów\n🔗 Integracja z WhatsApp/FB\n\n⏱️ **Wdrożenie:** 7-14 dni\n💰 **Koszt:** od 1500 zł\n\n📞 Zadzwonimy i porozmawiamy?"
+    "🤖 Widzę, że interesuje Cię AI!\n\n✨ **Chatbot jak ja może:**\n• Obsłużyć klientów 24/7\n• Odpowiadać na FAQ\n• Zbierać leady i kontakty\n• Umówić spotkania\n\n🎯 **Efekt:** Więcej konwersji, mniej pracy!\n\n� **Koszt:** od 1999 zł (jednorazowo)\n\n🚀 Chcesz to na swojej stronie?",
+    "🧠 **AI to przyszłość biznesu!**\n\nTaki chatbot jak ja:\n• Pracuje bez przerwy 😄\n• Dopasowuje się do Twojego stylu\n• Integruje się z systemami\n• Generuje więcej zapytań\n\n📈 **Rezultat:** Zwiększona konwersja!\n\n🤝 Umówimy prezentację?",
+    "💬 **Integracja AI dla Twojej firmy:**\n\n🎨 Personalizowany design\n🗣️ Naturalny język polski\n📊 Analityka i raporty\n🔗 Integracje z CRM/WhatsApp\n\n⏱️ **Wdrożenie:** 1-2 tygodnie\n💰 **Inwestycja:** od 1999 zł\n\n📞 Porozmawiajmy o szczegółach!"
   ],
   
   contact: [
-    "📞 **Skontaktuj się z nami:**\n\n📧 Email: kontakt@whiteslope.studio\n📱 Tel: +48 123 456 789\n📍 Białystok, Polska\n\n⏰ **Godziny pracy:**\nPn-Pt: 9:00-17:00\n\n🎯 **Bezpłatna konsultacja:** 30 min\n\n👆 Kliknij przycisk kontakt powyżej!",
-    "🤝 **Porozmawiajmy o Twoim projekcie!**\n\n✅ Darmowa konsultacja (30 min)\n✅ Wycena w 24h\n✅ NDA - pełna poufność\n\n📋 **Możemy omówić:**\n• Twoje potrzeby biznesowe\n• Budżet i timeline\n• Technologię i funkcje\n\n📞 Dzwonisz czy my do Ciebie?",
-    "🚀 **Gotowy na start?**\n\nWypełnij formularz kontaktowy lub:\n📞 Zadzwoń: +48 123 456 789\n📧 Napisz: kontakt@whiteslope.studio\n\n⚡ **Szybka ścieżka:** Umów spotkanie online!\n\n🎁 **Bonus:** Audit Twojej obecnej strony (jeśli masz) - gratis!"
+    "📞 **Skontaktuj się z nami:**\n\n📧 Email: kontakt@whiteslope.studio\n Białystok, Polska\n\n⏰ **Odpowiadamy w ciągu:**\n24 godzin (dni robocze)\n\n🎯 **Bezpłatna konsultacja:** 30 min\n\n👆 Użyj formularza kontaktowego na stronie!",
+    "🤝 **Porozmawiajmy o Twoim projekcie!**\n\n✅ Darmowa konsultacja (30 min)\n✅ Wycena w 24h\n✅ Pełna poufność projektu\n\n📋 **Omówimy:**\n• Twoje cele biznesowe\n• Budżet i harmonogram\n• Najlepsze rozwiązania techniczne\n\n📞 Kliknij przycisk kontakt!",
+    "🚀 **Rozpocznijmy współpracę!**\n\nWypełnij formularz kontaktowy:\n📧 kontakt@whiteslope.studio\n\n⚡ **Express:** Umów spotkanie online!\n\n🎁 **Bonus:** Darmowy audit Twojej obecnej strony!"
   ],
   
   general: [
