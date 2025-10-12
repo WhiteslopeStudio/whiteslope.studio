@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/sections/cookieBanner";
 import { jsonLd } from "@/lib/schema";
+import Chatbot from "@/components/ui/Chatbot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,6 +97,7 @@ export default function RootLayout({
         <Header />
         {children}
         <CookieBanner />
+        <Chatbot />
         <Footer />
       </body>
     </html>

@@ -22,3 +22,22 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom scrollbar dla chatbota WhiteSlope */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgb(253, 186, 116), rgb(251, 146, 60));
+  border-radius: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgb(251, 146, 60), rgb(244, 114, 182));
+}
