@@ -17,7 +17,7 @@ export const jsonLd = {
       '@type': 'ContactPoint',
       telephone: '+48-123-456-789',
       contactType: 'customer service',
-      email: 'kontakt@whiteslope.pl',
+      email: 'kontakt@whiteslope.studio',
       areaServed: 'PL',
       availableLanguage: ['Polish', 'English']
     }

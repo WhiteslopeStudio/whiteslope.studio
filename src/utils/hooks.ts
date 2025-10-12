@@ -11,7 +11,7 @@ export const useMobileDetection = () => {
   
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 920);
+      setIsMobile(window.innerWidth <= 768);
     };
     
     checkMobile();
