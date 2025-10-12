@@ -2,7 +2,7 @@
 
 import { useState, useLayoutEffect, useEffect, } from 'react';
 
-import { HeroSection } from '@/components/sections/HeroSection';
+import  HeroSection from '@/components/sections/HeroSection';
 import { ProblemSolutionSection } from '@/components/sections/ProblemSolutionSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
@@ -42,7 +42,8 @@ export default function HomePage() {
       {isMobile ? <HeroSectionMobile /> : <HeroSection />}
       {/* 🎨 PORTFOLIO SECTION */}
 
-      <PortfolioSection />
+      {isMobile ? <PortfolioSection /> : null}
+      
 
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
       <ProblemSolutionSection />
