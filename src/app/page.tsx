@@ -46,6 +46,8 @@ export default function HomePage() {
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
       <ProblemSolutionSection />
 
+      <ExperienceSection />
+
       
 
       {/* 💬 TESTIMONIALS SECTION */}
@@ -56,7 +58,7 @@ export default function HomePage() {
 
       
 
-      <ExperienceSection />
+      
 
       {/* 💰 PRICING SECTION */}
       <PricingSection />
