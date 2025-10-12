@@ -27,7 +27,7 @@ export const FAQSection = () => {
     <section id="faq" className="py-20 bg-black"
     style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,

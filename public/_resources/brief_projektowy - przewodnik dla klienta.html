@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przewodnik: Jak przygotować się do projektu strony internetowej</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            padding: 0;
+        }
+        
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            min-height: 100vh;
+            page-break-after: always;
+        }
+        
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 80px 50px;
+        }
+        
+        .cover h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cover .subtitle {
+            font-size: 22px;
+            color: #525252;
+            margin-bottom: 60px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        .cover .meta {
+            color: #737373;
+            font-size: 14px;
+            margin-top: auto;
+        }
+        
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #0a0a0a;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: #171717;
+        }
+        
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            color: #262626;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            color: #404040;
+            font-size: 15px;
+        }
+        
+        .intro {
+            font-size: 18px;
+            color: #262626;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        .highlight-box {
+            background: #fff7ed;
+            border-left: 4px solid #fb923c;
+            padding: 20px 24px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+        
+        .highlight-box h4 {
+            margin-top: 0;
+            color: #ea580c;
+        }
+        
+        .highlight-box p,
+        .highlight-box ul {
+            color: #292524;
+        }
+        
+        .warning-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px 24px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+        
+        .warning-box h4 {
+            margin-top: 0;
+            color: #dc2626;
+        }
+        
+        .warning-box p {
+            color: #292524;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .checklist li {
+            padding: 12px 0 12px 32px;
+            position: relative;
+            color: #404040;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .mistake-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .mistake-list li {
+            padding: 12px 0 12px 32px;
+            position: relative;
+            color: #404040;
+        }
+        
+        .mistake-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .number-list {
+            counter-reset: item;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .number-list li {
+            padding: 16px 0 16px 50px;
+            position: relative;
+            color: #404040;
+        }
+        
+        .number-list li:before {
+            content: counter(item);
+            counter-increment: item;
+            position: absolute;
+            left: 0;
+            top: 12px;
+            background: linear-gradient(135deg, #fb923c, #ec4899);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        strong {
+            color: #0a0a0a;
+            font-weight: 600;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e5e5, transparent);
+            margin: 50px 0;
+        }
+        
+        blockquote {
+            border-left: 3px solid #ec4899;
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #525252;
+            font-size: 16px;
+        }
+        
+        .footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #737373;
+            font-size: 13px;
+        }
+        
+        @media print {
+            .page {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STRONA 1: OKŁADKA -->
+    <div class="cover">
+        <h1>Jak przygotować się<br>do projektu strony<br>internetowej</h1>
+        <p class="subtitle">
+            Kompleksowy przewodnik, który pomoże Ci uniknąć najczęstszych błędów i stworzyć stronę, która naprawdę działa
+        </p>
+        <div class="meta">
+            © 2025 | Przewodnik dla klientów
+        </div>
+    </div>
+
+    <!-- STRONA 2: WPROWADZENIE -->
+    <div class="page">
+        <h2>Wprowadzenie</h2>
+        
+        <p class="intro">
+            Tworzenie strony internetowej to proces, który wymaga dobrego przygotowania. Widzimy to codziennie - klienci, którzy dobrze się przygotowują, oszczędzają czas, pieniądze i nerwy. Ci, którzy podchodzą do tematu bez planu, często kończą z produktem, który nie spełnia ich oczekiwań.
+        </p>
+        
+        <p>
+            Ten przewodnik powstał na podstawie naszego wieloletniego doświadczenia w tworzeniu setek projektów. Zebrano w nim najczęstsze problemy, pytania i błędy, które widzimy u naszych klientów. Naszym celem jest pomóc Ci ich uniknąć.
+        </p>
+
+        <div class="highlight-box">
+            <h4>💡 Dlaczego warto przeczytać ten przewodnik?</h4>
+            <p>Właściwe przygotowanie do projektu może skrócić czas realizacji nawet o 40% i znacząco obniżyć koszty. Co ważniejsze - zwiększa szansę na stworzenie strony, która faktycznie przynosi rezultaty biznesowe.</p>
+        </div>
+
+        <h3>Dla kogo jest ten przewodnik?</h3>
+        <p>Ten materiał jest dla Ciebie, jeśli:</p>
+        <ul class="checklist">
+            <li>Planujesz stworzyć nową stronę internetową lub aplikację webową</li>
+            <li>Chcesz zrobić redesign istniejącej strony</li>
+            <li>Szukasz agencji lub freelancera do realizacji projektu</li>
+            <li>Chcesz lepiej zrozumieć proces tworzenia stron</li>
+            <li>Zależy Ci na efektywnej współpracy i uniknięciu problemów</li>
+        </ul>
+    </div>
+
+    <!-- STRONA 3: 7 NAJCZĘSTSZYCH BŁĘDÓW -->
+    <div class="page">
+        <h2>7 najczęstszych błędów klientów</h2>
+        
+        <p class="intro">
+            Zanim przejdziemy do tego, co robić dobrze, zobaczmy najpierw, czego unikać. Te błędy powtarzają się w większości nieudanych projektów.
+        </p>
+
+        <h3>1. Brak jasno określonych celów</h3>
+        <p>
+            <strong>Problem:</strong> "Chcemy ładną stronę" to nie jest cel. Strona to narzędzie biznesowe, nie dzieło sztuki.
+        </p>
+        <div class="warning-box">
+            <p><strong>Czym to grozi?</strong> Bez jasnych celów nie da się ocenić, czy projekt się powiódł. Zespół nie wie, na czym się skupić, a Ty później jesteś niezadowolony, bo "coś jest nie tak".</p>
+        </div>
+        <p>
+            <strong>Rozwiązanie:</strong> Określ konkretne, mierzalne cele. Przykłady: "zwiększyć konwersję o 30%", "zdobyć 100 leadów miesięcznie", "skrócić ścieżkę zakupową", "zautomatyzować obsługę klienta".
+        </p>
+
+        <div class="divider"></div>
+
+        <h3>2. "Klient wie najlepiej" - ignorowanie doświadczenia zespołu</h3>
+        <p>
+            Zatrudniasz ekspertów, ale odrzucasz wszystkie ich sugestie, bo "Ty znasz swoją branżę". Oczywiście znasz - ale oni znają internet i zachowania użytkowników.
+        </p>
+        <p>
+            <strong>Przykład:</strong> Klient upiera się przy 10 linkach w menu głównym, bo "wszystko jest ważne". Efekt? Użytkownicy są przytłoczeni i w ogóle nie klikają.
+        </p>
+
+        <div class="divider"></div>
+
+        <h3>3. Projektowanie przez komitet</h3>
+        <p>
+            Udostępniasz projekty wszystkim w firmie. Recepcjonistka, księgowa, praktykant - każdy ma zdanie. Efekt? 50 sprzecznych uwag i projekt, który nikomu się nie podoba.
+        </p>
+        <div class="highlight-box">
+            <p><strong>Rada:</strong> Wyznacz 1-2 osoby decyzyjne. Jeśli potrzebujesz więcej opinii, zbieraj je na początku (etap researchu), nie podczas projektowania.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>4. Porównywanie jabłek do pomarańczy</h3>
+        <p>
+            "Konkurencja ma taką funkcję, więc my też musimy" - bez zastanowienia, czy w Twoim przypadku to ma sens. Albo jeszcze gorzej: "Apple ma minimalistyczną stronę, więc my też tak zróbmy" - ignorując fakt, że Apple wydaje miliony na branding.
+        </p>
+
+        <div class="divider"></div>
+
+        <h3>5. Brak przygotowanych materiałów</h3>
+        <p>
+            Projekt rusza, a Ty nie masz: tekstów, zdjęć, logo w dobrej jakości, ani jasnej struktury treści. Wszystko trzeba robić "w biegu".
+        </p>
+        <p>
+            <strong>Rezultat:</strong> Opóźnienia, dodatkowe koszty, albo strona wypełniona pośpiesznie napisanymi tekstami i banalnymi zdjęciami ze stocków.
+        </p>
+    </div>
+
+    <!-- STRONA 4: BŁĘDY CD. -->
+    <div class="page">
+        <h3>6. Zbyt mały budżet lub "zróbmy MVP"</h3>
+        <p>
+            Słyszysz kwotę za pełny projekt i decydujesz: "To na razie zróbmy podstawową wersję, resztę dodamy później". Problem? "Później" często oznacza przepłacenie, bo modyfikacje kosztują więcej niż zrobienie od razu.
+        </p>
+        <blockquote>
+            "Jeśli myślisz, że dobry design jest drogi, to poczekaj aż zobaczysz, ile kosztuje zły design."
+        </blockquote>
+
+        <div class="divider"></div>
+
+        <h3>7. Mikromanagement i niekończące się zmiany</h3>
+        <p>
+            "Przesuń ten przycisk o 2 piksele w lewo", "zmieniamy koncepcję po raz piąty", "czy można jeszcze raz zobaczyć poprzednią wersję?". Zamiast patrzeć na całość, skupiasz się na detalach i zmieniasz zdanie co drugi dzień.
+        </p>
+        <div class="warning-box">
+            <p><strong>Efekt:</strong> Projekt nigdy się nie kończy, zespół jest sfrustrowany, a Ty przepłacasz za godziny pracy poświęcone na niekończące się iteracje.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Co z tego wynika?</h2>
+        <p>
+            Większość problemów w projektach webowych nie wynika z braku umiejętności technicznych wykonawcy. Wynika z braku dobrego przygotowania, niejasnych oczekiwań i złej komunikacji.
+        </p>
+        <p>
+            Dobra wiadomość? <strong>Można tego uniknąć.</strong> Wystarczy odpowiednie przygotowanie przed startem projektu.
+        </p>
+    </div>
+
+    <!-- STRONA 5: JAK SIĘ PRZYGOTOWAĆ -->
+    <div class="page">
+        <h2>Jak się przygotować do projektu</h2>
+
+        <h3>Krok 1: Określ cele biznesowe</h3>
+        <p>
+            Zanim zaczniesz myśleć o tym, jak strona ma wyglądać, odpowiedz sobie na pytanie: <strong>po co Ci ta strona?</strong>
+        </p>
+        
+        <p>Dobre cele są konkretne i mierzalne:</p>
+        <ul class="checklist">
+            <li>Zwiększenie sprzedaży online o 40% w ciągu 6 miesięcy</li>
+            <li>Pozyskanie 200 zapytań ofertowych miesięcznie</li>
+            <li>Skrócenie procesu onboardingu klientów z 5 do 2 dni</li>
+            <li>Zwiększenie czasu spędzanego na stronie o 50%</li>
+            <li>Obniżenie liczby zapytań do supportu o 30%</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>🎯 Pytania do zadania sobie:</h4>
+            <ul class="checklist">
+                <li>Jaki konkretny problem biznesowy ma rozwiązać ta strona?</li>
+                <li>Co ma zrobić użytkownik po wejściu na stronę?</li>
+                <li>Jak zmierzymy sukces projektu?</li>
+                <li>Jaki jest nasz główny wskaźnik (KPI)?</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Krok 2: Poznaj swoją grupę docelową</h3>
+        <p>
+            "Każdy" to nie jest grupa docelowa. Im lepiej znasz swoich użytkowników, tym lepiej można dopasować stronę do ich potrzeb.
+        </p>
+        
+        <p><strong>Co warto wiedzieć:</strong></p>
+        <ul class="number-list">
+            <li><strong>Demografia:</strong> Wiek, lokalizacja, wykształcenie, dochody</li>
+            <li><strong>Zachowania online:</strong> Z jakich urządzeń korzystają? Jakie strony odwiedzają?</li>
+            <li><strong>Problemy i potrzeby:</strong> Co ich boli? Czego szukają?</li>
+            <li><strong>Poziom zaawansowania:</strong> Czy są ekspertami w Twojej dziedzinie, czy laicy?</li>
+            <li><strong>Oczekiwania:</strong> Czego oczekują od Twojej strony?</li>
+        </ul>
+    </div>
+
+    <!-- STRONA 6: PRZYGOTOWANIE MATERIAŁÓW -->
+    <div class="page">
+        <h3>Krok 3: Przygotuj materiały przed startem</h3>
+        <p>
+            Najgorsze, co możesz zrobić, to zacząć projekt bez gotowych materiałów. Oto co powinieneś przygotować:
+        </p>
+
+        <h4>📝 Treści tekstowe</h4>
+        <p>
+            Nie musisz mieć finalnych tekstów, ale przygotuj conajmniej:
+        </p>
+        <ul class="checklist">
+            <li>Szkic głównych komunikatów i nagłówków</li>
+            <li>Kluczowe informacje o produktach/usługach</li>
+            <li>FAQ - najczęściej zadawane pytania</li>
+            <li>O nas - historia firmy, wartości, zespół</li>
+            <li>Case studies lub portfolio (jeśli dotyczy)</li>
+        </ul>
+
+        <h4>📸 Materiały graficzne</h4>
+        <ul class="checklist">
+            <li>Logo w wysokiej rozdzielczości (najlepiej jako plik wektorowy)</li>
+            <li>Zdjęcia produktów, biura, zespołu</li>
+            <li>Istniejące materiały brandingowe (kolory, czcionki)</li>
+            <li>Grafiki, ikony, ilustracje (jeśli posiadasz)</li>
+        </ul>
+
+        <div class="warning-box">
+            <h4>⚠️ Uwaga na zdjęcia stockowe</h4>
+            <p>Klienci często je rozpoznają i automatycznie tracą zaufanie. Jeśli nie masz własnych zdjęć, lepiej zainwestuj w profesjonalną sesję niż używać banalnych stocków.</p>
+        </div>
+
+        <h4>🎨 Preferencje wizualne</h4>
+        <p>
+            Zamiast mówić "coś ładnego", przygotuj konkretne przykłady:
+        </p>
+        <ul class="checklist">
+            <li>3-5 stron, które Ci się podobają (i dlaczego)</li>
+            <li>3-5 stron konkurencji (co robią dobrze/źle)</li>
+            <li>Przykłady z innych branż, które Cię inspirują</li>
+            <li>Kolory, które chcesz/nie chcesz widzieć</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Krok 4: Określ funkcjonalności</h3>
+        <p>
+            Pomyśl, co faktycznie ma robić Twoja strona. Lista funkcjonalności może obejmować:
+        </p>
+        <ul class="number-list">
+            <li><strong>Podstawowe:</strong> Prezentacja oferty, formularz kontaktowy, blog</li>
+            <li><strong>E-commerce:</strong> Koszyk, płatności, system zarządzania zamówieniami</li>
+            <li><strong>Integracje:</strong> CRM, email marketing, analytics, systemy zewnętrzne</li>
+            <li><strong>Zaawansowane:</strong> Konto użytkownika, rezerwacje, konfigurator produktów</li>
+        </ul>
+    </div>
+
+    <!-- STRONA 7: BUDŻET I WYBÓR PARTNERA -->
+    <div class="page">
+        <h2>Budżet i wybór partnera</h2>
+
+        <h3>Ile kosztuje strona internetowa?</h3>
+        <p>
+            To jest jak pytanie "ile kosztuje samochód?". Zależy od tego, czego potrzebujesz. Orientacyjne widełki:
+        </p>
+
+        <ul class="number-list">
+            <li><strong>Strona wizytówka (5-10 stron):</strong> 3 000 - 10 000 zł</li>
+            <li><strong>Strona firmowa z CMS:</strong> 8 000 - 25 000 zł</li>
+            <li><strong>Sklep internetowy (podstawowy):</strong> 15 000 - 40 000 zł</li>
+            <li><strong>Zaawansowana aplikacja webowa:</strong> 40 000 - 200 000+ zł</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>💰 Co wpływa na cenę?</h4>
+            <ul class="checklist">
+                <li>Liczba unikalnych podstron i funkcjonalności</li>
+                <li>Poziom customizacji designu</li>
+                <li>Integracje z zewnętrznymi systemami</li>
+                <li>Responsywność i optymalizacja</li>
+                <li>Copywriting, fotografia, branding</li>
+                <li>Doświadczenie i renoma wykonawcy</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Jak wybrać agencję lub freelancera?</h3>
+
+        <h4>Sprawdź portfolio</h4>
+        <p>
+            Nie tylko estetykę, ale też:
+        </p>
+        <ul class="checklist">
+            <li>Czy mają projekty z Twojej branży?</li>
+            <li>Czy strony faktycznie działają dobrze? (przetestuj je)</li>
+            <li>Czy prezentują case studies z wynikami?</li>
+        </ul>
+
+        <h4>Zadaj właściwe pytania</h4>
+        <ul class="number-list">
+            <li>Jak wygląda proces współpracy krok po kroku?</li>
+            <li>Kto będzie moją osobą kontaktową?</li>
+            <li>Ile rund poprawek jest wliczone w cenę?</li>
+            <li>Jak długo będzie trwał projekt?</li>
+            <li>Co jeśli przekroczymy termin/budżet?</li>
+            <li>Czy zapewniacie wsparcie po zakończeniu?</li>
+            <li>Jak wygląda przekazanie projektu?</li>
+        </ul>
+
+        <h4>Czerwone flagi 🚩</h4>
+        <ul class="mistake-list">
+            <li>Obiecują "szybko i tanio" bez poznania Twoich potrzeb</li>
+            <li>Nie mają procesu - "Jak będzie, to będzie"</li>
+            <li>Nie pytają o cele biznesowe, tylko od razu o kolory</li>
+            <li>Portfolio składa się z szablonów</li>
+            <li>Brak jasnej umowy i harmonogramu</li>
+            <li>Słaba komunikacja już na etapie rozmów</li>
+        </ul>
+    </div>
+
+    <!-- STRONA 8: WSPÓŁPRACA -->
+    <div class="page">
+        <h2>Jak współpracować efektywnie</h2>
+
+        <h3>Zaufaj procesowi</h3>
+        <p>
+            Dobre agencje mają wypracowany proces. Może wydawać Ci się, że pytania o biznes to strata czasu - ale to fundamenty pod dobry projekt.
+        </p>
+
+        <p>Typowy proces wygląda tak:</p>
+        <ul class="number-list">
+            <li><strong>Discovery / Research:</strong> Poznanie Twojego biznesu, celów, użytkowników</li>
+            <li><strong>Strategia:</strong> Określenie struktury, funkcjonalności, user flow</li>
+            <li><strong>Projektowanie UX/UI:</strong> Wireframy, prototypy, finalny design</li>
+            <li><strong>Development:</strong> Programowanie, integracje, testy</li>
+            <li><strong>Wdrożenie:</strong> Uruchomienie, szkolenie, przekazanie projektu</li>
+            <li><strong>Wsparcie:</strong> Monitoring, optymalizacja, rozwój</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Komunikacja to podstawa</h3>
+
+        <div class="highlight-box">
+            <h4>✅ Dobre praktyki:</h4>
+            <ul class="checklist">
+                <li>Wyznacz jedną osobę decyzyjną po swojej stronie</li>
+                <li>Odpowiadaj na czas - opóźnienia w feedbacku opóźniają cały projekt</li>
+                <li>Zbieraj uwagi od zespołu przed przekazaniem ich agencji</li>
+                <li>Zadawaj pytania, jak czegoś nie rozumiesz</li>
+                <li>Ufaj w danym etapie - nie oceniaj koloru przycisku, gdy dopiero rysowane są wireframy</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>❌ Czego unikać:</h4>
+            <ul class="mistake-list">
+                <li>Proszenia o zmiany "na szybko" poza oficjalnymi kanałami</li>
+                <li>Zmiany zdania co tydzień odnośnie koncepcji</li>
+                <li>Oczekiwania natychmiastowej odpowiedzi 24/7</li>
+                <li>Porównywania do konkurencji w każdym emailu</li>
+                <li>Przesyłania feedbacku od 15 różnych osób w firmie</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Feedback, który pomaga</h3>
+        <p>
+            Zamiast mówić "nie podoba mi się", wyjaśnij dlaczego:
+        </p>
+        
+        <p><strong>❌ Słaby feedback:</strong> "Ten niebieski jest brzydki"</p>
+        <p><strong>✅ Dobry feedback:</strong> "Ten odcień niebieskiego nie pasuje do naszego brandingu. Nasz niebieski to #1E3A8A, proszę go użyć tutaj"</p>
+
+        <p><strong>❌ Słaby feedback:</strong> "Coś tu nie gra"</p>
+        <p><strong>✅ Dobry feedback:</strong> "Tekst na tym ekranie jest za długi - nasi użytkownicy nie przeczytają tego wszystkiego. Skupmy się na 3 najważniejszych korzyściach"</p>
+    </div>
+
+    <!-- STRONA 9: PO WDROŻENIU -->
+    <div class="page">
+        <h2>Co po wdrożeniu?</h2>
+
+        <h3>Strona to dopiero początek</h3>
+        <p>
+            Wiele osób myśli, że po uruchomieniu strony "praca się kończy". To błąd. Strona to żywy organizm, który wymaga uwagi.
+        </p>
+
+        <h4>Pierwsze tygodnie po wdrożeniu</h4>
+        <ul class="number-list">
+            <li><strong>Monitoruj:</strong> Sprawdź analytics, zobacz jak użytkownicy się zachowują</li>
+            <li><strong>Zbieraj feedback:</strong> Pytaj klientów, zespół sprzedaży o wrażenia</li>
+            <li><strong>Testuj:</strong> Sprawdź wszystkie formularze, funkcje na różnych urządzeniach</li>
+            <li><strong>Poprawiaj:</strong> Napraw błędy, optymalizuj to, co nie działa</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Długoterminowa opieka</h3>
+        <p>
+            Strona potrzebuje regularnej uwagi:
+        </p>
+
+        <ul class="checklist">
+            <li><strong>Aktualizacje techniczne:</strong> System, wtyczki, zabezpieczenia</li>
+            <li><strong>Świeże treści:</strong> Blog, aktualności, nowe produkty</li>
+            <li><strong>Optymalizacja SEO:</strong> Poprawa pozycji w Google</li>
+            <li><strong>Analiza i testy A/B:</strong> Stała poprawa konwersji</li>
+            <li><strong>Rozwój funkcjonalności:</strong> Dodawanie nowych możliwości</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>💡 Pamiętaj</h4>
+            <p>Najlepsze strony to te, które ewoluują razem z biznesem. Plan rozwoju na kolejne 6-12 miesięcy to dobra praktyka.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Mierz rezultaty</h3>
+        <p>
+            Wróć do celów, które określiłeś na początku. Po 3 miesiącach sprawdź:
+        </p>
+        <ul class="checklist">
+            <li>Czy osiągasz założone KPI?</li>
+            <li>Czy ruch na stronie rośnie?</li>
+            <li>Jak wygląda konwersja?</li>
+            <li>Co mówią użytkownicy?</li>
+            <li>Gdzie są obszary do poprawy?</li>
+        </ul>
+
+        <p>
+            Jeśli coś nie działa - to dobrze! Teraz wiesz co poprawić. Każdy projekt wymaga optymalizacji po starcie.
+        </p>
+    </div>
+
+    <!-- STRONA 10: PODSUMOWANIE -->
+    <div class="page">
+        <h2>Podsumowanie</h2>
+
+        <p class="intro">
+            Sukces projektu strony internetowej zależy w 70% od przygotowania, a tylko w 30% od wykonania. Większość problemów da się przewidzieć i uniknąć.
+        </p>
+
+        <h3>Kluczowe wnioski</h3>
+
+        <ul class="number-list">
+            <li><strong>Określ konkretne cele biznesowe</strong> - nie "ładna strona", ale mierzalne rezultaty</li>
+            <li><strong>Poznaj swoich użytkowników</strong> - projektuj dla nich, nie dla siebie</li>
+            <li><strong>Przygotuj materiały wcześniej</strong> - teksty i grafiki przed startem projektu</li>
+            <li><strong>Wybierz właściwego partnera</strong> - sprawdź portfolio i proces współpracy</li>
+            <li><strong>Ufaj procesowi</strong> - dobra agencja wie co robi</li>
+            <li><strong>Komunikuj się jasno</strong> - konkretny feedback oszczędza czas</li>
+            <li><strong>Myśl długoterminowo</strong> - strona to inwestycja, która wymaga rozwoju</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="highlight-box">
+            <h4>🎯 Co dalej?</h4>
+            <p>
+                Jeśli planujesz projekt strony internetowej i chcesz go zrobić dobrze za pierwszym razem, skontaktuj się z nami. Pomożemy Ci przejść przez cały proces - od strategii, przez projekt, aż po wdrożenie i rozwój.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <blockquote>
+            "Dobra strona internetowa to nie koszt, to inwestycja. Złej strony nikt nie odwiedza, dobra strona zarabia."
+        </blockquote>
+
+        <div class="footer">
+            <p><strong>Powodzenia w Twoim projekcie!</strong></p>
+            <p>© 2025 | Wszystkie prawa zastrzeżone</p>
+        </div>
+    </div>
+</body>
+</html>

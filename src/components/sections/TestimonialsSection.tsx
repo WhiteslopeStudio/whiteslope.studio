@@ -149,10 +149,10 @@ export const TestimonialsSection = () => {
     <section 
       ref={ref} 
       id="testimonials" 
-      className="py-5 relative overflow-hidden"
+      className="py-5 relative overflow-hidden py-10"
       style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          radial-gradient(ellipse at center, transparent 0%, transparent 7%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,
@@ -174,12 +174,7 @@ export const TestimonialsSection = () => {
       {/* Subtelny gradient overlay */}
       <div 
         className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(ellipse at bottom left, rgba(255, 116, 95, 0.03) 0%, transparent 50%),
-            radial-gradient(ellipse at top right, rgba(255, 116, 95, 0.02) 0%, transparent 50%)
-          `
-        }}
+        
       />
 
       {/* Badge */}
@@ -250,7 +245,7 @@ export const TestimonialsSection = () => {
         }
       `}} />
 
-      <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-4 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
+      <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-4 py-10 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={24} suffix="h" inView={inView} />
@@ -573,7 +568,7 @@ export const TestimonialsSection = () => {
       </div>
 
       {/* Loga - PRZENIESIONE POD KARTY */}
-      <div className="text-center mt-4 pb-4 relative z-10 lg:block">
+      <div className="text-center mt-4 pb-4 relative z-10 lg:block py-10">
         <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">Zaufali nam</p>
         <div className="flex gap-8 justify-center flex-wrap">
           <a 

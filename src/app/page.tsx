@@ -12,6 +12,7 @@ import { FAQSection } from '@/components/sections/FaqSection';
 import { BlogSection } from '@/components/sections/BlogSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import HeroSectionMobile from '@/components/sections/HeroSectionMobile';
+import BriefSection from '@/components/sections/BriefSection';
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(
@@ -46,15 +47,25 @@ export default function HomePage() {
       {/* ⚠️ PROBLEM-ROZWIĄZANIE - NOWA SEKCJA! */}
       <ProblemSolutionSection />
 
-      <ExperienceSection />
-
-      
+      {/* 🔄 PROCESS SECTION */}
+      <ProcessSection />
 
       {/* 💬 TESTIMONIALS SECTION */}
       <TestimonialsSection />
 
-      {/* 🔄 PROCESS SECTION */}
-      <ProcessSection />
+      
+
+      
+
+      <ExperienceSection />
+
+      
+
+      
+
+      
+
+      
 
       
 
@@ -62,6 +73,8 @@ export default function HomePage() {
 
       {/* 💰 PRICING SECTION */}
       <PricingSection />
+
+      <BriefSection />
 
       {/* 📝 BLOG SECTION */}
       <BlogSection />

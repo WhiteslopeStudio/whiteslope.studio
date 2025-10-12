@@ -351,7 +351,7 @@ export const PricingSection = () => {
     <section ref={ref} id="services" className="py-16 relative overflow-hidden" 
     style={{
         background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+         radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
           linear-gradient(
             to bottom,
             black 0px,
@@ -401,7 +401,7 @@ export const PricingSection = () => {
           </div>
           
           <div className="overflow-hidden">
-            <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
+            <h2 className="text-3xl lg:text-5xl font-semibold text-white my-4 tracking-tight">
               Wybierz plan.{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                 Zacznijmy działać.
@@ -649,14 +649,14 @@ export const PricingSection = () => {
               return (
                 <div
                   key={service.id}
-                  className="bg-white border border-black/10 rounded-2xl p-3 backdrop-blur-sm relative transition-all duration-300 hover:shadow-lg"
+                  className="bg-[#171717] border border-white/10 rounded-2xl p-3 backdrop-blur-sm relative transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="space-y-2">
                     <div className="w-10 h-10 bg-black/5 rounded-xl flex items-center justify-center">
-                      <IconComponent className="w-5 h-5 text-black" />
+                      <IconComponent className="w-5 h-5 text-white" />
                     </div>
                     
-                    <h3 className="text-sm font-bold text-black leading-tight">
+                    <h3 className="text-sm font-bold text-white leading-tight">
                       {service.title}
                     </h3>
                     
@@ -678,7 +678,7 @@ export const PricingSection = () => {
                     <div className="space-y-1.5 pt-1">
                       <button
                         onClick={() => openBottomSheet(service)}
-                        className="w-full flex items-center justify-center gap-1 bg-black/5 hover:bg-black/10 text-black text-xs font-medium py-2 px-2 rounded-full transition-colors"
+                        className="w-full flex items-center justify-center gap-1 bg-black/50 hover:bg-black/10 text-white text-xs font-medium py-2 px-2 rounded-full transition-colors"
                       >
                         <span>Szczegóły</span>
                         <ArrowRight className="w-3 h-3" />
@@ -688,7 +688,7 @@ export const PricingSection = () => {
                         href={`/pricing/${service.id}`}
                         className="block w-full"
                       >
-                        <button className="w-full flex items-center justify-center gap-1 bg-[#2DE56B] hover:bg-[#00F5B8] text-black text-xs font-semibold py-2 px-2 rounded-full transition-colors">
+                        <button className="w-full flex items-center justify-center gap-1 bg-[#D6D6D6] hover:bg-[#A3A3A3] text-black text-xs font-semibold py-2 px-2 rounded-full transition-colors">
                           <span>Wybierz</span>
                           <Check className="w-3 h-3" />
                         </button>
@@ -763,16 +763,7 @@ export const PricingSection = () => {
         />
       )}
 
-      {/* Ptaszek na dół */}
-      <div className="flex justify-center mt-12 mb-2 relative z-10">
-        <a
-          href="#process"
-          className="group p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 cursor-pointer inline-block"
-          aria-label="Przewiń do następnej sekcji"
-        >
-          <ChevronDown className="w-6 h-6 text-white group-hover:translate-y-1 transition-transform" />
-        </a>
-      </div>
+      
     </section>
   );
 };
