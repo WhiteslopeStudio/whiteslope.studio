@@ -212,13 +212,13 @@ export const TestimonialsSection = () => {
 
       {/* NAGŁÓWEK */}
       <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-        <h2 className="text-4xl lg:text-6xl font-normal lg:font-thin text-white tracking-tight mb-4">
+        <h2 className="text-3xl lg:text-6xl font-normal lg:font-thin text-white tracking-tight mb-4">
           Zobacz jak pomagamy{" "}
           <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
             rozwijać biznesy
           </span>
         </h2>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+        <p className="text-base lg:text-xl text-gray-400 max-w-3xl mx-auto">
           Realne wyniki, mierzalne rezultaty i zadowolnie. Tak pracujemy z każdym klientem.
         </p>
       </div>
@@ -449,7 +449,7 @@ export const TestimonialsSection = () => {
                 </div>
               </div>
               
-              <blockquote className="text-gray-300 text-base leading-relaxed mb-6 flex-grow">
+              <blockquote className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
                 <span className="text-white font-semibold">Szybkość działania jest świetna.</span> Bardzo szybko otrzymywałem odpowiedzi na pytania. Pierwsze <span className="text-white font-semibold">zapytania od klientów</span> pojawiły się po <span className="text-white font-semibold">24h</span> od uruchomienia strony.
               </blockquote>
               
@@ -504,7 +504,7 @@ export const TestimonialsSection = () => {
                 </div>
               </div>
               
-              <blockquote className="text-gray-300 text-base leading-relaxed mb-6 flex-grow">
+              <blockquote className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
                 <span className="text-white font-semibold">Już po 3 dniach dostałem bardzo korzystną ofertę pracy.</span> Jestem bardzo zadowolony i strona w końcu sprawia, że <span className="text-white font-semibold">jestem widoczny dla wielu osób.</span>
               </blockquote>
               

@@ -111,7 +111,7 @@ const HeroSectionMobile = () => {
           className="text-3xl sm:text-3xl md:text-3xl font-semibold text-white leading-tight"
           style={{ letterSpacing: '-0.02em', textShadow: '0 0 20px rgba(255,255,255,0.1)' }}
         >
-          Zyskaj więcej klientów dzięki profesjonalnej {"- "}
+          Zyskaj więcej klientów dzięki profesjonalnej {" "}
           <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
               stronie internetowej!
           </span>

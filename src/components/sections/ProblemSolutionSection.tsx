@@ -522,50 +522,6 @@ const solutions = [
             </div>
           </div>
         </div>
-
-{/* <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-16 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
-          <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-            <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
-              <AnimatedNumber value={24} suffix="h" inView={inView} />
-            </div>
-            <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Pierwsze zapytania</div>
-          </div>
-          <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-            <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
-              <AnimatedNumber value={100} suffix="%" inView={inView} />
-            </div>
-            <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Zadowolonych klientów</div>
-          </div>
-          <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
-            <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
-              <AnimatedNumber value={3} suffix=" dni" inView={inView} />
-            </div>
-            <div className="text-[10px] lg:text-sm text-gray-400 font-medium px-0">Do pierwszych efektów</div>
-          </div>
-        </div> */}
-
-
-        {/* CTA */}
-        {/* <div className="flex flex-col items-center justify-center relative z-20">
-          <div
-            className="transition-all duration-500 ease-out"
-            style={{ fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)' }}
-          >
-            <a
-              href="#pricing"
-              className="group relative cursor-pointer transition-all duration-150 inline-block hover:scale-105 z-30"
-              style={{ pointerEvents: "auto" }}
-            >
-              <button className="cursor-pointer flex items-center gap-2 px-6 py-3 rounded-full bg-[#fd9f91] text-black font-medium text-base transition-all duration-150 hover:bg-[#fc8a7a] hover:shadow-lg active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#fd9f91]/30">
-                <span className="select-none">Zacznij transformację</span>
-                <ArrowRight className="w-4 h-4 transition-all duration-150 group-hover:translate-x-1" />
-              </button>
-            </a>
-          </div>
-          <p className="text-sm text-gray-500 mt-4 text-center">
-            Bezpłatna konsultacja • Gwarancja satysfakcji
-          </p>
-        </div> */}
       </div>
     </section>
   );
