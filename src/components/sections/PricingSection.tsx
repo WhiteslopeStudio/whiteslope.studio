@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, Globe, Wrench, Palette, Brain, User, Mail, Sparkles, ChevronDown, Check, Zap, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { MAIN_SERVICES } from "@/lib/data";
+import { ServiceFeature } from "@/lib/types";
 import { PiCheckCircleBold, PiCheckCircleDuotone, PiCheckCircleFill, PiCheckFill } from "react-icons/pi";
 import { MdPlaylistAddCheckCircle } from "react-icons/md";
 import { BsCheck2All, BsCheck2Circle } from "react-icons/bs";
@@ -183,10 +184,10 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
           <div className="mb-5">
             <h4 className="text-base font-semibold text-black mb-3">Co otrzymujesz?</h4>
             <div className="space-y-2.5">
-              {service.features.map((feature: string, index: number) => (
+              {service.features.map((feature: ServiceFeature, index: number) => (
                 <div key={index} className="flex items-start gap-3">
                   <PiCheckCircleFill className="w-5 h-5 text-[#2DE56B] flex-shrink-0 mt-0.5" />
-                  <span className="text-black/80 text-sm leading-relaxed flex-1">{feature}</span>
+                  <span className="text-black/80 text-sm leading-relaxed flex-1">{feature.title}</span>
                 </div>
               ))}
             </div>
@@ -521,12 +522,12 @@ export const PricingSection = () => {
                   </p>
 
                   <div className="grid grid-cols-2 gap-3 flex-grow mb-6">
-                    {currentService.features.map((feature: string, index: number) => (
+                    {currentService.features.map((feature, index: number) => (
                       <div key={index} className="flex items-start gap-2">
                         <div className="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-3 h-3 text-green-400" />
                         </div>
-                        <span className="text-white text-base leading-relaxed">{feature}</span>
+                        <span className="text-white text-base leading-relaxed">{feature.title}</span>
                       </div>
                     ))}
                   </div>
