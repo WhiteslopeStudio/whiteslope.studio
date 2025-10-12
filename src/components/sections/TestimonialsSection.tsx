@@ -149,36 +149,27 @@ export const TestimonialsSection = () => {
     <section 
       ref={ref} 
       id="testimonials" 
-      className="py-16 relative overflow-hidden"
+      className="py-5 relative overflow-hidden"
       style={{
-        background: 'radial-gradient(ellipse at top, #000000ff 0%, #000000ff 50%)'
-      }}
+        background: `
+          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
+        `
+      }}  
     >
-      {/* Siatka EKG w tle - subtelna */}
-      <svg 
-        className="absolute inset-0 w-full h-full opacity-[0.02] pointer-events-none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern id="testimonials-grid" width="50" height="50" patternUnits="userSpaceOnUse">
-            <path d="M 10 0 L 10 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 20 0 L 20 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 30 0 L 30 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 40 0 L 40 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            
-            <path d="M 0 10 L 50 10" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 0 20 L 50 20" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 0 30 L 50 30" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            <path d="M 0 40 L 50 40" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.5" />
-            
-            <path d="M 0 0 L 0 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" />
-            <path d="M 50 0 L 50 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" />
-            <path d="M 0 0 L 50 0" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" />
-            <path d="M 0 50 L 50 50" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#testimonials-grid)" />
-      </svg>
+      
 
       {/* Subtelny gradient overlay */}
       <div 
@@ -192,7 +183,7 @@ export const TestimonialsSection = () => {
       />
 
       {/* Badge */}
-      <div className="flex justify-center mb-8 relative z-10">
+      <div className="flex justify-center my-4 relative z-10">
         <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-sm text-white/60 backdrop-blur-sm border border-white/10">
           <Sparkles className="w-4 h-4" style={{ 
             stroke: 'url(#sparkles-gradient)',
@@ -212,7 +203,7 @@ export const TestimonialsSection = () => {
 
       {/* NAGŁÓWEK */}
       <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-        <h2 className="text-3xl lg:text-6xl font-normal lg:font-thin text-white tracking-tight mb-4">
+        <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
           Zobacz jak pomagamy{" "}
           <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
             rozwijać biznesy
@@ -259,7 +250,7 @@ export const TestimonialsSection = () => {
         }
       `}} />
 
-      <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-12 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
+      <div className="flex flex-row lg:flex-row justify-center gap-4 lg:gap-0 mb-4 px-0 relative z-10 overflow-x-hidden max-w-5xl mx-auto">
         <div className="text-center group/stat flex-shrink-0 lg:flex-1 min-w-[100px] lg:min-w-0">
           <div className="text-4xl lg:text-5xl font-bold platinum-text mb-2 transition-transform duration-300 group-hover/stat:scale-110">
             <AnimatedNumber value={24} suffix="h" inView={inView} />
@@ -582,7 +573,7 @@ export const TestimonialsSection = () => {
       </div>
 
       {/* Loga - PRZENIESIONE POD KARTY */}
-      <div className="text-center mt-16 p-4 relative z-10 lg:block">
+      <div className="text-center mt-4 pb-4 relative z-10 lg:block">
         <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">Zaufali nam</p>
         <div className="flex gap-8 justify-center flex-wrap">
           <a 

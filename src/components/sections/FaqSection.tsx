@@ -24,7 +24,26 @@ export const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-black">
+    <section id="faq" className="py-20 bg-black"
+    style={{
+        background: `
+          radial-gradient(ellipse at center, transparent 0%, transparent 60%, black 100%),
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
+        `
+      }}    
+    >
       <div className="container mx-auto px-6">
         {/* Nagłówek */}
         <div className="text-center mb-16">
