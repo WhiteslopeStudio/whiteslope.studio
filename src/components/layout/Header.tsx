@@ -443,6 +443,8 @@ export const Header = () => {
 
   const isHomepage = pathname === "/";
 
+
+
   // Separate sections from pages
   const sections = HOMEPAGE_MENU_ITEMS.filter(
     (item) => item.type === "section" && item.href !== "#home"
@@ -552,6 +554,8 @@ export const Header = () => {
     }
   };
 
+  
+
   // NEW: Sprawdź czy jesteśmy na stronie oferty
   const isOnPricingPage = pathname.startsWith("/pricing");
 
@@ -594,7 +598,7 @@ export const Header = () => {
                       className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         sections.some((item) => getActiveState(item))
                           ? "text-white bg-white/5"
-                          : "text-[#a3a3a3] hover:text-white hover:bg-white/10"
+                          : "text-[#a3a3a3] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
@@ -632,8 +636,8 @@ export const Header = () => {
                                 }
                                 className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
                                   getActiveState(item)
-                                    ? "bg-white/10 text-white"
-                                    : "text-[#d4d4d4] hover:bg-[#262626] hover:text-white"
+                                    ? "text-white"
+                                    : "text-[#d4d4d4]  hover:text-white"
                                 }`}
                               >
                                 {item.label}
@@ -657,8 +661,8 @@ export const Header = () => {
                     onClick={() => router.push("/pricing")}
                     className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                       isOnServicePage
-                        ? "text-white bg-white/10"
-                        : "text-[#a3a3a3] hover:text-white hover:bg-white/10"
+                        ? "text-white "
+                        : "text-[#a3a3a3] hover:text-white "
                     }`}
                     whileHover={{ scale: 1.05 }}
                   >
@@ -691,8 +695,8 @@ export const Header = () => {
                               }}
                               className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
                                 pathname === service.href
-                                  ? "bg-white/10 text-white"
-                                  : "text-[#d4d4d4] hover:bg-[#262626] hover:text-white"
+                                  ? " text-white"
+                                  : "text-[#d4d4d4]  hover:text-white"
                               }`}
                             >
                               {service.label}
@@ -709,11 +713,13 @@ export const Header = () => {
                   <motion.button
                     key={`${item.label}-${pathname}`}
                     onClick={() => handleMenuClick(item.href, item.type)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                      getActiveState(item)
-                        ? "text-white bg-white/10"
-                        : "text-[#a3a3a3] hover:text-white hover:bg-white/10"
-                    }`}
+                    className={`block w-full text-left mx-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        item.label === 'Kontakt'
+                          ? 'bg-white text-black'
+                          : getActiveState(item)
+                          ? 'bg-white/10 text-white'
+                          : 'text-[#d4d4d4] hover:bg-[#262626] hover:text-white'
+                      }`}
                     transition={{
                       duration: 0.5,
                       delay: (isHomepage ? 0.2 : 0) + index * 0.1,
@@ -725,12 +731,12 @@ export const Header = () => {
                 ))}
 
                 {/* Social Media Icons */}
-              <div className="flex items-center gap-4 mr-4">
+              <div className="flex items-center gap-4 mr-4 mx-4">
                 <a
                   href="https://instagram.com/twoj_profil"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+                  className="p-2 rounded-full  transition-all duration-300 hover:scale-110 hover:cursor-pointer"
                 >
                   <Instagram className="w-4 h-4 text-white" />
                 </a>
@@ -739,7 +745,7 @@ export const Header = () => {
                   href="https://facebook.com/twoj_profil"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+                  className="p-2 ounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
                 >
                   <Facebook className="w-4 h-4 text-white" />
                 </a>
