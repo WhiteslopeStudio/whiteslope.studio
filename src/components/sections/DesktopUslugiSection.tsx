@@ -33,7 +33,8 @@ export default function DesktopUslugiSection() {
       className="w-full py-4 backdrop-blur-sm"
       style={{
         background: `
-          
+          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
+          linear-gradient()
         `
       }}
     >
@@ -41,7 +42,7 @@ export default function DesktopUslugiSection() {
         
         {/* Karuzela usług */}
         <div 
-          className="flex gap-3 overflow-x-auto pb-2 justify-center py-5"
+          className="flex gap-3 overflow-x-auto p-4 justify-center"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -65,17 +66,17 @@ export default function DesktopUslugiSection() {
               <button
                 key={service.id}
                 onClick={() => handleServiceClick(service.id)}
-                className="flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-gray-500 active:scale-95 "
+                className="pt-2 flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-gray-500 active:scale-95"
                 style={{
                   width: '90px',
                   height: '100px',
-                  background: '#141414',
-                  border: '1px solid #262626',
+                  background: '#1e1e1eff',
+                  border: '1px solid #303030ff',
                   borderRadius: '12px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-start',
                   gap: '8px',
                 }}
               >
@@ -84,12 +85,12 @@ export default function DesktopUslugiSection() {
                   style={{
                     width: '32px',
                     height: '32px',
-                    background: '#1a1a1a',
+                    background: '#232323ff',
                     borderRadius: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#e0e0e0ff',
+                    color: '#42aaffff',
                   }}
                 >
                   <IconComponent className="w-4 h-4" />
@@ -97,7 +98,7 @@ export default function DesktopUslugiSection() {
                 
                 {/* Tytuł usługi */}
                 <span 
-                  className="text-center leading-tight text-[12px]"
+                  className="text-center leading-tight text-[12px] font-semibold"
                   style={{ 
                     fontFamily: 'inherit',
                     color: '#e0e0e0ff',
@@ -117,7 +118,7 @@ export default function DesktopUslugiSection() {
           <div className="flex justify-center">
             <Link 
               href="/pricing"
-              className="group flex items-center gap-2 hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium text-gray-500"
+              className="group flex items-top gap-2 hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium text-gray-500"
             >
               <span>Wszystkie usługi</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
