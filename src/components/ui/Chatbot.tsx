@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send } from 'lucide-react';
 
 interface ChatButton {
   text: string;
@@ -16,12 +16,22 @@ interface Message {
   buttons?: ChatButton[];
 }
 
+/**
+ * Chatbot Component
+ * 
+ * Główny komponent chatbota WhiteSlope.
+ * Komunikuje się z /api/chat który zarządza:
+ * - Rate limiting
+ * - Intelligent routing (fallback vs API)
+ * - Cache
+ * - Smart button generation
+ */
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'bot', 
-      content: '👋 Cześć! Jestem AI chatbotem WhiteSlope!\n\n💡 Zapytaj mnie o nasze usługi tworzenia stron internetowych i integracji AI!\n\nSam jestem dowodem na to, co możemy zrobić dla Twojej strony! 🚀',
+      content: '👋 Cześć! Jestem **SLOPUŚ** - AI chatbot WhiteSlope!\n\n💡 Zapytaj mnie o nasze usługi:\n• Strony internetowe\n• Integracje AI (takie jak ja!)\n• Grafika i design\n• Modernizacja stron\n\nSam jestem dowodem na to, co możemy zrobić dla Twojej strony! 🚀',
       buttons: [
         {
           text: '💰 Zobacz cennik',
@@ -66,112 +76,61 @@ export default function Chatbot() {
       const data = await res.json();
       
       if (res.ok) {
-        // Use buttons from API if available, otherwise generate locally
-        const buttons = data.buttons || generateContextButtons(currentInput, data.response);
+        // Backend (route.ts) jest JEDYNYM źródłem prawdy dla przycisków
+        // Zawsze używaj przycisków z API response
         setMessages(prev => [...prev, { 
           role: 'bot', 
           content: data.response,
-          buttons: buttons
+          buttons: data.buttons || [] // Przyciski z API lub pusta tablica
         }]);
+
+        // Optional: Log performance metrics
+        if (data.cached) {
+          console.log('⚡ Response from cache');
+        } else if (data.fallback) {
+          console.log('💾 Fallback response (API call saved!)');
+        } else if (data.apiUsed) {
+          console.log('🤖 Gemini API response');
+        }
+        
       } else {
-        const buttons = data.buttons || generateContextButtons(currentInput, data.response || '');
+        // Error handling - również używamy przycisków z API
         setMessages(prev => [...prev, { 
           role: 'bot', 
           content: data.response || '😴 Ups, coś poszło nie tak... Spróbuj ponownie!',
-          buttons: buttons
+          buttons: data.buttons || [
+            {
+              text: '📞 Kontakt bezpośredni',
+              href: '/contact?tab=meeting',
+              variant: 'primary'
+            }
+          ]
         }]);
       }
       
     } catch (error) {
-      console.error('Błąd chatbota:', error);
-      const fallbackButtons = generateContextButtons(currentInput, '');
+      console.error('❌ Błąd chatbota:', error);
+      
+      // Network error fallback
       setMessages(prev => [...prev, { 
         role: 'bot', 
-        content: '😴 Nie mogę się połączyć z serwerem...\n\n💡 Ale widzisz potencjał? Taki chatbot może działać na TWOJEJ stronie!\n\n📞 Skontaktuj się z nami po więcej informacji!',
-        buttons: fallbackButtons
+        content: '😴 **Nie mogę się połączyć z serwerem...**\n\n💡 Ale widzisz potencjał? Taki chatbot może działać na TWOJEJ stronie!\n\n📞 Skontaktuj się z nami po więcej informacji!',
+        buttons: [
+          {
+            text: '💬 Chcę taki chatbot!',
+            href: '/contact?tab=quote&service=ai-integration',
+            variant: 'primary'
+          },
+          {
+            text: '📞 Kontakt',
+            href: '/contact?tab=meeting',
+            variant: 'secondary'
+          }
+        ]
       }]);
     }
     
     setLoading(false);
-  };
-
-  // Funkcja analizująca kontekst i generująca przyciski
-  const generateContextButtons = (userMessage: string, botResponse: string): ChatButton[] => {
-    const message = (userMessage + ' ' + botResponse).toLowerCase();
-    const buttons: ChatButton[] = [];
-
-    // AI/Chatbot related
-    if (message.includes('ai') || message.includes('chatbot') || message.includes('sztuczn') || message.includes('inteligenc') || message.includes('automatyz')) {
-      buttons.push({
-        text: '🤖 Integracje AI',
-        href: '/pricing/ai-integration',
-        variant: 'primary',
-        icon: '🤖'
-      });
-    }
-
-    // Pricing/Cost related
-    if (message.includes('cen') || message.includes('koszt') || message.includes('ile') || message.includes('budżet') || message.includes('prici')) {
-      buttons.push({
-        text: '💰 Zobacz cennik',
-        href: '/pricing',
-        variant: 'secondary',
-        icon: '💰'
-      });
-    }
-
-    // Website/Development related
-    if (message.includes('stron') || message.includes('website') || message.includes('witryn') || message.includes('rozwój') || message.includes('tworzenie')) {
-      buttons.push({
-        text: '🌐 Strony internetowe',
-        href: '/pricing/website',
-        variant: 'secondary',
-        icon: '🌐'
-      });
-    }
-
-    // Ecommerce/Shop related
-    if (message.includes('sklep') || message.includes('ecommerce') || message.includes('sprzedaż') || message.includes('produkty')) {
-      buttons.push({
-        text: '🛒 Sklepy online',
-        href: '/pricing/ecommerce',
-        variant: 'secondary',
-        icon: '🛒'
-      });
-    }
-
-    // Contact/Meeting related
-    if (message.includes('kontakt') || message.includes('spotkanie') || message.includes('rozmow') || message.includes('konsultacj') || message.includes('umówi')) {
-      buttons.push({
-        text: '📞 Umów konsultację',
-        href: '/contact?tab=meeting',
-        variant: 'primary',
-        icon: '📞'
-      });
-    }
-
-    // General services
-    if (message.includes('usług') || message.includes('offer') || message.includes('co robi') || message.includes('specjalizuj')) {
-      buttons.push({
-        text: '💼 Nasze usługi',
-        href: '/pricing',
-        variant: 'outline',
-        icon: '💼'
-      });
-    }
-
-    // Always add contact if no other buttons or if asking about chatbot specifically
-    if (buttons.length === 0 || message.includes('taki chatbot') || message.includes('chcesz chatbot')) {
-      buttons.push({
-        text: '💬 Chcę taki chatbot!',
-        href: '/contact?tab=quote&service=ai-integration',
-        variant: 'primary',
-        icon: '💬'
-      });
-    }
-
-    // Limit to max 3 buttons to avoid clutter
-    return buttons.slice(0, 3);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -181,7 +140,9 @@ export default function Chatbot() {
     }
   };
 
-  // Floating button when closed - WhiteSlope branding
+  // ==========================================
+  // 🎨 FLOATING BUTTON (zamknięty chatbot)
+  // ==========================================
   if (!isOpen) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
@@ -195,7 +156,7 @@ export default function Chatbot() {
           
           <MessageSquare className="w-6 h-6 relative z-10" />
           
-          {/* Pulse animation z WhiteSlope kolorami */}
+          {/* Pulse animation */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-300/30 to-pink-400/30 rounded-2xl animate-ping opacity-20"></div>
           
           {/* AI badge */}
@@ -203,7 +164,7 @@ export default function Chatbot() {
             AI
           </div>
           
-          {/* Tooltip z WhiteSlope styling */}
+          {/* Tooltip */}
           <div className="absolute bottom-full right-0 mb-3 px-4 py-2 bg-black/95 backdrop-blur-xl border border-white/20 text-white text-sm rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap transform translate-y-2 group-hover:translate-y-0">
             💬 Zapytaj AI o nasze usługi!
             <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/95"></div>
@@ -213,12 +174,16 @@ export default function Chatbot() {
     );
   }
 
-  // Chat window when open - WhiteSlope design
+  // ==========================================
+  // 💬 CHAT WINDOW (otwarty chatbot)
+  // ==========================================
   return (
     <div className="fixed bottom-6 right-6 w-96 h-[600px] max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)] bg-black/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
-      {/* Header z WhiteSlope branding */}
+      
+      {/* ==========================================
+          HEADER
+          ========================================== */}
       <div className="relative bg-gradient-to-r from-orange-300/10 to-pink-400/10 border-b border-white/10 p-4">
-        {/* Background glow */}
         <div className="absolute inset-0 bg-gradient-to-r from-orange-300/5 to-pink-400/5 blur-xl"></div>
         
         <div className="relative flex items-center justify-between">
@@ -244,15 +209,23 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Messages container z WhiteSlope styling */}
+      {/* ==========================================
+          MESSAGES CONTAINER
+          ========================================== */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black/30 backdrop-blur-sm custom-scrollbar">
         {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`} style={{animationDelay: `${i * 50}ms`}}>
+          <div 
+            key={i} 
+            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`} 
+            style={{animationDelay: `${i * 50}ms`}}
+          >
             <div className={`max-w-[85%] p-4 rounded-2xl whitespace-pre-line break-words shadow-lg transition-all duration-200 hover:shadow-xl ${
               msg.role === 'user' 
                 ? 'bg-gradient-to-r from-orange-300 to-pink-400 text-black font-medium rounded-br-md border-l-4 border-orange-200' 
                 : 'bg-white/10 backdrop-blur-sm text-white rounded-bl-md border border-white/20 hover:bg-white/15'
             }`}>
+              
+              {/* Bot message header */}
               {msg.role === 'bot' && (
                 <div className="flex items-center gap-2 mb-2 pb-2 border-b border-white/10">
                   <div className="w-6 h-6 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full flex items-center justify-center">
@@ -261,11 +234,13 @@ export default function Chatbot() {
                   <span className="text-xs text-white/60 font-medium">SLOPUŚ</span>
                 </div>
               )}
+              
+              {/* Message content */}
               <div className={msg.role === 'user' ? 'text-black' : 'text-white'}>
                 {msg.content}
               </div>
               
-              {/* Dynamic buttons for bot messages */}
+              {/* Dynamic buttons (tylko dla bot messages) */}
               {msg.role === 'bot' && msg.buttons && msg.buttons.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/10">
                   {msg.buttons.map((button, btnIndex) => (
@@ -281,8 +256,8 @@ export default function Chatbot() {
                           : 'border border-white/30 text-white/80 hover:text-white hover:border-white/50'
                         }
                       `}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target="_self"
+                      rel="noopener"
                     >
                       <span>{button.icon}</span>
                       {button.text}
@@ -294,6 +269,7 @@ export default function Chatbot() {
           </div>
         ))}
         
+        {/* Loading indicator */}
         {loading && (
           <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2 duration-300">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-2xl rounded-bl-md shadow-lg">
@@ -314,8 +290,12 @@ export default function Chatbot() {
         )}
       </div>
 
-      {/* Input area z WhiteSlope styling */}
+      {/* ==========================================
+          INPUT AREA
+          ========================================== */}
       <div className="p-4 bg-black/50 backdrop-blur-sm border-t border-white/10 rounded-b-2xl">
+        
+        {/* Input field + send button */}
         <div className="flex gap-3 mb-4">
           <div className="flex-1 relative">
             <input
@@ -376,7 +356,7 @@ export default function Chatbot() {
           </button>
         </div>
         
-        {/* WhiteSlope branding */}
+        {/* WhiteSlope branding footer */}
         <div className="pt-3 border-t border-white/10">
           <div className="text-xs text-white/40 text-center space-y-1">
             <p>⚡ Powered by <span className="bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent font-bold">WhiteSlope</span> AI</p>
