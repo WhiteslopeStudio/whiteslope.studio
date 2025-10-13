@@ -38,18 +38,18 @@ export default function DesktopUslugiSection() {
         `
       }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-2">
         
         {/* Karuzela usług */}
         <div 
-          className="flex gap-3 overflow-x-auto p-4 justify-center"
+          className="flex gap-6 overflow-x-auto p-4 justify-center"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
             WebkitOverflowScrolling: 'touch',
           }}
         >
-          {MAIN_SERVICES.map((service: MainService) => {
+          {MAIN_SERVICES.map((service: MainService, index: number) => {
             // Mapowanie ikon
             const iconMap: Record<ServiceIconId, any> = {
               'website': LayoutGrid,
@@ -63,70 +63,96 @@ export default function DesktopUslugiSection() {
             const IconComponent = iconMap[service.id as ServiceIconId] || LayoutGrid;
 
             return (
-              <button
+              <Link
                 key={service.id}
+                href={`/pricing/${service.id}`} 
                 onClick={() => handleServiceClick(service.id)}
-                className="pt-2 flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-gray-500 active:scale-95"
+                className="group p-5 flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-108 hover:shadow-xl active:scale-95 relative"
                 style={{
-                  width: '90px',
-                  height: '100px',
-                  background: '#1e1e1eff',
-                  border: '1px solid #303030ff',
-                  borderRadius: '12px',
+                  width: '110px',
+                  height: '120px',
+                  background: 'rgba(24, 24, 24, 0.7)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)',
+                  backdropFilter: 'blur(8px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'flex-start',
-                  gap: '8px',
+                  gap: '10px',
+                  animation: `fadeInUp 0.6s ease-out ${1.5 + index * 0.2}s both`,
                 }}
               >
+                {/* Czerwona kropka dla pierwszego boxa */}
+                {index === 0 && (
+                <div
+                    className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full"
+                    style={{
+                    transform: 'translate(50%, -50%)',
+                    opacity: 0.8,
+                    }}
+                />
+                )}
+                
                 {/* Ikonka usługi */}
                 <div 
+                  className="transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
                   style={{
-                    width: '32px',
-                    height: '32px',
-                    background: '#232323ff',
-                    borderRadius: '8px',
+                    width: '55px',
+                    height: '55px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#42aaffff',
                   }}
                 >
-                  <IconComponent className="w-4 h-4" />
+                  <IconComponent className="w-5 h-5 font-semibold" />
                 </div>
                 
                 {/* Tytuł usługi */}
                 <span 
-                  className="text-center leading-tight text-[12px] font-semibold"
+                  className="text-center leading-tight text-[12px] font-bold transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
                   style={{ 
                     fontFamily: 'inherit',
-                    color: '#e0e0e0ff',
                     padding: '0 4px',
                   }}
                 >
                   {service.title}
                 </span>
-              </button>
+              </Link>
             );
           })}
         </div>
 
         {/* Kreska i link do wszystkich usług */}
         <div className="mt-2">
-          <div className="w-full h-px bg-white/10 mb-2" />
+          
           <div className="flex justify-center">
             <Link 
               href="/pricing"
-              className="group flex items-top gap-2 hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium text-gray-500"
+              className="group flex items-top gap-2 text-[#999999] hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium"
             >
-              <span>Wszystkie usługi</span>
+              <span>Cała oferta</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
         
       </div>
+
+      {/* Animacja CSS */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
