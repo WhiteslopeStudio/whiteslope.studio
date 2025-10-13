@@ -376,33 +376,29 @@ function ContactContent() {
     const newErrors: Record<string, string> = {};
 
     if (!meetingForm.name.trim()) {
-      newErrors.name = 'Imię i nazwisko jest wymagane (minimum 2 znaki)';
-    } else if (meetingForm.name.trim().length < 2) {
-      newErrors.name = 'Imię i nazwisko musi mieć minimum 2 znaki';
+      newErrors.name = 'Imię i nazwisko jest wymagane';
     }
 
     if (!meetingForm.email.trim()) {
-      newErrors.email = 'Adres email jest wymagany';
+      newErrors.email = 'Email jest wymagany';
     } else if (!validateEmail(meetingForm.email)) {
-      newErrors.email = 'Podaj prawidłowy adres email (np. jan@example.com)';
+      newErrors.email = 'Podaj prawidłowy adres email';
     }
 
     if (meetingForm.phone && !validatePhone(meetingForm.phone)) {
-      newErrors.phone = 'Podaj prawidłowy numer telefonu (minimum 9 cyfr)';
+      newErrors.phone = 'Podaj prawidłowy numer telefonu';
     }
 
     if (!meetingForm.preferredDate) {
-      newErrors.preferredDate = 'Wybierz preferowaną datę spotkania';
+      newErrors.preferredDate = 'Wybierz preferowaną datę';
     }
 
     if (!meetingForm.preferredTime) {
-      newErrors.preferredTime = 'Wybierz preferowaną godzinę spotkania';
+      newErrors.preferredTime = 'Wybierz preferowaną godzinę';
     }
 
     if (!meetingForm.topic.trim()) {
-      newErrors.topic = 'Opisz temat spotkania (minimum 10 znaków)';
-    } else if (meetingForm.topic.trim().length < 10) {
-      newErrors.topic = 'Temat spotkania musi mieć minimum 10 znaków';
+      newErrors.topic = 'Opisz temat spotkania';
     }
 
     setErrors(newErrors);
@@ -413,37 +409,33 @@ function ContactContent() {
     const newErrors: Record<string, string> = {};
 
     if (!quoteForm.name.trim()) {
-      newErrors.name = 'Imię i nazwisko jest wymagane (minimum 2 znaki)';
-    } else if (quoteForm.name.trim().length < 2) {
-      newErrors.name = 'Imię i nazwisko musi mieć minimum 2 znaki';
+      newErrors.name = 'Imię i nazwisko jest wymagane';
     }
 
     if (!quoteForm.email.trim()) {
-      newErrors.email = 'Adres email jest wymagany';
+      newErrors.email = 'Email jest wymagany';
     } else if (!validateEmail(quoteForm.email)) {
-      newErrors.email = 'Podaj prawidłowy adres email (np. jan@example.com)';
+      newErrors.email = 'Podaj prawidłowy adres email';
     }
 
     if (quoteForm.phone && !validatePhone(quoteForm.phone)) {
-      newErrors.phone = 'Podaj prawidłowy numer telefonu (minimum 9 cyfr)';
+      newErrors.phone = 'Podaj prawidłowy numer telefonu';
     }
 
     if (!quoteForm.service) {
-      newErrors.service = 'Wybierz rodzaj usługi z listy';
+      newErrors.service = 'Wybierz rodzaj usługi';
     }
 
     if (!quoteForm.package) {
-      newErrors.package = 'Wybierz pakiet z dostępnych opcji';
+      newErrors.package = 'Wybierz pakiet';
     }
 
     if (!quoteForm.timeline) {
-      newErrors.timeline = 'Wybierz termin realizacji projektu';
+      newErrors.timeline = 'Wybierz termin realizacji';
     }
 
     if (!quoteForm.description.trim()) {
-      newErrors.description = 'Opis projektu jest wymagany (minimum 20 znaków)';
-    } else if (quoteForm.description.trim().length < 20) {
-      newErrors.description = 'Opis projektu musi mieć minimum 20 znaków';
+      newErrors.description = 'Opisz swój projekt';
     }
 
     if (quoteForm.hasExistingSite && quoteForm.currentSiteUrl && !quoteForm.currentSiteUrl.startsWith('http')) {
@@ -458,31 +450,27 @@ function ContactContent() {
     const newErrors: Record<string, string> = {};
 
     if (!questionForm.name.trim()) {
-      newErrors.name = 'Imię i nazwisko jest wymagane (minimum 2 znaki)';
-    } else if (questionForm.name.trim().length < 2) {
-      newErrors.name = 'Imię i nazwisko musi mieć minimum 2 znaki';
+      newErrors.name = 'Imię i nazwisko jest wymagane';
     }
 
     if (!questionForm.email.trim()) {
-      newErrors.email = 'Adres email jest wymagany';
+      newErrors.email = 'Email jest wymagany';
     } else if (!validateEmail(questionForm.email)) {
-      newErrors.email = 'Podaj prawidłowy adres email (np. jan@example.com)';
+      newErrors.email = 'Podaj prawidłowy adres email';
     }
 
     if (questionForm.phone && !validatePhone(questionForm.phone)) {
-      newErrors.phone = 'Podaj prawidłowy numer telefonu (minimum 9 cyfr)';
+      newErrors.phone = 'Podaj prawidłowy numer telefonu';
     }
 
     if (!questionForm.subject.trim()) {
-      newErrors.subject = 'Temat pytania jest wymagany (minimum 3 znaki)';
-    } else if (questionForm.subject.trim().length < 3) {
-      newErrors.subject = 'Temat pytania musi mieć minimum 3 znaki';
+      newErrors.subject = 'Podaj temat pytania';
     }
 
     if (!questionForm.message.trim()) {
-      newErrors.message = 'Treść pytania jest wymagana (minimum 10 znaków)';
+      newErrors.message = 'Opisz swoje pytanie';
     } else if (questionForm.message.trim().length < 10) {
-      newErrors.message = 'Treść pytania musi mieć minimum 10 znaków';
+      newErrors.message = 'Pytanie powinno być bardziej szczegółowe (minimum 10 znaków)';
     }
 
     setErrors(newErrors);
@@ -493,37 +481,35 @@ function ContactContent() {
     const newErrors: Record<string, string> = {};
 
     if (!projectForm.name.trim()) {
-      newErrors.name = 'Imię i nazwisko jest wymagane (minimum 2 znaki)';
-    } else if (projectForm.name.trim().length < 2) {
-      newErrors.name = 'Imię i nazwisko musi mieć minimum 2 znaki';
+      newErrors.name = 'Imię i nazwisko jest wymagane';
     }
 
     if (!projectForm.email.trim()) {
-      newErrors.email = 'Adres email jest wymagany';
+      newErrors.email = 'Email jest wymagany';
     } else if (!validateEmail(projectForm.email)) {
-      newErrors.email = 'Podaj prawidłowy adres email (np. jan@example.com)';
+      newErrors.email = 'Podaj prawidłowy adres email';
     }
 
     if (projectForm.phone && !validatePhone(projectForm.phone)) {
-      newErrors.phone = 'Podaj prawidłowy numer telefonu (minimum 9 cyfr)';
+      newErrors.phone = 'Podaj prawidłowy numer telefonu';
     }
 
     if (!projectForm.projectType) {
-      newErrors.projectType = 'Wybierz typ projektu z listy';
+      newErrors.projectType = 'Wybierz typ projektu';
     }
 
     if (!projectForm.budget) {
-      newErrors.budget = 'Wybierz budżet dla projektu';
+      newErrors.budget = 'Wybierz budżet';
     }
 
     if (!projectForm.timeline) {
-      newErrors.timeline = 'Wybierz termin realizacji projektu';
+      newErrors.timeline = 'Wybierz termin realizacji';
     }
 
     if (!projectForm.description.trim()) {
-      newErrors.description = 'Opis projektu jest wymagany (minimum 20 znaków)';
+      newErrors.description = 'Opisz swój projekt';
     } else if (projectForm.description.trim().length < 20) {
-      newErrors.description = 'Opis projektu musi mieć minimum 20 znaków';
+      newErrors.description = 'Opis projektu powinien być bardziej szczegółowy (minimum 20 znaków)';
     }
 
     if (projectForm.hasExistingSite && projectForm.currentSiteUrl && !projectForm.currentSiteUrl.startsWith('http')) {
@@ -1719,7 +1705,7 @@ function ContactContent() {
                     </p>
                     <div className="flex gap-4 justify-center">
                       <a
-                        href="mailto:kontakt@whiteslope.pl"
+                        href="mailto:kontakt@whiteslope.studio"
                         className="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-[#d4d4d4] transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
                       >
                         <Mail className="w-5 h-5" />
