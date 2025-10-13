@@ -572,7 +572,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     href: "https://patrykkul.github.io/korepetycje/",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
   },
-  
+
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
