@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAdvancedInView } from '@/utils/hooks';
 import { Check, PersonStanding, Globe, MessageCircle, Settings } from 'lucide-react';
+import { FaWalking } from 'react-icons/fa';
 
 // Typy i dane
 interface AnimatedWord {
@@ -71,7 +72,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     const animationData = localStorage.getItem('hero-animation-data');
     if (animationData) {
       const { seen, timestamp } = JSON.parse(animationData);
-      const dayInMs = 5 * 60 * 1000; // 5 minut dla testów
+      const dayInMs = 10 * 60 * 1000; // 5 minut dla testów
       if (Date.now() - timestamp > dayInMs) {
         localStorage.removeItem('hero-animation-data');
       } else {
@@ -334,7 +335,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
                   transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
                 }}
               >
-                <PersonStanding className="inline w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-orange-400" />
+                <FaWalking className="inline w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-orange-400" />
               </span>
             )}
             {currentStep === 1 && index === 2 && (

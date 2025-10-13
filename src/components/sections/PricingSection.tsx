@@ -349,7 +349,7 @@ export const PricingSection = () => {
   const currentService = MAIN_SERVICES[activeService];
 
   return (
-    <section ref={ref} id="services" className="py-16 relative overflow-hidden" 
+    <section ref={ref} id="services" className="py-8 relative overflow-hidden" 
     style={{
         background: `
          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),

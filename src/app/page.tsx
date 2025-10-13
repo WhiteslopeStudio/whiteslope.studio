@@ -17,6 +17,7 @@ import BriefSection from '@/components/sections/BriefSection';
 
 // ✨ NOWY IMPORT - sekcja z usługami tylko dla desktopa
 import DesktopUslugiSection from '@/components/sections/DesktopUslugiSection';
+import {PortfolioSectionDesktop} from '@/components/sections/PortfolioSectionDesktop';
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(
@@ -117,11 +118,19 @@ export default function HomePage() {
           {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
           <ProblemSolutionSection />
 
+          
+
           {/* 🔄 PROCESS SECTION */}
           <ProcessSection />
 
+          {isMobile ?  null : <PortfolioSectionDesktop />}
+
+          
+
           {/* 💬 TESTIMONIALS SECTION */}
           <TestimonialsSection />
+
+          
 
           <ExperienceSection />
 
