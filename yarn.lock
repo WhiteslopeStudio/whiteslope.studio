@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@agentmonitor/sdk@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/@agentmonitor/sdk/-/sdk-0.2.4.tgz"
+  integrity sha512-NQfLk69WPyPa8O53/u6F3GHmQLjkBgFRKb31RLcM4z95TcM2pPCOI8XGzE20yX3GAb3hBK2vZIrYJkRACP9B0A==
+
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
