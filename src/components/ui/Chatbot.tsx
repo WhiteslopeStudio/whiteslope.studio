@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { MessageSquare, X, Send } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 interface ChatButton {
   text: string;
@@ -237,7 +238,27 @@ export default function Chatbot() {
               
               {/* Message content */}
               <div className={msg.role === 'user' ? 'text-black' : 'text-white'}>
-                {msg.content}
+                <ReactMarkdown
+                  components={{
+                    // Custom styling dla elementów markdown
+                    strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
+                    em: ({node, ...props}) => <em className="italic" {...props} />,
+                    p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc list-inside space-y-1 my-2" {...props} />,
+                    ol: ({node, ...props}) => <ol className="list-decimal list-inside space-y-1 my-2" {...props} />,
+                    li: ({node, ...props}) => <li className="ml-2" {...props} />,
+                    a: ({node, ...props}) => (
+                      <a 
+                        className="underline hover:text-orange-300 transition-colors" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        {...props} 
+                      />
+                    ),
+                  }}
+                >
+                  {msg.content}
+                </ReactMarkdown>
               </div>
               
               {/* Dynamic buttons (tylko dla bot messages) */}
