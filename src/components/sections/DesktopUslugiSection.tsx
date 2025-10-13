@@ -71,7 +71,7 @@ export default function DesktopUslugiSection() {
                 style={{
                   width: '110px',
                   height: '120px',
-                  background: 'rgba(24, 24, 24, 0.7)',
+                  background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.15) 0%, #0f0f0fff 80%',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)',
@@ -82,15 +82,16 @@ export default function DesktopUslugiSection() {
                   justifyContent: 'flex-start',
                   gap: '10px',
                   animation: `fadeInUp 0.6s ease-out ${1.5 + index * 0.2}s both`,
+                  
                 }}
               >
                 {/* Czerwona kropka dla pierwszego boxa */}
                 {index === 0 && (
                 <div
-                    className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full"
+                    className="absolute top-0 right-0 w-3 h-3 bg-[#ff0000] rounded-full"
                     style={{
                     transform: 'translate(50%, -50%)',
-                    opacity: 0.8,
+                    opacity: 1,
                     }}
                 />
                 )}
@@ -99,21 +100,21 @@ export default function DesktopUslugiSection() {
                 <div 
                   className="transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
                   style={{
-                    width: '55px',
-                    height: '55px',
+                    width: '70px',
+                    height: '70px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
                 >
-                  <IconComponent className="w-5 h-5 font-semibold" />
+                  <IconComponent className="w-5 h-5 font-bold" />
                 </div>
                 
                 {/* Tytuł usługi */}
                 <span 
                   className="text-center leading-tight text-[12px] font-bold transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
                   style={{ 
-                    fontFamily: 'inherit',
+                    
                     padding: '0 4px',
                   }}
                 >

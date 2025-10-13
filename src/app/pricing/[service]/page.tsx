@@ -143,13 +143,13 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                 className="block rounded-2xl border border-white/10 bg-[#0f0f0f] hover:border-white/20 p-6 transition-all duration-500 cursor-pointer"
               >
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-normal text-white mb-3">{pkg.name}</h3>
-                  <div className="text-4xl font-normal text-[#fd9f91] mb-3">{pkg.price}</div>
+                  <h3 className="text-2xl font-normal text-[#fd9f91] mb-3">{pkg.name}</h3>
+                  <div className="text-4xl font-semibold text-white mb-3">{pkg.price}</div>
                   <p className="text-gray-300 leading-relaxed mb-4 font-light">{pkg.description}</p>
                   
-                  <div className="inline-flex items-center gap-2 bg-[#fd9f91]/10 border border-[#fd9f91]/30 rounded-full px-4 py-2">
-                    <Clock className="w-4 h-4 text-[#fd9f91]" />
-                    <span className="text-[#fd9f91] text-sm font-medium">Realizacja: {pkg.timeline} (orientacyjnie)</span>
+                  <div className="inline-flex items-center gap-2 bg-[#c3c4c2]/10 border border-[#c3c4c2]/30 rounded-full px-4 py-2">
+                    <Clock className="w-4 h-4 text-[#c3c4c2]" />
+                    <span className="text-[#c3c4c2] text-sm font-medium">Realizacja: {pkg.timeline} (orientacyjnie)</span>
                   </div>
                 </div>
 
@@ -158,7 +158,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                   <div className="space-y-3">
                     {pkg.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center gap-3">
-                        <Check className="w-4 h-4 flex-shrink-0 text-[#fd9f91]" />
+                        <Check className="w-4 h-4 flex-shrink-0 text-[#aafd91]" />
                         <span className="text-gray-300 font-light">{feature}</span>
                       </div>
                     ))}

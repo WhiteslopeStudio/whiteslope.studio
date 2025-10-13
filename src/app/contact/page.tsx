@@ -748,9 +748,9 @@ function ContactContent() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-black relative overflow-hidden">
+      <section className="pt-32 pb-0 bg-black relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/5">
-          <div className="w-[1600px] h-[1600px] bg-gradient-to-r from-white/1 via-white/3 to-white/1 rounded-full blur-3xl"></div>
+          <div className="bg-gradient-to-r from-white/1 via-white/3 to-white/1 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -765,29 +765,29 @@ function ContactContent() {
             </p>
             
             {/* Quick stats */}
-            <div className="grid gap-8 max-w-4xl mx-auto grid-cols-1 md:grid-cols-3">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Zap className="w-6 h-6 text-white" />
+            <div className="flex flex-row flex-nowrap gap-4 max-w-4xl mx-auto md:grid md:grid-cols-3 py-4 px-4">
+              <div className="flex flex-col items-center text-center flex-1 min-w-0">
+                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
+                  <Zap className="w-5 h-5 text-white" />
                 </div>
-                <div className="text-lg font-semibold text-white mb-1">24h</div>
-                <div className="text-sm text-[#737373]">Czas odpowiedzi</div>
+                <div className="text-base font-semibold text-white mb-1">24h</div>
+                <div className="text-xs text-[#737373]">Czas odpowiedzi</div>
               </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Star className="w-6 h-6 text-white" />
+
+              <div className="flex flex-col items-center text-center flex-1 min-w-0">
+                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
+                  <Star className="w-5 h-5 text-white" />
                 </div>
-                <div className="text-lg font-semibold text-white mb-1">100%</div>
-                <div className="text-sm text-[#737373]">Bezpłatna konsultacja</div>
+                <div className="text-base font-semibold text-white mb-1">100%</div>
+                <div className="text-xs text-[#737373]">Bezpłatna konsultacja</div>
               </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Shield className="w-6 h-6 text-white" />
+
+              <div className="flex flex-col items-center text-center flex-1 min-w-0">
+                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
+                  <Shield className="w-5 h-5 text-white" />
                 </div>
-                <div className="text-lg font-semibold text-white mb-1">NDA</div>
-                <div className="text-sm text-[#737373]">Pełna poufność</div>
+                <div className="text-base font-semibold text-white mb-1">NDA</div>
+                <div className="text-xs text-[#737373]">Pełna poufność</div>
               </div>
             </div>
           </div>
@@ -840,9 +840,11 @@ function ContactContent() {
                 <div className="text-left">
                   <div className="font-semibold text-white">{TAB_CONFIG[activeTab].title}</div>
                   <div className="text-xs text-[#737373]">{TAB_CONFIG[activeTab].subtitle}</div>
+                  
                 </div>
               </div>
-              <ChevronUp className="w-5 h-5 text-[#737373]" />
+              
+              <ChevronDown className="w-5 h-5 text-[#737373]" />
             </button>
           </div>
 
@@ -884,6 +886,8 @@ function ContactContent() {
                       <X className="w-5 h-5 text-white" />
                     </button>
                   </div>
+
+                  
 
                   {/* Tab Options */}
                   <div className="overflow-y-auto px-6 py-4 space-y-2" style={{ maxHeight: 'calc(80vh - 120px)' }}>
@@ -942,9 +946,85 @@ function ContactContent() {
       </section>
 
       {/* Contact Section */}
-      <section className="pb-20">
-        <div className="container mx-auto px-6">
+      <section className="pb-20 min-w-8xl">
+        <div className="container mx-auto px-6 justify-left items-left">
           <div className="grid gap-12 grid-cols-1 lg:grid-cols-4">
+
+
+            {/* Contact Info */}
+            <div 
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-6">Dane kontaktowe</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Email</div>
+                      <a 
+                        href="mailto:kontakt@whiteslope.studio" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        kontakt@whiteslope.studio
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Telefon</div>
+                      <a 
+                        href="tel:+48662581368" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        +48 662 581 368, +48 731 721 760
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Lokalizacja</div>
+                      <div className="text-[#737373]">Białystok, Polska</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Godziny pracy</div>
+                      <div className="text-[#737373]">Pon - Pt: 9:00 - 17:00</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Contact */}
+              <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                <h3 className="font-bold text-white mb-4">Pilny projekt?</h3>
+                <p className="text-[#d4d4d4] text-sm mb-4">
+                  Zadzwoń bezpośrednio i omówimy szczegóły.
+                </p>
+                <a
+                  href="tel:+48123456789"
+                  className="bg-white text-black px-4 py-2 rounded-xl font-semibold hover:bg-[#d4d4d4] transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
+                >
+                  <Phone className="w-4 h-4" />
+                  Zadzwoń teraz
+                </a>
+              </div>
+            </div>
 
             {/* Form Container */}
             <motion.div
@@ -1738,80 +1818,7 @@ function ContactContent() {
               </div>
             </motion.div>
 
-            {/* Contact Info */}
-            <div 
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="text-2xl font-bold text-white mb-6">Dane kontaktowe</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white mb-1">Email</div>
-                      <a 
-                        href="mailto:kontakt@whiteslope.pl" 
-                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
-                      >
-                        kontakt@whiteslope.pl
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white mb-1">Telefon</div>
-                      <a 
-                        href="tel:+48123456789" 
-                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
-                      >
-                        +48 123 456 789
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white mb-1">Lokalizacja</div>
-                      <div className="text-[#737373]">Białystok, Polska</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white mb-1">Godziny pracy</div>
-                      <div className="text-[#737373]">Pon - Pt: 9:00 - 17:00</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Contact */}
-              <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-                <h3 className="font-bold text-white mb-4">Pilny projekt?</h3>
-                <p className="text-[#d4d4d4] text-sm mb-4">
-                  Zadzwoń bezpośrednio i omówimy szczegóły.
-                </p>
-                <a
-                  href="tel:+48123456789"
-                  className="bg-white text-black px-4 py-2 rounded-xl font-semibold hover:bg-[#d4d4d4] transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
-                >
-                  <Phone className="w-4 h-4" />
-                  Zadzwoń teraz
-                </a>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>

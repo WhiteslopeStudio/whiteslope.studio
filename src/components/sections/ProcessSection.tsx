@@ -89,7 +89,7 @@ export const ProcessSection = () => {
   const startIndex = Math.max(0, Math.min(activeIndex - 1, PROCESS_STEPS.length - 3));
 
   return (
-    <section id="process" ref={ref} className="py-20 bg-black relative overflow-hidden" 
+    <section id="process" ref={ref} className="py-8 bg-black relative overflow-hidden" 
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),

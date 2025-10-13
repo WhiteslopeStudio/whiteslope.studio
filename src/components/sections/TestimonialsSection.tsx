@@ -149,7 +149,7 @@ export const TestimonialsSection = () => {
     <section 
       ref={ref} 
       id="testimonials" 
-      className="py-5 relative overflow-hidden py-10"
+      className="py-5 relative overflow-hidden py-8"
       style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 7%, black 100%),

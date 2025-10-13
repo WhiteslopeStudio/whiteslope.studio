@@ -564,8 +564,8 @@ export const Header = () => {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-black/75 backdrop-blur-lg border-b border-white/10 shadow-lg"
-            : "bg-black/75 backdrop-blur-md border-b border-white/5"
+            ? "bg-black/87 backdrop-blur-xl border-b border-white/10 shadow-lg"
+            : "bg-black/87 backdrop-blur-xl border-b border-white/5"
         }`}
       >
         <div className="container mx-auto px-6 py-4">
@@ -718,7 +718,7 @@ export const Header = () => {
                           ? 'bg-white text-black'
                           : getActiveState(item)
                           ? 'bg-white/10 text-white'
-                          : 'text-[#d4d4d4] hover:bg-[#262626] hover:text-white'
+                          : 'text-[#d4d4d4] hover:text-white'
                       }`}
                     transition={{
                       duration: 0.5,
@@ -854,7 +854,7 @@ export const Header = () => {
                           className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                             getActiveState(item)
                               ? "bg-white/10 text-white"
-                              : "text-[#d4d4d4] hover:bg-[#262626] hover:text-white"
+                              : "text-[#d4d4d4] hover:text-white"
                           }`}
                           initial={{ x: 50, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
@@ -892,7 +892,7 @@ export const Header = () => {
                       className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         pathname === service.href
                           ? "bg-white/10 text-white"
-                          : "text-[#d4d4d4] hover:bg-[#262626] hover:text-white"
+                          : "text-[#d4d4d4] hover:text-white"
                       }`}
                       initial={{ x: 50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
@@ -922,7 +922,7 @@ export const Header = () => {
                       className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         getActiveState(item)
                           ? "bg-white/10 text-white"
-                          : "text-[#d4d4d4] hover:bg-[#262626] hover:text-white"
+                          : "text-[#d4d4d4]  hover:text-white"
                       }`}
                       initial={{ x: 50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
