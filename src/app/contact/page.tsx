@@ -60,7 +60,7 @@ interface ProjectFormData extends BaseFormData {
 const TAB_CONFIG = {
   meeting: {
     id: 'meeting',
-    title: 'Umów wizytę',
+    title: 'Umów spotkanie',
     subtitle: 'Darmowa konsultacja',
     description: 'Porozmawiajmy o Twoich potrzebach podczas bezpłatnej konsultacji',
     icon: Calendar,
@@ -983,7 +983,13 @@ function ContactContent() {
                         href="tel:+48662581368" 
                         className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
                       >
-                        +48 662 581 368, +48 731 721 760
+                        +48 662 581 368
+                      </a>
+                      <a 
+                        href="tel:+48731721760" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        , +48 731 721 760
                       </a>
                     </div>
                   </div>
@@ -1017,7 +1023,7 @@ function ContactContent() {
                   Zadzwoń bezpośrednio i omówimy szczegóły.
                 </p>
                 <a
-                  href="tel:+48123456789"
+                  href="tel:+48662581368"
                   className="bg-white text-black px-4 py-2 rounded-xl font-semibold hover:bg-[#d4d4d4] transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
                 >
                   <Phone className="w-4 h-4" />
@@ -1169,7 +1175,7 @@ function ContactContent() {
                         ) : (
                           <>
                             <Calendar className="w-5 h-5" />
-                            Umów spotkanie
+                            Wyślij
                           </>
                         )}
                       </button>
@@ -1806,7 +1812,7 @@ function ContactContent() {
                         Napisz email
                       </a>
                       <a
-                        href="tel:+48123456789"
+                        href="tel:+48662581368"
                         className="border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-black transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
                       >
                         <Phone className="w-5 h-5" />
