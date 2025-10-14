@@ -18,6 +18,7 @@ import BriefSection from '@/components/sections/BriefSection';
 // ✨ NOWY IMPORT - sekcja z usługami tylko dla desktopa
 import DesktopUslugiSection from '@/components/sections/DesktopUslugiSection';
 import {PortfolioSectionDesktop} from '@/components/sections/PortfolioSectionDesktop';
+import PromoBar from '@/components/sections/PromoBar';
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(
@@ -105,6 +106,8 @@ export default function HomePage() {
       {/* Główna treść strony */}
       {introCompleted && (
         <>
+
+          
           {/* 🚀 HERO SECTION */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
           {/* 🛠️ DESKTOP USŁUGI SECTION - TYLKO NA DESKTOPIE! */}

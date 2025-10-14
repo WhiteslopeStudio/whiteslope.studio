@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/sections/cookieBanner";
 import { jsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
+import PromoBar from "@/components/sections/PromoBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,9 +94,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+      
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        
+
         <Header />
+
+        <PromoBar />
         {children}
+        
         <CookieBanner />
         <Chatbot />
         <Footer />
