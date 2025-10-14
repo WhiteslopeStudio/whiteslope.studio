@@ -424,7 +424,7 @@ export default function ExperienceSection() {
 
                     <div className="flex justify-center mt-6">
                       <img
-                        src="_resources/Whiteslope_responsivity.webp"
+                        src="_resources\Whiteslope_responsivity.webp"
                         alt="Responsywność - laptop i telefon"
                         className="w-full max-w-sm h-auto rounded-lg"
                       />
