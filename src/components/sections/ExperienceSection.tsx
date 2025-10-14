@@ -940,7 +940,7 @@ export default function ExperienceSection() {
                     {/* Prawa strona - zdjęcie (1/2 szerokości) */}
                     <div className="flex justify-center items-center h-full group/image">
                       <img
-                        src="_resources/whiteslope_responsivity.webp"
+                        src="_resources\Whiteslope_responsivity.webp"
                         alt="Responsywność - laptop i telefon"
                         className="w-full max-w-2xl h-auto rounded-lg shadow-2xl object-contain scale-110 transition-transform duration-500 group-hover/image:scale-[1.13]"
                       />
