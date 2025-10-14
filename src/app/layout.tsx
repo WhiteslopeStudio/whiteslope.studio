@@ -23,12 +23,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://whiteslope.studio'),
-  title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe | Białystok",
-  description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe. SEO, CMS, e-commerce. Darmowe konsultacje. Białystok, Podlaskie.",
+  title: "Whiteslope Studio - Profesjonalne strony internetowe Białystok ",
+  description: "Tworzymy szybkie, nowoczesne strony internetowe i aplikacje webowe. SEO, CMS, e-commerce. Darmowe konsultacje. Białystok, Podlaskie.",
   keywords: "strony internetowe, aplikacje webowe, SEO, CMS, e-commerce, Białystok, web development, Next.js, React",
-  authors: [{ name: "WHITESLOPE STUDIO" }],
-  creator: "WHITESLOPE STUDIO",
-  publisher: "WHITESLOPE STUDIO",
+  authors: [{ name: "Whiteslope Studio" }],
+  creator: "Whiteslope Studio",
+  publisher: "Whiteslope Studio",
   formatDetection: {
     email: false,
     address: false,
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe",
+    title: "Whiteslope Studio - Profesjonalne strony internetowe Białystok",
     description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe",
     url: "https://whiteslope.studio",
-    siteName: "WHITESLOPE STUDIO",
+    siteName: "Whiteslope Studio",
     images: [
       {
         url: "https://whiteslope.studio/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "WHITESLOPE STUDIO - Profesjonalne strony internetowe w Białymstoku",
+        alt: "Whiteslope Studio - Profesjonalne strony internetowe w Białymstoku",
       },
     ],
     locale: "pl_PL",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe",
+    title: "Whiteslope Studio - Profesjonalne strony internetowe",
     description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe w Białymstoku",
     creator: "@whiteslope",
     images: ["https://whiteslope.studio/og-image.jpg"],

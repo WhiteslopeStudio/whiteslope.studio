@@ -71,7 +71,7 @@ export default function DesktopUslugiSection() {
                 style={{
                   width: '110px',
                   height: '120px',
-                  background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.15) 0%, #0f0f0fff 80%',
+                  background: 'radial-gradient(circle at left bottom, #ffffff12 0%, #ffffff12 80%',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
                   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)',
@@ -112,7 +112,7 @@ export default function DesktopUslugiSection() {
                 
                 {/* Tytuł usługi */}
                 <span 
-                  className="text-center leading-tight text-[12px] font-bold transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
+                  className="text-center leading-tight text-[14px] font-bold transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
                   style={{ 
                     
                     padding: '0 4px',
