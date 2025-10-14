@@ -2,7 +2,7 @@ export const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'WHITESLOPE STUDIO',
-  url: 'https://whiteslope.pl',
+  url: 'https://whiteslope.studio',
   description: 'Profesjonalne strony internetowe i aplikacje webowe w Białymstoku',
   provider: {
     '@type': 'Organization',
@@ -40,14 +40,14 @@ export const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'Blog WHITESLOPE STUDIO',
-  url: 'https://whiteslope.pl/blog',
+  url: 'https://whiteslope.studio/blog',
   description: 'Artykuły o web development, designie i technologii',
   publisher: {
     '@type': 'Organization',
     name: 'WHITESLOPE STUDIO',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://whiteslope.pl/logo.png'
+      url: 'https://whiteslope.studio/logo.png'
     }
   }
 };
@@ -68,12 +68,12 @@ export const articleJsonLd = (post: any) => ({
     name: 'WHITESLOPE STUDIO',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://whiteslope.pl/logo.png'
+      url: 'https://whiteslope.studio/logo.png'
     }
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': `https://whiteslope.pl/blog/${post.slug}`
+    '@id': `https://whiteslope.studio/blog/${post.slug}`
   },
   articleBody: post.content
 });
