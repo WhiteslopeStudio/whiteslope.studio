@@ -462,7 +462,7 @@ export const ProblemSolutionSection = () => {
               Transformacja {" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                  Twojej marki 
-              </span> {" "}online!{" "}trzy, dwa, jeden...
+              </span> {" "}online!{" "}<br/>trzy, dwa, jeden...
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie
