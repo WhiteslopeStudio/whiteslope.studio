@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://whiteslope.pl'),
+  metadataBase: new URL('https://whiteslope.studio'),
   title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe | Białystok",
   description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe. SEO, CMS, e-commerce. Darmowe konsultacje. Białystok, Podlaskie.",
   keywords: "strony internetowe, aplikacje webowe, SEO, CMS, e-commerce, Białystok, web development, Next.js, React",
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe",
     description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe",
-    url: "https://whiteslope.pl",
+    url: "https://whiteslope.studio",
     siteName: "WHITESLOPE STUDIO",
     images: [
       {
-        url: "https://whiteslope.pl/og-image.jpg",
+        url: "https://whiteslope.studio/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "WHITESLOPE STUDIO - Profesjonalne strony internetowe w Białymstoku",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "WHITESLOPE STUDIO - Profesjonalne strony internetowe",
     description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe w Białymstoku",
     creator: "@whiteslope",
-    images: ["https://whiteslope.pl/og-image.jpg"],
+    images: ["https://whiteslope.studio/og-image.jpg"],
   },
   robots: {
     index: true,
