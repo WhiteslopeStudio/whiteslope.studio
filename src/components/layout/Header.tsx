@@ -6,6 +6,9 @@ import { Menu, X, ChevronDown, Instagram, Facebook } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { HOMEPAGE_MENU_ITEMS, SUBPAGES_MENU_ITEMS, APP_CONFIG, MAIN_SERVICES } from '@/lib/constants';
 import { useMobileDetection } from '@/utils/hooks';
+import { Search } from 'lucide-react'; // Dodaj do importów na górze
+import { useSearchEngine } from '@/utils/hooks/useSearchEngine'; // Dodaj do importów
+
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,6 +21,7 @@ export const Header = () => {
   const isMobile = useMobileDetection();
   const router = useRouter();
   const pathname = usePathname();
+  const { open } = useSearchEngine();
 
   const isHomepage = pathname === "/";
 
@@ -148,20 +152,40 @@ export const Header = () => {
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <motion.div
-              className="cursor-pointer transition-transform duration-300 hover:scale-105 hover:cursor-pointer"
-              onClick={handleHomeClick}
-            >
-              <img
-                src="/_resources/logoWhiteSlope.webp"
-                alt="WhiteSlope Studio"
-                className="h-5 w-auto object-contain"
-              />
-            </motion.div>
+            <div className="flex items-center gap-4">
+              {/* Logo */}
+              <motion.div
+                className="cursor-pointer transition-transform duration-300 hover:scale-105 hover:cursor-pointer"
+                onClick={handleHomeClick}
+              >
+                <img
+                  src="/_resources/logoWhiteSlope.webp"
+                  alt="WhiteSlope Studio"
+                  className="h-5 w-auto object-contain"
+                />
+              </motion.div>
+
+              {/* Search Button - przylepiony do logo */}
+              {!isMobile && (
+                <motion.button
+                  onClick={open}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Search className="w-4 h-4" />
+                  <span className="text-sm font-medium">Szukaj - WhiteSearch</span>
+                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700 rounded">
+                    <span className="text-xs">⌘</span>K
+                  </kbd>
+                </motion.button>
+              )}
+            </div>
 
             {/* Desktop Menu */}
             {!isMobile && (
+              
+
               <nav className="flex items-center space-x-1">
                 {/* Sections Dropdown - only on homepage */}
                 {isHomepage && (
