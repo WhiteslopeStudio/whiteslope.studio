@@ -37,5 +37,5 @@ export const APP_CONFIG = {
      tagline: 'Wspaniali ludzie dostają wspaniałe strony',
      description: 'Profesjonalne strony internetowe i aplikacje webowe',
      email: 'kontakt@whiteslope.studio',
-     phone: '+48 507 311 557, +48 731 721 760'
+     phone: '+48 662 581 368, +48 731 721 760'
 } as const;
