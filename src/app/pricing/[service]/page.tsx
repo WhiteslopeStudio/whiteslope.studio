@@ -279,7 +279,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
               </Link>
               
               <a 
-                href="tel:+48123456789"
+                href="tel:+48662581368"
                 className="flex items-center justify-center gap-2 border border-[#fffff0] text-white px-6 py-4 rounded-full font-medium hover:bg-black hover:text-white hover:bg-white/10 transition-all duration-300 whitespace-nowrap"
               >
                 <Phone className="w-5 h-5" />

@@ -19,7 +19,7 @@ export default function BriefSection() {
   return (
     <>
       <section 
-        className=" bg-[#0b0b0bff]] relative overflow-hidden py-10"
+        className="bg-[#0b0b0bff] relative overflow-hidden py-10"
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -40,18 +40,16 @@ export default function BriefSection() {
       }} 
       >
         <div className="max-w-6xl mx-auto">
-          {/* Bento Grid 16:9 */}
+          {/* Bento Grid - responsywny aspect ratio */}
           <div 
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              aspectRatio: '16 / 4',
-            }}
+            className="relative rounded-2xl overflow-hidden aspect-square sm:aspect-[16/12] md:aspect-[16/8] lg:aspect-[16/4]"
           >
+
             {/* Tło zdjęcia */}
             <div 
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: 'url(/_resources/brief.webp)', // TU DODASZ SWOJE ZDJĘCIE
+                backgroundImage: 'url(/_resources/brief.webp)',
                 backgroundColor: '#0a0a0a'
               }}
             />
@@ -60,8 +58,8 @@ export default function BriefSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/70" />
             
             {/* Zawartość */}
-            <div className="relative h-full flex flex-col items-left justify-center text-left ">
-              <h2 className="text-2xl lg:text-3xl font-normal text-white mb-3 leading-tight  px-16">
+            <div className="relative h-full flex flex-col items-left justify-center text-left">
+              <h2 className="text-2xl lg:text-3xl font-normal text-white mb-3 leading-tight px-16">
                 Przygotuj się do projektu z nami{" "}
                 <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                     
@@ -113,7 +111,7 @@ export default function BriefSection() {
               <X className="w-5 h-5 text-white" />
             </button>
             
-            {/* Iframe z plikiem PDF */}
+            {/* Iframe z plikiem */}
             <iframe
               src="/_resources/brief_projektowy - przewodnik dla klienta.html"
               className="w-full h-full"
