@@ -134,7 +134,7 @@ export const HeroPortfolioSection = () => {
           style={{
             width: '150px',
             height: '120%',
-            background: 'linear-gradient(180deg, rgba(229, 228, 226, 0.15) 0%, rgba(229, 228, 226, 0.05) 50%, transparent 100%)',
+            background: 'linear-gradient(180deg, rgba(229, 228, 226, 0.05) 0%, rgba(229, 228, 226, 0.01) 50%, transparent 100%)',
             transform: 'translateX(-50%) translateX(-200px) rotate(-30deg) translateZ(0)',
             transformOrigin: 'bottom center',
             filter: isSectionVisible ? 'blur(40px)' : 'none',
@@ -150,7 +150,7 @@ export const HeroPortfolioSection = () => {
           style={{
             width: '180px',
             height: '120%',
-            background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.17) 0%, rgba(229, 228, 226, 0.08) 50%, transparent 100%)',
+            background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(229, 228, 226, 0.01) 50%, transparent 100%)',
             transform: 'translateX(-50%) translateZ(0)',
             transformOrigin: 'bottom center',
             filter: isSectionVisible ? 'blur(50px)' : 'none',
@@ -166,7 +166,7 @@ export const HeroPortfolioSection = () => {
           style={{
             width: '150px',
             height: '120%',
-            background: 'linear-gradient(180deg, rgba(229, 228, 226, 0.15) 0%, rgba(229, 228, 226, 0.05) 50%, transparent 100%)',
+            background: 'linear-gradient(180deg, rgba(229, 228, 226, 0.05) 0%, rgba(229, 228, 226, 0.01) 50%, transparent 100%)',
             transform: 'translateX(-50%) translateX(200px) rotate(30deg) translateZ(0)',
             transformOrigin: 'bottom center',
             filter: isSectionVisible ? 'blur(40px)' : 'none',
@@ -222,7 +222,7 @@ export const HeroPortfolioSection = () => {
           <div className="text-center flex flex-col justify-center items-center">
             <div className="space-y-5 max-w-9xl">
               {/* Badge */}
-              <div 
+              {/* <div 
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/10 border border-white/10 backdrop-blur-sm"
                 style={{
                   animation: isSectionVisible ? 'float 3s ease-in-out infinite, fadeInUp 0.8s ease-out 0.2s both' : 'fadeInUp 0.8s ease-out 0.2s both',
@@ -237,7 +237,7 @@ export const HeroPortfolioSection = () => {
                 <span className="text-white-300 text-sm font-medium">
                   Tworzymy strony w nowoczesnym standardzie - Whiteslope Studio - Białystok
                 </span>
-              </div>
+              </div> */}
 
               {/* Nagłówek */}
               <h1 
@@ -336,7 +336,7 @@ export const HeroPortfolioSection = () => {
 
             {/* LinkedIn */}
             <div 
-              className="mt-8"
+              className="my-8"
               style={{
                 animation: 'fadeInUp 0.8s ease-out 1.0s both',
               }}

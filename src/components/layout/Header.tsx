@@ -169,14 +169,15 @@ export const Header = () => {
               {!isMobile && (
                 <motion.button
                   onClick={open}
-                  className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer"
+                  className="flex items-center gap-2 px-11 py-3  rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer"
                   whileHover={{ scale: 1.00 }}
                   whileTap={{ scale: 1.00 }}
                 >
                   <Search className="w-4 h-4" />
                   <span className="text-sm font-medium">Szukaj - WhiteSearch</span>
-                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700 rounded">
-                    <span className="text-xs">⌘</span>K
+                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
+                    <span className="text-xs">⌘ +</span>K;  
+                    <span className="text-xs">Ctrl +</span>K
                   </kbd>
                 </motion.button>
               )}

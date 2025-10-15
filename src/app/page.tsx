@@ -110,8 +110,8 @@ export default function HomePage() {
           
           {/* 🚀 HERO SECTION */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
-          {/* 🛠️ DESKTOP USŁUGI SECTION - TYLKO NA DESKTOPIE! */}
-          {!isMobile && <DesktopUslugiSection />}
+          {/* 🛠️ DESKTOP USŁUGI SECTION - TYLKO NA DESKTOPIE!
+          {!isMobile && <DesktopUslugiSection />} */}
           
           {/* 🎨 PORTFOLIO SECTION */}
           {isMobile ? <PortfolioSection /> : null}

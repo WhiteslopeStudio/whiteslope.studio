@@ -221,7 +221,7 @@ export const ProblemSolutionSection = () => {
               onMouseLeave={() => setExpandedCard(null)}
             >
               <div 
-                className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-gray-900"
+                className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-gray-900 bg-black/50"
                 style={{
                   backgroundImage: 'url("/_resources/markaOnline1.webp")',
                   backgroundSize: 'cover',
