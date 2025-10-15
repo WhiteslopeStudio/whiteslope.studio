@@ -174,7 +174,7 @@ export const Header = () => {
                   whileTap={{ scale: 1.00 }}
                 >
                   <Search className="w-4 h-4" />
-                  <span className="text-sm font-medium">Szukaj - WhiteSearch</span>
+                  <span className="text-sm font-medium">Znajdź na Whiteslope</span>
                   <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
                     <span className="text-xs">⌘ +</span>K;  
                     <span className="text-xs">Ctrl +</span>K
