@@ -222,7 +222,7 @@ export const HeroPortfolioSection = () => {
           <div className="text-center flex flex-col justify-center items-center">
             <div className="space-y-5 max-w-9xl">
               {/* Badge */}
-              {/* <div 
+              <div 
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/10 border border-white/10 backdrop-blur-sm"
                 style={{
                   animation: isSectionVisible ? 'float 3s ease-in-out infinite, fadeInUp 0.8s ease-out 0.2s both' : 'fadeInUp 0.8s ease-out 0.2s both',
@@ -237,7 +237,7 @@ export const HeroPortfolioSection = () => {
                 <span className="text-white-300 text-sm font-medium">
                   Tworzymy strony w nowoczesnym standardzie - Whiteslope Studio - Białystok
                 </span>
-              </div> */}
+              </div>
 
               {/* Nagłówek */}
               <h1 
