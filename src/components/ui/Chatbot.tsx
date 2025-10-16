@@ -149,7 +149,7 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 z-50">
         <button 
           onClick={() => setIsOpen(true)}
-          className="group relative bg-black/90 backdrop-blur-xl border border-white/20 text-white p-4 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
+          className="group relative bg-black/90 backdrop-blur-xl border border-white/20 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 "
           aria-label="Otwórz AI asystenta WhiteSlope"
         >
           {/* Gradient glow effect */}
@@ -161,8 +161,8 @@ export default function Chatbot() {
           <div className="absolute inset-0 bg-gradient-to-r from-orange-300/30 to-pink-400/30 rounded-2xl animate-ping opacity-20"></div>
           
           {/* AI badge */}
-          <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full flex items-center justify-center text-xs font-bold text-black animate-bounce">
-            AI
+          <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-orange-300 to-pink-400 rounded-full flex items-center justify-center text-xs font-bold text-black ">
+            1
           </div>
           
           {/* Tooltip */}
