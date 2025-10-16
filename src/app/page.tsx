@@ -3,7 +3,6 @@
 import { useState, useLayoutEffect, useEffect } from 'react';
 import IntroAnimation from '@/components/layout/IntroAnimation';
 import HeroSection from '@/components/sections/HeroSection';
-import {HeroPortfolioSection} from '@/components/sections/HeroSection'
 import { ProblemSolutionSection } from '@/components/sections/ProblemSolutionSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
@@ -110,11 +109,16 @@ export default function HomePage() {
           
           {/* 🚀 HERO SECTION */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
-          {/* 🛠️ DESKTOP USŁUGI SECTION - TYLKO NA DESKTOPIE!
-          {!isMobile && <DesktopUslugiSection />} */}
+
+           {/* {isMobile ?  null : <PortfolioSectionDesktop />} */}
+          {/* 🛠️ DESKTOP USŁUGI SECTION - TYLKO NA DESKTOPIE! */}
+
+          {!isMobile && <DesktopUslugiSection />}
           
           {/* 🎨 PORTFOLIO SECTION */}
           {isMobile ? <PortfolioSection /> : null}
+
+          
           
 
 
@@ -126,7 +130,7 @@ export default function HomePage() {
           {/* 🔄 PROCESS SECTION */}
           <ProcessSection />
 
-          {isMobile ?  null : <PortfolioSectionDesktop />}
+         
 
           
 

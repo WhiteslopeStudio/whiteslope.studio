@@ -177,6 +177,10 @@ export const Header = () => {
                   <span className="text-sm font-medium">Znajdź na Whiteslope</span>
                   <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
                     <span className="text-xs">⌘ +</span>K;  
+                   
+                  </kbd>
+                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
+                  
                     <span className="text-xs">Ctrl +</span>K
                   </kbd>
                 </motion.button>

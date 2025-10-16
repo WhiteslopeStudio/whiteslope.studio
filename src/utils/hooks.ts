@@ -40,18 +40,18 @@ export const useAdvancedInView = (threshold: number = 0.1) => {
 export const useDragScroll = <T = any>() => {
   const isMobile = useMobileDetection();
 
-  // Drag states
+  // Drag states - POPRAWIONE: dodane domyślne wartości
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [startY, setStartY] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [dragDistance, setDragDistance] = useState(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [startX, setStartX] = useState<number>(0);
+  const [startY, setStartY] = useState<number>(0);
+  const [scrollLeft, setScrollLeft] = useState<number>(0);
+  const [dragDistance, setDragDistance] = useState<number>(0);
   
-  // Momentum states
-  const [velocity, setVelocity] = useState(0);
-  const [lastX, setLastX] = useState(0);
-  const [lastTime, setLastTime] = useState(0);
+  // Momentum states - POPRAWIONE: dodane domyślne wartości
+  const [velocity, setVelocity] = useState<number>(0);
+  const [lastX, setLastX] = useState<number>(0);
+  const [lastTime, setLastTime] = useState<number>(0);
   const momentumAnimationRef = useRef<number | null>(null);
   const lastCallTime = useRef<number>(0);
 
