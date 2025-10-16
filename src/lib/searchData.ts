@@ -133,19 +133,141 @@ export function getAllSearchableContent(): SearchableItem[] {
   return results;
 }
 
-// Funkcja wyszukiwania
+// Funkcja wyszukiwania - GOOGLE-LIKE
 export function searchContent(query: string): SearchableItem[] {
   if (!query.trim()) return [];
 
   const allItems = getAllSearchableContent();
-  const lowercaseQuery = query.toLowerCase();
+  const searchTerms = query.toLowerCase()
+    .split(/\s+/)
+    .filter(term => term.length > 0)
+    .map(term => term.replace(/[^\w\sąęćżźńłóś]/gi, '')); // Usuń znaki specjalne
 
-  return allItems.filter(item => {
-    // Sprawdź czy query pasuje do tytułu, opisu lub keywordów
-    return (
-      item.title.toLowerCase().includes(lowercaseQuery) ||
-      item.description.toLowerCase().includes(lowercaseQuery) ||
-      item.keywords.some(keyword => keyword.includes(lowercaseQuery))
+  // Jeśli zapytanie jest bardzo krótkie, szukaj dokładnych dopasowań
+  if (query.length <= 3) {
+    return allItems.filter(item => {
+      const exactMatch = item.title.toLowerCase().includes(query.toLowerCase()) ||
+                        item.description.toLowerCase().includes(query.toLowerCase());
+      return exactMatch;
+    }).slice(0, 8); // Limit wyników dla krótkich zapytań
+  }
+
+  const scoredItems = allItems.map(item => {
+    let score = 0;
+    const itemTitle = item.title.toLowerCase();
+    const itemDesc = item.description.toLowerCase();
+    const itemKeywords = item.keywords.join(' ').toLowerCase();
+    const itemCategory = item.category.toLowerCase();
+
+    // 1. DOKŁADNE DOPASOWANIE FRAZY (najwyższy priorytet)
+    const exactPhrase = query.toLowerCase();
+    if (itemTitle.includes(exactPhrase)) score += 20;
+    if (itemDesc.includes(exactPhrase)) score += 15;
+    if (itemKeywords.includes(exactPhrase)) score += 10;
+
+    // 2. DOPASOWANIE WSZYSTKICH SŁÓW (wysoki priorytet)
+    const hasAllTerms = searchTerms.every(term => 
+      itemTitle.includes(term) || itemDesc.includes(term) || itemKeywords.includes(term)
     );
+    
+    if (hasAllTerms) {
+      score += 15;
+      
+      // Bonus za kolejność słów
+      const titleInOrder = itemTitle.includes(searchTerms.join(' '));
+      if (titleInOrder) score += 10;
+    }
+
+    // 3. PUNKTACJA PER SŁOWO (średni priorytet)
+    searchTerms.forEach(term => {
+      // Tytuł - najważniejsze
+      if (itemTitle.includes(term)) {
+        score += 8;
+        // Bonus za dopasowanie na początku tytułu
+        if (itemTitle.startsWith(term)) score += 4;
+      }
+      
+      // Opis
+      if (itemDesc.includes(term)) score += 4;
+      
+      // Słowa kluczowe
+      if (itemKeywords.includes(term)) score += 3;
+      
+      // Kategoria
+      if (itemCategory.includes(term)) score += 2;
+    });
+
+    // 4. SPECJALNE PRZYPADKI
+    // Bonus za krótkie, precyzyjne tytuły
+    if (itemTitle.split(' ').length <= 4) score += 2;
+    
+    // Bonus za popularne strony (możesz dodać licznik kliknięć później)
+    if (item.href === '/') score += 3; // Strona główna
+    if (item.href.includes('/pricing/')) score += 2; // Cennik
+
+    // 5. KARY ZA SŁABE DOPASOWANIA
+    // Kara jeśli brakuje któregokolwiek słowa (tylko gdy wiele słów)
+    if (searchTerms.length > 1) {
+      const missingTerms = searchTerms.filter(term => 
+        !itemTitle.includes(term) && !itemDesc.includes(term) && !itemKeywords.includes(term)
+      ).length;
+      score -= missingTerms * 5;
+    }
+
+    return { item, score };
   });
+
+  // Filtruj i sortuj
+  const filtered = scoredItems
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ item }) => item);
+
+  // Dla długich zapytań zwróć mniej wyników, dla krótkich więcej
+  const maxResults = query.length > 10 ? 15 : 25;
+  return filtered.slice(0, maxResults);
+}
+
+// ALTERNATYWNIE - UPROSZCZONA WERSJA GOOGLE-LIKE
+export function searchContentSimple(query: string): SearchableItem[] {
+  if (!query.trim()) return [];
+
+  const allItems = getAllSearchableContent();
+  const searchTerms = query.toLowerCase().split(/\s+/).filter(term => term.length > 0);
+
+  const scoredItems = allItems.map(item => {
+    let score = 0;
+    const searchText = `${item.title} ${item.description} ${item.keywords.join(' ')}`.toLowerCase();
+
+    // 1. Dokładna fraza = bardzo wysoki wynik
+    if (searchText.includes(query.toLowerCase())) {
+      score += 100;
+    }
+
+    // 2. Wszystkie słowa = wysoki wynik
+    const hasAllTerms = searchTerms.every(term => searchText.includes(term));
+    if (hasAllTerms) {
+      score += 50;
+      
+      // Bonus za kolejność
+      if (item.title.toLowerCase().includes(searchTerms.join(' '))) {
+        score += 30;
+      }
+    }
+
+    // 3. Punktacja per słowo
+    searchTerms.forEach(term => {
+      if (item.title.toLowerCase().includes(term)) score += 10;
+      if (item.description.toLowerCase().includes(term)) score += 5;
+      if (item.keywords.some(keyword => keyword.includes(term))) score += 3;
+    });
+
+    return { item, score };
+  });
+
+  return scoredItems
+    .filter(({ score }) => score >= 5) // Minimalny próg
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 20) // Maksymalnie 20 wyników
+    .map(({ item }) => item);
 }

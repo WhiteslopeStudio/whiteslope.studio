@@ -373,43 +373,7 @@ export default function SearchEngine() {
                 </div>
               </div>
 
-              {/* 
-              <div className="px-6 py-4">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
-                    Filtruj:
-                  </span>
-                  {allCategories.map(category => {
-                    const isActive = activeFilters.includes(category);
-                    const Icon = filterIcons[category] || Package;
-                    return (
-                      <button
-                        key={category}
-                        onClick={() => toggleFilter(category)}
-                        className={`
-                          flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium
-                          transition-all cursor-pointer border
-                          ${isActive 
-                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/50 hover:bg-blue-500/30' 
-                            : 'bg-white/5 text-neutral-400 border-white/10 hover:bg-white/10 hover:text-neutral-300'
-                          }
-                        `}
-                      >
-                        <Icon className="w-3.5 h-3.5" />
-                        <span className="text-sm">{category}</span>
-                      </button>
-                    );
-                  })}
-                  {activeFilters.length > 0 && (
-                    <button
-                      onClick={() => setActiveFilters([])}
-                      className="ml-auto px-3 py-1.5 rounded-lg text-xs font-medium bg-red-500/20 text-red-300 border border-red-500/50 hover:bg-red-500/30 transition-all cursor-pointer"
-                    >
-                      Wyczyść ({activeFilters.length})
-                    </button>
-                  )}
-                </div>
-              </div>*/}
+              
             </div>
           </div>
         </div>
