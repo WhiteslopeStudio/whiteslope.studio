@@ -8,152 +8,138 @@ import {
   Palette, 
   FileText, 
   Smartphone,
-  ArrowRight 
 } from 'lucide-react';
+import { useState } from 'react';
 
 // ✅ IMPORT DANYCH z data.tsx
 import { MAIN_SERVICES } from '@/lib/data';
 
-// ✅ IMPORT TYPU z types.ts (TAM GDZIE POWINIEN BYĆ!)
+// ✅ IMPORT TYPU z types.ts
 import type { MainService } from '@/lib/types';
 
 // Typ dla kluczy ikon
 type ServiceIconId = 'website' | 'optimization' | 'ai-integration' | 'graphics' | 'individual' | 'email-marketing';
 
 export default function DesktopUslugiSection() {
-  
-  // Funkcja obsługująca kliknięcie w usługę
-  const handleServiceClick = (serviceId: string) => {
-    console.log('Kliknięto usługę:', serviceId);
-    // Tutaj możesz dodać swoją logikę, np. przekierowanie
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Kolory hover dla każdej usługi
+  const colorMap: Record<ServiceIconId, string> = {
+    'website': '#7dd3fc', // lekko niebieski (sky-300)
+    'optimization': '#c4b5fd', // lekki fiolet (violet-300)
+    'ai-integration': '#86efac', // zielony bardzo lekki (green-300)
+    'graphics': '#fde047', // żółty lekki (yellow-300)
+    'individual': '#6ee7b7', // inny zielony (emerald-300)
+    'email-marketing': '#fca5a5', // lekki czerwony (red-300)
+  };
+
+  // Funkcja do skracania długich opisów
+  const truncateText = (text: string, maxLength: number = 80) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength).trim() + '...';
   };
 
   return (
-    <div 
-      className="w-full py-4 backdrop-blur-sm"
+    <section 
+      className="py-12 bg-black relative overflow-hidden"
       style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
-          linear-gradient()
+          linear-gradient(
+            to bottom,
+            black 0px,
+            black 10px,
+            #3b3b3bff 10px,
+            #3b3b3bff 11px,
+            #0b0b0bff 11px,
+            #0b0b0bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 11px),
+            #3b3b3bff calc(100% - 10px),
+            black calc(100% - 10px),
+            black 100%
+          )
         `
       }}
     >
-      <div className="container mx-auto px-2">
-        
-        {/* Karuzela usług */}
-        <div 
-          className="flex gap-6 overflow-x-auto p-4 justify-center"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch',
-          }}
-        >
-          {MAIN_SERVICES.map((service: MainService, index: number) => {
-            // Mapowanie ikon
-            const iconMap: Record<ServiceIconId, any> = {
-              'website': LayoutGrid,
-              'optimization': Search,
-              'ai-integration': Code,
-              'graphics': Palette,
-              'individual': FileText,
-              'email-marketing': Smartphone,
-            };
-            
-            const IconComponent = iconMap[service.id as ServiceIconId] || LayoutGrid;
+      <div className="relative z-10">
+        {/* GRID 3 KOLUMNY */}
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {MAIN_SERVICES.map((service: MainService, index: number) => {
+              // Mapowanie ikon
+              const iconMap: Record<ServiceIconId, any> = {
+                'website': LayoutGrid,
+                'optimization': Search,
+                'ai-integration': Code,
+                'graphics': Palette,
+                'individual': FileText,
+                'email-marketing': Smartphone,
+              };
+              
+              const IconComponent = iconMap[service.id as ServiceIconId] || LayoutGrid;
+              const isHovered = hoveredIndex === index;
 
-            return (
-              <Link
-                key={service.id}
-                href={`/pricing/${service.id}`} 
-                onClick={() => handleServiceClick(service.id)}
-                className="group p-5 flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-108 hover:shadow-xl active:scale-95 relative"
-                style={{
-                  width: '110px',
-                  height: '120px',
-                  background: 'radial-gradient(circle at left bottom, #ffffff12 0%, #ffffff12 80%',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '16px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  gap: '10px',
-                  animation: `fadeInUp 0.6s ease-out ${1.5 + index * 0.2}s both`,
-                  
-                }}
-              >
-                {/* Czerwona kropka dla pierwszego boxa */}
-                {index === 0 && (
-                <div
-                    className="absolute top-0 right-0 w-3 h-3 bg-[#ff0000] rounded-full"
-                    style={{
-                    transform: 'translate(50%, -50%)',
-                    opacity: 1,
-                    }}
-                />
-                )}
-                
-                {/* Ikonka usługi */}
-                <div 
-                  className="transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
-                  style={{
-                    width: '70px',
-                    height: '70px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+              return (
+                <Link
+                  key={service.id}
+                  href={`/pricing/${service.id}`}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="group cursor-pointer transition-all duration-500 relative"
                 >
-                  <IconComponent className="w-5 h-5 font-bold" />
-                </div>
-                
-                {/* Tytuł usługi */}
-                <span 
-                  className="text-center leading-tight text-[14px] font-bold transition-colors duration-300 text-[#c2c2c2] group-hover:text-white"
-                  style={{ 
-                    
-                    padding: '0 4px',
-                  }}
-                >
-                  {service.title}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+                  {/* Czerwona kropka dla pierwszego */}
+                  {index === 0 && (
+                    <div
+                      className="absolute -top-2 -left-2 w-2 h-2 bg-[#ff0000] rounded-full z-10"
+                    />
+                  )}
 
-        {/* Kreska i link do wszystkich usług */}
-        <div className="mt-2">
-          
-          <div className="flex justify-center">
-            <Link 
-              href="/pricing"
-              className="group flex items-top gap-2 text-[#999999] hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium"
-            >
-              <span>Cała oferta</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+                  {/* KARTA - POZIOMY LAYOUT */}
+                  <div className="flex flex-col gap-3">
+                    {/* Numer + Tytuł + Ikona */}
+                    <div className="flex items-center gap-3">
+                      <span className={`text-xl font-bold transition-colors duration-500 ${
+                        isHovered 
+                          ? 'text-white' 
+                          : 'text-white/30'
+                      }`}>
+                        {(index + 1).toString().padStart(2, '0')}
+                      </span>
+                      
+                      <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 ${
+                        isHovered 
+                          ? 'text-white' 
+                          : 'text-white/30'
+                      }`}>
+                        {service.title}
+                      </h3>
+
+                      <div className={`transition-colors duration-500 ${
+                        isHovered 
+                          ? 'text-white' 
+                          : 'text-white/30'
+                      }`}>
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                    </div>
+
+                    {/* Opis - skrócony jeśli za długi */}
+                    <p className={`text-sm leading-relaxed transition-colors duration-500 ${
+                      isHovered 
+                        ? 'text-gray-300' 
+                        : 'text-white/20'
+                    }`}>
+                      {truncateText(service.description || 'Profesjonalne rozwiązanie dostosowane do Twoich potrzeb.')}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
-        
       </div>
-
-      {/* Animacja CSS */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </div>
+    </section>
   );
 }

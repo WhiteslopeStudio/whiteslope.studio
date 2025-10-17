@@ -199,10 +199,10 @@ export const ProblemSolutionSection = () => {
           {/* NAGŁÓWEK SEKCJI */}
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
-              Strona dla Twojej{" "}
+              Pomożemy Ci w {" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                marki online!
-              </span><br/>trzy, dwa, jeden...
+                 wyzwaniach!
+              </span><br/>
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie

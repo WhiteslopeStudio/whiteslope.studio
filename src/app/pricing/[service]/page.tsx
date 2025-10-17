@@ -95,7 +95,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       
       {/* WATERMARK - tylko na desktop */}
-      <div className="hidden lg:flex absolute inset-0 z-0 pointer-events-none items-start justify-center pt-24">
+      <div className="hidden lg:flex absolute inset-0 z-0 pointer-events-none items-start justify-center pt-12">
         <h1 
           className="text-[15vw] font-normal leading-none tracking-tighter whitespace-nowrap opacity-25"
           style={{
@@ -123,16 +123,16 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
       </div>
 
       {/* Packages Section - ZACZYNA SIĘ OD TEGO */}
-      <section className="relative z-10 pt-40 pb-16">
+      <section className="relative z-10 pt-20 pb-16">
         <div className="container mx-auto px-6">
           
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-normal mb-4">
-              Dostępne pakiety
+            <h1 className="text-3xl md:text-4xl font-normal mb-4">
+              {service.title} - Wybierz idealny pakiet dla siebie
             </h1>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto font-light">
+            {/* <p className="text-lg text-gray-300 max-w-3xl mx-auto font-light">
               Każdy pakiet został starannie zaprojektowany, aby zapewnić maksymalną wartość dla Twojego biznesu
-            </p>
+            </p> */}
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-8xl mx-auto">
@@ -172,9 +172,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                   </div>
                   
                   <div className='text-center justify-center'>
-                    <span className="text-gray-300 text-sm">
-                      lub umów darmową konsultację
-                    </span>
+                    
                   </div>
 
                   
@@ -202,7 +200,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                 className="inline-flex items-center gap-2 bg-[#fd9f91] text-black px-8 py-4 rounded-full font-medium hover:bg-[#fc8a7a] transition-all duration-300"
               >
                 <Mail className="w-5 h-5" />
-                Umów konsultację
+                Bezpłatna konsultacja
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
