@@ -1,224 +1,363 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
-import { PROJECT_EXAMPLES } from '@/lib/data';
-import { useAdvancedInView } from '@/utils/hooks';
-import Image from 'next/image';
-import Link from 'next/link';
+import { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight, ExternalLink, Maximize } from 'lucide-react';
 
-export const PortfolioSectionDesktop = () => {
-  const [ref, inView] = useAdvancedInView();
-  const [activeIndex, setActiveIndex] = useState(0);
+// Interface dla portfolio item
+interface PortfolioItem {
+  id: number;
+  video: string;
+  title: string;
+  description: string;
+  logo?: string;
+  href: string;
+}
 
-  // Nieskończona karuzela
+const portfolioData: PortfolioItem[] = [
+  {
+    id: 1,
+    video: '/_resources/portfolio1.mp4',
+    title: 'Strony internetowe już od 1500 zł',
+    description: 'Otrzymaj profesjonalną stronę wizytówkę dla swojej firmy w atrakcyjnej cenie.',
+    logo: '',
+    href: '/pricing/website',
+  },
+  {
+    id: 2,
+    video: '/_resources/portfolio7.mp4',
+    title: 'Asystenci AI do obsługi twoich klientów',
+    description: 'Oferujemy asystentów AI, którzy zwiększają efektywność komunikacji w Twojej firmie.',
+    logo: '',
+    href: '/pricing/ai-integration',
+  },
+  {
+    id: 3,
+    video: '/_resources/portfolio4.mp4',
+    title: 'Integracja Email Marketingu z Twoją stroną',
+    description: 'Oferujemy integrację email marketingu z Twoją stroną, aby zwiększyć zaangażowanie użytkowników.',
+    logo: '',
+    href: '/pricing/email-marketing',
+  },
+  {
+    id: 4,
+    video: '/_resources/portfolio3.mp4',
+    title: 'Chatboty poprawiające user experience',
+    description: 'Oferujemy chatboty, które poprawiają interakcję użytkowników z Twoją firmą.',
+    logo: '',
+    href: '/pricing/ai-integration',
+  },
+  {
+    id: 5,
+    video: '/_resources/portfolio6.mp4',
+    title: 'Grafika 2D i 3D dla Twojej marki',
+    description: 'Tworzymy unikalne grafiki 2D i 3D, które wyróżnią Twoją markę na rynku.',
+    logo: '',
+    href: '/pricing/graphics',
+  },
+  {
+    id: 6,
+    video: '/_resources/portfolio2.mp4',
+    title: 'Aplikacje webowe dla firm',
+    description: 'Oferujemy kompleksowe usługi tworzenia aplikacji webowych, które idealnie odpowiadają potrzebom Twojej firmy.',
+    logo: '',
+    href: '/pricing/individual',
+  },
+];
+
+export default function PortfolioSectionDesktop() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const bgVideoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+
+  const currentItem = portfolioData[currentIndex];
+
   const goToNext = () => {
-    setActiveIndex((prev) => (prev + 1) % PROJECT_EXAMPLES.length);
+    setCurrentIndex((prev) => (prev + 1) % portfolioData.length);
+    setProgress(0);
   };
 
   const goToPrev = () => {
-    setActiveIndex((prev) => (prev - 1 + PROJECT_EXAMPLES.length) % PROJECT_EXAMPLES.length);
+    setCurrentIndex((prev) => (prev - 1 + portfolioData.length) % portfolioData.length);
+    setProgress(0);
   };
 
-  const currentProject = PROJECT_EXAMPLES[activeIndex];
-
-  // Funkcja do obliczania pozycji każdej karty w stosie
-  const getCardStyle = (index: number) => {
-    const position = index - activeIndex;
+  // Funkcja fullscreen
+  const toggleFullscreen = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     
-    if (position < 0) {
-      // Karty które już przeszły - ukryte
-      return {
-        opacity: 0,
-        scale: 0.8,
-        y: -60,
-        zIndex: 0,
-      };
-    } else if (position === 0) {
-      // Aktywna karta - na przodzie
-      return {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        zIndex: PROJECT_EXAMPLES.length,
-      };
-    } else if (position === 1) {
-      // Druga karta - za pierwszą
-      return {
-        opacity: 0.7,
-        scale: 0.95,
-        y: -15,
-        zIndex: PROJECT_EXAMPLES.length - 1,
-      };
-    } else if (position === 2) {
-      // Trzecia karta - jeszcze dalej
-      return {
-        opacity: 0.5,
-        scale: 0.9,
-        y: -30,
-        zIndex: PROJECT_EXAMPLES.length - 2,
-      };
-    } else {
-      // Pozostałe karty - najbardziej z tyłu
-      return {
-        opacity: 0.3,
-        scale: 0.85,
-        y: -40,
-        zIndex: PROJECT_EXAMPLES.length - 3,
-      };
+    if (!videoContainerRef.current) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        await videoContainerRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    } catch (err) {
+      console.error('Fullscreen error:', err);
     }
   };
 
+  // Nasłuchuj zmiany fullscreen (np. ESC)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Odtwarzanie video
+  useEffect(() => {
+    const video = videoRef.current;
+    const bgVideo = bgVideoRef.current;
+    if (!video) return;
+
+    video.currentTime = 0;
+    video.play();
+
+    if (bgVideo) {
+      bgVideo.currentTime = 0;
+      bgVideo.play();
+    }
+
+    const updateProgress = () => {
+      const currentTime = video.currentTime;
+      const duration = Math.min(video.duration, 6);
+
+      if (currentTime >= 6) {
+        goToNext();
+        return;
+      }
+
+      const progressPercent = (currentTime / duration) * 100;
+      setProgress(progressPercent);
+
+      animationFrameRef.current = requestAnimationFrame(updateProgress);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [currentIndex]);
+
   return (
-    <section
-      id="portfolio"
-      ref={ref}
-      className="py-8 bg-black relative overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
-          linear-gradient(
-            to bottom,
-            black 0px,
-            black 10px,
-            #3b3b3bff 10px,
-            #3b3b3bff 11px,
-            #0b0b0bff 11px,
-            #0b0b0bff calc(100% - 11px),
-            #3b3b3bff calc(100% - 11px),
-            #3b3b3bff calc(100% - 10px),
-            black calc(100% - 10px),
-            black 100%
-          )
-        `,
-      }}
-    >
-      <div className="relative z-10">
-        {/* NAGŁÓWEK - tak jak w Process */}
-        <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-          <div className="text-left max-w-5xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl font-semibold text-white mb-4 tracking-tight">
-              Nasze realizacje
-            </h2>
+    <section className="relative bg-black mt-0 pt-10 pb-10 overflow-hidden">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 z-0 y-10">
+        <video
+          ref={bgVideoRef}
+          src={currentItem.video}
+          className="w-full h-full object-cover"
+          style={{
+            transform: 'scale(1.03)',
+            willChange: 'transform',
+            filter: 'brightness(1) saturate(110%)',
+          }}
+          muted
+          playsInline
+          loop={false}
+        />
+        
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backdropFilter: 'blur(36px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(36px) saturate(140%)',
+            background: 'rgba(255,255,255,0.02)',
+            willChange: 'backdrop-filter, opacity',
+          }}
+        />
+        
+        <div 
+          className="absolute -top-20 left-0 right-0"
+          style={{
+            height: 'calc(100% + 20px)',
+            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.99) 15%, rgba(0, 0, 0, 0) 100%)',
+          }}
+        />
+        
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.99) 90%)',
+          }}
+        />
+
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 20%)',
+          }}
+        />
+        
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 20%)',
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-0 sm:px-0 md:px-0">
+        
+        {/* NAGŁÓWEK + PRZYCISKI */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl font-3xl text-white/80 text-left">
+            Nasze realizacje:
+          </h2>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={goToPrev}
+              className="w-8 h-8 rounded-full bg-white/80 hover:bg-white/70 border border-white/20 flex items-center justify-center transition-all duration-300 active:scale-95 hover:cursor-pointer"
+            >
+              <ChevronLeft className="w-6 h-6 text-black" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="w-8 h-8 rounded-full bg-white/80 hover:bg-white/70 border border-white/20 flex items-center justify-center transition-all duration-300 active:scale-95 hover:cursor-pointer"
+            >
+              <ChevronRight className="w-6 h-6 text-black" />
+            </button>
           </div>
         </div>
 
-        {/* CONTENT - Grid 2/3 i 1/3 */}
-        <div className="relative max-w-5xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 items-start">
-            
-            {/* LEWA KOLUMNA (2/3) - Miniaturki + strzałki */}
-            <div className="space-y-6">
-              
-              {/* Stos miniaturek */}
-              <div className="relative w-full aspect-video">
-                {PROJECT_EXAMPLES.map((project, index) => {
-                  const style = getCardStyle(index);
-                  
-                  return (
-                    <motion.div
-                      key={project.id}
-                      className="absolute inset-0"
-                      animate={{
-                        opacity: style.opacity,
-                        scale: style.scale,
-                        y: style.y,
-                        zIndex: style.zIndex,
-                      }}
-                      transition={{
-                        duration: 0.6,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                    >
-                      <Link
-                        href={project.href || '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group cursor-pointer"
-                      >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          
-                          {/* Overlay z hover effect */}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                          
-                          {/* Kategoria badge */}
-                          {index === activeIndex && (
-                            <div className="absolute top-4 left-4 z-10">
-                              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium">
-                                {project.category}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-              </div>
+        {/* VIDEO PLAYER */}
+        <div
+          ref={videoContainerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
+          style={{
+            boxShadow: isHovered
+              ? '0 30px 80px rgba(255,255,255,0.06), 0 0 120px rgba(255,255,255,0.04)'
+              : undefined,
+          }}
+        >
+          <video
+            ref={videoRef}
+            src={currentItem.video}
+            className="w-full h-auto aspect-video object-cover"
+            muted
+            playsInline
+          />
 
-              {/* Strzałki pod miniaturkami */}
-              <div className="flex items-center justify-left gap-3">
-                <button
-                  onClick={goToPrev}
-                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 bg-white/10 hover:bg-white/20 text-white/60 hover:text-white cursor-pointer"
-                  aria-label="Poprzedni projekt"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+            style={{
+              background: isHovered
+                ? 'radial-gradient(closest-side, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 30%, transparent 60%)'
+                : 'transparent',
+              opacity: isHovered ? 1 : 0,
+              mixBlendMode: 'screen',
+            }}
+          />
 
-                <button
-                  onClick={goToNext}
-                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 bg-white/10 hover:bg-white/20 text-white/60 hover:text-white cursor-pointer"
-                  aria-label="Następny projekt"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.35) 20%, rgba(0, 0, 0, 1) 100%)',
+            }}
+          />
 
+          {currentItem.logo && (
+            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
+              <img
+                src={currentItem.logo}
+                alt="Logo"
+                className="h-16 w-auto"
+              />
             </div>
+          )}
 
-            {/* PRAWA KOLUMNA (1/3) - Content CZYSTY z hover effectem */}
-            <motion.div
-              key={`content-${activeIndex}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="group"
+          {/* TYTUŁ I OPIS */}
+          <a href={currentItem.href} className="absolute bottom-16 left-8 z-20 block">
+            <h3 className="text-white text-4xl font-base mb-2 drop-shadow-lg max-w-4xl">
+              {currentItem.title}
+            </h3>
+            <p className="text-gray-200 text-xl font-thin drop-shadow-lg max-w-2xl">
+              {currentItem.description}
+            </p>
+          </a>
+
+          {/* PRZYCISKI W PRAWYM DOLNYM ROGU */}
+          <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3">
+            {/* PRZYCISK FULLSCREEN */}
+            <button
+              type="button"
+              aria-label="Fullscreen"
+              onClick={toggleFullscreen}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors"
             >
-              <div className="space-y-6">
-                {/* Tytuł */}
-                <h3 className="text-2xl font-bold text-white/80 group-hover:text-white leading-tight transition-colors duration-300">
-                  {currentProject.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-base text-gray-400 group-hover:text-gray-200 leading-relaxed transition-colors duration-300">
-                  {currentProject.description}
-                </p>
+              <Maximize className="w-5 h-5 text-white" />
+            </button>
 
-                {/* Link "Zobacz stronę" */}
-                <a
-                  href={currentProject.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-white/60 group-hover:text-white transition-colors duration-300"
-                >
-                  <span className="text-sm font-medium">Zobacz stronę</span>
-                  <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </a>
-              </div>
-            </motion.div>
-
+            {/* PRZYCISK ZOBACZ SZCZEGÓŁY */}
+            <button
+              type="button"
+              aria-label="Zobacz szczegóły projektu"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (typeof window !== 'undefined') {
+                  window.location.href = currentItem.href;
+                }
+              }}
+              className="group inline-flex items-center gap-3 rounded-full px-4 py-3 shadow-lg  hover:scale-105 transform transition duration-300 hover:shadow-2xl "
+            >
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors">
+                <ExternalLink className="w-5 h-5" />
+              </span>
+              <span className="text-white font-medium tracking-tight hover:cursor-pointer">Zobacz szczegóły</span>
+            </button>
           </div>
+
+          {/* PASEK POSTĘPU */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-20">
+            <div
+              className="h-full bg-white/30"
+              style={{ 
+                width: `${progress}%`,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* KROPKI */}
+        <div className="flex justify-center items-center gap-2 mt-6 relative h-2">
+          {portfolioData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setCurrentIndex(index);
+                setProgress(0);
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? 'bg-white'
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
-};
+}

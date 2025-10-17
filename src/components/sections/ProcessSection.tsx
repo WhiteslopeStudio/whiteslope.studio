@@ -112,7 +112,7 @@ export const ProcessSection = () => {
       
       <div className="relative z-10">
         <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-          <div className="text-left max-w-5xl mx-auto">
+          <div className="text-left max-w-7xl mx-auto">
             <h2 className="text-2xl lg:text-4xl font-semibold text-white mb-4 tracking-tight">
               Proces współpracy
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
@@ -125,31 +125,31 @@ export const ProcessSection = () => {
 
         <div className="relative max-w-7xl mx-auto px-4">
           <button
-            onClick={scrollLeft}
-            disabled={activeIndex === 0}
-            className={`hidden md:flex absolute left-0 top-1/4 -translate-y-1/4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full items-center justify-center transition-all duration-200 ${
-              activeIndex === 0 
-                ? 'text-white/20 cursor-not-allowed' 
-                : 'text-white/60 hover:text-white cursor-pointer'
-            }`}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+  onClick={scrollLeft}
+  disabled={activeIndex === 0}
+  className={`hidden md:flex absolute -left-16 top-1/4 -translate-y-1/4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full items-center justify-center transition-all duration-200 ${
+    activeIndex === 0 
+      ? 'text-white/20 cursor-not-allowed' 
+      : 'text-white/60 hover:text-white cursor-pointer'
+  }`}
+>
+  <ChevronLeft className="w-6 h-6" />
+</button>
 
-          <button
-            onClick={scrollRight}
-            disabled={activeIndex === PROCESS_STEPS.length - 1}
-            className={`hidden md:flex absolute right-0 top-1/4 -translate-y-1/4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full items-center justify-center transition-all duration-200 ${
-              activeIndex === PROCESS_STEPS.length - 1
-                ? 'text-white/20 cursor-not-allowed'
-                : 'text-white/60 hover:text-white cursor-pointer'
-            }`}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+<button
+  onClick={scrollRight}
+  disabled={activeIndex === PROCESS_STEPS.length - 1}
+  className={`hidden md:flex absolute -right-16 top-1/4 -translate-y-1/4 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full items-center justify-center transition-all duration-200 ${
+    activeIndex === PROCESS_STEPS.length - 1
+      ? 'text-white/20 cursor-not-allowed'
+      : 'text-white/60 hover:text-white cursor-pointer'
+  }`}
+>
+  <ChevronRight className="w-6 h-6" />
+</button>
 
           {/* Kontener ze wszystkimi kartami */}
-          <div className="relative max-w-5xl mx-auto mb-4">
+          <div className="relative max-w-7xl mx-auto mb-4">
             <div className="overflow-hidden min-h-[200px]">
               <motion.div
                 className="flex"
