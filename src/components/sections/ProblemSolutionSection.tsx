@@ -174,7 +174,7 @@ export const ProblemSolutionSection = () => {
     <>
       {/* Sekcja dla desktopu - oryginalny bento grid */}
       <section 
-        className="py-12 md:py-20 relative overflow-hidden hidden lg:block"
+        className="py-10  relative overflow-hidden hidden lg:block "
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -198,11 +198,15 @@ export const ProblemSolutionSection = () => {
         <div className="container mx-auto px-4 lg:px-6">
           {/* NAGŁÓWEK SEKCJI */}
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
-              Pomożemy Ci w {" "}
-              <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                 wyzwaniach!
-              </span><br/>
+            <h2 className="text-3xl lg:text-5xl  text-white mb-4 tracking-tight"
+            style={{ fontWeight: 575 }}>
+              {" "}
+              <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}>
+              
+              Strona internetowa zmienia wszystko.<br/>Stwórzmy ją już dziś!
+              </span>
+              <br />
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie
@@ -238,7 +242,7 @@ export const ProblemSolutionSection = () => {
                       : 'translate-y-[calc(100%-8rem)]'
                   }`}
                 >
-                  <h3 className="font-bold text-white mb-6 text-2xl">
+                  <h3 className="font-semibold text-white mb-6 text-2xl">
                     Znamy wyzwania z którymi prawdopodobnie się zmagasz
                   </h3>
                   <div className={`transition-opacity duration-300 ${expandedCard === 0 ? 'opacity-100' : 'opacity-0'}`}>
@@ -305,7 +309,7 @@ export const ProblemSolutionSection = () => {
                       : 'translate-y-[calc(100%-8rem)]'
                   }`}
                 >
-                  <h3 className="font-bold text-white mb-6 text-2xl">
+                  <h3 className="font-semibold text-white mb-6 text-2xl">
                     Zobacz jak możemy Ci pomóc z Twoimi wyzwaniami
                   </h3>
                   <div className={`transition-opacity duration-300 ${expandedCard === 1 ? 'opacity-100' : 'opacity-0'}`}>
@@ -372,7 +376,7 @@ export const ProblemSolutionSection = () => {
                       : 'translate-y-[calc(100%-8rem)]'
                   }`}
                 >
-                  <h3 className="font-bold text-white mb-6 text-2xl">
+                  <h3 className="font-semibold text-white mb-6 text-2xl">
                     Zbuduj swoją markę w internecie i pozyskuj klientów
                   </h3>
                   <div className={`transition-opacityHOUSE duration-300 ${expandedCard === 2 ? 'opacity-100' : 'opacity-0'}`}>
@@ -471,7 +475,7 @@ export const ProblemSolutionSection = () => {
 
           {/* SEKCJA 1 - WYZWANIA */}
           <div className="mb-12">
-            <h3 className="font-bold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-base">
               Znamy wyzwania z którymi prawdopodobnie się zmagasz
             </h3>
             <div className="space-y-4 mb-6">
@@ -493,7 +497,7 @@ export const ProblemSolutionSection = () => {
 
           {/* SEKCJA 2 - ROZWIĄZANIA */}
           <div className="mb-12">
-            <h3 className="font-bold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-base">
               Zobacz jak możemy Ci pomóc z Twoimi wyzwaniami
             </h3>
             <div className="space-y-4 mb-6">
@@ -515,7 +519,7 @@ export const ProblemSolutionSection = () => {
 
           {/* SEKCJA 3 - AI & PRZYSZŁOŚĆ */}
           <div>
-            <h3 className="font-bold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-base">
               Zbuduj swoją markę w internecie i pozyskuj klientów
             </h3>
             <div className="space-y-6 mb-6">

@@ -5,6 +5,56 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 import { FaFilePdf, FaDownload } from 'react-icons/fa';
 
+interface Testimonial {
+  id: number;
+  name: string;
+  company: string;
+  companyUrl: string;
+  logo: string;
+  rating: number;
+  text: string;
+  highlight: string[];
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: 'Sławek Wiesławski',
+    company: 'Wiesławski Studio',
+    companyUrl: 'https://wieslawski.studio',
+    logo: '_resources/wieslawski-studio-logo.webp',
+    rating: 5,
+    text: 'Szybkość działania jest świetna. Bardzo szybko otrzymywałem odpowiedzi na pytania. Pierwsze zapytania od klientów pojawiły się po 24h od uruchomienia strony.',
+    highlight: ['Szybkość działania', 'zapytania od klientów', '24h'],
+  },
+  {
+    id: 2,
+    name: 'Patryk Kulesza',
+    company: 'Korepetycje',
+    companyUrl: 'https://patrykkulesza.pl',
+    logo: '_resources/logo-PatrykKulesza.webp',
+    rating: 5,
+    text: 'Już po 3 dniach dostałem bardzo korzystną ofertę pracy. Jestem bardzo zadowolony i strona w końcu sprawia, że jestem widoczny dla wielu osób.',
+    highlight: ['3 dniach', 'ofertę pracy', 'jestem widoczny'],
+  },
+  {
+    id: 3,
+    name: 'Mati',
+    company: 'YouTuber',
+    companyUrl: 'https://www.youtube.com/@_Mati__',
+    logo: '_resources/mati_logo.webp.webp',
+    rating: 5,
+    text: 'Profesjonalna obsługa i szybka realizacja. Strona dokładnie taka jak chciałem, a wsparcie techniczne na najwyższym poziomie.',
+    highlight: ['Profesjonalna obsługa', 'szybka realizacja', 'najwyższym poziomie'],
+  },
+];
+
+const stats = [
+  { value: '24h', label: 'Pierwsze zapytania po starcie strony' },
+  { value: '100%', label: 'Zadowolonych klientów' },
+  { value: '3 dni', label: 'Do pierwszych ofert pracy' },
+];
+
 export const ProcessSection = () => {
   const [ref, inView] = useAdvancedInView();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -15,6 +65,7 @@ export const ProcessSection = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const AUTO_PLAY_DURATION = 7000;
+  
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -88,8 +139,10 @@ export const ProcessSection = () => {
 
   const startIndex = Math.max(0, Math.min(activeIndex - 1, PROCESS_STEPS.length - 3));
 
+  
+
   return (
-    <section id="process" ref={ref} className="py-8 bg-black relative overflow-hidden" 
+    <section id="process" ref={ref} className="py-13 bg-black relative overflow-hidden pb-50" 
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -113,10 +166,12 @@ export const ProcessSection = () => {
       <div className="relative z-10">
         <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
           <div className="text-left max-w-7xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl font-semibold text-white mb-4 tracking-tight">
-              Proces współpracy
-              <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                
+            <h2 className="text-2xl lg:text-4xl  text-white mb-4 tracking-tight"
+            style={{ fontWeight: 575 }}>
+              
+              <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}>
+                Proces współpracy
               </span>
             </h2>
           </div>
@@ -297,6 +352,36 @@ export const ProcessSection = () => {
 
         
         </div>
+            {/* LOGA KLIENTÓW */}
+        <div className="text-center mt-12 relative z-10 max-w-7xl mx-auto px-4">
+          <p className="text-xs uppercase tracking-wider mb-6" style={{ color: '#6b7280' }}>
+            Zaufali nam
+          </p>
+          <div className="flex gap-8 justify-center flex-wrap">
+            {testimonials.map((testimonial) => (
+              <a 
+                key={testimonial.id}
+                href={testimonial.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <img 
+                  src={testimonial.logo}
+                  alt={testimonial.company}
+                  className="h-8 w-auto object-contain transition-opacity duration-300"
+                  style={{ 
+                    filter: 'brightness(0) invert(1)',
+                    opacity: 0.4,
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.4'}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );

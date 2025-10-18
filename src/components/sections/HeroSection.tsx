@@ -203,8 +203,9 @@ export default function HeroSection() {
                   textShadow: '0 2px 10px rgba(0,0,0,0.5)',
                 }}
               >
-                Twoja strona to więcej niż wizytówka - to narzędzie<br/> sprzedaży działające bez przerwy. 
-                Sprawdź ofertę!
+                Tworzymy Strony Internetowe dla biznesów i osób prywatnych. Pozwól sobie pozwalać na więcej wraz ze stroną!
+
+                
               </p>
 
               {/* PRZYCISKI */}

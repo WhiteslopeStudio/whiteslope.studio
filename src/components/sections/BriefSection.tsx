@@ -19,7 +19,7 @@ export default function BriefSection() {
   return (
     <>
       <section 
-        className="bg-[#0b0b0bff] relative overflow-hidden py-10"
+        className="bg-[#0b0b0bff] relative overflow-hidden py-10 pb-50"
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
