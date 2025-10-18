@@ -142,7 +142,7 @@ export const ProcessSection = () => {
   
 
   return (
-    <section id="process" ref={ref} className="py-13 bg-black relative overflow-hidden pb-50" 
+    <section id="process" ref={ref} className="py-13 bg-black relative overflow-hidden mb-30" 
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),

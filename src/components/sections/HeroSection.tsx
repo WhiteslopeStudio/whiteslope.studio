@@ -96,7 +96,7 @@ export default function HeroSection() {
 
   return (
     <section 
-      className="relative bg-black overflow-hidden py-20 md:pt-32"
+      className="relative bg-black overflow-hidden py-20 md:pt-45"
       style={{
         fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
       }}
@@ -168,10 +168,10 @@ export default function HeroSection() {
             <div className="space-y-5 max-w-full">
               
               {/* BADGE */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/10 border border-white/10 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full  backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
                 <span className="text-white-300 text-sm font-medium">
-                  Tworzymy strony w nowoczesnym standardzie - Whiteslope Studio - Białystok
+                  strony internetowe · integracja AI · email marketing · grafika 2D i 3D
                 </span>
               </div>
 

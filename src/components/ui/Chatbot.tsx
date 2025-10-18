@@ -148,7 +148,7 @@ export default function Chatbot() {
           className="group relative pointer-events-auto"
           aria-label="Otwórz AI asystenta WhiteSlope"
         >
-          <div className="relative w-14 h-14 rounded-full backdrop-blur-xl bg-white/25 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-110 flex items-center justify-center hover:cursor-pointer">
+          <div className="relative w-14 h-14 rounded-full backdrop-blur-xl bg-white/ border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-110 flex items-center justify-center hover:cursor-pointer">
             <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <Sparkles className="w-6 h-6 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
             <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping opacity-20"></div>

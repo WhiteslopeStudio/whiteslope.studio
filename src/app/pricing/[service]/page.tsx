@@ -92,10 +92,10 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
   const animationPath = serviceAnimations[service.id as keyof typeof serviceAnimations];
   
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white overflow-hidden relative pt-15">
       
       {/* WATERMARK - tylko na desktop */}
-      <div className="hidden lg:flex absolute inset-0 z-0 pointer-events-none items-start justify-center pt-12">
+      <div className="hidden lg:flex absolute inset-0 z-0 pointer-events-none items-start justify-center pt-24">
         <h1 
           className="text-[15vw] font-normal leading-none tracking-tighter whitespace-nowrap opacity-25"
           style={{

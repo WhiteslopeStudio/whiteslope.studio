@@ -95,11 +95,13 @@ export default function HomePage() {
           {/* 🚀 HERO SECTION */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
 
+          {/* 🎬 PORTFOLIO DESKTOP */}
+          {!isMobile && <PortfolioSectionDesktop />}
+
           {/* 🛠️ DESKTOP USŁUGI */}
           {!isMobile && <DesktopUslugiSection />}
 
-          {/* 🎬 PORTFOLIO DESKTOP */}
-          {!isMobile && <PortfolioSectionDesktop />}
+          
 
           {/* 📱 PORTFOLIO MOBILE */}
           {isMobile && <PortfolioSection />}

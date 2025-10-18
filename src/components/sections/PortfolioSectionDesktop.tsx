@@ -157,7 +157,7 @@ export default function PortfolioSectionDesktop() {
   }, [currentIndex]);
 
   return (
-    <section className="relative bg-black mt-0 pt-10 pb-50 overflow-hidden">
+    <section className="relative bg-black mt-0 pt-0 pb-10 overflow-hidden">
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 y-10">
         <video

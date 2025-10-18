@@ -196,7 +196,7 @@ export default function BlogPage() {
   const categories = ['Wszystkie', ...getUniqueCategories(BLOG_POSTS)];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black mt-20">
       {/* Hero Section - SSR */}
       <section className="pt-32 pb-16 bg-black">
         <div className="container mx-auto px-6">

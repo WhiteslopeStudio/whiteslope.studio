@@ -52,7 +52,7 @@ export const BlogSection = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-semibold text-white mb-4 tracking-tight">
+          <h2 className="text-5xl lg:text-5xl font-normal text-white mb-4 tracking-tight">
             Najnowsze wpisy z bloga
           </h2>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
@@ -65,11 +65,11 @@ export const BlogSection = () => {
           {featuredPosts.map((post) => (
             <article key={post.id} className="group">
               <Link href={`/blog/${post.slug}`}>
-                <div className="bg-gray-900/30 rounded-2xl overflow-hidden border border-gray-800 hover:border-[#DD9C90]/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#DD9C90]/10">
+                <div className="bg-gray-900/30 rounded-2xl overflow-hidden border border-gray-800 hover:border-white/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-white/10">
                   {/* Blog Image */}
                   <div className="relative h-48 overflow-hidden">
                     <div 
-                      className="w-full h-full bg-gradient-to-br from-[#DD9C90]/20 to-gray-900 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full bg-gradient-to-br from-white/20 to-gray-900 group-hover:scale-105 transition-transform duration-500"
                       style={{
                         backgroundImage: `url(${post.image})`,
                         backgroundSize: 'cover',
@@ -100,7 +100,7 @@ export const BlogSection = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-white font-bold text-xl mb-3 group-hover:text-[#DD9C90] transition-colors duration-300 leading-tight">
+                    <h3 className="text-white font-bold text-xl mb-3 group-hover:text-white/90 transition-colors duration-300 leading-tight">
                       {post.title}
                     </h3>
 
@@ -116,7 +116,7 @@ export const BlogSection = () => {
                         <span className="text-gray-500 text-sm">{post.author}</span>
                       </div>
                       
-                      <div className="flex items-center gap-1 text-[#DD9C90] text-sm font-semibold group-hover:gap-2 transition-all duration-300">
+                      <div className="flex items-center gap-1 text-white text-sm font-semibold group-hover:gap-2 transition-all duration-300">
                         <span>Czytaj więcej</span>
                         <ArrowRight className="w-4 h-4" />
                       </div>
@@ -136,7 +136,7 @@ export const BlogSection = () => {
             href="/blog"
             className='inline-flex items-center gap-2'
           >
-            <button className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-full bg-[#fd9f91] text-black font-medium text-base transition-all duration-150 hover:bg-[#fc8a7a] hover:shadow-lg hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#fd9f91]/30">
+            <button className="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 text-black font-medium text-base transition-all duration-150 hover:bg-white/85 hover:shadow-lg hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-white/30">
                 <span className="select-none">Przejdź do wszystkich wpisów</span>
                 <ArrowRight className="w-4 h-4 transition-all duration-150 group-hover:translate-x-1" />
               </button>

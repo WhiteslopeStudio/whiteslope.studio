@@ -174,6 +174,7 @@ export const ProblemSolutionSection = () => {
     <>
       {/* Sekcja dla desktopu - oryginalny bento grid */}
       <section 
+        id = "problem-solution"
         className="py-10  relative overflow-hidden hidden lg:block "
         style={{
         background: `
