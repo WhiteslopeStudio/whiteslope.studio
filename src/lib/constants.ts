@@ -5,13 +5,15 @@ export const HOMEPAGE_MENU_ITEMS = [
   { label: 'Portfolio', href: '#portfolio', type: 'section' },
   { label: 'Możliwości', href: '#experience', type: 'section' },
   { label: 'Opinie', href: '#testimonials', type: 'section' },
-  { label: 'Usługi', href: '#services', type: 'section' },
+  { label: 'Oferta', href: '#services', type: 'section' },
   { label: 'Proces', href: '#process', type: 'section' },
   { label: 'Blog', href: '#blog', type: 'section' },
   { label: 'FAQ', href: '#faq', type: 'section' },
   { label: 'Blog', href: '/blog', type: 'page' },
   { label: 'Cennik', href: '/pricing', type: 'page' },
   { label: 'Kontakt', href: '/contact', type: 'page'},
+  { label: 'Wyzwania', href: '#problem-solution', type: 'section' },
+  
 ];
 
 // Menu Oferta - tylko nazwa i link

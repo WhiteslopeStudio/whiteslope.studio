@@ -9,7 +9,7 @@ import type { MainService } from '@/lib/types';
 export default function CennikPage() {
   return (
     <div 
-      className="min-h-screen bg-black text-white overflow-hidden"
+      className="min-h-screen bg-black text-white overflow-hidden pt-15"
       style={{
         fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
       }}

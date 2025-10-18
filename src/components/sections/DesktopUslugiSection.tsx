@@ -41,25 +41,25 @@ export default function DesktopUslugiSection() {
 
   return (
     <section 
-      className="py-12 bg-black relative overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
-          linear-gradient(
-            to bottom,
-            black 0px,
-            black 10px,
-            #3b3b3bff 10px,
-            #3b3b3bff 11px,
-            #0b0b0bff 11px,
-            #0b0b0bff calc(100% - 11px),
-            #3b3b3bff calc(100% - 11px),
-            #3b3b3bff calc(100% - 10px),
-            black calc(100% - 10px),
-            black 100%
-          )
-        `
-      }}
+      className="py-12 bg-black relative overflow-hidden pb-50"
+      // style={{
+      //   background: `
+      //     radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
+      //     linear-gradient(
+      //       to bottom,
+      //       black 0px,
+      //       black 10px,
+      //       #3b3b3bff 10px,
+      //       #3b3b3bff 11px,
+      //       #0b0b0bff 11px,
+      //       #0b0b0bff calc(100% - 11px),
+      //       #3b3b3bff calc(100% - 11px),
+      //       #3b3b3bff calc(100% - 10px),
+      //       black calc(100% - 10px),
+      //       black 100%
+      //     )
+      //   `
+      // }}
     >
       <div className="relative z-10">
         {/* GRID 3 KOLUMNY */}
@@ -103,7 +103,7 @@ export default function DesktopUslugiSection() {
                       <span className={`text-xl font-bold transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/35'
+                          : 'text-white/65'
                       }`}>
                         {(index + 1).toString().padStart(2, '0')}
                       </span>
@@ -111,7 +111,7 @@ export default function DesktopUslugiSection() {
                       <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/35'
+                          : 'text-white/65'
                       }`}>
                         {service.title}
                       </h3>
@@ -119,7 +119,7 @@ export default function DesktopUslugiSection() {
                       <div className={`transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/35'
+                          : 'text-white/50'
                       }`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
@@ -129,7 +129,7 @@ export default function DesktopUslugiSection() {
                     <p className={`text-sm leading-relaxed transition-colors duration-500 ${
                       isHovered 
                         ? 'text-gray-300' 
-                        : 'text-white/25'
+                        : 'text-white/35'
                     }`}>
                       {truncateText(service.description || 'Profesjonalne rozwiązanie dostosowane do Twoich potrzeb.')}
                     </p>

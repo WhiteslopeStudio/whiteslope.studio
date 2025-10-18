@@ -72,7 +72,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     const animationData = localStorage.getItem('hero-animation-data');
     if (animationData) {
       const { seen, timestamp } = JSON.parse(animationData);
-      const dayInMs = 60 * 60 * 1000; // co 60 minut odplaan eod nowa filmik
+      const dayInMs = 24 * 60 * 60 * 1000; // co 24 godziny odpalany nowa filmik
       if (Date.now() - timestamp > dayInMs) {
         localStorage.removeItem('hero-animation-data');
       } else {

@@ -27,6 +27,7 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "resend": "^6.1.2",
+    "whois-json": "^2.0.4",
     "yarn": "^1.22.22",
     "zustand": "^5.0.8"
   },
@@ -36,6 +37,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/whois-json": "^2.0.4",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
     "tailwindcss": "^4",

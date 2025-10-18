@@ -420,7 +420,7 @@ export default function ExperienceSection() {
                 <div
                   className="rounded-2xl p-6 min-h-[300px] flex items-center relative overflow-hidden transition-all duration-500 cursor-pointer"
                   style={{ 
-                    background: 'radial-gradient(circle at bottom, rgba(255, 116, 95, 0.12) 0%, #0f0f0f 60%)',
+                    background: 'radial-gradient(circle at bottom, rgba(255, 255, 255, 0.06) 0%, #0f0f0f 60%)',
                     border: '1px solid rgba(255, 255, 255, 0.17)'
                   }}
                   onMouseEnter={() => setHoveredConsultation(true)}

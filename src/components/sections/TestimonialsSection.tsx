@@ -675,7 +675,8 @@ export const TestimonialsSection = () => {
 
   return (
     <section 
-      className="pt-10 bg-black relative overflow-hidden pb-10"
+      id="testimonials" 
+      className="pt-10 bg-black relative overflow-hidden pb-10 my-5"
       style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),

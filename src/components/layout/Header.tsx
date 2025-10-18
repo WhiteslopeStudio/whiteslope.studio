@@ -6,18 +6,18 @@ import { Menu, X, ChevronDown, Instagram, Facebook } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { HOMEPAGE_MENU_ITEMS, SUBPAGES_MENU_ITEMS, APP_CONFIG, MAIN_SERVICES } from '@/lib/constants';
 import { useMobileDetection } from '@/utils/hooks';
-import { Search } from 'lucide-react'; // Dodaj do importów na górze
-import { useSearchEngine } from '@/utils/hooks/useSearchEngine'; // Dodaj do importów
+import { Search } from 'lucide-react';
+import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
 
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isOffersDropdownOpen, setIsOffersDropdownOpen] = useState(false); // NEW: Stan dla dropdown Oferty
+  const [isOffersDropdownOpen, setIsOffersDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const offersDropdownRef = useRef<HTMLDivElement>(null); // NEW: Ref dla dropdown Oferty
+  const offersDropdownRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
   const router = useRouter();
   const pathname = usePathname();
@@ -25,9 +25,6 @@ export const Header = () => {
 
   const isHomepage = pathname === "/";
 
-
-
-  // Separate sections from pages
   const sections = HOMEPAGE_MENU_ITEMS.filter(
     (item) => item.type === "section" && item.href !== "#home"
   );
@@ -35,7 +32,6 @@ export const Header = () => {
     ? HOMEPAGE_MENU_ITEMS.filter((item) => item.type === "page")
     : SUBPAGES_MENU_ITEMS;
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -44,7 +40,6 @@ export const Header = () => {
       ) {
         setIsDropdownOpen(false);
       }
-      // NEW: Zamykanie dropdown Oferty
       if (
         offersDropdownRef.current &&
         !offersDropdownRef.current.contains(event.target as Node)
@@ -57,7 +52,6 @@ export const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Scroll detection and section tracking (only on homepage)
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -88,11 +82,9 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomepage, sections]);
 
-  // Sprawdź czy jesteśmy na konkretnej usłudze (nie na głównym /pricing)
   const isOnServicePage =
     pathname.startsWith("/pricing/") && pathname !== "/pricing";
 
-  // Get active state for menu items
   const getActiveState = (item: any) => {
     if (item.type === "section") {
       return activeSection === item.href.substring(1);
@@ -101,7 +93,6 @@ export const Header = () => {
     }
   };
 
-  // Handle menu clicks
   const handleMenuClick = (href: string, type: string) => {
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
@@ -124,21 +115,19 @@ export const Header = () => {
     }
   };
 
-  // Handle home click
   const handleHomeClick = () => {
-    if (isHomepage) {
-      const element = document.getElementById("home");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    } else {
+    // ZAWSZE scrolluj na samą górę strony
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    
+    // Jeśli nie jesteśmy na homepage, przekieruj
+    if (!isHomepage) {
       router.push("/");
     }
   };
 
-  
-
-  // NEW: Sprawdź czy jesteśmy na stronie oferty
   const isOnPricingPage = pathname.startsWith("/pricing");
 
   return (
@@ -153,46 +142,37 @@ export const Header = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              {/* Logo */}
+              {/* Logo z platynowym efektem */}
               <motion.div
-                className="cursor-pointer transition-transform duration-300 hover:scale-105 hover:cursor-pointer"
+                className="cursor-pointer relative overflow-hidden group transition-transform duration-300 hover:scale-105"
                 onClick={handleHomeClick}
               >
+                {/* Platynowa fala */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
+                  initial={{ x: '-100%' }}
+                  whileHover={{
+                    x: '200%',
+                    transition: {
+                      duration: 0.8,
+                      ease: [0.4, 0.0, 0.2, 1]
+                    }
+                  }}
+                />
                 <img
                   src="/_resources/logoWhiteSlope.webp"
                   alt="WhiteSlope Studio"
-                  className="h-5 w-auto object-contain"
+                  className="h-5 w-auto object-contain relative z-10 transition-all duration-300 group-hover:brightness-125"
                 />
               </motion.div>
-
-              {/* Search Button - przylepiony do logo */}
-              {!isMobile && (
-                <motion.button
-                  onClick={open}
-                  className="flex items-center gap-2 px-11 py-3  rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer"
-                  whileHover={{ scale: 1.00 }}
-                  whileTap={{ scale: 1.00 }}
-                >
-                  <Search className="w-4 h-4" />
-                  <span className="text-sm font-medium">Znajdź na Whiteslope</span>
-                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
-                    <span className="text-xs">⌘ +</span>K;  
-                   
-                  </kbd>
-                  <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5  text-white/70 border border-white/20 rounded">
-                  
-                    <span className="text-xs">Ctrl +</span>K
-                  </kbd>
-                </motion.button>
-              )}
             </div>
 
             {/* Desktop Menu */}
             {!isMobile && (
-              
-
-              <nav className="flex items-center space-x-1">
-                {/* Sections Dropdown - only on homepage */}
+              <nav className="flex items-center gap-2 flex-1 justify-end">
+                {/* WSZYSTKO PRZYCZEPIONE DO PRAWEJ */}
+                <div className="flex items-center gap-1">
+                {/* Sections Dropdown - ZMIENIONE NA "ODKRYJ" */}
                 {isHomepage && (
                   <div
                     className="relative"
@@ -211,53 +191,90 @@ export const Header = () => {
                     >
                       <span>
                         {activeSection === "home"
-                          ? "Home"
+                          ? "Odkryj"
                           : sections.find(
                               (item) => item.href.substring(1) === activeSection
-                            )?.label || "Sekcje"}
+                            )?.label || "Odkryj"}
                       </span>
                       <motion.div
                         animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
                       >
                         <ChevronDown className="w-4 h-4 ml-2" />
                       </motion.div>
                     </motion.button>
 
-                    {/* Dropdown Menu */}
+                    {/* NOWY PREMIUM DROPDOWN - JAK SQUARESPACE */}
                     <AnimatePresence>
                       {isDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 w-56 bg-[#171717]/95 backdrop-blur-lg border border-[#404040] rounded-xl shadow-2xl overflow-hidden"
+                          initial={{ 
+                            height: 0,
+                            opacity: 0,
+                            scaleY: 0
+                          }}
+                          animate={{ 
+                            height: 'auto',
+                            opacity: 1,
+                            scaleY: 1,
+                            transition: {
+                              height: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] },
+                              opacity: { duration: 0.25, ease: "easeOut" },
+                              scaleY: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }
+                            }
+                          }}
+                          exit={{ 
+                            height: 0,
+                            opacity: 0,
+                            scaleY: 0,
+                            transition: {
+                              duration: 0.2,
+                              ease: "easeIn"
+                            }
+                          }}
+                          style={{ originY: 0 }}
+                          className="absolute top-full left-0 mt-2 w-56 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden"
                         >
-                          <div className="py-2">
-                            {sections.map((item) => (
-                              <button
+                          <motion.div 
+                            className="py-2"
+                            initial={{ opacity: 0 }}
+                            animate={{ 
+                              opacity: 1,
+                              transition: { delay: 0.15, duration: 0.2 }
+                            }}
+                          >
+                            {sections.map((item, index) => (
+                              <motion.button
                                 key={item.href}
                                 onClick={() =>
                                   handleMenuClick(item.href, item.type)
                                 }
                                 className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
                                   getActiveState(item)
-                                    ? "text-white"
-                                    : "text-[#d4d4d4]  hover:text-white"
+                                    ? "text-white bg-white/5"
+                                    : "text-[#d4d4d4] hover:text-white hover:bg-white/5"
                                 }`}
+                                initial={{ opacity: 0 }}
+                                animate={{ 
+                                  opacity: 1,
+                                  transition: {
+                                    delay: 0.2 + (index * 0.05),
+                                    duration: 0.2,
+                                    ease: "easeOut"
+                                  }
+                                }}
                               >
                                 {item.label}
-                              </button>
+                              </motion.button>
                             ))}
-                          </div>
+                          </motion.div>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
                 )}
 
-                {/* OFERTA DROPDOWN */}
+                {/* OFERTA DROPDOWN - TAKIE SAME ANIMACJE */}
                 <div
                   className="relative"
                   ref={offersDropdownRef}
@@ -268,33 +285,60 @@ export const Header = () => {
                     onClick={() => router.push("/pricing")}
                     className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                       isOnServicePage
-                        ? "text-white "
-                        : "text-[#a3a3a3] hover:text-white "
+                        ? "text-white bg-white/5"
+                        : "text-[#a3a3a3] hover:text-white"
                     }`}
                     whileHover={{ scale: 1.05 }}
                   >
                     <span>Oferta</span>
                     <motion.div
                       animate={{ rotate: isOffersDropdownOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
                     >
                       <ChevronDown className="w-4 h-4 ml-2" />
                     </motion.div>
                   </motion.button>
 
-                  {/* Offers Dropdown Menu */}
                   <AnimatePresence>
                     {isOffersDropdownOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-[#171717]/95 backdrop-blur-lg border border-[#404040] rounded-xl shadow-2xl overflow-hidden"
+                        initial={{ 
+                          height: 0,
+                          opacity: 0,
+                          scaleY: 0
+                        }}
+                        animate={{ 
+                          height: 'auto',
+                          opacity: 1,
+                          scaleY: 1,
+                          transition: {
+                            height: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] },
+                            opacity: { duration: 0.25, ease: "easeOut" },
+                            scaleY: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }
+                          }
+                        }}
+                        exit={{ 
+                          height: 0,
+                          opacity: 0,
+                          scaleY: 0,
+                          transition: {
+                            duration: 0.2,
+                            ease: "easeIn"
+                          }
+                        }}
+                        style={{ originY: 0 }}
+                        className="absolute top-full left-0 mt-2 w-64 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden"
                       >
-                        <div className="py-2">
-                          {MAIN_SERVICES.map((service: { label: string; href: string }) => (
-                            <button
+                        <motion.div 
+                          className="py-2"
+                          initial={{ opacity: 0 }}
+                          animate={{ 
+                            opacity: 1,
+                            transition: { delay: 0.15, duration: 0.2 }
+                          }}
+                        >
+                          {MAIN_SERVICES.map((service: { label: string; href: string }, index: number) => (
+                            <motion.button
                               key={service.href}
                               onClick={() => {
                                 setIsOffersDropdownOpen(false);
@@ -302,31 +346,38 @@ export const Header = () => {
                               }}
                               className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
                                 pathname === service.href
-                                  ? " text-white"
-                                  : "text-[#d4d4d4]  hover:text-white"
+                                  ? "text-white bg-white/5"
+                                  : "text-[#d4d4d4] hover:text-white hover:bg-white/5"
                               }`}
+                              initial={{ opacity: 0 }}
+                              animate={{ 
+                                opacity: 1,
+                                transition: {
+                                  delay: 0.2 + (index * 0.05),
+                                  duration: 0.2,
+                                  ease: "easeOut"
+                                }
+                              }}
                             >
                               {service.label}
-                            </button>
+                            </motion.button>
                           ))}
-                        </div>
+                        </motion.div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
 
-                {/* Page Links */}
-                {pages.map((item, index) => (
+                {/* Page Links - BEZ KONTAKTU */}
+                {pages.filter(item => item.label !== 'Kontakt').map((item, index) => (
                   <motion.button
                     key={`${item.label}-${pathname}`}
                     onClick={() => handleMenuClick(item.href, item.type)}
-                    className={`block w-full text-left mx-2 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                        item.label === 'Kontakt'
-                          ? 'bg-white text-black'
-                          : getActiveState(item)
-                          ? 'bg-white/10 text-white'
-                          : 'text-[#d4d4d4] hover:text-white'
-                      }`}
+                    className={`block w-full text-left px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      getActiveState(item)
+                        ? 'bg-white/10 text-white'
+                        : 'text-[#d4d4d4] hover:text-white'
+                    }`}
                     transition={{
                       duration: 0.5,
                       delay: (isHomepage ? 0.2 : 0) + index * 0.1,
@@ -336,27 +387,57 @@ export const Header = () => {
                     {item.label}
                   </motion.button>
                 ))}
+                </div>
 
-                {/* Social Media Icons */}
-              <div className="flex items-center gap-4 mr-4 mx-4">
-                <a
-                  href="https://instagram.com/twoj_profil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full  transition-all duration-300 hover:scale-110 hover:cursor-pointer"
-                >
-                  <Instagram className="w-4 h-4 text-white" />
-                </a>
+                {/* PRAWA STRONA - Wyszukiwarka, Kontakt, Social */}
+                <div className="flex items-center gap-2">
+                  {/* Przycisk wyszukiwania Z CMD+K */}
+                  <motion.button
+                    onClick={open}
+                    className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Search className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm font-medium">Znajdź na Whiteslope</span>
+                    <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5 text-white/70 border border-white/20 rounded flex-shrink-0">
+                      <span className="text-xs">⌘</span>K
+                    </kbd>
+                    <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5 text-white/70 border border-white/20 rounded flex-shrink-0">
+                      <span className="text-xs">Ctrl</span>K
+                    </kbd>
+                  </motion.button>
 
-                <a
-                  href="https://facebook.com/twoj_profil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 ounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
-                >
-                  <Facebook className="w-4 h-4 text-white" />
-                </a>
-              </div>
+                  {/* Kontakt */}
+                  <motion.button
+                    onClick={() => handleMenuClick('/contact', 'page')}
+                    className="px-4 py-2 rounded-full font-medium bg-white text-black transition-all duration-300 hover:cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Kontakt
+                  </motion.button>
+
+                  {/* Social Media Icons */}
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://instagram.com/twoj_profil"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+                    >
+                      <Instagram className="w-4 h-4 text-white" />
+                    </a>
+
+                    <a
+                      href="https://facebook.com/twoj_profil"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+                    >
+                      <Facebook className="w-4 h-4 text-white" />
+                    </a>
+                  </div>
+                </div>
               </nav>
             )}
 
@@ -397,7 +478,7 @@ export const Header = () => {
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU - NIEZMIENIONE */}
       <AnimatePresence>
         {isMenuOpen && isMobile && (
           <motion.div
@@ -407,7 +488,6 @@ export const Header = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40"
           >
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -416,7 +496,6 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             />
 
-            {/* Menu Content */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -425,8 +504,7 @@ export const Header = () => {
               className="absolute right-0 top-0 h-full w-80 bg-[#171717]/95 backdrop-blur-lg border-l border-[#404040] shadow-2xl overflow-y-auto"
             >
               <div className="flex flex-col min-h-full pt-24 pb-8 px-6">
-                {/* Logo in mobile menu */}
-                <motion.div
+                {/* <motion.div
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
@@ -438,18 +516,16 @@ export const Header = () => {
                   <span className="text-lg font-bold text-white">
                     {APP_CONFIG.name}
                   </span>
-                </motion.div>
+                </motion.div> */}
 
-                {/* Menu Items */}
                 <div className="flex-1 space-y-2">
-                  {/* Sections - only on homepage */}
                   {isHomepage && (
                     <>
                       <motion.div
                         initial={{ x: 50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626]"
+                        className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626] pt-20"
                       >
                         Sekcje strony
                       </motion.div>
@@ -479,7 +555,6 @@ export const Header = () => {
                     </>
                   )}
 
-                  {/* NEW: OFERTA w mobile menu */}
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -521,7 +596,6 @@ export const Header = () => {
                     Podstrony
                   </motion.div>
 
-                  {/* Pages */}
                   {pages.map((item, index) => (
                     <motion.button
                       key={`${item.label}-mobile-page`}
@@ -529,7 +603,7 @@ export const Header = () => {
                       className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         getActiveState(item)
                           ? "bg-white/10 text-white"
-                          : "text-[#d4d4d4]  hover:text-white"
+                          : "text-[#d4d4d4] hover:text-white"
                       }`}
                       initial={{ x: 50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
@@ -544,7 +618,6 @@ export const Header = () => {
                   ))}
                 </div>
 
-                {/* Contact Info + Social Media */}
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -571,7 +644,6 @@ export const Header = () => {
                     </a>
                   </div>
 
-                  {/* Social Media Icons */}
                   <div className="flex justify-center gap-4 pt-2">
                     <a
                       href="https://instagram.com/twoj_profil"

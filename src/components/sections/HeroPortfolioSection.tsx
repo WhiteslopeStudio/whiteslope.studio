@@ -202,6 +202,7 @@ export const HeroPortfolioSection = ({ portfolioItems }: HeroPortfolioSectionPro
 
   return (
     <div
+      
       ref={sectionRef}
       className="relative h-[150vh]"
       style={{

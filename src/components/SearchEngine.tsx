@@ -57,6 +57,18 @@ const serviceColors: Record<string, string> = {
   'email-marketing': 'from-pink-500/10 to-pink-600/5'
 };
 
+
+// Na początku pliku - dodaj mapę kolorów HEX dla każdej usługi
+const iconColors: Record<string, string> = {
+  'website': '#3B82F6',        // niebieski
+  'optimization': '#10B981',      // zielony
+  'ai-integration': '#A855F7',         // fioletowy
+  'graphics': '#F59E0B',            // pomarańczowy
+  'individual': '#EC4899',       // różowy
+  'email-marketing': '#6366F1',    // indigo
+  // Dodaj resztę swoich usług tutaj
+};
+
 export default function SearchEngine() {
   const { isOpen, close } = useSearchEngine();
   const [query, setQuery] = useState('');
@@ -263,18 +275,33 @@ export default function SearchEngine() {
                         {MAIN_SERVICES.map((service: MainService, index: number) => {
                           const Icon = serviceIcons[service.id] || Package;
                           const color = serviceColors[service.id] || 'from-white/10 to-white/5';
+                          const iconColor = iconColors[service.id] || '#FFFFFF'; // Kolor dla ikonki
+                          
                           return (
                             <button
                               key={index}
                               onClick={() => handleResultClick(`/pricing/${service.id}`)}
-                              className="group relative p-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all hover:cursor-pointer text-left"
+                              className="group relative p-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/7 transition-all hover:cursor-pointer text-left"
                             >
-                              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${color} opacity-25 group-hover:opacity-50 transition-opacity`} />
+                              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${color} opacity-5 group-hover:opacity-7 transition-opacity`} />
                               <div className="relative flex items-center gap-3">
                                 <div 
-                                  className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-xl bg-white/10 border border-white/20 group-hover:scale-105 transition-all`}
+                                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-xl group-hover:scale-105 transition-all"
+                                  style={{
+                                    backgroundColor: `${iconColor}20`, // 20 = ~12% opacity
+                                    borderWidth: '1px',
+                                    borderStyle: 'solid',
+                                    borderColor: `${iconColor}40` // 40 = ~25% opacity
+                                  }}
                                 >
-                                  <Icon className="w-5 h-5 text-white" />
+                                  {/* IKONKA Z INLINE STYLE - maksymalnie kolorowa! */}
+                                  <Icon 
+                                    className="w-5 h-5" 
+                                    style={{ 
+                                      color: iconColor,
+                                      filter: 'brightness(1.2) saturate(1.5)', // MAXA KOLORAWA!
+                                    }} 
+                                  />
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="text-white font-medium text-sm group-hover:text-white transition-colors">

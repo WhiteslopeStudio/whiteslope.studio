@@ -295,7 +295,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
             className="block w-full"
             onClick={onClose}
           >
-            <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#2DE56B] text-black font-semibold text-base transition-all duration-150 hover:bg-[#00F5B8] hover:scale-105 active:scale-95">
+            <button className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3.5 mb-20 rounded-full bg-[#2DE56B] text-black font-semibold text-base transition-all duration-150 hover:bg-[#00F5B8] hover:scale-105 active:scale-95">
               {service.ctaText}
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -383,7 +383,7 @@ export const PricingSection = () => {
       {/* NAGŁÓWEK */}
       <div className="container mx-auto px-6 mb-16 relative z-10">
         <div className="text-center">
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-sm text-white/60 backdrop-blur-sm border border-white/10">
               <Sparkles className="w-4 h-4" style={{ 
                 stroke: 'url(#sparkles-gradient)',
@@ -399,7 +399,7 @@ export const PricingSection = () => {
               </svg>
               Rozwiązania dopasowane do Twoich celów
             </span>
-          </div>
+          </div> */}
           
           <div className="overflow-hidden">
             {/* <h2 className="text-3xl lg:text-5xl font-semibold text-white my-4 tracking-tight">
@@ -441,7 +441,7 @@ export const PricingSection = () => {
               <div 
                 className="rounded-3xl p-6 shadow-xl h-full transition-all duration-300"
                 style={{
-                  background: '#ffffffeb',
+                  background: '#fffffffc',
                   border: '1px solid rgba(255, 255, 255, 0.2)'
                 }}
               >
@@ -503,7 +503,7 @@ export const PricingSection = () => {
               <div 
                 className="rounded-3xl p-8 shadow-xl h-full relative overflow-hidden"
                 style={{
-                  background: 'radial-gradient(circle at left bottom, rgba(255, 116, 95, 0.08) 0%, #0f0f0f 70%)',
+                  background: 'radial-gradient(circle at left bottom, rgba(255, 255, 255, 0.05) 0%, #0f0f0f 70%)',
                   border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}
               >
@@ -559,7 +559,7 @@ export const PricingSection = () => {
                       href={`/pricing/${currentService.id}`}
                       className="inline-block group"
                     >
-                      <button className="cursor-pointer flex items-center gap-2 px-6 py-3 rounded-full bg-[#fd9f91] text-black font-medium text-base transition-all duration-150 hover:bg-[#fc8a7a] hover:shadow-lg hover:scale-105 active:scale-100 focus:outline-none focus:ring-4 focus:ring-[#fd9f91]/30">
+                      <button className="cursor-pointer flex items-center gap-2 px-6 py-3 rounded-full bg-white/92 text-black font-medium text-base transition-all duration-150 hover:bg-white/90 hover:shadow-lg hover:scale-105 active:scale-100 focus:outline-none focus:ring-4 focus:ring-[#fd9f91]/30">
                         {currentService.ctaText}
                         <ArrowRight className="w-5 h-5" />
                       </button>
@@ -580,7 +580,7 @@ export const PricingSection = () => {
                 <div 
                   className="absolute inset-0 opacity-30"
                   style={{
-                    background: 'radial-gradient(circle at top left, rgba(255, 116, 95, 0.1) 0%, transparent 50%)'
+                    background: 'radial-gradient(circle at top left, rgba(255, 255, 255, 0.04) 0%, transparent 50%)'
                   }}
                 />
 

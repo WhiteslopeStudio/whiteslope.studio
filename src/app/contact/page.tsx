@@ -746,7 +746,7 @@ function ContactContent() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white mt-10">
       {/* Hero Section */}
       <section className="pt-32 pb-0 bg-black relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-4/5">
@@ -755,41 +755,16 @@ function ContactContent() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h1 className="font-thin text-white mb-6 text-5xl md:text-7xl">
-              Porozmawiajmy o Twoim{' '}
-              <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">projekcie</span>
+            <h1 className="font-semibold text-white mb-6 text-5xl md:text-5xl">
+              
+              <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">Porozmawiajmy o Twoim projekcie</span>
             </h1>
-            <p className="text-[#a3a3a3] max-w-4xl mx-auto mb-8 leading-relaxed text-xl md:text-2xl">
+            <p className="text-[#a3a3a3] max-w-3xl mx-auto mb-8 leading-relaxed text-lg md:text-lg">
               Wybierz sposób kontaktu dopasowany do Twoich potrzeb.{' '}
               <span className="text-white font-semibold">Odpowiadamy w ciągu 24h</span> i zawsze zaczynamy od bezpłatnej konsultacji.
             </p>
             
-            {/* Quick stats */}
-            <div className="flex flex-row flex-nowrap gap-4 max-w-4xl mx-auto md:grid md:grid-cols-3 py-4 px-4">
-              <div className="flex flex-col items-center text-center flex-1 min-w-0">
-                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-base font-semibold text-white mb-1">24h</div>
-                <div className="text-xs text-[#737373]">Czas odpowiedzi</div>
-              </div>
-
-              <div className="flex flex-col items-center text-center flex-1 min-w-0">
-                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
-                  <Star className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-base font-semibold text-white mb-1">100%</div>
-                <div className="text-xs text-[#737373]">Bezpłatna konsultacja</div>
-              </div>
-
-              <div className="flex flex-col items-center text-center flex-1 min-w-0">
-                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-2">
-                  <Shield className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-base font-semibold text-white mb-1">NDA</div>
-                <div className="text-xs text-[#737373]">Pełna poufność</div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>

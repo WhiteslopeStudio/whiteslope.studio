@@ -21,8 +21,8 @@ const HeroSectionMobile = () => {
   
   const proofItems = [
     'Bezpłatna konsultacja',
-    'Płatność dopiero po akceptacji projektu',
-    'Gwarancja satysfakcji',
+    'Integracja z chatbotem AI',
+    'Szkolenie z obsługi strony',
   ];
 
   // Funkcja dla pozycji avatarów
@@ -72,7 +72,7 @@ const HeroSectionMobile = () => {
   };
 
   return (
-    <section className="w-full relative overflow-hidden bg-black pt-16">
+    <section className="w-full relative overflow-hidden bg-black pt-40">
       {/* Avatary LinkedIn na górze z dużym paddingiem */}
       <div className="flex justify-center items-center relative mb-6 pt-10" style={{ width: '240px', height: '80px', margin: '0 auto' }}>
         {linkedinProfiles.map((person: LinkedInProfile, index: number) => {
