@@ -394,7 +394,7 @@ export const Header = () => {
                   {/* Przycisk wyszukiwania Z CMD+K */}
                   <motion.button
                     onClick={open}
-                    className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
+                    className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/12 border border-white/12 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
