@@ -655,11 +655,11 @@ const testimonials: Testimonial[] = [
   {
     id: 3,
     name: 'Mati',
-    company: 'YouTuber',
+    company: 'Osoba prywatna',
     companyUrl: 'https://www.youtube.com/@_Mati__',
     logo: '_resources/mati_logo.webp.webp',
     rating: 5,
-    text: 'Profesjonalna obsługa i szybka realizacja. Strona dokładnie taka jak chciałem, a wsparcie techniczne na najwyższym poziomie.',
+    text: 'Z usług grafik 2D, 3D i filmów korzytam już od bardzo dawna. Moja marka osobista w internecie przez to mogła się bardzo rozwinąć. Polecam każdemu!',
     highlight: ['Profesjonalna obsługa', 'szybka realizacja', 'najwyższym poziomie'],
   },
 ];
@@ -675,7 +675,7 @@ export const TestimonialsSection = () => {
 
   return (
     <section 
-      className="py-12 bg-black relative overflow-hidden"
+      className="pt-10 bg-black relative overflow-hidden pb-10"
       style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -699,8 +699,14 @@ export const TestimonialsSection = () => {
         {/* NAGŁÓWEK */}
         <div className="text-center mb-8 relative z-10 max-w-10xl mx-auto px-4">
           <div className="text-left max-w-7xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl font-semibold text-white mb-4 tracking-tight">
-              Zobacz jak pomagamy rozwijać biznesy
+            <h2 className="text-2xl lg:text-4xl text-white mb-4 tracking-tight"
+            style={{ fontWeight: 575 }}>
+              
+              <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}> 
+                Zobacz jak pomagamy rozwijać biznesy
+              </span>
+
             </h2>
             <p className="text-base lg:text-lg" style={{ color: '#9ca3af' }}>
               Realne wyniki, mierzalne rezultaty i zadowolenie
@@ -724,7 +730,7 @@ export const TestimonialsSection = () => {
                     <div 
                       className="text-4xl md:text-5xl font-bold transition-colors duration-500"
                       style={{
-                        color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+                        color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
                       }}
                     >
                       {stat.value}
@@ -732,7 +738,7 @@ export const TestimonialsSection = () => {
                     <p 
                       className="text-sm leading-relaxed transition-colors duration-500"
                       style={{
-                        color: isHovered ? '#d1d5db' : 'rgba(255, 255, 255, 0.2)',
+                        color: isHovered ? '#d1d5db' : 'rgba(255, 255, 255, 0.4)',
                       }}
                     >
                       {stat.label}
@@ -759,9 +765,9 @@ export const TestimonialsSection = () => {
                   <div 
                     className="flex flex-col gap-4 p-6 rounded-2xl transition-all duration-500"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.05)',
+                      background: isHovered ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.03)',
                       border: isHovered 
-                        ? '1px solid rgba(255, 255, 255, 0.2)' 
+                        ? '1px solid rgba(255, 255, 255, 0.15)' 
                         : '1px solid rgba(255, 255, 255, 0.1)',
                       backdropFilter: 'blur(8px)',
                     }}
@@ -772,7 +778,7 @@ export const TestimonialsSection = () => {
                         <h3 
                           className="text-lg font-bold transition-colors duration-500"
                           style={{
-                            color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+                            color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.6)',
                           }}
                         >
                           {testimonial.name}
@@ -780,7 +786,7 @@ export const TestimonialsSection = () => {
                         <p 
                           className="text-sm transition-colors duration-500"
                           style={{
-                            color: isHovered ? '#9ca3af' : 'rgba(255, 255, 255, 0.2)',
+                            color: isHovered ? '#9ca3af' : 'rgba(255, 255, 255, 0.6)',
                           }}
                         >
                           {testimonial.company}
@@ -793,7 +799,7 @@ export const TestimonialsSection = () => {
                             key={i} 
                             className="w-4 h-4 fill-current transition-colors duration-500" 
                             style={{ 
-                              color: isHovered ? '#ffae00' : 'rgba(255, 174, 0, 0.3)',
+                              color: isHovered ? '#ffae00' : 'rgba(255, 174, 0, 0.6)',
                             }} 
                           />
                         ))}
@@ -804,7 +810,7 @@ export const TestimonialsSection = () => {
                     <p 
                       className="text-sm leading-relaxed transition-colors duration-500"
                       style={{
-                        color: isHovered ? '#d1d5db' : 'rgba(255, 255, 255, 0.2)',
+                        color: isHovered ? '#d1d5db' : 'rgba(255, 255, 255, 0.6)',
                       }}
                     >
                       {testimonial.text}
@@ -824,7 +830,7 @@ export const TestimonialsSection = () => {
                           className="h-6 w-auto object-contain transition-opacity duration-500"
                           style={{ 
                             filter: 'brightness(0) invert(1)',
-                            opacity: isHovered ? 1 : 0.3,
+                            opacity: isHovered ? 1 : 0.6,
                           }}
                         />
                       </a>
@@ -836,35 +842,7 @@ export const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* LOGA KLIENTÓW */}
-        <div className="text-center mt-12 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-xs uppercase tracking-wider mb-6" style={{ color: '#6b7280' }}>
-            Zaufali nam
-          </p>
-          <div className="flex gap-8 justify-center flex-wrap">
-            {testimonials.map((testimonial) => (
-              <a 
-                key={testimonial.id}
-                href={testimonial.companyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <img 
-                  src={testimonial.logo}
-                  alt={testimonial.company}
-                  className="h-8 w-auto object-contain transition-opacity duration-300"
-                  style={{ 
-                    filter: 'brightness(0) invert(1)',
-                    opacity: 0.4,
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.4'}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
+        
       </div>
     </section>
   );

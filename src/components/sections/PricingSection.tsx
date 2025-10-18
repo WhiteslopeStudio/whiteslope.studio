@@ -349,7 +349,7 @@ export const PricingSection = () => {
   const currentService = MAIN_SERVICES[activeService];
 
   return (
-    <section ref={ref} id="services" className="py-8 relative overflow-hidden" 
+    <section ref={ref} id="services" className="py-8 relative overflow-hidden pb-50" 
     style={{
         background: `
          radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -402,11 +402,22 @@ export const PricingSection = () => {
           </div>
           
           <div className="overflow-hidden">
-            <h2 className="text-3xl lg:text-5xl font-semibold text-white my-4 tracking-tight">
+            {/* <h2 className="text-3xl lg:text-5xl font-semibold text-white my-4 tracking-tight">
               Wybierz plan.{" "}
               <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
                 Zacznijmy działać.
               </span>
+            </h2> */}
+
+            
+            <h2 className="text-2xl lg:text-4xl text-white mb-4 tracking-tight"
+            style={{ fontWeight: 575 }}>
+              
+              <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}> 
+                Wybierz plan. Zacznijmy działać.
+              </span>
+
             </h2>
           </div>
           

@@ -109,13 +109,13 @@ export default function HomePage() {
           {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
           <ProblemSolutionSection />
 
-          
+          {/* 💬 TESTIMONIALS */}
+          <TestimonialsSection />
 
           {/* 🔄 PROCESS SECTION */}
           <ProcessSection />
 
-          {/* 💬 TESTIMONIALS */}
-          <TestimonialsSection />
+          
 
           {/* 🎯 EXPERIENCE */}
           <ExperienceSection />
@@ -124,7 +124,7 @@ export default function HomePage() {
           <PricingSection />
 
           {/* 📋 BRIEF */}
-          <BriefSection />
+          {/* <BriefSection /> */}
 
           {/* 📝 BLOG */}
           <BlogSection />

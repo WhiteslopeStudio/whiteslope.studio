@@ -103,7 +103,7 @@ export default function DesktopUslugiSection() {
                       <span className={`text-xl font-bold transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/30'
+                          : 'text-white/35'
                       }`}>
                         {(index + 1).toString().padStart(2, '0')}
                       </span>
@@ -111,7 +111,7 @@ export default function DesktopUslugiSection() {
                       <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/30'
+                          : 'text-white/35'
                       }`}>
                         {service.title}
                       </h3>
@@ -119,7 +119,7 @@ export default function DesktopUslugiSection() {
                       <div className={`transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/30'
+                          : 'text-white/35'
                       }`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
@@ -129,7 +129,7 @@ export default function DesktopUslugiSection() {
                     <p className={`text-sm leading-relaxed transition-colors duration-500 ${
                       isHovered 
                         ? 'text-gray-300' 
-                        : 'text-white/20'
+                        : 'text-white/25'
                     }`}>
                       {truncateText(service.description || 'Profesjonalne rozwiązanie dostosowane do Twoich potrzeb.')}
                     </p>
