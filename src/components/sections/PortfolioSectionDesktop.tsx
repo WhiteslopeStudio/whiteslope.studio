@@ -274,7 +274,7 @@ export default function PortfolioSectionDesktop() {
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.35) 20%, rgba(0, 0, 0, 1) 100%)',
+              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0)70%, rgba(0, 0, 0, 0.9) 100%)',
             }}
           />
 

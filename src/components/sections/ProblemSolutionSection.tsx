@@ -480,7 +480,7 @@ export const ProblemSolutionSection = () => {
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
               
-              <br/>Stwórzmy stronę ją już od 1500 zł!
+              <br/>Stwórzmy stronę już od 1500 zł!
               </span>
               <br />
             </h2>

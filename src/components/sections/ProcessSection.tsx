@@ -142,7 +142,7 @@ export const ProcessSection = () => {
   
 
   return (
-    <section id="process" ref={ref} className="py-13 bg-black relative overflow-hidden mb-30" 
+    <section id="process" ref={ref} className="py-13 bg-black relative overflow-hidden mb-5 sm:mb-19" 
         style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -372,7 +372,7 @@ export const ProcessSection = () => {
                   className="h-8 w-auto object-contain transition-opacity duration-300"
                   style={{ 
                     filter: 'brightness(0) invert(1)',
-                    opacity: 0.4,
+                    opacity: 0.9,
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
                   onMouseLeave={(e) => e.currentTarget.style.opacity = '0.9'}

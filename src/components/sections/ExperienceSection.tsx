@@ -417,7 +417,7 @@ export default function ExperienceSection() {
                 </div> */}
 
                 {/* KONSULTACJA MOBILE - z hover efektem i animacją EKG */}
-                <div
+                {/* <div
                   className="rounded-2xl p-6 min-h-[300px] flex items-center relative overflow-hidden transition-all duration-500 cursor-pointer"
                   style={{ 
                     background: 'radial-gradient(circle at bottom, rgba(255, 255, 255, 0.06) 0%, #0f0f0f 60%)',
@@ -426,7 +426,7 @@ export default function ExperienceSection() {
                   onMouseEnter={() => setHoveredConsultation(true)}
                   onMouseLeave={() => setHoveredConsultation(false)}
                 >
-                  {/* Siatka EKG */}
+
                   <svg className="absolute inset-0 w-full h-full opacity-5 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <pattern id="ekg-grid-m" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -438,7 +438,7 @@ export default function ExperienceSection() {
                     <rect width="100%" height="100%" fill="url(#ekg-grid-m)" />
                   </svg>
 
-                  {/* Linia EKG z animacją */}
+
                   <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1400 200">
                     <path
                       d="M0,100 L100,100 L120,100 L130,60 L140,140 L150,100 L250,100 L270,100 L280,70 L290,130 L300,100 L450,100 L470,100 L480,50 L490,150 L500,100 L600,100 L620,100 L630,75 L640,125 L650,100 L800,100 L820,100 L830,65 L840,135 L850,100 L950,100 L970,100 L980,55 L990,145 L1000,100 L1150,100 L1170,100 L1180,80 L1190,120 L1200,100 L1400,100"
@@ -486,7 +486,7 @@ export default function ExperienceSection() {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             ) : (
               /* ========== DESKTOP LAYOUT ========== */

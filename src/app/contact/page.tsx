@@ -755,7 +755,7 @@ function ContactContent() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h1 className="font-semibold text-white mb-6 text-5xl md:text-5xl">
+            <h1 className="font-semibold text-white mb-6 text-4xl md:text-5xl">
               
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">Porozmawiajmy o Twoim projekcie</span>
             </h1>
@@ -774,7 +774,7 @@ function ContactContent() {
         <div className="container mx-auto px-6">
           
           {/* DESKTOP TABS - ukryj na mobile */}
-          <div className="hidden md:block bg-white/5 backdrop-blur-md rounded-full p-1.5 mb-8 border border-white/10 max-w-3xl mx-auto">
+          {/* <div className="hidden md:block bg-white/5 backdrop-blur-md rounded-full p-1.5 mb-8 border border-white/10 max-w-3xl mx-auto">
             <div className="flex gap-1">
               {Object.entries(TAB_CONFIG).map(([key, config]) => {
                 const Icon = config.icon;
@@ -800,10 +800,10 @@ function ContactContent() {
                 );
               })}
             </div>
-          </div>
+          </div> */}
 
           {/* MOBILE TAB SELECTOR - Trigger Button */}
-          <div className="md:hidden mb-8">
+          {/* <div className="md:hidden mb-8">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="w-full bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between hover:bg-white/10 transition-colors"
@@ -821,7 +821,7 @@ function ContactContent() {
               
               <ChevronDown className="w-5 h-5 text-[#737373]" />
             </button>
-          </div>
+          </div> */}
 
           {/* MOBILE BOTTOM SHEET */}
           <AnimatePresence>
@@ -917,6 +917,54 @@ function ContactContent() {
               </div>
             </div>
           )}
+
+          <div className="md:hidden mb-8">
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="w-full bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex items-center justify-between hover:bg-white/10 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                {React.createElement(TAB_CONFIG[activeTab].icon, {
+                  className: 'w-5 h-5 text-white'
+                })}
+                <div className="text-left">
+                  <div className="font-semibold text-white">{TAB_CONFIG[activeTab].title}</div>
+                  <div className="text-xs text-[#737373]">{TAB_CONFIG[activeTab].subtitle}</div>
+                  
+                </div>
+              </div>
+              
+              <ChevronDown className="w-5 h-5 text-[#737373]" />
+            </button>
+          </div>
+
+          <div className="hidden md:block bg-white/5 backdrop-blur-md rounded-full p-1.5 mb-8 border border-white/10 max-w-3xl mx-auto">
+            <div className="flex gap-1">
+              {Object.entries(TAB_CONFIG).map(([key, config]) => {
+                const Icon = config.icon;
+                const isActive = activeTab === key;
+                
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setActiveTab(key as TabType)}
+                    className={`flex-1 relative px-4 py-2.5 rounded-full transition-all duration-300 text-center hover:cursor-pointer ${
+                      isActive
+                        ? 'bg-white text-black shadow-lg'
+                        : 'text-[#a3a3a3] hover:text-white'
+                    }`}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon className={`w-4 h-4 ${isActive ? 'text-black' : 'text-[#737373]'}`} />
+                      <span className="font-medium text-sm whitespace-nowrap">
+                        {config.title}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -927,9 +975,7 @@ function ContactContent() {
 
 
             {/* Contact Info */}
-            <div 
-              className="space-y-8"
-            >
+            <div className="space-y-8 hidden md:block">
               <div>
                 <h2 className="text-2xl font-bold text-white mb-6">Dane kontaktowe</h2>
                 <div className="space-y-6">
@@ -1798,6 +1844,80 @@ function ContactContent() {
                 )}
               </div>
             </motion.div>
+            
+            {/* Contact Info - MOBILE */}
+            <div 
+              className="space-y-8 block md:hidden"
+            >
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-6">Dane kontaktowe</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Email</div>
+                      <a 
+                        href="mailto:kontakt@whiteslope.studio" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        kontakt@whiteslope.studio
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Telefon</div>
+                      <a 
+                        href="tel:+48662581368" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        +48 662 581 368
+                      </a>
+                      <a 
+                        href="tel:+48731721760" 
+                        className="text-[#737373] hover:text-white transition-colors hover:cursor-pointer"
+                      >
+                        , +48 731 721 760
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Lokalizacja</div>
+                      <div className="text-[#737373]">Białystok, Polska</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white mb-1">Godziny pracy</div>
+                      <div className="text-[#737373]">Pon - Pt: 9:00 - 17:00</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Contact */}
+              <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                <h3 className="font-bold text-white mb-4">Pilny projekt?</h3>
+                <p className="text-[#d4d4d4] text-sm mb-4">
+                  Zadzwoń bezpośrednio i omówimy szczegóły.
+                </p>
+              </div>
+            </div>
 
             
           </div>

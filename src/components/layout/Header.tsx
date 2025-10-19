@@ -166,6 +166,20 @@ export const Header = () => {
             {!isMobile && (
               <nav className="flex items-center gap-2 flex-1 justify-end">
                 <div className="flex items-center gap-1">
+
+                  {/* START - STRONA GŁÓWNA */}
+                  <motion.button
+                    onClick={() => router.push("/")}
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/"
+                        ? "text-white bg-white/5"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Start
+                  </motion.button>
+
                   {/* PROJEKTY */}
                   <motion.button
                     onClick={() => router.push("/projects")}
@@ -509,6 +523,26 @@ export const Header = () => {
             >
               <div className="flex flex-col min-h-full pt-24 pb-8 px-6">
                 <div className="flex-1 space-y-2 pt-15">
+                  {/* Start - Strona Główna */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/");
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/"
+                        ? "bg-white/10 text-white"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    Start
+                  </motion.button>
+
+
                   {/* Projekty */}
                   <motion.button
                     onClick={() => {

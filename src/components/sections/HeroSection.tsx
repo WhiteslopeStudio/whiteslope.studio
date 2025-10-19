@@ -237,7 +237,7 @@ export default function HeroSection() {
                     setIsButton2Hovered(false);
                     setMousePos2({ x: 50, y: 50 });
                   }}
-                  className="w-full sm:w-auto h-14 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(107,107,107,0.2)] inline-flex"
+                  className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(107,107,107,0.2)] inline-flex"
                   style={{
                     background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #e1e1e12b 0%, #e1e1e122 30%, #e1e1e11c 60%, #e1e1e112 100%)`,
                   }}
