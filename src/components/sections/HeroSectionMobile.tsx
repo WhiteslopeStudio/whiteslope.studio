@@ -72,7 +72,7 @@ const HeroSectionMobile = () => {
   };
 
   return (
-    <section className="w-full relative overflow-hidden bg-black pt-40">
+    <section className="w-full relative overflow-hidden bg-black pt-30">
       {/* Avatary LinkedIn na górze z dużym paddingiem */}
       <div className="flex justify-center items-center relative mb-6 pt-10" style={{ width: '240px', height: '80px', margin: '0 auto' }}>
         {linkedinProfiles.map((person: LinkedInProfile, index: number) => {
@@ -197,7 +197,7 @@ const HeroSectionMobile = () => {
                   style={{
                     width: '90px',
                     height: '100px',
-                    background: '#141414',
+                    background: '#28282aff',
                     border: '1px solid #262626',
                     borderRadius: '12px',
                     display: 'flex',
@@ -211,7 +211,7 @@ const HeroSectionMobile = () => {
                     style={{
                       width: '32px',
                       height: '32px',
-                      background: '#1a1a1a',
+                      background: '#34363aff',
                       borderRadius: '8px',
                       display: 'flex',
                       alignItems: 'center',

@@ -184,9 +184,10 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-6 md:mb-16">
             <h2 className="text-3xl lg:text-5xl font-semibold">
-              <span className="platinum-text">
-                Odkryj strony od <span className="font-semibold">Whiteslope Studio</span>
-              </span>
+              <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}>Odkryj strony od Whiteslope Studio</span>
+
+              
             </h2>
           </div>
         </div>

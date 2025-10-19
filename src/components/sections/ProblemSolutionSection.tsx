@@ -3,7 +3,8 @@
 import { 
   AlertCircle, CheckCircle2, TrendingUp, Zap, Search, Clock, 
   ArrowRight, Target, BarChart3, Rocket, MousePointer, LineChart,
-  Plus, Minus
+  Plus, Minus,
+  Link
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -205,7 +206,7 @@ export const ProblemSolutionSection = () => {
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
               
-              Strona internetowa zmienia wszystko.<br/>Stwórzmy ją już dziś!
+              Strona internetowa zmienia wszystko.<br/>Stwórzmy ją już od 1500 zł!
               </span>
               <br />
             </h2>
@@ -260,9 +261,12 @@ export const ProblemSolutionSection = () => {
                         </div>
                       ))}
                     </div>
-                    <button className="hover:cursor-pointer text-white hover:text-red-300 transition-colors border-b border-white/30 pb-1 text-sm">
-                      Umów się na bezpłatną konsultację
-                    </button>
+                    <a 
+  href="/contact"
+  className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+>
+  Umów się na bezpłatną konsultację
+</a>
                   </div>
                 </div>
                 <div className="absolute bottom-6 right-6">
@@ -327,9 +331,12 @@ export const ProblemSolutionSection = () => {
                         </div>
                       ))}
                     </div>
-                    <button className="hover:cursor-pointer text-white hover:text-green-300 transition-colors border-b border-white/30 pb-1 text-sm">
-                      Umów się na bezpłatną konsultację
-                    </button>
+                    <a 
+  href="/contact"
+  className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+>
+  Umów się na bezpłatną konsultację
+</a>
                   </div>
                 </div>
                 <div className="absolute bottom-6 right-6">
@@ -407,9 +414,13 @@ export const ProblemSolutionSection = () => {
                         ))}
                       </div>
                     </div>
-                    <button className="hover:cursor-pointer text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm">
-                      Umów się na bezpłatną konsultację
-                    </button>
+
+                    <a 
+  href="/contact"
+  className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+>
+  Umów się na bezpłatną konsultację
+</a>
                   </div>
                 </div>
                 <div className="absolute bottom-6 right-6">
@@ -463,11 +474,15 @@ export const ProblemSolutionSection = () => {
         <div className="container mx-auto px-4">
           {/* NAGŁÓWEK SEKCJI */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-4 tracking-tight">
-              Transformacja {" "}
-              <span className="font-bold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                 Twojej marki 
-              </span> {" "}online!{" "}<br/>trzy, dwa, jeden...
+            <h2 className="text-3xl lg:text-5xl  text-white mb-4 tracking-tight"
+            style={{ fontWeight: 575 }}>
+              {" "}
+              <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
+              style={{ fontWeight: 575 }}>
+              
+              <br/>Stwórzmy stronę ją już od 1500 zł!
+              </span>
+              <br />
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Odkryj jak możemy pomóc Twojemu biznesowi rosnąć w internecie
@@ -476,7 +491,7 @@ export const ProblemSolutionSection = () => {
 
           {/* SEKCJA 1 - WYZWANIA */}
           <div className="mb-12">
-            <h3 className="font-semibold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-xl">
               Znamy wyzwania z którymi prawdopodobnie się zmagasz
             </h3>
             <div className="space-y-4 mb-6">
@@ -491,14 +506,17 @@ export const ProblemSolutionSection = () => {
                 </div>
               ))}
             </div>
-            <button className="hover:cursor-pointer text-white hover:text-red-300 transition-colors border-b border-white/30 pb-1 text-sm">
-              Umów się na bezpłatną konsultację
-            </button>
+            <a 
+  href="/contact"
+  className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+>
+  Umów się na bezpłatną konsultację
+</a>
           </div>
 
           {/* SEKCJA 2 - ROZWIĄZANIA */}
           <div className="mb-12">
-            <h3 className="font-semibold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-xl">
               Zobacz jak możemy Ci pomóc z Twoimi wyzwaniami
             </h3>
             <div className="space-y-4 mb-6">
@@ -513,14 +531,17 @@ export const ProblemSolutionSection = () => {
                 </div>
               ))}
             </div>
-            <button className="hover:cursor-pointer text-white hover:text-green-300 transition-colors border-b border-white/30 pb-1 text-sm">
-              Umów się na bezpłatną konsultację
-            </button>
+            <a 
+  href="/contact"
+  className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+>
+  Umów się na bezpłatną konsultację
+</a>
           </div>
 
           {/* SEKCJA 3 - AI & PRZYSZŁOŚĆ */}
           <div>
-            <h3 className="font-semibold text-white mb-6 text-base">
+            <h3 className="font-semibold text-white mb-6 text-xl">
               Zbuduj swoją markę w internecie i pozyskuj klientów
             </h3>
             <div className="space-y-6 mb-6">
@@ -549,9 +570,12 @@ export const ProblemSolutionSection = () => {
                 ))}
               </div>
             </div>
-            <button className="hover:cursor-pointer text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm">
-              Umów się na bezpłatną konsultację
-            </button>
+            <a 
+                href="/contact"
+                className="text-white hover:text-blue-300 transition-colors border-b border-white/30 pb-1 text-sm"
+              >
+                Umów się na bezpłatną konsultację
+              </a>
           </div>
         </div>
       </section>

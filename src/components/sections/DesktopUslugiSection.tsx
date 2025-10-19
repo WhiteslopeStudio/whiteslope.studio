@@ -103,7 +103,7 @@ export default function DesktopUslugiSection() {
                       <span className={`text-xl font-bold transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/65'
+                          : 'text-white/80'
                       }`}>
                         {(index + 1).toString().padStart(2, '0')}
                       </span>
@@ -111,7 +111,7 @@ export default function DesktopUslugiSection() {
                       <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/65'
+                          : 'text-white/80'
                       }`}>
                         {service.title}
                       </h3>

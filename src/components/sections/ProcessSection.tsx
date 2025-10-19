@@ -354,7 +354,7 @@ export const ProcessSection = () => {
         </div>
             {/* LOGA KLIENTÓW */}
         <div className="text-center mt-12 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-xs uppercase tracking-wider mb-6" style={{ color: '#6b7280' }}>
+          <p className="text-xs uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
             Zaufali nam
           </p>
           <div className="flex gap-8 justify-center flex-wrap">
@@ -375,7 +375,7 @@ export const ProcessSection = () => {
                     opacity: 0.4,
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.4'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.9'}
                 />
               </a>
             ))}

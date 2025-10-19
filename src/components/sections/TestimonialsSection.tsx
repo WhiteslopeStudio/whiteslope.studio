@@ -700,7 +700,7 @@ export const TestimonialsSection = () => {
         {/* NAGŁÓWEK */}
         <div className="text-center mb-8 relative z-10 max-w-10xl mx-auto px-4">
           <div className="text-left max-w-7xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl text-white mb-4 tracking-tight"
+            <h2 className="text-2xl lg:text-4xl text-white mb-4 tracking-tight items-center text-center sm:items-start flex flex-col"
             style={{ fontWeight: 575 }}>
               
               <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
@@ -709,7 +709,7 @@ export const TestimonialsSection = () => {
               </span>
 
             </h2>
-            <p className="text-base lg:text-lg" style={{ color: '#9ca3af' }}>
+            <p className="text-base lg:text-lg items-center text-center sm:items-start flex flex-col" style={{ color: '#9ca3af' }}>
               Realne wyniki, mierzalne rezultaty i zadowolenie
             </p>
           </div>
@@ -727,7 +727,7 @@ export const TestimonialsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="cursor-pointer transition-all duration-500"
                 >
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 items-center text-center">
                     <div 
                       className="text-4xl md:text-5xl font-bold transition-colors duration-500"
                       style={{
@@ -779,7 +779,7 @@ export const TestimonialsSection = () => {
                         <h3 
                           className="text-lg font-bold transition-colors duration-500"
                           style={{
-                            color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.6)',
+                            color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.87)',
                           }}
                         >
                           {testimonial.name}
@@ -787,7 +787,7 @@ export const TestimonialsSection = () => {
                         <p 
                           className="text-sm transition-colors duration-500"
                           style={{
-                            color: isHovered ? '#9ca3af' : 'rgba(255, 255, 255, 0.6)',
+                            color: isHovered ? '#ffffffff' : 'rgba(255, 255, 255, 0.83)',
                           }}
                         >
                           {testimonial.company}
@@ -800,7 +800,7 @@ export const TestimonialsSection = () => {
                             key={i} 
                             className="w-4 h-4 fill-current transition-colors duration-500" 
                             style={{ 
-                              color: isHovered ? '#ffae00' : 'rgba(255, 174, 0, 0.6)',
+                              color: isHovered ? '#ffae00' : 'rgba(255, 174, 0, 0.82)',
                             }} 
                           />
                         ))}
