@@ -9,6 +9,18 @@ export const PromoBanner = () => {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Ukrywanie bannera TYLKO NA MOBILE
   useEffect(() => {
@@ -65,23 +77,30 @@ export const PromoBanner = () => {
             <div className="relative z-10 container mx-auto px-6 pt-3 pb-2">
               <div className="flex items-center justify-center">
                 
-                {/* ŚRODEK - cały tekst na środku */}
-                <div className="flex items-center justify-center gap-3">
-                  <p className="text-white font-semibold text-sm">
-                    wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę internetową!
+                {/* MOBILE - kompaktowy tekst */}
+                {isMobile ? (
+                  <p className="text-white font-medium text-xs whitespace-nowrap">
+                    wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę →
                   </p>
-                  
-                  {/* Separator */}
-                  <div className="w-px h-4 bg-white/20" />
-                  
-                  {/* Call to action z hover */}
-                  <div className="flex items-center gap-1.5 group-hover:gap-2.5 transition-all duration-300">
-                    <span className="text-white font-normal text-sm">
-                      Napisz do nas
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                ) : (
+                  /* DESKTOP - pełny tekst */
+                  <div className="flex items-center justify-center gap-3">
+                    <p className="text-white font-semibold text-sm">
+                      wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę internetową!
+                    </p>
+                    
+                    {/* Separator */}
+                    <div className="w-px h-4 bg-white/20" />
+                    
+                    {/* Call to action z hover */}
+                    <div className="flex items-center gap-1.5 group-hover:gap-2.5 transition-all duration-300">
+                      <span className="text-white font-normal text-sm">
+                        Napisz do nas
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
                   </div>
-                </div>
+                )}
 
               </div>
             </div>
