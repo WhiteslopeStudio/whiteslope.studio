@@ -16,6 +16,7 @@ export const Header = () => {
   const [isOffersDropdownOpen, setIsOffersDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const offersDropdownRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
@@ -28,9 +29,6 @@ export const Header = () => {
   const sections = HOMEPAGE_MENU_ITEMS.filter(
     (item) => item.type === "section" && item.href !== "#home"
   );
-  const pages = isHomepage
-    ? HOMEPAGE_MENU_ITEMS.filter((item) => item.type === "page")
-    : SUBPAGES_MENU_ITEMS;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -116,19 +114,15 @@ export const Header = () => {
   };
 
   const handleHomeClick = () => {
-    // ZAWSZE scrolluj na samą górę strony
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
     
-    // Jeśli nie jesteśmy na homepage, przekieruj
     if (!isHomepage) {
       router.push("/");
     }
   };
-
-  const isOnPricingPage = pathname.startsWith("/pricing");
 
   return (
     <>
@@ -142,22 +136,23 @@ export const Header = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              {/* Logo z platynowym efektem */}
+              {/* Logo */}
               <motion.div
                 className="cursor-pointer relative overflow-hidden group transition-transform duration-300 hover:scale-105"
                 onClick={handleHomeClick}
+                onMouseEnter={() => setIsLogoHovered(true)}
+                onMouseLeave={() => setIsLogoHovered(false)}
               >
-                {/* Platynowa fala */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
                   initial={{ x: '-100%' }}
-                  whileHover={{
-                    x: '200%',
-                    transition: {
-                      duration: 0.8,
-                      ease: [0.4, 0.0, 0.2, 1]
-                    }
-                  }}
+                  // animate={isLogoHovered ? {
+                  //   x: ['100%', '200%'],
+                  //   transition: {
+                  //     duration: 0.8,
+                  //     ease: [0.4, 0.0, 0.2, 1]
+                  //   }
+                  // } : { x: '-100%' }}
                 />
                 <img
                   src="/_resources/logoWhiteSlope.webp"
@@ -170,10 +165,22 @@ export const Header = () => {
             {/* Desktop Menu */}
             {!isMobile && (
               <nav className="flex items-center gap-2 flex-1 justify-end">
-                {/* WSZYSTKO PRZYCZEPIONE DO PRAWEJ */}
                 <div className="flex items-center gap-1">
-                {/* Sections Dropdown - ZMIENIONE NA "ODKRYJ" */}
-                {isHomepage && (
+                  {/* PROJEKTY */}
+                  <motion.button
+                    onClick={() => router.push("/projects")}
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/projects"
+                        ? "text-white bg-white/5"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Projekty
+                  </motion.button>
+
+                  {/* ========== ODKRYJ - ZAKOMENTOWANE ========== */}
+                  {/* 
                   <div
                     className="relative"
                     ref={dropdownRef}
@@ -181,21 +188,14 @@ export const Header = () => {
                     onMouseLeave={() => setIsDropdownOpen(false)}
                   >
                     <motion.button
-                      onClick={() => router.push("/home")}
                       className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         sections.some((item) => getActiveState(item))
                           ? "text-white bg-white/5"
-                          : "text-[#a3a3a3] hover:text-white"
+                          : "text-[#d4d4d4] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
-                      <span>
-                        {activeSection === "home"
-                          ? "Odkryj"
-                          : sections.find(
-                              (item) => item.href.substring(1) === activeSection
-                            )?.label || "Odkryj"}
-                      </span>
+                      <span>Odkryj</span>
                       <motion.div
                         animate={{ rotate: isDropdownOpen ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
@@ -204,7 +204,6 @@ export const Header = () => {
                       </motion.div>
                     </motion.button>
 
-                    {/* NOWY PREMIUM DROPDOWN - JAK SQUARESPACE */}
                     <AnimatePresence>
                       {isDropdownOpen && (
                         <motion.div
@@ -246,9 +245,7 @@ export const Header = () => {
                             {sections.map((item, index) => (
                               <motion.button
                                 key={item.href}
-                                onClick={() =>
-                                  handleMenuClick(item.href, item.type)
-                                }
+                                onClick={() => handleMenuClick(item.href, item.type)}
                                 className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
                                   getActiveState(item)
                                     ? "text-white bg-white/5"
@@ -272,126 +269,133 @@ export const Header = () => {
                       )}
                     </AnimatePresence>
                   </div>
-                )}
+                  */}
+                  {/* ========== KONIEC ODKRYJ ========== */}
 
-                {/* OFERTA DROPDOWN - TAKIE SAME ANIMACJE */}
-                <div
-                  className="relative"
-                  ref={offersDropdownRef}
-                  onMouseEnter={() => setIsOffersDropdownOpen(true)}
-                  onMouseLeave={() => setIsOffersDropdownOpen(false)}
-                >
+                  {/* OFERTA DROPDOWN */}
+                  <div
+                    className="relative"
+                    ref={offersDropdownRef}
+                    onMouseEnter={() => setIsOffersDropdownOpen(true)}
+                    onMouseLeave={() => setIsOffersDropdownOpen(false)}
+                  >
+                    <motion.button
+                      onClick={() => router.push("/pricing")}
+                      className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        isOnServicePage
+                          ? "text-white bg-white/5"
+                          : "text-[#d4d4d4] hover:text-white"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <span>Oferta</span>
+                      <motion.div
+                        animate={{ rotate: isOffersDropdownOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
+                      >
+                        <ChevronDown className="w-4 h-4 ml-2" />
+                      </motion.div>
+                    </motion.button>
+
+                    <AnimatePresence>
+                      {isOffersDropdownOpen && (
+                        <motion.div
+                          initial={{ 
+                            height: 0,
+                            opacity: 0,
+                            scaleY: 0
+                          }}
+                          animate={{ 
+                            height: 'auto',
+                            opacity: 1,
+                            scaleY: 1,
+                            transition: {
+                              height: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] },
+                              opacity: { duration: 0.25, ease: "easeOut" },
+                              scaleY: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }
+                            }
+                          }}
+                          exit={{ 
+                            height: 0,
+                            opacity: 0,
+                            scaleY: 0,
+                            transition: {
+                              duration: 0.2,
+                              ease: "easeIn"
+                            }
+                          }}
+                          style={{ originY: 0 }}
+                          className="absolute top-full left-0 mt-2 w-64 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden"
+                        >
+                          <motion.div 
+                            className="py-2"
+                            initial={{ opacity: 0 }}
+                            animate={{ 
+                              opacity: 1,
+                              transition: { delay: 0.15, duration: 0.2 }
+                            }}
+                          >
+                            {MAIN_SERVICES.map((service: { label: string; href: string }, index: number) => (
+                              <motion.button
+                                key={service.href}
+                                onClick={() => {
+                                  setIsOffersDropdownOpen(false);
+                                  router.push(service.href);
+                                }}
+                                className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
+                                  pathname === service.href
+                                    ? "text-white bg-white/5"
+                                    : "text-[#d4d4d4] hover:text-white hover:bg-white/5"
+                                }`}
+                                initial={{ opacity: 0 }}
+                                animate={{ 
+                                  opacity: 1,
+                                  transition: {
+                                    delay: 0.2 + (index * 0.05),
+                                    duration: 0.2,
+                                    ease: "easeOut"
+                                  }
+                                }}
+                              >
+                                {service.label}
+                              </motion.button>
+                            ))}
+                          </motion.div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* BLOG */}
+                  <motion.button
+                    onClick={() => router.push("/blog")}
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/blog"
+                        ? "text-white bg-white/5"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Blog
+                  </motion.button>
+
+                  {/* CENNIK */}
                   <motion.button
                     onClick={() => router.push("/pricing")}
-                    className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                      isOnServicePage
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/pricing"
                         ? "text-white bg-white/5"
-                        : "text-[#a3a3a3] hover:text-white"
+                        : "text-[#d4d4d4] hover:text-white"
                     }`}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <span>Oferta</span>
-                    <motion.div
-                      animate={{ rotate: isOffersDropdownOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                    >
-                      <ChevronDown className="w-4 h-4 ml-2" />
-                    </motion.div>
+                    Cennik
                   </motion.button>
-
-                  <AnimatePresence>
-                    {isOffersDropdownOpen && (
-                      <motion.div
-                        initial={{ 
-                          height: 0,
-                          opacity: 0,
-                          scaleY: 0
-                        }}
-                        animate={{ 
-                          height: 'auto',
-                          opacity: 1,
-                          scaleY: 1,
-                          transition: {
-                            height: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] },
-                            opacity: { duration: 0.25, ease: "easeOut" },
-                            scaleY: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }
-                          }
-                        }}
-                        exit={{ 
-                          height: 0,
-                          opacity: 0,
-                          scaleY: 0,
-                          transition: {
-                            duration: 0.2,
-                            ease: "easeIn"
-                          }
-                        }}
-                        style={{ originY: 0 }}
-                        className="absolute top-full left-0 mt-2 w-64 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden"
-                      >
-                        <motion.div 
-                          className="py-2"
-                          initial={{ opacity: 0 }}
-                          animate={{ 
-                            opacity: 1,
-                            transition: { delay: 0.15, duration: 0.2 }
-                          }}
-                        >
-                          {MAIN_SERVICES.map((service: { label: string; href: string }, index: number) => (
-                            <motion.button
-                              key={service.href}
-                              onClick={() => {
-                                setIsOffersDropdownOpen(false);
-                                router.push(service.href);
-                              }}
-                              className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
-                                pathname === service.href
-                                  ? "text-white bg-white/5"
-                                  : "text-[#d4d4d4] hover:text-white hover:bg-white/5"
-                              }`}
-                              initial={{ opacity: 0 }}
-                              animate={{ 
-                                opacity: 1,
-                                transition: {
-                                  delay: 0.2 + (index * 0.05),
-                                  duration: 0.2,
-                                  ease: "easeOut"
-                                }
-                              }}
-                            >
-                              {service.label}
-                            </motion.button>
-                          ))}
-                        </motion.div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                {/* Page Links - BEZ KONTAKTU */}
-                {pages.filter(item => item.label !== 'Kontakt').map((item, index) => (
-                  <motion.button
-                    key={`${item.label}-${pathname}`}
-                    onClick={() => handleMenuClick(item.href, item.type)}
-                    className={`block w-full text-left px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                      getActiveState(item)
-                        ? 'bg-white/10 text-white'
-                        : 'text-[#d4d4d4] hover:text-white'
-                    }`}
-                    transition={{
-                      duration: 0.5,
-                      delay: (isHomepage ? 0.2 : 0) + index * 0.1,
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
                 </div>
 
                 {/* PRAWA STRONA - Wyszukiwarka, Kontakt, Social */}
                 <div className="flex items-center gap-2">
-                  {/* Przycisk wyszukiwania Z CMD+K */}
+                  {/* Wyszukiwarka */}
                   <motion.button
                     onClick={open}
                     className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/12 border border-white/12 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
@@ -410,14 +414,14 @@ export const Header = () => {
 
                   {/* Kontakt */}
                   <motion.button
-                    onClick={() => handleMenuClick('/contact', 'page')}
+                    onClick={() => router.push('/contact')}
                     className="px-4 py-2 rounded-full font-medium bg-white text-black transition-all duration-300 hover:cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
                     Kontakt
                   </motion.button>
 
-                  {/* Social Media Icons */}
+                  {/* Social Media */}
                   <div className="flex items-center gap-2">
                     <a
                       href="https://instagram.com/twoj_profil"
@@ -478,7 +482,7 @@ export const Header = () => {
         </div>
       </motion.header>
 
-      {/* MOBILE MENU - NIEZMIENIONE */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMenuOpen && isMobile && (
           <motion.div
@@ -504,57 +508,63 @@ export const Header = () => {
               className="absolute right-0 top-0 h-full w-80 bg-[#171717]/95 backdrop-blur-lg border-l border-[#404040] shadow-2xl overflow-y-auto"
             >
               <div className="flex flex-col min-h-full pt-24 pb-8 px-6">
-                {/* <motion.div
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="flex items-center space-x-3 mb-8 pb-6 border-b border-[#404040]"
-                >
-                  <div className="w-8 h-8 bg-white text-black font-bold flex items-center justify-center rounded-lg">
-                    WS
-                  </div>
-                  <span className="text-lg font-bold text-white">
-                    {APP_CONFIG.name}
-                  </span>
-                </motion.div> */}
+                <div className="flex-1 space-y-2 pt-15">
+                  {/* Projekty */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/projects");
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer${
+                      pathname === "/projects"
+                        ? "bg-white/10 text-white"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.05 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    Projekty
+                  </motion.button>
 
-                <div className="flex-1 space-y-2">
-                  {isHomepage && (
-                    <>
-                      <motion.div
-                        initial={{ x: 50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626] pt-20"
-                      >
-                        Sekcje strony
-                      </motion.div>
+                  {/* ========== ODKRYJ MOBILE - ZAKOMENTOWANE ========== */}
+                  {/*
+                  <motion.div
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626] pt-4"
+                  >
+                    Odkryj
+                  </motion.div>
 
-                      {sections.map((item, index) => (
-                        <motion.button
-                          key={`${item.label}-mobile-section`}
-                          onClick={() => handleMenuClick(item.href, item.type)}
-                          className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                            getActiveState(item)
-                              ? "bg-white/10 text-white"
-                              : "text-[#d4d4d4] hover:text-white"
-                          }`}
-                          initial={{ x: 50, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: index * 0.05 + 0.1,
-                          }}
-                          whileHover={{ x: 10 }}
-                        >
-                          {item.label}
-                        </motion.button>
-                      ))}
+                  {sections.map((item, index) => (
+                    <motion.button
+                      key={`${item.label}-mobile-section`}
+                      onClick={() => handleMenuClick(item.href, item.type)}
+                      className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        getActiveState(item)
+                          ? "bg-white/10 text-white"
+                          : "text-[#d4d4d4] hover:text-white"
+                      }`}
+                      initial={{ x: 50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.05 + 0.1,
+                      }}
+                      whileHover={{ x: 10 }}
+                    >
+                      {item.label}
+                    </motion.button>
+                  ))}
 
-                      <div className="h-4" />
-                    </>
-                  )}
+                  <div className="h-4" />
+                  */}
+                  {/* ========== KONIEC ODKRYJ MOBILE ========== */}
 
+                  {/* Oferta */}
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -587,35 +597,72 @@ export const Header = () => {
 
                   <div className="h-4" />
 
+                  {/* Inne strony */}
                   <motion.div
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
                     className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626]"
                   >
-                    Podstrony
+                    Inne
                   </motion.div>
 
-                  {pages.map((item, index) => (
-                    <motion.button
-                      key={`${item.label}-mobile-page`}
-                      onClick={() => handleMenuClick(item.href, item.type)}
-                      className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                        getActiveState(item)
-                          ? "bg-white/10 text-white"
-                          : "text-[#d4d4d4] hover:text-white"
-                      }`}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: (isHomepage ? 0.4 : 0.1) + index * 0.05,
-                      }}
-                      whileHover={{ x: 10 }}
-                    >
-                      {item.label}
-                    </motion.button>
-                  ))}
+                  {/* Blog */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/blog");
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/blog"
+                        ? "bg-white/10 text-white"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.35 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    Blog
+                  </motion.button>
+
+                  {/* Cennik */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/pricing");
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/pricing"
+                        ? "bg-white/10 text-white"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.4 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    Cennik
+                  </motion.button>
+
+                  {/* Kontakt */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/contact");
+                    }}
+                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      pathname === "/contact"
+                        ? "bg-white/10 text-white"
+                        : "text-[#d4d4d4] hover:text-white"
+                    }`}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.45 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    Kontakt
+                  </motion.button>
                 </div>
 
                 <motion.div

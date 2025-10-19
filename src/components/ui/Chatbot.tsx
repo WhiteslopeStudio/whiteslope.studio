@@ -142,21 +142,17 @@ export default function Chatbot() {
   // ==========================================
   if (!isOpen) {
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-6 pointer-events-none">
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pr-6 pb-6 pointer-events-none">
         <button 
           onClick={() => setIsOpen(true)}
           className="group relative pointer-events-auto"
           aria-label="Otwórz AI asystenta WhiteSlope"
         >
-          <div className="relative w-14 h-14 rounded-full backdrop-blur-xl bg-white/ border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-110 flex items-center justify-center hover:cursor-pointer">
+          <div className="relative px-4 py-3 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 flex items-center gap-3 hover:cursor-pointer">
             <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <Sparkles className="w-6 h-6 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <Sparkles className="w-5 h-5 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <span className="text-sm text-white relative z-10">Zapytaj Asystenta</span>
             <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping opacity-20"></div>
-          </div>
-
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 backdrop-blur-xl bg-black/80 border border-white/20 text-white text-sm rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-2xl">
-            Zapytaj AI o nasze usługi
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/80"></div>
           </div>
         </button>
       </div>
@@ -176,7 +172,7 @@ export default function Chatbot() {
 
       {/* Chat window - szeroki jak Claude */}
       <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-24 pointer-events-none">
-        <div className="w-[768px] max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-10rem)] backdrop-blur-2xl bg-black/40 border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto">
+        <div className="w-[768px] max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-10rem)] backdrop-blur-3xl bg-black/40 border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto">
           
           {/* HEADER */}
           <div className="relative bg-white/5 border-b border-white/10 p-4">
