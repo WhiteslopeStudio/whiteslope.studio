@@ -80,7 +80,7 @@ export const PromoBanner = () => {
                 {/* MOBILE - kompaktowy tekst */}
                 {isMobile ? (
                   <p className="text-white font-medium text-xs whitespace-nowrap">
-                    wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę →
+                    wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę
                   </p>
                 ) : (
                   /* DESKTOP - pełny tekst */
