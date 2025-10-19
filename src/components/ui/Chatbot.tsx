@@ -141,23 +141,22 @@ export default function Chatbot() {
   // FLOATING BAR (zamknięty chatbot) - DÓŁ STRONY
   // ==========================================
   if (!isOpen) {
-    return (
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pr-6 pb-6 pointer-events-none">
-        <button 
-          onClick={() => setIsOpen(true)}
-          className="group relative pointer-events-auto"
-          aria-label="Otwórz AI asystenta WhiteSlope"
-        >
-          <div className="relative px-4 py-3 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 flex items-center gap-3 hover:cursor-pointer">
-            <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <Sparkles className="w-5 h-5 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
-            <span className="text-sm text-white relative z-10">Zapytaj Asystenta</span>
-            <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping opacity-20"></div>
-          </div>
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-6 pointer-events-none">
+      <button 
+        onClick={() => setIsOpen(true)}
+        className="group relative pointer-events-auto"
+        aria-label="Otwórz AI asystenta WhiteSlope"
+      >
+        <div className="relative px-4 py-3 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 flex items-center gap-3 hover:cursor-pointer">
+          <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <Sparkles className="w-5 h-5 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+          <span className="text-sm text-white relative z-10">Zapytaj Asystenta</span>
+        </div>
+      </button>
+    </div>
+  );
+}
 
   // ==========================================
   // CHAT WINDOW (otwarty chatbot)
@@ -409,15 +408,18 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Kółeczko na dole */}
+      
+      {/* Przycisk zamykający na dole */}
       <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-6 pointer-events-none">
         <button 
           onClick={() => setIsOpen(false)}
-          className="relative pointer-events-auto group"
+          className="group relative pointer-events-auto"
           aria-label="Zamknij chat"
         >
-          <div className="w-14 h-14 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-110 flex items-center justify-center">
-            <X className="hover:cursor-pointer w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
+          <div className="relative px-4 py-3 rounded-full backdrop-blur-3xl bg-white/10 border border-white/20 shadow-2xl hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 flex items-center gap-3 hover:cursor-pointer">
+            <div className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Sparkles className="w-5 h-5 text-white relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+            <span className="text-sm text-white relative z-10">Zapytaj Asystenta</span>
           </div>
         </button>
       </div>

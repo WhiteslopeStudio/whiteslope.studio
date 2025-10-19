@@ -593,7 +593,7 @@ export const FAQ_DATA = [
     id: "1",
     question: "Ile czasu trwa realizacja projektu?",
     answer:
-      "Czas realizacji zależy od złożoności projektu. Strona wizytówka to około 2-3 tygodni, strona biznesowa 4-6 tygodni, a e-commerce 6-10 tygodni. Zawsze ustalamy konkretny harmonogram na początku współpracy.",
+      "Czas realizacji zależy od złożoności projektu. Prosty landing page może być gotowy w 1-2 tygodnie, podczas gdy bardziej rozbudowana strona biznesowa lub portal może zająć od 4 do 6 tygodni.",
   },
   {
     id: "2",
@@ -605,7 +605,7 @@ export const FAQ_DATA = [
     id: "3",
     question: "Czy mogę samodzielnie edytować treści?",
     answer:
-      "W pakietach Business i Premium dostarczamy intuicyjny panel CMS, dzięki któremu możesz łatwo aktualizować treści, zdjęcia i dodawać nowe wpisy na blog bez znajomości programowania.",
+      "Oczywiście! W pakietach biznesowych i premium oferujemy system zarządzania treścią (CMS), który pozwala na łatwą edycję tekstów, obrazów i innych elementów strony bez konieczności posiadania wiedzy technicznej.",
   },
   {
     id: "4",
@@ -617,7 +617,7 @@ export const FAQ_DATA = [
     id: "5",
     question: "Ile kosztuje hosting i domena?",
     answer:
-      "W cenach naszych pakietów hosting i domena na pierwszy rok są już uwzględnione. Po tym okresie koszt to około 200-300 zł rocznie, w zależności od wybranego pakietu hostingowego.",
+      "W większości przypadków koszt domeny i hostingu to około 200–300 zł rocznie. Jeśli strona jest napisana w kodzie (bez systemu WordPress), to tak naprawdę jedynym stałym kosztem jest sama domena. Pomożemy wybrać odpowiedni pakiet, założyć konto i dopilnujemy, żeby wszystko działało sprawnie. W razie potrzeby doradzimy też, gdyby strona wymagała dodatkowych opcji — wszystko zawsze ustalamy z wyprzedzeniem, żeby było jasno i bez niespodzianek.",
   },
   {
     id: "6",
@@ -656,7 +656,7 @@ export const SERVICE_PACKAGES = [
       },
       {
         id: "website-business",
-        name: "Strona biznesowa",
+        name: "Strona firmowa",
         price: "od 3500 zł",
         description: "Kompleksowa strona firmowa z systemem zarządzania",
         features: [
@@ -675,11 +675,11 @@ export const SERVICE_PACKAGES = [
       },
       {
         id: "website-premium",
-        name: "Portal biznesowy",
+        name: "Portal biznesowy - aplikacja webowa",
         price: "od 6500 zł",
         description: "Zaawansowany portal z dodatkowymi funkcjami",
         features: [
-          "Wszystko z pakietu Biznesowego",
+          "Wszystko z pakietu \"Strona firmowa\"",
           "Nieograniczona liczba podstron",
           "Zaawansowany CMS z rolami użytkowników",
           "System rezerwacji/zapisów online",
@@ -702,7 +702,7 @@ export const SERVICE_PACKAGES = [
         price: "od 800 zł",
         description: "Diagnoza problemów i natychmiastowe poprawki",
         features: [
-          "Pełny audyt techniczny strony",
+          
           "Analiza wydajności i SEO",
           "Raport z listą problemów",
           "Naprawki krytycznych błędów",
@@ -720,11 +720,11 @@ export const SERVICE_PACKAGES = [
         features: [
           "Wszystko z pakietu Audyt",
           "Migracja na nowoczesne technologie",
-          "Drastyczna poprawa wydajności (3x szybciej)",
+          
           "Kompletna optymalizacja SEO",
           "Responsywność na wszystkich urządzeniach",
-          "Zabezpieczenia i backup",
-          "Setup Google Analytics 4",
+          
+          "Setup Google Analytics",
           "Dokumentacja zmian",
         ],
         timeline: "2-3 tygodni",
@@ -741,7 +741,7 @@ export const SERVICE_PACKAGES = [
           "Migracja treści bez straty SEO",
           "Nowa architektura informacyjna",
           "UX/UI zgodne z najnowszymi trendami",
-          "A/B testing nowej wersji",
+
           "Szkolenie zespołu",
           "Wsparcie 6 miesięcy",
         ],
@@ -825,7 +825,7 @@ export const SERVICE_PACKAGES = [
         description: "Materiały drukowane - ulotki, plakaty, wizytówki",
         features: [
           "Projekt ulotki A5 (jedno- lub dwustronnej)",
-          "ALBO projekt plakatu A3",
+          "ALBO projekt plakatu A3/A2",
           "ALBO projekt wizytówki dwustronnej",
           "Materiały gotowe do druku",
           "Układy graficzne i kompozycje",
@@ -894,7 +894,7 @@ export const SERVICE_PACKAGES = [
         description: "Stały partner technologiczny dla Twojego biznesu",
         features: [
           "Wszystko z Projektu na zamówienie",
-          "Miesięczny budżet na rozwój",
+          
           "Priorytetowe wsparcie 24/7",
           "Regularne audyty i optymalizacje",
           "Dostęp do pełnego zespołu",
@@ -912,58 +912,48 @@ export const SERVICE_PACKAGES = [
       {
         id: "email-basic",
         name: "Newsletter Starter",
-        price: "od 900 zł",
+        price: "od 800 zł",
         description: "Podstawowa integracja newsletter na stronie",
         features: [
-          "Formularz zapisu na newsletter",
+          "Formularz zapisu. Popup lub inline",
           "Integracja z MailerLite",
-          "Responsywny design formularza",
-          "Automatyczny email powitalny",
-          "Popup lub inline form",
+          "Email powitalny. Automatyzacja",
           "Zgodność z RODO",
-          "Setup konta MailerLite",
-          "Podstawowe szablony emaili",
+          "Setup konta",
         ],
         timeline: "1 tydzień",
       },
       {
         id: "email-advanced",
         name: "Newsletter Pro",
-        price: "od 2000 zł",
-        description: "Rozbudowana strategia email marketingu",
+        price: "od 1500 zł",
+        description: "Rozszerzona automatyzacja newslettera",
         features: [
           "Wszystko z pakietu Starter",
-          "3 różne formularze zapisu (popup, inline, exit-intent)",
-          "Segmentacja subskrybentów",
-          "5 autorskich szablonów emaili",
-          "Automatyzacja: seria powitalnych emaili (3-5 wiadomości)",
-          "Integracja z Google Analytics",
-          "A/B testing formularzy",
-          "Landing page do zapisów",
-          "Szkolenie z obsługi MailerLite",
+          "2 formularze zapisu (popup + inline)",
+          "Seria powitalnych emaili (3 wiadomości). Automatyzacja",
+          "3 autorskie szablony emaili",
+          "Segmentacja podstawowa. Tagi",
+          "Analytics. Google Analytics",
         ],
-        timeline: "2-3 tygodni",
+        timeline: "1-2 tygodni",
         highlighted: true,
       },
       {
         id: "email-automation",
         name: "Full Automation",
-        price: "od 4000 zł",
-        description: "Kompleksowa automatyzacja email marketingu",
+        price: "od 2000 zł",
+        description: "Kompletna automatyzacja email marketingu",
         features: [
-          "Wszystko z pakietu Newsletter Pro",
-          "Zaawansowane lejki sprzedażowe (email funnels)",
-          "Automatyzacja behawioralna (reakcje na kliknięcia)",
-          "10+ autorskich szablonów emaili",
-          "Integracja z CRM i e-commerce",
-          "Segmentacja dynamiczna i tagowanie",
-          "Kampanie reaktywacyjne i nurturing",
-          "RSS-to-Email (automatyczne emaile z bloga)",
-          "Kompleksowa analityka i raporty",
-          "Strategia contentu na 3 miesiące",
-          "Wsparcie 6 miesięcy",
+          "Wszystko z pakietu Pro",
+          "Lejek sprzedażowy (5-7 emaili). Email funnel",
+          "Automatyzacja behawioralna. Triggery, reakcje na kliknięcia",
+          "Szablony Emaili przygotowane pod Ciebie",
+          "Segmentacja zaawansowana. Tagowanie dynamiczne",
+          "Kampanie reaktywacyjne. Nurturing",
+          "Strategia contentu na miesiąc",
         ],
-        timeline: "3-4 tygodni",
+        timeline: "2-3 tygodni",
       },
     ],
   },
@@ -1008,7 +998,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     title: "Patryk Kulesza - korepetycje matematyka, angielski i programowanie",
     image: "/_resources/patrykkul.webp",
     category: "Strona usługowa",
-    href: "https://patrykkul.github.io/korepetycje/",
+    href: "https://korepetycje-eight.vercel.app",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
   },
 
@@ -1025,19 +1015,19 @@ export const PROCESS_STEPS: ProcessStep[] = [
     id: "2",
     title: "Planowanie i cel",
     description:
-      "Tworzymy strategię projektu, architekturę informacyjną oraz plan działania. Ustalamy harmonogram i kamienie milowe.",
+      "Tworzymy strategię projektu, architekturę informacyjną oraz plan działania.",
   },
   {
     id: "3",
     title: "Projektowanie",
     description:
-      "Projektujemy unikalny design dopasowany do Twojej marki. Tworzymy wireframes, makiety i system design.",
+      "Projektujemy unikalny design dopasowany do Twojej marki. Tworzymy makiety i prototypy.",
   },
   {
     id: "4",
-    title: "Programowanie",
+    title: "Tworzymy stronę",
     description:
-      "Kodujemy stronę używając najnowszych technologii: Next.js, React, TypeScript. Dbamy o wydajność i SEO.",
+      "Kodujemy bądź tworzymy stronę używając najnowszych technologii: Next.js, React, TypeScript, Wordpress. Dbamy o wydajność i SEO.",
   },
   {
     id: "5",
@@ -1088,7 +1078,7 @@ export const MAIN_SERVICES: MainService[] = [
         description: "Pełne wsparcie po uruchomieniu strony, pomoc i regularne aktualizacje."
       },
     ],
-    ctaText: "Zgłoś projekt",
+    ctaText: "Wybierz pakiet",
     animationDirection: "left",
     highlighted: true,
   },
@@ -1200,7 +1190,7 @@ export const MAIN_SERVICES: MainService[] = [
         description: "Zaawansowane grafiki płaskie i trójwymiarowe modele dla nowoczesnej prezentacji."
       },
     ],
-    ctaText: "Zgłoś projekt",
+    ctaText: "Wybierz pakiet",
     animationDirection: "right",
   },
   {

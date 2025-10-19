@@ -424,7 +424,7 @@ export const Header = () => {
                   {/* Social Media */}
                   <div className="flex items-center gap-2">
                     <a
-                      href="https://instagram.com/twoj_profil"
+                      href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
@@ -433,7 +433,7 @@ export const Header = () => {
                     </a>
 
                     <a
-                      href="https://facebook.com/twoj_profil"
+                      href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
@@ -693,7 +693,7 @@ export const Header = () => {
 
                   <div className="flex justify-center gap-4 pt-2">
                     <a
-                      href="https://instagram.com/twoj_profil"
+                      href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer"
@@ -701,7 +701,7 @@ export const Header = () => {
                       <Instagram className="w-5 h-5 text-white" />
                     </a>
                     <a
-                      href="https://facebook.com/twoj_profil"
+                      href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer"
