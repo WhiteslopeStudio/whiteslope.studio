@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback } from 'react'
+
 import { useState, useLayoutEffect, useEffect } from 'react';
 import IntroAnimation from '@/components/layout/IntroAnimation';
 import HeroSection from '@/components/sections/HeroSection';
@@ -71,10 +73,9 @@ export default function HomePage() {
     }
   }, [isMobile]);
 
-  const handleIntroComplete = () => {
+  const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
     setIntroCompleted(true);
-    
     localStorage.setItem(
       'hero-animation-data',
       JSON.stringify({
@@ -82,7 +83,7 @@ export default function HomePage() {
         timestamp: Date.now(),
       })
     );
-  };
+  }, []); // ← WAŻNE: puste []
 
   return (
     <main className="min-h-screen bg-black">

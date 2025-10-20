@@ -72,7 +72,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     const animationData = localStorage.getItem('hero-animation-data');
     if (animationData) {
       const { seen, timestamp } = JSON.parse(animationData);
-      const dayInMs = 24 * 60 * 60 * 1000; // co 24 godziny odpalany nowa filmik
+      const dayInMs = 48 * 60 * 60 * 1000; // co 24 godziny odpalany nowa filmik
       if (Date.now() - timestamp > dayInMs) {
         localStorage.removeItem('hero-animation-data');
       } else {
@@ -157,6 +157,8 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
       onComplete?: () => void
     ) => {
       const startTime = performance.now();
+      let animationId: number;  // ← DODAJ TO!
+      
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
@@ -170,12 +172,20 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
         }
 
         if (progress < 1) {
-          requestAnimationFrame(animate);
+          animationId = requestAnimationFrame(animate);  // ← ZAPISZ ID!
         } else {
           onComplete?.();
         }
       };
-      requestAnimationFrame(animate);
+      
+      animationId = requestAnimationFrame(animate);  // ← ZAPISZ ID!
+      
+      // ← ZWRÓĆ FUNKCJĘ CLEANUP!
+      return () => {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+      };
     },
     []
   );
