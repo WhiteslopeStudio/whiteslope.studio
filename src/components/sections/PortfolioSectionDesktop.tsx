@@ -69,7 +69,6 @@ export default function PortfolioSectionDesktop() {
   const [progress, setProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showPlayButton, setShowPlayButton] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const bgVideoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -107,22 +106,6 @@ export default function PortfolioSectionDesktop() {
     }
   };
 
-  // Funkcja do ręcznego odtworzenia video
-  const handlePlayClick = async () => {
-    const video = videoRef.current;
-    const bgVideo = bgVideoRef.current;
-    
-    if (video) {
-      try {
-        await video.play();
-        if (bgVideo) await bgVideo.play();
-        setShowPlayButton(false);
-      } catch (error) {
-        console.error('Nie można odtworzyć video:', error);
-      }
-    }
-  };
-
   // Nasłuchuj zmiany fullscreen (np. ESC)
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -135,46 +118,21 @@ export default function PortfolioSectionDesktop() {
     };
   }, []);
 
-  // Odtwarzanie video - POPRAWIONE!
+  // Odtwarzanie video
   useEffect(() => {
     const video = videoRef.current;
     const bgVideo = bgVideoRef.current;
     if (!video) return;
 
-    // Bezpieczne odtwarzanie video
-    const playVideo = async () => {
-      try {
-        video.currentTime = 0;
-        await video.play();
-        setShowPlayButton(false);
+    video.currentTime = 0;
+    video.play();
 
-        if (bgVideo) {
-          bgVideo.currentTime = 0;
-          await bgVideo.play();
-        }
-      } catch (error) {
-        if (error instanceof Error) {
-          // Ignoruj typowe błędy autoplay
-          if (error.name === 'AbortError') {
-            return;
-          }
-          
-          if (error.name === 'NotAllowedError') {
-            setShowPlayButton(true);
-            console.log('Autoplay zablokowany - pokazuję przycisk Play');
-            return;
-          }
-          
-          console.error('Video playback error:', error);
-        }
-      }
-    };
-
-    playVideo();
+    if (bgVideo) {
+      bgVideo.currentTime = 0;
+      bgVideo.play();
+    }
 
     const updateProgress = () => {
-      if (!video) return;
-      
       const currentTime = video.currentTime;
       const duration = Math.min(video.duration, 6);
 
@@ -203,7 +161,6 @@ export default function PortfolioSectionDesktop() {
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 y-10">
         <video
-          key={`bg-${currentItem.id}`}
           ref={bgVideoRef}
           src={currentItem.video}
           className="w-full h-full object-cover"
@@ -295,7 +252,6 @@ export default function PortfolioSectionDesktop() {
           }}
         >
           <video
-            key={currentItem.id}
             ref={videoRef}
             src={currentItem.video}
             className="w-full h-auto aspect-video object-cover"
@@ -303,26 +259,17 @@ export default function PortfolioSectionDesktop() {
             playsInline
           />
 
-          {/* PRZYCISK PLAY - gdy autoplay zablokowany */}
-          {showPlayButton && (
-            <div 
-              className="absolute inset-0 flex items-center justify-center bg-black/30  z-30"
-              onClick={handlePlayClick}
-            >
-              <button
-                className="group w-24 h-24 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border-2 border-white/40 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                onClick={handlePlayClick}
-              >
-                <svg 
-                  className="w-12 h-12 text-white ml-1" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-            </div>
-          )}
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+            style={{
+              background: isHovered
+                ? 'radial-gradient(closest-side, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 30%, transparent 60%)'
+                : 'transparent',
+              opacity: isHovered ? 1 : 0,
+              mixBlendMode: 'screen',
+            }}
+          />
 
           <div 
             className="absolute inset-0 pointer-events-none"
