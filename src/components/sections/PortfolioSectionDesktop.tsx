@@ -118,18 +118,22 @@ export default function PortfolioSectionDesktop() {
     };
   }, []);
 
-  // Odtwarzanie video
+  // ✅ AUTOMATYCZNE ODTWARZANIE - po staremu
   useEffect(() => {
     const video = videoRef.current;
     const bgVideo = bgVideoRef.current;
     if (!video) return;
 
     video.currentTime = 0;
-    video.play();
+    video.play().catch(err => {
+      console.log('Autoplay blocked:', err);
+    });
 
     if (bgVideo) {
       bgVideo.currentTime = 0;
-      bgVideo.play();
+      bgVideo.play().catch(err => {
+        console.log('Background autoplay blocked:', err);
+      });
     }
 
     const updateProgress = () => {
@@ -163,6 +167,7 @@ export default function PortfolioSectionDesktop() {
         <video
           ref={bgVideoRef}
           src={currentItem.video}
+          preload="metadata"
           className="w-full h-full object-cover"
           style={{
             transform: 'scale(1.03)',
@@ -239,11 +244,16 @@ export default function PortfolioSectionDesktop() {
           </div>
         </div>
 
-        {/* VIDEO PLAYER */}
+        {/* VIDEO PLAYER - ✅ KLIKNIĘCIE PRZEKIEROWUJE */}
         <div
           ref={videoContainerRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            if (typeof window !== 'undefined') {
+              window.location.href = currentItem.href;
+            }
+          }}
           className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
           style={{
             boxShadow: isHovered
@@ -254,21 +264,10 @@ export default function PortfolioSectionDesktop() {
           <video
             ref={videoRef}
             src={currentItem.video}
+            preload="metadata"
             className="w-full h-auto aspect-video object-cover"
             muted
             playsInline
-          />
-
-          <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-            style={{
-              background: isHovered
-                ? 'radial-gradient(closest-side, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 30%, transparent 60%)'
-                : 'transparent',
-              opacity: isHovered ? 1 : 0,
-              mixBlendMode: 'screen',
-            }}
           />
 
           <div 
