@@ -170,7 +170,7 @@ export default function HeroSection() {
               {/* BADGE */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full  backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
-                <span className="text-white-300 text-sm font-medium">
+                <span className="text-white text-sm font-medium">
                   strony internetowe · integracja AI · email marketing · grafika 2D i 3D
                 </span>
               </div>
