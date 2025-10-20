@@ -118,19 +118,31 @@ export default function PortfolioSectionDesktop() {
     };
   }, []);
 
-  // Odtwarzanie video
+  // Odtwarzanie video - POPRAWIONE!
   useEffect(() => {
     const video = videoRef.current;
     const bgVideo = bgVideoRef.current;
     if (!video) return;
 
-    video.currentTime = 0;
-    video.play();
+    // Bezpieczne odtwarzanie video
+    const playVideo = async () => {
+      try {
+        video.currentTime = 0;
+        await video.play();
 
-    if (bgVideo) {
-      bgVideo.currentTime = 0;
-      bgVideo.play();
-    }
+        if (bgVideo) {
+          bgVideo.currentTime = 0;
+          await bgVideo.play();
+        }
+      } catch (error) {
+        // Ignoruj błędy abort - to normalne przy szybkiej zmianie slajdów
+        if (error instanceof Error && error.name !== 'AbortError') {
+          console.error('Video playback error:', error);
+        }
+      }
+    };
+
+    playVideo();
 
     const updateProgress = () => {
       const currentTime = video.currentTime;
@@ -161,6 +173,7 @@ export default function PortfolioSectionDesktop() {
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 y-10">
         <video
+          key={`bg-${currentItem.id}`}
           ref={bgVideoRef}
           src={currentItem.video}
           className="w-full h-full object-cover"
@@ -252,6 +265,7 @@ export default function PortfolioSectionDesktop() {
           }}
         >
           <video
+            key={currentItem.id}
             ref={videoRef}
             src={currentItem.video}
             className="w-full h-auto aspect-video object-cover"
@@ -264,7 +278,7 @@ export default function PortfolioSectionDesktop() {
             className="absolute inset-0 pointer-events-none transition-opacity duration-500"
             style={{
               background: isHovered
-                ? 'radial-gradient(closest-side, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 30%, transparent 60%)'
+                ? 'radial-gradient(closest-side, rgba(255, 255, 255, 0.02), rgba(255,255,255,0.01) 30%, transparent 60%)'
                 : 'transparent',
               opacity: isHovered ? 1 : 0,
               mixBlendMode: 'screen',
