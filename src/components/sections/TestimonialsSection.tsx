@@ -766,7 +766,7 @@ export const TestimonialsSection = () => {
                   <div 
                     className="flex flex-col gap-4 p-6 rounded-2xl transition-all duration-500"
                     style={{
-                      background: isHovered ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.03)',
+                      background: isHovered ? '#1e1e1fff' : '#1e1e1fff',
                       border: isHovered 
                         ? '1px solid rgba(255, 255, 255, 0.15)' 
                         : '1px solid rgba(255, 255, 255, 0.1)',

@@ -206,7 +206,7 @@ export const ProblemSolutionSection = () => {
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
               
-              Strona internetowa zmienia wszystko.<br/>Stwórzmy ją już od 1500 zł!
+              Strona internetowa zmienia wszystko.<br/>Stwórzmy ją już od <span className="font-bold text-white">1500 zł!</span>
               </span>
               <br />
             </h2>

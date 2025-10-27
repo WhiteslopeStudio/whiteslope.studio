@@ -42,28 +42,15 @@ export default function DesktopUslugiSection() {
   return (
     <section 
       className="py-12 bg-black relative overflow-hidden pb-50"
-      // style={{
-      //   background: `
-      //     radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
-      //     linear-gradient(
-      //       to bottom,
-      //       black 0px,
-      //       black 10px,
-      //       #3b3b3bff 10px,
-      //       #3b3b3bff 11px,
-      //       #0b0b0bff 11px,
-      //       #0b0b0bff calc(100% - 11px),
-      //       #3b3b3bff calc(100% - 11px),
-      //       #3b3b3bff calc(100% - 10px),
-      //       black calc(100% - 10px),
-      //       black 100%
-      //     )
-      //   `
-      // }}
     >
+      
       <div className="relative z-10">
+        
         {/* GRID 3 KOLUMNY */}
         <div className="relative max-w-7xl mx-auto px-4">
+          <h2 className="text-2xl font-3xl text-white/80 text-center py-3 sm:py-5">
+            Nasze usługi:
+          </h2>
           <div 
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
@@ -92,12 +79,19 @@ export default function DesktopUslugiSection() {
                   {/* Czerwona kropka dla pierwszego */}
                   {index === 0 && (
                     <div
-                      className="absolute -top-2 -left-2 w-2 h-2 bg-[#ff0000] rounded-full z-10"
+                      className="absolute -top-0 -left-0 w-2 h-2 bg-[#ff0000] rounded-full z-10"
                     />
                   )}
 
-                  {/* KARTA - POZIOMY LAYOUT */}
-                  <div className="flex flex-col gap-3">
+                  {/* KARTA Z TŁ EM I ZAOKRĄGLONYMI ROGAMI */}
+                  <div 
+                    className="flex flex-col gap-3 p-6 transition-all duration-500"
+                    style={{
+                      background: '#1e1e1fff',
+                      border: `1px solid ${isHovered ? '#3a3a3c' : '#1a1a1aff'}`,
+                      borderRadius: '16px',
+                    }}
+                  >
                     {/* Numer + Tytuł + Ikona */}
                     <div className="flex items-center gap-3">
                       <span className={`text-xl font-bold transition-colors duration-500 ${
