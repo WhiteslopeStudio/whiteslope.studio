@@ -3,7 +3,10 @@
 import { useCallback } from 'react'
 
 import { useState, useLayoutEffect, useEffect } from 'react';
-import IntroAnimation from '@/components/layout/IntroAnimation';
+
+// 🚫 ANIMACJA INTRO - WYŁĄCZONA (odkomentuj jak chcesz wrócić)
+// import IntroAnimation from '@/components/layout/IntroAnimation';
+
 import HeroSection from '@/components/sections/HeroSection';
 import { ProblemSolutionSection } from '@/components/sections/ProblemSolutionSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
@@ -14,7 +17,7 @@ import { FAQSection } from '@/components/sections/FaqSection';
 import { BlogSection } from '@/components/sections/BlogSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import HeroSectionMobile from '@/components/sections/HeroSectionMobile';
-import BriefSection from '@/components/sections/BriefSection';
+
 import DesktopUslugiSection from '@/components/sections/DesktopUslugiSection';
 import PortfolioSectionDesktop from '@/components/sections/PortfolioSectionDesktop';
 
@@ -26,26 +29,14 @@ export default function HomePage() {
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
   );
   
+  // ✅ OD RAZU POKAZUJEMY TREŚĆ (bez animacji intro)
+  const [introCompleted, setIntroCompleted] = useState(true);
+
+  // 🚫 STARA LOGIKA ANIMACJI - WYŁĄCZONA
+  // Odkomentuj poniższy kod jak chcesz przywrócić animację intro
+  /*
   const [showIntro, setShowIntro] = useState(false);
-  const [introCompleted, setIntroCompleted] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+  
   useEffect(() => {
     if (isMobile) {
       setIntroCompleted(true);
@@ -83,14 +74,38 @@ export default function HomePage() {
         timestamp: Date.now(),
       })
     );
-  }, []); // ← WAŻNE: puste []
+
+  */
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   return (
     <main className="min-h-screen bg-black">
+      {/* 🚫 ANIMACJA INTRO - WYŁĄCZONA */}
+      {/* Odkomentuj poniższy blok jak chcesz przywrócić animację */}
+      {/*
       {showIntro && !isMobile && (
         <IntroAnimation onComplete={handleIntroComplete} />
       )}
+      */}
 
+      {/* ✅ ZAWSZE POKAZUJEMY TREŚĆ (introCompleted jest zawsze true) */}
       {introCompleted && (
         <>
           {/* 🚀 HERO SECTION */}
@@ -102,12 +117,8 @@ export default function HomePage() {
           {/* 🛠️ DESKTOP USŁUGI */}
           {!isMobile && <DesktopUslugiSection />}
 
-          
-
           {/* 📱 PORTFOLIO MOBILE */}
           {isMobile && <PortfolioSection />}
-
-          
 
           {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
           <ProblemSolutionSection />
@@ -117,8 +128,6 @@ export default function HomePage() {
 
           {/* 🔄 PROCESS SECTION */}
           <ProcessSection />
-
-          
 
           {/* 🎯 EXPERIENCE */}
           <ExperienceSection />

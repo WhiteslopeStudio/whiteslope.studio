@@ -259,7 +259,7 @@ export default function PortfolioSectionDesktop() {
             playsInline
           />
 
-          <div
+          {/* <div
             aria-hidden
             className="absolute inset-0 pointer-events-none transition-opacity duration-500"
             style={{
@@ -269,7 +269,7 @@ export default function PortfolioSectionDesktop() {
               opacity: isHovered ? 1 : 0,
               mixBlendMode: 'screen',
             }}
-          />
+          /> */}
 
           <div 
             className="absolute inset-0 pointer-events-none"
