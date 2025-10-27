@@ -170,7 +170,7 @@ export default function HeroSection() {
               {/* BADGE */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full  backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
-                <span className="text-white text-sm font-medium">
+                <span className="text-sm font-medium text-gray-300">
                   strony internetowe · integracja AI · email marketing · grafika 2D i 3D
                 </span>
               </div>
@@ -209,7 +209,26 @@ export default function HeroSection() {
               </p>
 
               {/* PRZYCISKI */}
-              <div className="flex flex-col sm:flex-row justify-center gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-5 pt-4">
+
+                <a
+                  href="/pricing/website"
+                  onMouseMove={handleMouseMove2}
+                  onMouseEnter={() => setIsButton2Hovered(true)}
+                  onMouseLeave={() => {
+                    setIsButton2Hovered(false);
+                    setMousePos2({ x: 50, y: 50 });
+                  }}
+                  className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
+                  style={{
+                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #8265db 0%, #7b5cda 30%, #7856dc 60%, rgba(125, 92, 222, 1) 100%)`,
+                  }}
+                >
+                  <span className="relative z-10 text-white h-full w-full flex items-center justify-center gap-2 px-8 font-semibold">
+                    Stwórzmy stronę
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </a>
                 <a
                   href="/contact#contact-form"
                   onMouseMove={handleMouseMove1}
@@ -229,24 +248,7 @@ export default function HeroSection() {
                   </span>
                 </a>
 
-                <a
-                  href="/pricing/website"
-                  onMouseMove={handleMouseMove2}
-                  onMouseEnter={() => setIsButton2Hovered(true)}
-                  onMouseLeave={() => {
-                    setIsButton2Hovered(false);
-                    setMousePos2({ x: 50, y: 50 });
-                  }}
-                  className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(107,107,107,0.2)] inline-flex"
-                  style={{
-                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #e1e1e12b 0%, #e1e1e122 30%, #e1e1e11c 60%, #e1e1e112 100%)`,
-                  }}
-                >
-                  <span className="relative z-10 text-white/80 h-full w-full flex items-center justify-center gap-2 px-8 font-medium">
-                    Stwórzmy stronę
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </a>
+                
               </div>
             </div>
 

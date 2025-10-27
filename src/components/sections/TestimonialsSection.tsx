@@ -639,7 +639,7 @@ const testimonials: Testimonial[] = [
     companyUrl: 'https://wieslawski.studio',
     logo: '_resources/wieslawski-studio-logo.webp',
     rating: 5,
-    text: 'Szybkość działania jest świetna. Bardzo szybko otrzymywałem odpowiedzi na pytania. Pierwsze zapytania od klientów pojawiły się po 24h od uruchomienia strony.',
+    text: 'Przykładowa opinia',
     highlight: ['Szybkość działania', 'zapytania od klientów', '24h'],
   },
   {

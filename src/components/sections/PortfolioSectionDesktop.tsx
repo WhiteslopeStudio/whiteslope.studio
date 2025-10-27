@@ -125,11 +125,9 @@ export default function PortfolioSectionDesktop() {
     if (!video) return;
 
     video.currentTime = 0;
-    video.play();
 
     if (bgVideo) {
       bgVideo.currentTime = 0;
-      bgVideo.play();
     }
 
     const updateProgress = () => {
@@ -169,9 +167,11 @@ export default function PortfolioSectionDesktop() {
             willChange: 'transform',
             filter: 'brightness(1) saturate(110%)',
           }}
+          autoPlay
           muted
           playsInline
           loop={false}
+          controls={false}
         />
         
         <div
@@ -239,106 +239,94 @@ export default function PortfolioSectionDesktop() {
           </div>
         </div>
 
-        {/* VIDEO PLAYER */}
         <div
-          ref={videoContainerRef}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
-          style={{
-            boxShadow: isHovered
-              ? '0 30px 80px rgba(255,255,255,0.06), 0 0 120px rgba(255,255,255,0.04)'
-              : undefined,
-          }}
-        >
-          <video
-            ref={videoRef}
-            src={currentItem.video}
-            className="w-full h-auto aspect-video object-cover"
-            muted
-            playsInline
-          />
+  ref={videoContainerRef}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+  className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
+  style={{
+    boxShadow: isHovered
+      ? '0 30px 80px rgba(255,255,255,0.06), 0 0 120px rgba(255,255,255,0.04)'
+      : undefined,
+  }}
+>
+  <video
+    ref={videoRef}
+    src={currentItem.video}
+    className="w-full h-auto aspect-video object-cover"
+    autoPlay
+    muted
+    playsInline
+    controls={false}
+  />
 
-          {/* <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-            style={{
-              background: isHovered
-                ? 'radial-gradient(closest-side, rgba(255,255,255,0.12), rgba(255,255,255,0.04) 30%, transparent 60%)'
-                : 'transparent',
-              opacity: isHovered ? 1 : 0,
-              mixBlendMode: 'screen',
-            }}
-          /> */}
+  {/* Gradient na dole dla lepszego kontrastu, ale bez przykrywania elementów */}
+  <div
+    className="absolute inset-0 pointer-events-none z-10"
+    style={{
+      background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.7) 100%)',
+    }}
+  />
 
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0)70%, rgba(0, 0, 0, 0.9) 100%)',
-            }}
-          />
+  {currentItem.logo && (
+    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
+      <img src={currentItem.logo} alt="Logo" className="h-16 w-auto" />
+    </div>
+  )}
 
-          {currentItem.logo && (
-            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
-              <img
-                src={currentItem.logo}
-                alt="Logo"
-                className="h-16 w-auto"
-              />
-            </div>
-          )}
+  {/* TYTUŁ I OPIS - zawsze widoczne */}
+  <a href={currentItem.href} className="absolute bottom-16 left-8 z-30 block">
+    <h3 className="text-white text-4xl font-base mb-2 drop-shadow-lg max-w-4xl">
+      {currentItem.title}
+    </h3>
+    <p className="text-gray-200 text-xl font-thin drop-shadow-lg max-w-2xl">
+      {currentItem.description}
+    </p>
+  </a>
 
-          {/* TYTUŁ I OPIS */}
-          <a href={currentItem.href} className="absolute bottom-16 left-8 z-20 block">
-            <h3 className="text-white text-4xl font-base mb-2 drop-shadow-lg max-w-4xl">
-              {currentItem.title}
-            </h3>
-            <p className="text-gray-200 text-xl font-thin drop-shadow-lg max-w-2xl">
-              {currentItem.description}
-            </p>
-          </a>
+  {/* PRZYCISKI W PRAWYM DOLNYM ROGU - zawsze widoczne */}
+  <div className="absolute bottom-8 right-8 z-30 flex items-center gap-3">
+    {/* PRZYCISK FULLSCREEN */}
+    <button
+      type="button"
+      aria-label="Fullscreen"
+      onClick={toggleFullscreen}
+      className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors"
+    >
+      <Maximize className="w-5 h-5 text-white" />
+    </button>
 
-          {/* PRZYCISKI W PRAWYM DOLNYM ROGU */}
-          <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3">
-            {/* PRZYCISK FULLSCREEN */}
-            <button
-              type="button"
-              aria-label="Fullscreen"
-              onClick={toggleFullscreen}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors"
-            >
-              <Maximize className="w-5 h-5 text-white" />
-            </button>
+    {/* PRZYCISK ZOBACZ SZCZEGÓŁY */}
+    <button
+      type="button"
+      aria-label="Zobacz szczegóły projektu"
+      onClick={(e) => {
+        e.stopPropagation();
+        if (typeof window !== 'undefined') {
+          window.location.href = currentItem.href;
+        }
+      }}
+      className="group inline-flex items-center gap-3 rounded-full px-4 py-3 shadow-lg hover:scale-105 transform transition duration-300 hover:shadow-2xl"
+    >
+      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors">
+        <ExternalLink className="w-5 h-5" />
+      </span>
+      <span className="text-white font-medium tracking-tight hover:cursor-pointer">
+        Zobacz szczegóły
+      </span>
+    </button>
+  </div>
 
-            {/* PRZYCISK ZOBACZ SZCZEGÓŁY */}
-            <button
-              type="button"
-              aria-label="Zobacz szczegóły projektu"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (typeof window !== 'undefined') {
-                  window.location.href = currentItem.href;
-                }
-              }}
-              className="group inline-flex items-center gap-3 rounded-full px-4 py-3 shadow-lg  hover:scale-105 transform transition duration-300 hover:shadow-2xl "
-            >
-              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors">
-                <ExternalLink className="w-5 h-5" />
-              </span>
-              <span className="text-white font-medium tracking-tight hover:cursor-pointer">Zobacz szczegóły</span>
-            </button>
-          </div>
-
-          {/* PASEK POSTĘPU */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-20">
-            <div
-              className="h-full bg-white/30"
-              style={{ 
-                width: `${progress}%`,
-              }}
-            />
-          </div>
-        </div>
+  {/* PASEK POSTĘPU */}
+  <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-30">
+    <div
+      className="h-full bg-white/30"
+      style={{
+        width: `${progress}%`,
+      }}
+    />
+  </div>
+</div>
 
         {/* KROPKI */}
         <div className="flex justify-center items-center gap-2 mt-6 relative h-2">
