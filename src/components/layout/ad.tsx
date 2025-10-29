@@ -55,10 +55,10 @@ export const PromoBanner = () => {
           exit={{ y: -100 }}
           transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
           onClick={() => router.push('/contact')}
-          className="fixed top-[80px] left-0 right-0 z-40 overflow-hidden cursor-pointer group"
+          className="fixed top-[70px] sm:top-[80px] left-0 right-0 z-40 overflow-hidden cursor-pointer group"
         >
           {/* Fioletowy gradient */}
-          <div className="relative bg-gradient-to-r from-[#8265DB] via-[#8265DB] to-[#8265DB] ">
+          <div className="relative bg-gradient-to-r from-[#fd3574] to-[#fd3574]">
             
             {/* ANIMACJA ROZJAŚNIENIA */}
             <motion.div

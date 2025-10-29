@@ -201,6 +201,7 @@ export default function HeroSection() {
                 className="text-gray-400 text-xl md:text-xl leading-relaxed max-w-2xl mx-auto font-semibold"
                 style={{
                   textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                  
                 }}
               >
                 Tworzymy Strony Internetowe dla biznesów i osób prywatnych. Pozwól sobie pozwalać na więcej wraz ze stroną!
@@ -221,7 +222,7 @@ export default function HeroSection() {
                   }}
                   className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
                   style={{
-                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #8265db 0%, #7b5cda 30%, #7856dc 60%, rgba(125, 92, 222, 1) 100%)`,
+                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #ff3f7cff, #fc407cff 30%, #fc3a77ff 60%, #fd3574`,
                   }}
                 >
                   <span className="relative z-10 text-white h-full w-full flex items-center justify-center gap-2 px-8 font-semibold">

@@ -87,7 +87,7 @@ export default function DesktopUslugiSection() {
                   <div 
                     className="flex flex-col gap-3 p-6 transition-all duration-500"
                     style={{
-                      background: '#1e1e1fff',
+                      background: '#232325ff',
                       border: `1px solid ${isHovered ? '#3a3a3c' : '#1a1a1aff'}`,
                       borderRadius: '16px',
                     }}
@@ -97,7 +97,7 @@ export default function DesktopUslugiSection() {
                       <span className={`text-xl font-bold transition-colors duration-500 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/80'
+                          : 'text-white/90'
                       }`}>
                         {(index + 1).toString().padStart(2, '0')}
                       </span>
@@ -105,15 +105,15 @@ export default function DesktopUslugiSection() {
                       <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 ${
                         isHovered 
                           ? 'text-white' 
-                          : 'text-white/80'
+                          : 'text-white/90'
                       }`}>
                         {service.title}
                       </h3>
 
                       <div className={`transition-colors duration-500 ${
                         isHovered 
-                          ? 'text-white' 
-                          : 'text-white/50'
+                          ? 'text-[#]' 
+                          : 'text-white/70'
                       }`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
@@ -123,7 +123,7 @@ export default function DesktopUslugiSection() {
                     <p className={`text-sm leading-relaxed transition-colors duration-500 ${
                       isHovered 
                         ? 'text-gray-300' 
-                        : 'text-white/35'
+                        : 'text-white/70'
                     }`}>
                       {truncateText(service.description || 'Profesjonalne rozwiązanie dostosowane do Twoich potrzeb.')}
                     </p>
