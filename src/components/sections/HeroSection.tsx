@@ -222,7 +222,7 @@ export default function HeroSection() {
                   }}
                   className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
                   style={{
-                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #ff3f7cff, #fc407cff 30%, #fc3a77ff 60%, #fd3574`,
+                    background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #248affff, #248affff 30%, #1c86ffff 60%, #1985ff`,
                   }}
                 >
                   <span className="relative z-10 text-white h-full w-full flex items-center justify-center gap-2 px-8 font-semibold">

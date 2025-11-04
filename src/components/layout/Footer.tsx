@@ -38,7 +38,7 @@ export const Footer = () => {
               />
               
               <p className="text-gray-400 mb-6 leading-relaxed text-sm">
-                Tworzymy profesjonalne strony internetowe i aplikacje webowe szybsze niż chińczycy z Temu. 
+                Tworzymy profesjonalne strony internetowe i aplikacje dla firm i osób prywatnych.
                 <span className="text-white font-semibold"> Jakość na lata.</span>
               </p>
 
@@ -46,12 +46,9 @@ export const Footer = () => {
               <div className="flex items-center gap-6 mb-6 text-xs">
                 <div className="flex items-center text-[#DD9C90]">
                   <Award className="w-4 h-4 mr-1" />
-                  <span>100% projektowania</span>
+                  <span>100% zadowolonych klientów</span>
                 </div>
-                <div className="flex items-center text-[#DD9C90]">
-                  <Zap className="w-4 h-4 mr-1" />
-                  <span>24h odpowiedzi</span>
-                </div>
+                
               </div>
 
               {/* Rating */}
@@ -62,7 +59,7 @@ export const Footer = () => {
                   ))}
                 </div>
                 <span className="text-white text-sm font-semibold">5.0</span>
-                <span className="text-gray-400 text-xs ml-2">na podstawie 1 opinii</span>
+                <span className="text-gray-400 text-xs ml-2">na podstawie 3 opinii</span>
               </div>
             </div>
 
@@ -164,7 +161,7 @@ export const Footer = () => {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </a>
 
-              {/* Social Media */}
+              {/* Social Media
               <div className="flex space-x-3 mt-6">
                 <a href="#" className="w-8 h-8 bg-gray-800 hover:bg-[#DD9C90] rounded-lg flex items-center justify-center transition-colors duration-300 group">
                   <Linkedin className="w-4 h-4 text-gray-400 group-hover:text-black" />
@@ -172,7 +169,7 @@ export const Footer = () => {
                 <a href="#" className="w-8 h-8 bg-gray-800 hover:bg-[#DD9C90] rounded-lg flex items-center justify-center transition-colors duration-300 group">
                   <Github className="w-4 h-4 text-gray-400 group-hover:text-black" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

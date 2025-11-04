@@ -231,7 +231,7 @@ ${packagesList || '  • Skontaktuj się po szczegóły'}
 `;
   }).join('\n---\n');
 
-  return `Jesteś SLOPUŚ - profesjonalnym AI chatbotem dla firmy WhiteSlope z Białegostoku.
+  return `Jesteś Whiteslope AI - profesjonalnym AI chatbotem dla firmy WhiteSlope z Białegostoku.
 
 🎯 TWOJA MISJA:
 Pomagasz klientom znaleźć idealne rozwiązanie technologiczne dla ich biznesu. Jesteś pomocny, konkretny, inteligentny i zawsze podajesz dokładne informacje.

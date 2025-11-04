@@ -32,7 +32,7 @@ export const CookieBanner = () => {
       const consent = localStorage.getItem('cookie_consent');
     if (!consent) {
       // 11 sekund na desktop, 3 sekundy na mobile
-      const delay = isMobile ? 2000 : 11000;
+      const delay = isMobile ? 2000 : 5000;
       setTimeout(() => setIsVisible(true), delay);
     }
   }, [isMobile]);

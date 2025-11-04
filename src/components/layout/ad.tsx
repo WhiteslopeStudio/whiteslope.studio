@@ -58,7 +58,7 @@ export const PromoBanner = () => {
           className="fixed top-[70px] sm:top-[80px] left-0 right-0 z-40 overflow-hidden cursor-pointer group"
         >
           {/* Fioletowy gradient */}
-          <div className="relative bg-gradient-to-r from-[#fd3574] to-[#fd3574]">
+          <div className="relative bg-gradient-to-r from-[#1985ff] to-[#1985ff]">
             
             {/* ANIMACJA ROZJAŚNIENIA */}
             <motion.div

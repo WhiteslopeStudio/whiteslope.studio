@@ -492,7 +492,7 @@ export function canAnswerWithFallback(message: string): FallbackCheck {
 
 export const fallbackResponses = {
   greetings: [
-    `👋 **Cześć! Miło Cię poznać!**\n\n💡 Jestem SLOPUŚ - AI chatbot ${COMPANY_INFO.name}!\n\n🚀 Pomagam klientom znaleźć idealne rozwiązania technologiczne. Zapytaj mnie o:\n• Strony internetowe\n• Integracje AI (takie jak ja!)\n• Grafiki i design\n• Modernizację stron\n\n💬 **Jak mogę Ci pomóc?**`,
+    `👋 **Cześć! Miło Cię poznać!**\n\n💡 Jestem Whiteslope AI - AI chatbot ${COMPANY_INFO.name}!\n\n🚀 Pomagam klientom znaleźć idealne rozwiązania technologiczne. Zapytaj mnie o:\n• Strony internetowe\n• Integracje AI (takie jak ja!)\n• Grafiki i design\n• Modernizację stron\n\n💬 **Jak mogę Ci pomóc?**`,
     
     `🎉 **Witaj w ${COMPANY_INFO.name}!**\n\n✨ Jestem Twoim AI przewodnikiem po naszej ofercie!\n\n🏢 **Specjalizujemy się w:**\n• Nowoczesnych stronach internetowych (Next.js, React)\n• Chatbotach AI - takich jak ja! 🤖\n• SEO i optymalizacji wydajności\n• Email marketingu i automatyzacji\n\n📞 **Co Cię interesuje?**`,
     
@@ -609,7 +609,7 @@ export const fallbackResponses = {
     
     `👨‍💻 **Jestem tu żeby pomóc!**\n\n🎯 **Specjalizuję się w informacjach o:**\n\n1️⃣ **Usługach ${COMPANY_INFO.name}**\n• Strony WWW, AI, grafika, modernizacja\n\n2️⃣ **Cenach i pakietach**\n• Przejrzyste, konkurencyjne, bez ukrytych kosztów\n\n3️⃣ **Procesie realizacji**\n• Od pomysłu do wdrożenia\n\n4️⃣ **Technologiach**\n• Next.js, React, TypeScript, AI\n\n5️⃣ **Doradztwie technicznym**\n• Najlepsze rozwiązanie dla Twojego biznesu\n\n🚀 **Możesz zapytać mnie o:**\n💰 Wycenę\n📊 Portfolio\n⏱️ Timeline\n🤝 Współpracę\n🔧 Technologie\n\n💬 **O co chcesz zapytać?**`,
     
-    `✨ **Hej! Widzę że masz pytanie!**\n\n🤖 **Jestem SLOPUŚ** - AI chatbot ${COMPANY_INFO.name} i mogę pomóc w:\n\n📋 **Ogólnych informacjach:**\n• Kim jesteśmy\n• Co robimy\n• Dlaczego warto z nami pracować\n\n💰 **Cenach i pakietach:**\n• Strony: od ${PRICING_CONFIG.website.landing} zł\n• AI: od ${PRICING_CONFIG.ai.chatbot} zł\n• Grafika: od ${PRICING_CONFIG.graphics.logo} zł\n• Modernizacja: od ${PRICING_CONFIG.optimization.audit} zł\n\n🎯 **Doradztwu:**\n• Jakie rozwiązanie dla Twojego biznesu\n• Jaki stack technologiczny\n• Ile potrwa projekt\n\n📞 **Kontakcie:**\n• Jak umówić konsultację\n• Gdzie nas znaleźć\n• Jak wygląda pierwszy krok\n\n💡 **Pro tip:** Im bardziej konkretne pytanie, tym lepsza odpowiedź!\n\n❓ **Czym mogę Ci pomóc?**`
+    `✨ **Hej! Widzę że masz pytanie!**\n\n🤖 **Jestem Whiteslope AI** - AI chatbot ${COMPANY_INFO.name} i mogę pomóc w:\n\n📋 **Ogólnych informacjach:**\n• Kim jesteśmy\n• Co robimy\n• Dlaczego warto z nami pracować\n\n💰 **Cenach i pakietach:**\n• Strony: od ${PRICING_CONFIG.website.landing} zł\n• AI: od ${PRICING_CONFIG.ai.chatbot} zł\n• Grafika: od ${PRICING_CONFIG.graphics.logo} zł\n• Modernizacja: od ${PRICING_CONFIG.optimization.audit} zł\n\n🎯 **Doradztwu:**\n• Jakie rozwiązanie dla Twojego biznesu\n• Jaki stack technologiczny\n• Ile potrwa projekt\n\n📞 **Kontakcie:**\n• Jak umówić konsultację\n• Gdzie nas znaleźć\n• Jak wygląda pierwszy krok\n\n💡 **Pro tip:** Im bardziej konkretne pytanie, tym lepsza odpowiedź!\n\n❓ **Czym mogę Ci pomóc?**`
   ]
 };
 
