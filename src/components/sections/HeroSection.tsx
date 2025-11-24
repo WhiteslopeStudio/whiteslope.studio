@@ -22,12 +22,12 @@ export const linkedinProfiles = [
   {
     name: 'Patryk Kulesza',
     link: 'https://www.linkedin.com/in/patryk-kulesza-788397354/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQFGj_BwEwt8Gw/profile-displayphoto-shrink_400_400/B56ZVb.DxCHsAo-/0/1741004750177?e=1761782400&v=beta&t=HBTukk_-CDxT7X4cFkkaUn3lu8It22_elnKbJbQg-6M',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQFGj_BwEwt8Gw/profile-displayphoto-shrink_400_400/B56ZVb.DxCHsAo-/0/1741004750177?e=1765411200&v=beta&t=K9Yob23PeFZ2lJmGjSJ2miCi4CECscEbPdm7shpTo6I',
   },
   {
     name: 'Mateusz Malewski',
     link: 'https://www.linkedin.com/in/mateusz-malewski-b0834927b/',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQECr9J2GyByRQ/profile-displayphoto-crop_800_800/B4DZjGWKgfGgAI-/0/1755674357328?e=1761782400&v=beta&t=8zyyZ0vK3nbiL9QUX6w_8oxtplHzUmnyeNzDU9hPp6c',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQECr9J2GyByRQ/profile-displayphoto-crop_800_800/B4DZjGWKgfGgAI-/0/1755674357328?e=1765411200&v=beta&t=khyA5tipWJb0LPwZYVrdlya-Ei7zHK2VAnIbSMJND6E',
   },
   {
     name: 'Bartłomiej Koźluk',
@@ -37,7 +37,7 @@ export const linkedinProfiles = [
   {
     name: 'Daniel Wawrzos',
     link: 'https://www.linkedin.com/in/daniel-wawrzos-34b973338/',
-    image: 'https://media.licdn.com/dms/image/v2/D4E03AQEA-6CMKztljw/profile-displayphoto-crop_800_800/B4EZh7R6dxHEAI-/0/1754414951840?e=1761782400&v=beta&t=8yIJOnaUx-kgX91m7ToW8HrTI9VFCTxDEKBMdui-hH0',
+    image: 'https://media.licdn.com/dms/image/v2/D4E03AQEA-6CMKztljw/profile-displayphoto-crop_800_800/B4EZh7R6dxHEAI-/0/1754414951840?e=1765411200&v=beta&t=ufIX7U7NovK1cBXY1mCavrZtFcyrQOHuOQlHHxhup5c',
   },
 ];
 

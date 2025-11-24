@@ -639,7 +639,7 @@ const testimonials: Testimonial[] = [
     companyUrl: 'https://wieslawski.studio',
     logo: '_resources/wieslawski-studio-logo.webp',
     rating: 5,
-    text: 'Przykładowa opinia',
+    text: 'Dzięki zespołowi Whiteslope Studio moja strona zaczęła generować zysk i zapytania od klientów w pierwszym miesiącu istnienia. Stronka działa świetnie wraz ze sklepem online.',
     highlight: ['Szybkość działania', 'zapytania od klientów', '24h'],
   },
   {
