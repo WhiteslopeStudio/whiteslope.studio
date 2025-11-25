@@ -30,8 +30,8 @@ export const jsonLd = {
     offerCount: '3'
   },
   sameAs: [
-    'https://facebook.com/whiteslope',
-    'https://instagram.com/whiteslope',
+    'https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL',
+    'https://www.instagram.com/whiteslopestudio/',
     'https://linkedin.com/company/whiteslope'
   ]
 };
