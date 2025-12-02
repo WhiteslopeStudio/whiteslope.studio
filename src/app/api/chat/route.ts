@@ -40,7 +40,7 @@ const CONFIG = {
   MIN_MESSAGE_LENGTH: 1,
   
   // Gemini
-  GEMINI_MODEL: "gemini-2.0-flash-exp",
+  GEMINI_MODEL: "gemini-2.0-flash",
   GEMINI_TEMPERATURE: 0.7,
   GEMINI_MAX_TOKENS: 500,
   
