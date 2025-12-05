@@ -24,7 +24,8 @@ export const MAIN_SERVICES = [
   { label: 'Grafika', href: '/pricing/graphics' },
   { label: 'Projekt indywidualny', href: '/pricing/individual' },
   { label: 'Email marketing', href: '/pricing/email-marketing' },
-  { label: 'Video marketing', href: '/pricing/video-marketing' }
+  { label: 'Video marketing', href: '/pricing/video-marketing' },
+  { label: "Obróbka dźwięku", href: "/pricing/audio-editing" }
 ];
 
 // Subpages menu - tylko podstrony

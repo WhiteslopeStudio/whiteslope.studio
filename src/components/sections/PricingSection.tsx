@@ -7,7 +7,7 @@ import { MAIN_SERVICES } from "@/lib/data";
 import { ServiceFeature } from "@/lib/types";
 import { PiCheckCircleBold, PiCheckCircleDuotone, PiCheckCircleFill, PiCheckFill } from "react-icons/pi";
 import { MdPlaylistAddCheckCircle } from "react-icons/md";
-import { BsCheck2All, BsCheck2Circle } from "react-icons/bs";
+import { BsCheck2All, BsCheck2Circle, BsSoundwave } from "react-icons/bs";
 
 // Hook do sprawdzania czy element jest widoczny
 const useAdvancedInView = () => {
@@ -345,7 +345,7 @@ export const PricingSection = () => {
     setSelectedService(newService);
   };
 
-  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film];
+  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film, BsSoundwave];
   const currentService = MAIN_SERVICES[activeService];
 
   return (

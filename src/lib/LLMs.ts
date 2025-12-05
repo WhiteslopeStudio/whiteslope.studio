@@ -115,7 +115,8 @@ export const SERVICES_FOR_LLMS = MAIN_SERVICES.map(service => ({
     "graphics": "5-25 dni",
     "individual": "dostosowany",
     "email-marketing": "2-10 dni",
-    "video-marketing": "5-15 dni"
+    "video-marketing": "5-15 dni",
+    "audio-editing": "1-10 dni"
   }[service.id] || "na zapytanie"
 }));
 

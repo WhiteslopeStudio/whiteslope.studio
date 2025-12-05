@@ -6,6 +6,7 @@ import { Search, ArrowRight, Sparkles, MessageCircle, Home, FileText, Briefcase,
 import { searchContent, type SearchableItem } from '@/lib/searchData';
 import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
 import { MAIN_SERVICES } from '../lib/data';
+import { BsSoundwave } from 'react-icons/bs';
 
 interface MainService {
   id: string;
@@ -46,7 +47,8 @@ const serviceIcons: Record<string, any> = {
   'graphics': PenTool,
   'individual': Briefcase,
   'email-marketing': Mail,
-  'video-marketing': Package
+  'video-marketing': Package,
+  'audio-editing': BsSoundwave,
 };
 
 const serviceColors: Record<string, string> = {
@@ -57,6 +59,7 @@ const serviceColors: Record<string, string> = {
   'individual': 'from-emerald-500/10 to-emerald-600/5',
   'email-marketing': 'from-pink-500/10 to-pink-600/5',
   'video-marketing': 'from-red-500/10 to-red-600/5',
+  'audio-editing': 'from-teal-500/10 to-teal-600/5',
 };
 
 
@@ -69,6 +72,7 @@ const iconColors: Record<string, string> = {
   'individual': '#EC4899',       // różowy
   'email-marketing': '#6366F1',    // indigo
   'video-marketing': '#EF4444',    // czerwony
+  'audio-editing': '#14B8A6',      // turkusowy
   // Dodaj resztę swoich usług tutaj
 };
 

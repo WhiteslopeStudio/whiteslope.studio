@@ -135,7 +135,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
             </p> */}
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-8xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-8xl mx-auto items-start">
             {packages.map((pkg, index) => (
               <Link
                 key={pkg.id}
@@ -166,7 +166,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                 </div>
 
                 <div className="space-y-3">
-                  <div className="w-full py-3 rounded-full font-medium flex items-center justify-center gap-2 bg-white/2 text-white">
+                  <div className="w-full py-3 rounded-full font-medium flex items-center justify-center gap-2 bg-white text-black">
                     <span>Wybierz</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>

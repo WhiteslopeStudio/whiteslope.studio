@@ -958,61 +958,108 @@ export const SERVICE_PACKAGES = [
     ],
   },
   {
-  serviceId: "video-marketing",
-  packages: [
+    serviceId: "video-marketing",
+    packages: [
+      {
+        id: "video-basic",
+        name: "Social Media Pack",
+        price: "od 1500 zł",
+        description: "Profesjonalne rolki na Instagram, TikTok i YouTube Shorts - video marketing Białystok",
+        features: [
+          "3-5 krótkich rolek (15-60 sek każda)",
+          "Nagranie sprzętem filmowym 20k+ zł (kinowa jakość)",
+          "Dojazd na miejsce (Białystok + okolice)",
+          "Montaż profesjonalny z muzyką",
+          "Korekcja kolorów (color grading)",
+          "Napisy + grafiki (lower thirds)",
+          "Optymalizacja pod każdą platformę (IG, TikTok, YT)",
+        ],
+        timeline: "1-2 tygodnie",
+      },
+      {
+        id: "video-advanced",
+        name: "Business Promo",
+        price: "od 3500 zł",
+        description: "Film promocyjny firmy - storytelling który sprzedaje - produkcja video Białystok",
+        features: [
+          "Wszystko z pakietu Social Media Pack",
+          "Film promocyjny 60-120 sekund (długa forma)",
+          "Scenariusz + koncepcja kreatywna",
+          "Nagranie w 2 lokalizacjach (np. biuro + produkcja)",
+          "Wywiad z właścicielem / team",
+          "Napisy + animacje graficzne zaawansowane",
+          "2 wersje: pełna (YouTube) + skrócona (social media)",
+          "Muzyka licencyjna premium",
+        ],
+        timeline: "2-3 tygodnie",
+        highlighted: true,
+      },
+      {
+        id: "video-premium",
+        name: "Full Video Campaign",
+        price: "od 6000 zł",
+        description: "Kompleksowa kampania video - seria filmów promocyjnych i reklamowych - Białystok",
+        features: [
+          "Wszystko z pakietu Business Promo",
+          "10-15 rolek social media (IG, TikTok, YT Shorts)",
+          "2-3 filmy promocyjne długie (YouTube, strona WWW)",
+          "Nagranie w 3+ lokalizacjach",
+          "Scenariusz + storyboard",
+          "Wywiady z klientami / zespołem (testimoniały)",
+          "Drone (ujęcia z lotu ptaka) - opcjonalnie",
+          "Strategia contentu video na miesiąc",
+          "Optymalizacja SEO na YouTube (tytuły, opisy, tagi)",
+        ],
+        timeline: "3-4 tygodnie",
+      },
+    ],
+  },
+  {
+  "serviceId": "audio-editing",
+  "packages": [
     {
-      id: "video-basic",
-      name: "Social Media Pack",
-      price: "od 1500 zł",
-      description: "Profesjonalne rolki na Instagram, TikTok i YouTube Shorts - video marketing Białystok",
-      features: [
-        "3-5 krótkich rolek (15-60 sek każda)",
-        "Nagranie sprzętem filmowym 20k+ zł (kinowa jakość)",
-        "Dojazd na miejsce (Białystok + okolice)",
-        "Montaż profesjonalny z muzyką",
-        "Korekcja kolorów (color grading)",
-        "Napisy + grafiki (lower thirds)",
-        "Optymalizacja pod każdą platformę (IG, TikTok, YT)",
+      "id": "short-clean",
+      "name": "Obróbka audio do shortów (do 60 sekund)",
+      "price": "od 100 zł",
+      "description": "Profesjonalne oczyszczanie i poprawa dźwięku do krótkich form wideo: TikTok, Reels, Shorts.",
+      "features": [
+        "Redukcja szumów i pogłosu",
+        "Wyrównanie głośności, mocniejsze brzmienie głosu",
+        "Usuwanie kliknięć, trzasków i oddechów",
+        "Podkreślenie kluczowych słów, aby głos „wchodził” prosto w ucho",
+        "Eksport gotowy do publikacji"
       ],
-      timeline: "1-2 tygodnie",
+      "timeline": "1–3 dni"
     },
     {
-      id: "video-advanced",
-      name: "Business Promo",
-      price: "od 3500 zł",
-      description: "Film promocyjny firmy - storytelling który sprzedaje - produkcja video Białystok",
-      features: [
-        "Wszystko z pakietu Social Media Pack",
-        "Film promocyjny 60-120 sekund (długa forma)",
-        "Scenariusz + koncepcja kreatywna",
-        "Nagranie w 2 lokalizacjach (np. biuro + produkcja)",
-        "Wywiad z właścicielem / team",
-        "Napisy + animacje graficzne zaawansowane",
-        "2 wersje: pełna (YouTube) + skrócona (social media)",
-        "Muzyka licencyjna premium",
+      "id": "ad-clean",
+      "name": "Obróbka audio do reklam i dłuższych materiałów",
+      "price": "od 250 zł",
+      "description": "Poprawa jakości dźwięku w materiałach reklamowych, prezentacjach, materiałach YouTube i filmach sprzedażowych.",
+      "features": [
+        "Dokładne oczyszczanie nagrania",
+        "Wyostrzenie i uwydatnienie głosu",
+        "Wyrównanie dynamiki — brak cichych i zbyt głośnych fragmentów",
+        "Płynny, profesjonalny odsłuch bez rozpraszających artefaktów",
+        "Plik przygotowany pod platformę (YT, FB Ads, TikTok Ads itd.)"
       ],
-      timeline: "2-3 tygodnie",
-      highlighted: true,
+      "timeline": "2–5 dni"
     },
     {
-      id: "video-premium",
-      name: "Full Video Campaign",
-      price: "od 6000 zł",
-      description: "Kompleksowa kampania video - seria filmów promocyjnych i reklamowych - Białystok",
-      features: [
-        "Wszystko z pakietu Business Promo",
-        "10-15 rolek social media (IG, TikTok, YT Shorts)",
-        "2-3 filmy promocyjne długie (YouTube, strona WWW)",
-        "Nagranie w 3+ lokalizacjach",
-        "Scenariusz + storyboard",
-        "Wywiady z klientami / zespołem (testimoniały)",
-        "Drone (ujęcia z lotu ptaka) - opcjonalnie",
-        "Strategia contentu video na miesiąc",
-        "Optymalizacja SEO na YouTube (tytuły, opisy, tagi)",
+      "id": "ai-voice",
+      "name": "Automatyczny lektor AI + pełna obróbka",
+      "price": "od 150 zł",
+      "description": "Wygenerowany lektor AI w wybranym stylu i języku, od razu poprawiony i przygotowany do reklamy lub shorta.",
+      "features": [
+        "Wybór głosu (męski / żeński / dynamiczny / spokojny)",
+        "Dopasowanie tempa i intonacji do materiału",
+        "Pełna obróbka — czysto, głośno i wyraźnie",
+        "Możliwość kilku wariantów do wyboru",
+        "Gotowy plik do natychmiastowego użycia"
       ],
-      timeline: "3-4 tygodnie",
-    },
-  ],
+      "timeline": "1–2 dni"
+    }
+  ]
 },
 ];
 
@@ -1358,5 +1405,44 @@ export const MAIN_SERVICES: MainService[] = [
   ctaText: "Umów nagranie",
   animationDirection: "left",
   highlighted: true, // Wyróżnione
-},
+  },
+  {    
+    id: "audio-editing",
+    title: "Edytowanie Audio",
+    subtitle: "Profesjonalna obróbka dźwięku",
+    price: "od 100 zł",
+    picture: "_resources/usluga-audio-editing.webp",
+    description:
+      "Profesjonalna edycja i mastering nagrań audio. Popraw jakość dźwięku, usuń szumy i przygotuj materiały do publikacji.",
+    features: [
+      {
+        title: "Redukcja szumów",
+        description: "Usuwanie niepożądanych dźwięków i szumów z nagrań."
+      },
+      {
+        title: "Korekcja dźwięku",
+        description: "Dopasowanie tonacji, głośności i balansu audio."
+      },
+      {
+        title: "Mastering",
+        description: "Profesjonalne przygotowanie nagrań do publikacji."
+      },
+      {
+        title: "Usuwanie zakłóceń",
+        description: "Eliminacja trzasków, kliknięć i innych zakłóceń."
+      },
+      {
+        title: "Optymalizacja pod podcasty",
+        description: "Dostosowanie dźwięku do standardów podcastów i transmisji."
+      },
+      {
+        title: "Formatowanie plików",
+        description: "Konwersja i przygotowanie plików audio w różnych formatach."
+      },
+    ],
+    ctaText: "Zamów edycję",
+    animationDirection: "right",
+    highlighted: false,
+  },
+  
 ];

@@ -18,9 +18,10 @@ import { MAIN_SERVICES } from '@/lib/data';
 
 // ✅ IMPORT TYPU z types.ts
 import type { MainService } from '@/lib/types';
+import { BsSoundwave } from 'react-icons/bs';
 
 // Typ dla kluczy ikon
-type ServiceIconId = 'website' | 'optimization' | 'ai-integration' | 'graphics' | 'individual' | 'email-marketing' | 'video-marketing';
+type ServiceIconId = 'website' | 'optimization' | 'ai-integration' | 'graphics' | 'individual' | 'email-marketing' | 'video-marketing' | 'audio-editing';
 
 export default function DesktopUslugiSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -34,6 +35,7 @@ export default function DesktopUslugiSection() {
     'individual': 'Dopasowane do Twoich potrzeb',
     'email-marketing': 'Automatyzacja która sprzedaje',
     'video-marketing': 'Profesjonalny sprzęt filmowy 20k+ zł',
+    'audio-editing': 'Czysty dźwięk bez szumów i zakłóceń do Twoich filmów',
   };
 
   // Funkcja do skracania długich opisów
@@ -51,6 +53,7 @@ export default function DesktopUslugiSection() {
     'individual': FileText,
     'email-marketing': Smartphone,
     'video-marketing': Video,
+    'audio-editing': BsSoundwave,
   };
 
   return (
@@ -60,7 +63,7 @@ export default function DesktopUslugiSection() {
       <div className="relative z-10">
         {/* GRID 3 KOLUMNY z równą wysokością */}
         <div className="relative max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-3xl text-white/80 text-center py-3 sm:py-5">
+          <h2 className="text-2xl font-3xl text-white text-center py-3 sm:py-5">
             Nasze usługi:
           </h2>
           <div 
@@ -70,7 +73,9 @@ export default function DesktopUslugiSection() {
               const IconComponent = iconMap[service.id as ServiceIconId] || LayoutGrid;
               const isHovered = hoveredIndex === index;
               const badgeMessage = badgeMessages[service.id as ServiceIconId];
-              const isNew = service.id === 'video-marketing'; // Badge dla video-marketing
+              const isNew = service.id === 'video-marketing' || service.id === 'audio-editing'; // Badge dla video-marketing i audio-editing
+              const polecamy = service.id === 'ai-integration' || service.id === 'optimization'; // Badge dla polecanych usług
+              const top = service.id === 'website'; // Badge dla top usługi
 
               return (
                 <Link
@@ -93,6 +98,32 @@ export default function DesktopUslugiSection() {
                       }}
                     >
                       <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Nowe!</span>
+                    </div>
+                  )}
+
+                  {/* BADGE POLECAMY - prostokąt, 45 stopni w lewym górnym */}
+                  {polecamy && (
+                    <div 
+                      className="absolute top-5 -left-8 w-30 h-6 bg-gray-500 flex items-center justify-center transform -rotate-45 z-20"
+                      style={{
+                        boxShadow: '0 2px 8px rgba(189, 196, 255, 0.19)',
+                        
+                      }}
+                    >
+                      <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Polecamy!</span>
+                    </div>
+                  )}
+
+                  {/* BADGE TOP - prostokąt, 45 stopni w lewym górnym */}
+                  {top && (
+                    <div 
+                      className="absolute top-5 -left-8 w-30 h-6 bg-yellow-500 flex items-center justify-center transform -rotate-45 z-20"
+                      style={{
+                        boxShadow: '0 2px 8px rgba(235, 148, 48, 0.5)',
+                        
+                      }}
+                    >
+                      <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Top!</span>
                     </div>
                   )}
 

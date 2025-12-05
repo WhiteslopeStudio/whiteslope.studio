@@ -197,7 +197,20 @@ export const serviceJsonLd = {
         priceCurrency: 'PLN',
         availability: 'https://schema.org/InStock',
         url: 'https://whiteslope.studio/#video'
-      }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Edytowanie Audio Białystok',
+          description: 'Profesjonalna obróbka dźwięku do filmów, redukcja szumów, mastering i przygotowanie nagrań.',
+          areaServed: 'Białystok'
+        },
+        price: 'od 100',
+        priceCurrency: 'PLN',
+        availability: 'https://schema.org/InStock',
+        url: 'https://whiteslope.studio/#audio-editing'
+      },
     ]
   },
   aggregateRating: {

@@ -170,7 +170,7 @@ export const ProcessSection = () => {
               
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
-                Nasza droga działania<br /> od startu aż do wykonania
+                Nasza droga działania
               </span>
             </h2>
           </div>
@@ -353,7 +353,7 @@ export const ProcessSection = () => {
         </div>
             {/* LOGA KLIENTÓW */}
         <div className="text-center mt-30 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-lg uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
+          <p className="text-base uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
             Marki, z którymi tworzymy efekty:
           </p>
           <div className="flex gap-8 justify-center flex-wrap">
@@ -368,13 +368,13 @@ export const ProcessSection = () => {
                 <img 
                   src={testimonial.logo}
                   alt={testimonial.company}
-                  className="h-12 w-auto object-contain transition-opacity duration-300"
+                  className="h-6 sm:h-12 w-auto object-contain transition-opacity duration-300"
                   style={{ 
                     filter: 'brightness(0) invert(1)',
                     opacity: 0.9,
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.9'}
                 />
               </a>
             ))}

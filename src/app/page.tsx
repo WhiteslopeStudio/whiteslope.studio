@@ -130,7 +130,7 @@ export default function HomePage() {
           <ProcessSection />
 
           {/* 🎯 EXPERIENCE */}
-          <ExperienceSection />
+          {/* <ExperienceSection /> */}
 
           {/* 💰 PRICING */}
           <PricingSection />
