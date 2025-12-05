@@ -757,7 +757,7 @@ export const TestimonialsSection = () => {
               
               <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}> 
-                Twoja firma się rozwija — gdy strategia<br /> naprawdę sprzyja
+                Twoja firma może się rozwijać z nami
               </span>
 
             </h2>
