@@ -114,7 +114,7 @@ export default function ExperienceSection() {
   const [hoveredConsultation, setHoveredConsultation] = useState(false);
 
   const projectStats: StatData = {
-    number: "2",
+    number: "10+",
     label: "Projekty",
     description: "Zrealizowane",
   };
@@ -211,13 +211,14 @@ export default function ExperienceSection() {
           >
             <a
               href="#services"
-              className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
+              className="w-full font-white sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
                   style={{
-                    background: `radial-gradient(circle at 50% 50%, #ffffffdb 0%, #ffffffdb 30%, #ffffffdb 60%, #ffffffdb 100%)`,
+                    background: `radial-gradient(circle at 50% 50%, #1985FF 0%, #1985FF 30%, #1985FF 60%, #1985FF 100%)`,
+                    
                   }}
             >
                  
-<span className="relative z-10 text-black h-full w-full flex items-center justify-center gap-2 px-8 font-medium">                    Wybierz usługi
+<span className="relative z-10 text-white h-full w-full flex items-center justify-center gap-2 px-8 font-medium">                    Wybierz usługi
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 

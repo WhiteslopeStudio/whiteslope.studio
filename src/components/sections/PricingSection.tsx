@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowRight, Globe, Wrench, Palette, Brain, User, Mail, Sparkles, ChevronDown, Check, Zap, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Globe, Wrench, Palette, Brain, Mail, Film, ChevronDown, Check, Zap, X, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { MAIN_SERVICES } from "@/lib/data";
 import { ServiceFeature } from "@/lib/types";
@@ -45,7 +45,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
   const [startY, setStartY] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const serviceIcons = [Globe, Wrench, Brain, Palette, User, Mail];
+  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film];
 
   useEffect(() => {
     if (isOpen) {
@@ -345,7 +345,7 @@ export const PricingSection = () => {
     setSelectedService(newService);
   };
 
-  const serviceIcons = [Globe, Wrench, Brain, Palette, User, Mail];
+  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film];
   const currentService = MAIN_SERVICES[activeService];
 
   return (

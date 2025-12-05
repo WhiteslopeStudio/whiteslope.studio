@@ -167,16 +167,16 @@ export default function HeroSection() {
           <div className="text-center flex flex-col justify-center items-center">
             <div className="space-y-5 max-w-full">
               
-              {/* BADGE */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full  backdrop-blur-sm">
+              {/* H1 - BADGE z frazą kluczową SEO */}
+              <h1 className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
                 <span className="text-sm font-medium text-gray-300">
-                  strony internetowe · integracja AI · email marketing · grafika 2D i 3D
+                  Strony internetowe Białystok od 1500 zł · Chatboty AI · Grafika 2D i 3D · Email marketing · Video marketing
                 </span>
-              </div>
+              </h1>
 
-              {/* H1 - NAGŁÓWEK */}
-              <h1 
+              {/* NAGŁÓWEK GŁÓWNY - H2 */}
+              <h2 
                 className="relative"
                 style={{
                   fontSize: 'clamp(3rem, 8vw, 5rem)',
@@ -194,7 +194,7 @@ export default function HeroSection() {
                 >
                   Pokaż się online<br/> z dobrej strony!
                 </span>
-              </h1>
+              </h2>
 
               {/* PODTYTUŁ */}
               <p 

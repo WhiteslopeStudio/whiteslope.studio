@@ -164,14 +164,13 @@ export const ProcessSection = () => {
       >
       
       <div className="relative z-10">
-        <div className="text-center mb-12 relative z-10 max-w-10xl mx-auto px-4">
-          <div className="text-left max-w-7xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl  text-white mb-4 tracking-tight"
-            style={{ fontWeight: 575 }}>
+        <div className="text-center my-12 mb-16 relative z-10 max-w-10xl mx-auto px-4">
+          <div className=" max-w-7xl mx-auto">
+            <h2 className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto" style={{ fontWeight: 575 }}>
               
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
-                Proces współpracy
+                Nasza droga działania<br /> od startu aż do wykonania
               </span>
             </h2>
           </div>
@@ -353,9 +352,9 @@ export const ProcessSection = () => {
         
         </div>
             {/* LOGA KLIENTÓW */}
-        <div className="text-center mt-12 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-xs uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
-            Zaufali nam
+        <div className="text-center mt-30 relative z-10 max-w-7xl mx-auto px-4">
+          <p className="text-lg uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
+            Marki, z którymi tworzymy efekty:
           </p>
           <div className="flex gap-8 justify-center flex-wrap">
             {testimonials.map((testimonial) => (
@@ -369,13 +368,13 @@ export const ProcessSection = () => {
                 <img 
                   src={testimonial.logo}
                   alt={testimonial.company}
-                  className="h-8 w-auto object-contain transition-opacity duration-300"
+                  className="h-12 w-auto object-contain transition-opacity duration-300"
                   style={{ 
                     filter: 'brightness(0) invert(1)',
                     opacity: 0.9,
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.9'}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
                 />
               </a>
             ))}

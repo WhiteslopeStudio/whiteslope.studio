@@ -22,6 +22,11 @@ import {
 } from "@/utils/chatbotFallback";
 import { generateSmartButtons } from "@/utils/chatbotButtons";
 import { MAIN_SERVICES, SERVICE_PACKAGES } from "@/lib/data";
+import { 
+  AGENCY_INFO, 
+  generateLLMSystemPrompt,
+  SEO_KEYWORDS 
+} from "@/lib/LLMs";
 
 // ==========================================
 // 🎛️ KONFIGURACJA

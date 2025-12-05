@@ -190,7 +190,7 @@ export const Header = () => {
                     }`}
                     whileHover={{ scale: 1.05 }}
                   >
-                    Projekty
+                    Realizacje
                   </motion.button>
 
                   {/* ========== ODKRYJ - ZAKOMENTOWANE ========== */}
@@ -559,7 +559,7 @@ export const Header = () => {
                     transition={{ duration: 0.3, delay: 0.05 }}
                     whileHover={{ x: 10 }}
                   >
-                    Projekty
+                    Realizacje
                   </motion.button>
 
                   {/* ========== ODKRYJ MOBILE - ZAKOMENTOWANE ========== */}

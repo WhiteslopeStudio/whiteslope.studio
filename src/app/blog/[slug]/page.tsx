@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { Metadata } from 'next';
+import { breadcrumbJsonLd } from '@/lib/schema';
 
 // Generowanie metadanych dla artykułu
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
@@ -113,13 +114,6 @@ const getAdjacentPosts = (currentPost: BlogPost) => {
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  // Add JSON-LD Schema
-  const jsonLdScript = (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-    />
-  );
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
@@ -127,11 +121,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const breadcrumbPath = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${slug}` }
+  ];
+
   const relatedPosts = getRelatedPosts(post);
   const { previousPost, nextPost } = getAdjacentPosts(post);
 
   return (
     <div className="min-h-screen bg-black">
+      {/* JSON-LD Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(breadcrumbPath)) }}
+      />
+
       {/* Back Button */}
       <div className="fixed top-20 left-6 z-40">
         <Link

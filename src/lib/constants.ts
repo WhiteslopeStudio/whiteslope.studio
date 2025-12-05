@@ -23,7 +23,8 @@ export const MAIN_SERVICES = [
   { label: 'Integracja AI', href: '/pricing/ai-integration' },
   { label: 'Grafika', href: '/pricing/graphics' },
   { label: 'Projekt indywidualny', href: '/pricing/individual' },
-  { label: 'Email marketing', href: '/pricing/email-marketing' }
+  { label: 'Email marketing', href: '/pricing/email-marketing' },
+  { label: 'Video marketing', href: '/pricing/video-marketing' }
 ];
 
 // Subpages menu - tylko podstrony

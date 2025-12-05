@@ -957,6 +957,63 @@ export const SERVICE_PACKAGES = [
       },
     ],
   },
+  {
+  serviceId: "video-marketing",
+  packages: [
+    {
+      id: "video-basic",
+      name: "Social Media Pack",
+      price: "od 1500 zł",
+      description: "Profesjonalne rolki na Instagram, TikTok i YouTube Shorts - video marketing Białystok",
+      features: [
+        "3-5 krótkich rolek (15-60 sek każda)",
+        "Nagranie sprzętem filmowym 20k+ zł (kinowa jakość)",
+        "Dojazd na miejsce (Białystok + okolice)",
+        "Montaż profesjonalny z muzyką",
+        "Korekcja kolorów (color grading)",
+        "Napisy + grafiki (lower thirds)",
+        "Optymalizacja pod każdą platformę (IG, TikTok, YT)",
+      ],
+      timeline: "1-2 tygodnie",
+    },
+    {
+      id: "video-advanced",
+      name: "Business Promo",
+      price: "od 3500 zł",
+      description: "Film promocyjny firmy - storytelling który sprzedaje - produkcja video Białystok",
+      features: [
+        "Wszystko z pakietu Social Media Pack",
+        "Film promocyjny 60-120 sekund (długa forma)",
+        "Scenariusz + koncepcja kreatywna",
+        "Nagranie w 2 lokalizacjach (np. biuro + produkcja)",
+        "Wywiad z właścicielem / team",
+        "Napisy + animacje graficzne zaawansowane",
+        "2 wersje: pełna (YouTube) + skrócona (social media)",
+        "Muzyka licencyjna premium",
+      ],
+      timeline: "2-3 tygodnie",
+      highlighted: true,
+    },
+    {
+      id: "video-premium",
+      name: "Full Video Campaign",
+      price: "od 6000 zł",
+      description: "Kompleksowa kampania video - seria filmów promocyjnych i reklamowych - Białystok",
+      features: [
+        "Wszystko z pakietu Business Promo",
+        "10-15 rolek social media (IG, TikTok, YT Shorts)",
+        "2-3 filmy promocyjne długie (YouTube, strona WWW)",
+        "Nagranie w 3+ lokalizacjach",
+        "Scenariusz + storyboard",
+        "Wywiady z klientami / zespołem (testimoniały)",
+        "Drone (ujęcia z lotu ptaka) - opcjonalnie",
+        "Strategia contentu video na miesiąc",
+        "Optymalizacja SEO na YouTube (tytuły, opisy, tagi)",
+      ],
+      timeline: "3-4 tygodnie",
+    },
+  ],
+},
 ];
 
 // Funkcje pomocnicze
@@ -1264,4 +1321,42 @@ export const MAIN_SERVICES: MainService[] = [
     animationDirection: "right",
     highlighted: false,
   },
+  {
+  id: "video-marketing",
+  title: "Video Marketing",
+  subtitle: "Profesjonalne filmy promocyjne",
+  price: "wycena indywidualna",
+  picture: "_resources/usluga-video-marketing.webp", // Dodaj zdjęcie później
+  description:
+    "Profesjonalne filmy promocyjne nagrywane sprzętem za ponad 20k zł. Rolki na Instagram, TikTok, YouTube, filmy reklamowe z dojazdem na miejsce.",
+  features: [
+    {
+      title: "Profesjonalny sprzęt filmowy",
+      description: "Sprzęt o wartości ponad 20 000 zł - kinowa jakość obrazu i dźwięku."
+    },
+    {
+      title: "Filmy promocyjne z dojazdem",
+      description: "Przyjeżdżamy do Ciebie - nagrywamy na miejscu Twojej firmy lub wybranej lokalizacji."
+    },
+    {
+      title: "Rolki na social media",
+      description: "Krótkie, dynamiczne rolki na Instagram, TikTok i YouTube Shorts - dopasowane do każdej platformy."
+    },
+    {
+      title: "Filmy reklamowe YouTube",
+      description: "Dłuższe formy reklamowe dla YouTube - storytelling który sprzedaje."
+    },
+    {
+      title: "Montaż i postprodukcja",
+      description: "Profesjonalny montaż, korekcja kolorów, napisy, muzyka - gotowe do publikacji."
+    },
+    {
+      title: "Strategia video content",
+      description: "Pomożemy zaplanować strategię wideo która przyciągnie klientów."
+    },
+  ],
+  ctaText: "Umów nagranie",
+  animationDirection: "left",
+  highlighted: true, // Wyróżnione
+},
 ];

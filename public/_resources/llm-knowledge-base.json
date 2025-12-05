@@ -1,0 +1,398 @@
+{
+  "knowledgeBase": {
+    "version": "2.0.0",
+    "lastUpdated": "2025-01-20",
+    "language": "pl-PL",
+    "purpose": "Wiedza dla Web2Agent i LLM-ów o WHITESLOPE STUDIO",
+
+    "businessInfo": {
+      "legalName": "WHITESLOPE STUDIO",
+      "commonName": "WHITESLOPE STUDIO",
+      "slogan": "Agencja Digital Białystok - Strony Internetowe, AI, SEO",
+      "description": "Profesjonalna agencja digital specjalizująca się w tworzeniu nowoczesnych stron internetowych, implementacji AI i pozycjonowaniu SEO dla biznesów w Białymstoku i całej Polsce",
+      "founded": 2026,
+      "established": "2026-01-01",
+      "businessType": "Digital Agency / Web Development",
+      "businessModel": "Project Based/ SaaS Solutions",
+      "employees": "4 profesjonalistów"
+    },
+
+    "locationData": {
+      "headOffice": {
+        "city": "Białystok",
+        "region": "Podlaskie",
+        "country": "Polska",
+        "countryCode": "PL",
+        "postalCode": "15-689",
+        "street": "ul. Pietkiewicza",
+        "googleMapsCoords": "53.1325,23.1688",
+        "timezone": "Europe/Warsaw",
+        "localLanguage": "Polski"
+      },
+      "serviceArea": {
+        "primary": ["Białystok", "Podlaskie", "Polska"],
+        "secondary": ["Warszawa", "Gdańsk", "Kraków"],
+        "international": "Europa, USA (zdalne)",
+        "maxDeliveryDays": 14,
+        "travelWilling": false
+      }
+    },
+
+    "contactChannels": {
+      "email": {
+        "primary": "kontakt@whiteslope.studio",
+        "responseTime": "24 godziny",
+        "businessDays": "Pon-Pt, 9:00-17:00"
+      },
+      "website": {
+        "url": "https://whiteslope.studio",
+        "blog": "https://whiteslope.studio/blog",
+        "portfolioUrl": "https://whiteslope.studio/projects"
+      },
+      "socialMedia": {
+        "linkedin": "whiteslope-studio",
+        "instagram": "whiteslope.studio",
+        "twitter": "@whiteslope"
+      }
+    },
+
+    "servicePortfolio": [
+      {
+        "serviceId": "website",
+        "name": "Tworzenie Stron Internetowych",
+        "description": "Nowoczesne, responsywne strony internetowe od prototypu do wdrożenia",
+        "priceRange": { "min": 1500, "max": 5000, "currency": "PLN" },
+        "averagePrice": 2500,
+        "turnoverTime": "2-14 dni",
+        "packages": [
+          {
+            "name": "Wizytówka Digital",
+            "price": 1500,
+            "description": "Prosta strona dla SOHO, 5 podstron",
+            "pages": 5,
+            "features": ["Responsywny design", "SEO", "Kontakt form"]
+          },
+          {
+            "name": "Biznesowa",
+            "price": 2500,
+            "description": "Strona dla małej/średniej firmy, 10 podstron",
+            "pages": 10,
+            "features": ["Responsywny design", "SEO", "CMS", "Blog", "Kontakt form", "Galeria"]
+          },
+          {
+            "name": "Premium",
+            "price": 5000,
+            "description": "Zaawansowana strona biznesowa z integracjami",
+            "pages": 15,
+            "features": ["Wszystko wyżej", "E-commerce", "AI Chatbot", "Analytics", "API integrations"]
+          }
+        ],
+        "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"],
+        "deliverables": [
+          "Design i prototyp",
+          "Responsywny kod",
+          "SEO optimization",
+          "SSL certificate",
+          "3 miesiące wsparcia",
+          "Hosting rekomendacja"
+        ],
+        "targetMarket": "Wszyscy biznesowie potrzebujący obecności online",
+        "successMetrics": ["Pierwszych zapytań w 24-48h", "Pozycja w Google TOP 10", "Konwersja zapytań"]
+      },
+      {
+        "serviceId": "optimization",
+        "name": "Modernizacja Stron",
+        "description": "Optymalizacja istniejących stron i migracja na nowoczesne technologie",
+        "priceRange": { "min": 800, "max": 3000, "currency": "PLN" },
+        "averagePrice": 1500,
+        "turnoverTime": "3-7 dni",
+        "packages": [
+          {
+            "name": "Szybka optymalizacja",
+            "price": 800,
+            "description": "Poprawa szybkości i SEO",
+            "includes": ["Performance audit", "Speed optimization", "SEO fixes", "Mobile responsiveness"]
+          },
+          {
+            "name": "Migracja + Optymalizacja",
+            "price": 2000,
+            "description": "Pełna migracja na nowoczesne technologie",
+            "includes": ["Migracja danych", "Redesign", "SEO", "Performance", "Bezpieczeństwo"]
+          },
+          {
+            "name": "Full Modernization",
+            "price": 3000,
+            "description": "Kompletna modernizacja z integracjami",
+            "includes": ["Wszystko wyżej", "AI integrations", "CMS setup", "Advanced analytics"]
+          }
+        ],
+        "technologies": ["Next.js migration", "Performance optimization", "SEO audit", "Security hardening"],
+        "resultExamples": [
+          "Szybkość 3x wyższa niż przed",
+          "Pozycja w Google podniesiona o 10-20 pozycji",
+          "Responsywność na 100%"
+        ]
+      },
+      {
+        "serviceId": "ai-integration",
+        "name": "Integracja AI i Chatboty",
+        "description": "Wdrażanie chatbotów AI, automatyzacji i generatorów treści",
+        "priceRange": { "min": 1000, "max": 5000, "currency": "PLN" },
+        "averagePrice": 2000,
+        "turnoverTime": "5-10 dni",
+        "aiModels": ["ChatGPT", "Claude", "Gemini", "Custom LLMs"],
+        "packages": [
+          {
+            "name": "Chatbot podstawowy",
+            "price": 1000,
+            "description": "Chatbot AI na stronie",
+            "features": ["24/7 dostępność", "Inteligentne odpowiedzi", "Analytics", "Fallback system"]
+          },
+          {
+            "name": "Chatbot + Automation",
+            "price": 2500,
+            "description": "Chatbot + automatyzacja maili i procesów",
+            "features": ["Wszystko wyżej", "Email automation", "CRM integration", "Lead scoring"]
+          },
+          {
+            "name": "Full AI Suite",
+            "price": 5000,
+            "description": "Kompleksowe rozwiązania AI",
+            "features": ["Wszystko wyżej", "Image generation", "Video generation", "Custom LLM fine-tuning"]
+          }
+        ]
+      },
+      {
+        "serviceId": "graphics",
+        "name": "Grafika i UI/UX Design",
+        "description": "Projektowanie graficzne, UI/UX design i materiały marketingowe",
+        "priceRange": { "min": 500, "max": 2000, "currency": "PLN" },
+        "averagePrice": 1000,
+        "turnoverTime": "2-5 dni",
+        "packages": [
+          {
+            "name": "Projekt graficzny",
+            "price": 500,
+            "description": "Pojedyncza grafika lub design",
+            "deliverables": ["1 koncepcja", "2 rewizje", "Pliki: PNG, SVG, PDF"]
+          },
+          {
+            "name": "UI/UX Design",
+            "price": 1500,
+            "description": "Pełny design interfejsu użytkownika",
+            "deliverables": ["Wireframes", "High-fidelity mockups", "Design system", "Prototyp interaktywny"]
+          }
+        ],
+        "services": [
+          "AI Integration",
+          "Logo design",
+          "Brand identity",
+          "UI/UX design",
+          "2D graphics",
+          "3D graphics",
+          "Motion graphics",
+          "Social media graphics",
+          "Print design"
+        ]
+      },
+      {
+        "serviceId": "email-marketing",
+        "name": "Email Marketing i Automation",
+        "description": "Kampanie email, automatyzacja i personalizacja",
+        "priceRange": { "min": 500, "max": 2000, "currency": "PLN" },
+        "averagePrice": 1000,
+        "turnoverTime": "2-3 dni"
+      },
+      {
+        "serviceId": "video-marketing",
+        "name": "Video Marketing",
+        "description": "Produkcja wideo, animacje i video marketing (NOWE 2025)",
+        "priceRange": { "min": 1500, "max": 5000, "currency": "PLN" },
+        "averagePrice": 2500,
+        "turnoverTime": "5-15 dni",
+        "isNew": true,
+        "packages": [
+          {
+            "name": "Wideo produktowe",
+            "price": 1500,
+            "description": "Krótkie wideo produktu/usługi",
+            "length": "15-30 sekund",
+            "includes": ["Storyboard", "Produkcja", "Editing", "Music", "Revisions"]
+          },
+          {
+            "name": "Animacja/Explainer",
+            "price": 2500,
+            "description": "Animowana animacja objaśniająca",
+            "length": "60-120 sekund",
+            "includes": ["Scenarisz", "Animacja", "Voice-over", "Music", "Effects"]
+          }
+        ]
+      }
+    ],
+
+    "caseStudies": [
+      {
+        "projectName": "Wiesławski Studio",
+        "client": "Studio muzyczne",
+        "url": "https://www.wieslawski.studio",
+        "challenge": "Studio nie miało widoczności online, brakło zapytań od klientów",
+        "solution": "Nowoczesna strona Next.js z portfolio, SEO optimization",
+        "results": {
+          "firstLeads": "24 godziny",
+          "conversions": "+300%",
+          "googleRank": "Pozycja #1 dla 'studio muzyczne białystok'",
+          "monthlyVisitors": "500+"
+        },
+        "timeline": "7-14 dni",
+        "techStack": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        "budget": "2500 PLN"
+      },
+      {
+        "projectName": "Patryk Kulesza - Korepetycje",
+        "client": "Korepetycje online",
+        "url": "https://patrykkul.github.io/korepetycje",
+        "challenge": "Nauczyciel szukał uczniów do korepetycji",
+        "solution": "Strona z portfolio, SEO optimization, contact form",
+        "results": {
+          "jobOffer": "Oferta pracy po 3 dniach",
+          "googleRank": "Pozycja #1 dla 'korepetycje białystok'",
+          "monthlyVisitors": "300+"
+        },
+        "timeline": "5-7 dni",
+        "techStack": ["HTML", "CSS", "JavaScript"],
+        "budget": "1500 PLN"
+      }
+    ],
+
+    "testimonials": [
+      {
+        "clientName": "Jan Kowalski",
+        "company": "Studio Design",
+        "rating": 5,
+        "text": "Profesjonalna i szybka realizacja! Strona działa wspaniale, a zespół WHITESLOPE był bardzo komunikatywny.",
+        "service": "Strona internetowa"
+      },
+      {
+        "clientName": "Maria Nowak",
+        "company": "E-commerce Shop",
+        "rating": 5,
+        "text": "Modernizacja starej strony to było genialne! Szybkość 3x wyższa, a ranking w Google poszybował w górę!",
+        "service": "Modernizacja strony"
+      },
+      {
+        "clientName": "Piotr Lewandowski",
+        "company": "Firma produkcyjna",
+        "rating": 5,
+        "text": "Chatbot AI zmienił naszą obsługę klienta. Teraz pytania rozpatrujemy 24/7, a ludzie są zadowoleni!",
+        "service": "Integracja AI"
+      }
+    ],
+
+    "competitiveAdvantages": {
+      "pricing": "Najniższe ceny na rynku - od 1500 zł za stronę",
+      "speed": "Najszybsza realizacja - 2-14 dni",
+      "technology": "Najnowsze technologie - Next.js, React, TypeScript",
+      "ai": "Integracja AI - chatboty, automation, generatory treści",
+      "support": "Wsparcie lokalne - zespół w Białymstoku",
+      "results": "Gwarantujemy rezultaty - lub zwrot pieniędzy"
+    },
+
+    "keyStatistics": {
+      "projectsCompleted": "10+",
+      "satisfactionRate": "100%",
+      "averageProjectDuration": "10 dni",
+      "clientRetentionRate": "95%",
+      "techStackVersions": "Najnowsze (2025)",
+      "averageResponseTime": "24 godziny"
+    },
+
+    "expertise": {
+      "languages": ["Polish", "English"],
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Tailwind CSS",
+        "JavaScript",
+        "HTML/CSS",
+        "PostgreSQL",
+        "MongoDB",
+        "Firebase"
+      ],
+      "services": [
+        "Web Development",
+        "UI/UX Design",
+        "SEO Optimization",
+        "AI Integration",
+        "Digital Strategy",
+        "Brand Design",
+        "Motion Graphics",
+        "Video Production"
+      ],
+      "industries": [
+        "E-commerce",
+        "SaaS",
+        "Digital Agencies",
+        "Creative Studios",
+        "Educational",
+        "Healthcare",
+        "Real Estate",
+        "Hospitality"
+      ]
+    },
+
+    "faqKnowledge": [
+      {
+        "question": "Ile kosztuje strona internetowa?",
+        "answer": "Zaczyna się od 1500 zł za prostą wizytówkę. Strony biznesowe to 2500-5000 zł. Wszystko zależy od projektu."
+      },
+      {
+        "question": "Ile czasu zajmuje stworzenie strony?",
+        "answer": "Standardowa strona: 2-14 dni. Modernizacja: 2-7 dni. Terminy mogą się zmieniać w zależności od złożoności."
+      },
+      {
+        "question": "Jakie technologie używacie?",
+        "answer": "Next.js, React, TypeScript - najnowsze i najlepsze technologie dostępne w 2025 roku."
+      },
+      {
+        "question": "Czy SEO jest wliczone w cenę?",
+        "answer": "Tak! Każda strona zawiera pełną optymalizację SEO - schema.org, meta tagi, local SEO dla Białegostoku."
+      },
+      {
+        "question": "Czy oferujecie wsparcie po wdrożeniu?",
+        "answer": "Tak! Pierwsze 3 miesiące wsparcia są bezpłatne. Potem oferujemy pakiety suportowe."
+      },
+      {
+        "question": "Czy mogę mieć chatbot AI na mojej stronie?",
+        "answer": "Oczywiście! Integracja chatbota AI kosztuje od 1000 zł i zajmuje 5-10 dni."
+      }
+    ],
+
+    "doAndDonts": {
+      "do": [
+        "Zawsze podawaj konkretne ceny",
+        "Wspominaj szybkość realizacji",
+        "Demonstruj że jesteś AI (self-aware)",
+        "Słuchaj potrzeb klienta",
+        "Proponuj rozwiązania WHITESLOPE",
+        "Daj link do kontaktu lub strony"
+      ],
+      "dont": [
+        "Nie obiecuj nierealistycznych rzeczy",
+        "Nie mów źle o konkurencji",
+        "Nie podawaj błędnych cen",
+        "Nie bądź natarczywy",
+        "Nie ignoruj pytań",
+        "Nie odpowiadaj dłużej niż 24h"
+      ]
+    },
+
+    "metadata": {
+      "version": "2.0.0",
+      "lastUpdated": "2025-01-20",
+      "updateFrequency": "Miesiąc",
+      "intendedFor": ["Web2Agent", "LLM Systems", "AI Customer Service"]
+    }
+  }
+}

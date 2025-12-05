@@ -4,11 +4,11 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/sections/cookieBanner";
-import { jsonLd } from "@/lib/schema";
+import { jsonLd, faqJsonLd } from "@/lib/schema"; // ← DODAJ faqJsonLd
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
-import { SearchEngineProvider } from '@/components/SearchEngineProvider'; // ← NOWY IMPORT
-import { PromoBanner } from '@/components/layout/ad';  // ← Dodaj
+import { SearchEngineProvider } from '@/components/SearchEngineProvider';
+import { PromoBanner } from '@/components/layout/ad';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,9 +22,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://whiteslope.studio'),
-  title: "Whiteslope Studio - Profesjonalne strony internetowe Białystok ",
-  description: "Tworzymy szybkie, nowoczesne strony internetowe i aplikacje webowe. SEO, CMS, e-commerce. Darmowe konsultacje. Białystok, Podlaskie.",
-  keywords: "strony internetowe, aplikacje webowe, SEO, CMS, e-commerce, Białystok, web development, Next.js, React",
+  
+  // ← POPRAWIONY TITLE (fraza kluczowa na początku)
+  title: "Strony Internetowe Białystok od 1500 zł | Whiteslope Studio | Profesjonalne Tworzenie Stron WWW",
+  
+  // ← POPRAWIONY DESCRIPTION (więcej lokalności + CTA)
+  description: "Profesjonalne strony internetowe Białystok od 1500 zł. Whiteslope Studio - zespół programistów z Białegostoku. Realizacja kilka dni. Chatboty AI, SEO, CMS. Darmowa konsultacja!",
+  
+  // ← POPRAWIONE KEYWORDS (więcej lokalnych fraz)
+  keywords: "strony internetowe białystok, tworzenie stron białystok, strony www białystok, agencja webdev białystok, strony internetowe podlaskie, sklepy internetowe białystok, aplikacje webowe białystok, SEO białystok, CMS, Next.js, React",
+  
   authors: [{ name: "Whiteslope Studio" }],
   creator: "Whiteslope Studio",
   publisher: "Whiteslope Studio",
@@ -39,9 +46,11 @@ export const metadata: Metadata = {
       'pl-PL': '/',
     },
   },
+  
+  // ← POPRAWIONY OPEN GRAPH
   openGraph: {
-    title: "Whiteslope Studio - Profesjonalne strony internetowe Białystok",
-    description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe",
+    title: "Strony Internetowe Białystok Od 1500 zł | Whiteslope Studio",
+    description: "Profesjonalne strony WWW Białystok. Zespół programistów z Białegostoku. Realizacja kilka dni. Chatboty AI, SEO, modernizacja. Sprawdź ofertę!",
     url: "https://whiteslope.studio",
     siteName: "Whiteslope Studio",
     images: [
@@ -49,19 +58,22 @@ export const metadata: Metadata = {
         url: "https://whiteslope.studio/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Whiteslope Studio - Profesjonalne strony internetowe w Białymstoku",
+        alt: "Whiteslope Studio - Strony internetowe Białystok od 1500 zł",
       },
     ],
     locale: "pl_PL",
     type: "website",
   },
+  
+  // ← POPRAWIONY TWITTER
   twitter: {
     card: "summary_large_image",
-    title: "Whiteslope Studio - Profesjonalne strony internetowe",
-    description: "Tworzymy szybkie, responsywne strony internetowe i aplikacje webowe w Białymstoku",
+    title: "Strony Internetowe Białystok | Whiteslope Studio",
+    description: "Profesjonalne strony WWW od 1500 zł. Lokalni programiści z Białegostoku. Realizacja kilka dni.",
     creator: "@whiteslope",
     images: ["https://whiteslope.studio/og-image.jpg"],
   },
+  
   robots: {
     index: true,
     follow: true,
@@ -75,7 +87,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "twój-kod-weryfikacyjny-google",
+    google: "SB46A7FOsjJNH2uEe5hA7GYsSExFBcQttzFQSIKwgIc",
   },
 };
 
@@ -87,16 +99,23 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <head>
+        {/* JSON-LD - Główny schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        
+        {/* FAQ Schema - NOWY! */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Header />
         <PromoBanner />
         {children}
-        <SearchEngineProvider /> {/* ← ZAMIEŃ SearchEngine na SearchEngineProvider */}
+        <SearchEngineProvider />
         <CookieBanner />
         <Chatbot />
         <Footer />
@@ -104,3 +123,4 @@ export default function RootLayout({
     </html>
   );
 }
+

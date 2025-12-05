@@ -1,0 +1,240 @@
+{
+  "agencyName": "WHITESLOPE STUDIO",
+  "tagline": "Agencja digital Białystok - Strony Internetowe, AI, SEO",
+  "description": "Profesjonalna agencja digital z Białegostoku specjalizująca się w tworzeniu nowoczesnych stron internetowych, implementacji AI i pozycjonowaniu SEO",
+  "location": {
+    "city": "Białystok",
+    "region": "Podlaskie",
+    "country": "Polska",
+    "countryCode": "PL",
+    "coordinates": {
+      "lat": 53.1325,
+      "lng": 23.1688
+    },
+    "address": "ul. Pietkiewicza, 15-689 Białystok",
+    "serviceRadius": "Białystok, Podlaskie, Polska, Europa (zdalne)",
+    "timezone": "Europe/Warsaw"
+  },
+  "contact": {
+    "email": "kontakt@whiteslope.studio",
+    "website": "https://whiteslope.studio",
+    "responseTime": "24h",
+    "languages": ["Polish", "English"]
+  },
+  "services": [
+    {
+      "id": "website",
+      "name": "Strona internetowa",
+      "price": "od 1500 zł",
+      "priceRange": [1500, 100000],
+      "turnover": "2-14 dni",
+      "description": "Nowoczesne, responsywne strony internetowe zaprojektowane z myślą o Twoich klientach",
+      "highlights": [
+        "Responsywny design",
+        "Optymalizacja SEO",
+        "System CMS",
+        "Certyfikat SSL",
+        "Next.js/React/TypeScript",
+        "Wsparcie techniczne"
+      ],
+      "isPopular": true
+    },
+    {
+      "id": "optimization",
+      "name": "Modernizacja strony",
+      "price": "od 800 zł",
+      "priceRange": [800, 3000],
+      "turnover": "3-7 dni",
+      "description": "Kompleksowa optymalizacja, migracja na nowoczesne technologie i poprawa SEO",
+      "highlights": [
+        "Migracja strony",
+        "Optymalizacja szybkości",
+        "Pozycja w Google",
+        "Responsywność",
+        "Bezpieczeństwo i backup",
+        "Audyt techniczny"
+      ]
+    },
+    {
+      "id": "ai-integration",
+      "name": "Integracja AI",
+      "price": "od 1000 zł",
+      "priceRange": [1000, 5000],
+      "turnover": "5-10 dni",
+      "description": "Chatboty, automatyzacja procesów i generatory treści AI",
+      "highlights": [
+        "Chatboty 24/7",
+        "Automatyzacja dokumentów",
+        "Generowanie obrazów/wideo",
+        "Integracja ChatGPT/Claude/Gemini",
+        "Analiza danych",
+        "Wsparcie 24/7"
+      ]
+    },
+    {
+      "id": "graphics",
+      "name": "Grafika i Projektowanie",
+      "price": "od 500 zł",
+      "priceRange": [500, 2000],
+      "turnover": "2-5 dni",
+      "description": "Profesjonalne projekty graficzne, UI/UX design i materiały marketingowe",
+      "highlights": [
+        "UI/UX Design",
+        "Grafika 2D i 3D",
+        "Logo i branding",
+        "Social media graphics",
+        "Projektowanie motywów",
+        "Material design"
+      ]
+    },
+    {
+      "id": "individual",
+      "name": "Usługi Indywidualne",
+      "price": "od 300 zł/h",
+      "priceRange": [300, 1000],
+      "turnover": "dostosowany",
+      "description": "Niestandardowe projekty i rozwiązania dostosowane do Twoich potrzeb",
+      "highlights": [
+        "Bespoke solutions",
+        "Code review",
+        "Konsultacje",
+        "Training",
+        "Integracje",
+        "Technical audit"
+      ]
+    },
+    {
+      "id": "email-marketing",
+      "name": "Email Marketing",
+      "price": "od 500 zł",
+      "priceRange": [500, 2000],
+      "turnover": "2-3 dni",
+      "description": "Kampanie email marketing, automation i personalizacja",
+      "highlights": [
+        "Automation setup",
+        "Kampanie email",
+        "Personalizacja",
+        "A/B testing",
+        "CRM integration",
+        "Analytics"
+      ]
+    },
+    {
+      "id": "video-marketing",
+      "name": "Video Marketing",
+      "price": "od 1500 zł",
+      "priceRange": [1500, 5000],
+      "turnover": "5-15 dni",
+      "description": "Produkcja wideo marketingowych, animacje i video marketing",
+      "highlights": [
+        "Produkcja wideo",
+        "Animacje",
+        "Motion graphics",
+        "Social media videos",
+        "Product videos",
+        "Explainer videos"
+      ],
+      "isNew": true
+    }
+  ],
+  "uniqueSellingPoints": [
+    {
+      "title": "Szybkość realizacji",
+      "description": "Strony do 14 dni, modernizacje od 3 dni"
+    },
+    {
+      "title": "Ceny od 1500 zł",
+      "description": "Profesjonalne strony internetowe już od 1500 zł"
+    },
+    {
+      "title": "Technologia Next.js",
+      "description": "Najnowsza technologia web (Next.js, React, TypeScript)"
+    },
+    {
+      "title": "AI Chatboty 24/7",
+      "description": "Inteligentne boty obsługujące klientów przez całą dobę"
+    },
+    {
+      "title": "SEO Optimization",
+      "description": "Zadbamy o Twoją widoczność w Google"
+    },
+    {
+      "title": "Wsparcie lokalne",
+      "description": "Zespół w Białymstoku, dostępny osobiście i zdalnie"
+    }
+  ],
+  "portfolio": [
+    {
+      "name": "Wiesławski Studio",
+      "url": "https://www.wieslawski.studio",
+      "description": "Profesjonalne studio muzyczne",
+      "result": "Pierwsze zapytania od klientów w 24h",
+      "techStack": ["Next.js", "React", "TypeScript", "Responsive Design"],
+      "timeline": "7-14 dni"
+    },
+    {
+      "name": "Patryk Kulesza - Korepetycje",
+      "url": "https://patrykkul.github.io/korepetycje",
+      "description": "Platform korepetycji online",
+      "result": "Bardzo korzystna oferta pracy po 3 dniach",
+      "techStack": ["HTML", "CSS", "JavaScript", "SEO"],
+      "timeline": "5-7 dni"
+    }
+  ],
+  "seoKeywords": [
+    "strony internetowe białystok",
+    "tworzenie stron białystok",
+    "agencja web białystok",
+    "web development białystok",
+    "strony www białystok",
+    "chatboty AI białystok",
+    "SEO białystok",
+    "strony internetowe podlaskie",
+    "agencja digital białystok",
+    "modernizacja strony białystok",
+    "strony internetowe białystok cena",
+    "agencja web białystok opinie"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Konsultacja",
+      "description": "Bezpłatna konsultacja i analiza potrzeb (30 minut)"
+    },
+    {
+      "step": 2,
+      "title": "Wycena",
+      "description": "Szczegółowa wycena i harmonogram realizacji"
+    },
+    {
+      "step": 3,
+      "title": "Design",
+      "description": "Prototyp i zatwierdzenie designu"
+    },
+    {
+      "step": 4,
+      "title": "Programowanie",
+      "description": "Kodowanie i testy jakościowe"
+    },
+    {
+      "step": 5,
+      "title": "Launch",
+      "description": "Wdrożenie i uruchomienie"
+    },
+    {
+      "step": 6,
+      "title": "Wsparcie",
+      "description": "Wsparcie techniczne i maintenance"
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "lastUpdated": "2025-01-20T12:00:00Z",
+    "language": "pl-PL",
+    "country": "PL",
+    "intendedFor": ["Web2Agent", "AI Agents", "LLMs", "Search Engines"],
+    "businessType": "Digital Agency",
+    "employeeCount": "4-6",
+    "yearsInBusiness": 5
+  }
+}

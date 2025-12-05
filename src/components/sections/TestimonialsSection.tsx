@@ -617,8 +617,60 @@
 // };
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
+
+// Hook do animacji liczb
+const AnimatedCounter = ({ value, suffix = '' }: { value: number | string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  useEffect(() => {
+    if (!hasAnimated) return;
+
+    let start = 0;
+    const end = typeof value === 'string' ? parseInt(value) : value;
+    const duration = 2000;
+    const increment = end / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [hasAnimated, value]);
+
+  return (
+    <div ref={ref}>
+      {count}
+      {suffix}
+    </div>
+  );
+};
 
 interface Testimonial {
   id: number;
@@ -676,7 +728,7 @@ export const TestimonialsSection = () => {
   return (
     <section 
       id="testimonials" 
-      className="pt-10 bg-black relative overflow-hidden pb-10 my-5 sm:my-15"
+      className="pt-20 bg-black relative overflow-hidden pb-10 my-5 sm:my-15"
       style={{
         background: `
           radial-gradient(ellipse at center, transparent 0%, transparent 10%, black 100%),
@@ -699,17 +751,17 @@ export const TestimonialsSection = () => {
       <div className="relative z-10">
         {/* NAGŁÓWEK */}
         <div className="text-center mb-8 relative z-10 max-w-10xl mx-auto px-4">
-          <div className="text-left max-w-7xl mx-auto">
-            <h2 className="text-2xl lg:text-4xl text-white mb-4 tracking-tight items-center text-center sm:items-start flex flex-col"
-            style={{ fontWeight: 575 }}>
+          <div className="max-w-7xl mx-auto">
+            <h2 className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto" style={{ fontWeight: 575 }}>
+
               
               <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}> 
-                Zobacz jak pomagamy rozwijać biznesy
+                Twoja firma się rozwija — gdy strategia<br /> naprawdę sprzyja
               </span>
 
             </h2>
-            <p className="text-base lg:text-lg items-center text-center sm:items-start flex flex-col" style={{ color: '#9ca3af' }}>
+            <p className="mb-15 text-base lg:text-lg items-center text-center flex flex-col" style={{ color: '#9ca3af' }}>
               Realne wyniki, mierzalne rezultaty i zadowolenie
             </p>
           </div>
@@ -720,6 +772,10 @@ export const TestimonialsSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {stats.map((stat, index) => {
               const isHovered = hoveredIndex === index;
+              const isNumeric = /^\d+/.test(stat.value);
+              const numericPart = isNumeric ? parseInt(stat.value) : null;
+              const suffix = isNumeric ? stat.value.replace(/^\d+/, '') : '';
+              
               return (
                 <div
                   key={index}
@@ -731,10 +787,14 @@ export const TestimonialsSection = () => {
                     <div 
                       className="text-4xl md:text-5xl font-bold transition-colors duration-500"
                       style={{
-                        color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
+                        color: isHovered ? '#1985FF' : '#1985FF',
                       }}
                     >
-                      {stat.value}
+                      {isNumeric && numericPart !== null ? (
+                        <AnimatedCounter value={numericPart} suffix={suffix} />
+                      ) : (
+                        stat.value
+                      )}
                     </div>
                     <p 
                       className="text-sm leading-relaxed transition-colors duration-500"

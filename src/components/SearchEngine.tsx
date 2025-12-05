@@ -45,7 +45,8 @@ const serviceIcons: Record<string, any> = {
   'ai-integration': Sparkles,
   'graphics': PenTool,
   'individual': Briefcase,
-  'email-marketing': Mail
+  'email-marketing': Mail,
+  'video-marketing': Package
 };
 
 const serviceColors: Record<string, string> = {
@@ -54,7 +55,8 @@ const serviceColors: Record<string, string> = {
   'ai-integration': 'from-cyan-500/10 to-cyan-600/5',
   'graphics': 'from-orange-500/10 to-orange-600/5',
   'individual': 'from-emerald-500/10 to-emerald-600/5',
-  'email-marketing': 'from-pink-500/10 to-pink-600/5'
+  'email-marketing': 'from-pink-500/10 to-pink-600/5',
+  'video-marketing': 'from-red-500/10 to-red-600/5',
 };
 
 
@@ -66,6 +68,7 @@ const iconColors: Record<string, string> = {
   'graphics': '#F59E0B',            // pomarańczowy
   'individual': '#EC4899',       // różowy
   'email-marketing': '#6366F1',    // indigo
+  'video-marketing': '#EF4444',    // czerwony
   // Dodaj resztę swoich usług tutaj
 };
 
@@ -271,46 +274,61 @@ export default function SearchEngine() {
                       <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3 px-1">
                         Nasze Usługi
                       </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 relative">
                         {MAIN_SERVICES.map((service: MainService, index: number) => {
                           const Icon = serviceIcons[service.id] || Package;
                           const color = serviceColors[service.id] || 'from-white/10 to-white/5';
                           const iconColor = iconColors[service.id] || '#FFFFFF'; // Kolor dla ikonki
+                          const isNew = index === 6; // Siódmy pakiet (indeks 6)
                           
                           return (
-                            <button
-                              key={index}
-                              onClick={() => handleResultClick(`/pricing/${service.id}`)}
-                              className="group relative p-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/7 transition-all hover:cursor-pointer text-left"
-                            >
-                              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${color} opacity-5 group-hover:opacity-7 transition-opacity`} />
-                              <div className="relative flex items-center gap-3">
-                                <div 
-                                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-xl group-hover:scale-105 transition-all"
-                                  style={{
-                                    backgroundColor: `${iconColor}20`, // 20 = ~12% opacity
-                                    borderWidth: '1px',
-                                    borderStyle: 'solid',
-                                    borderColor: `${iconColor}40` // 40 = ~25% opacity
-                                  }}
-                                >
-                                  {/* IKONKA Z INLINE STYLE - maksymalnie kolorowa! */}
-                                  <Icon 
-                                    className="w-5 h-5" 
-                                    style={{ 
-                                      color: iconColor,
-                                      filter: 'brightness(1.2) saturate(1.5)', // MAXA KOLORAWA!
-                                    }} 
-                                  />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-white font-medium text-sm group-hover:text-white transition-colors">
-                                    {service.title}
+                            <div key={index} className="relative">
+                              <button
+                                onClick={() => handleResultClick(`/pricing/${service.id}`)}
+                                className="group relative w-full p-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/7 transition-all hover:cursor-pointer text-left overflow-hidden"
+                              >
+                                {/* BADGE NOWOŚĆ - prostokąt, 45 stopni w lewym górnym */}
+                                {isNew && (
+                                  <div 
+                                    className="absolute top-2 -left-10 w-30 h-6 bg-red-500 flex items-center justify-center transform -rotate-45"
+                                    style={{
+                                      boxShadow: '0 2px 8px rgba(239, 68, 68, 0.5)',
+                                      zIndex: 10,
+                                    }}
+                                  >
+                                    <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Nowe!</span>
                                   </div>
+                                )}
+                                
+                                <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${color} opacity-5 group-hover:opacity-7 transition-opacity`} />
+                                <div className="relative flex items-center gap-3">
+                                  <div 
+                                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-xl group-hover:scale-105 transition-all"
+                                    style={{
+                                      backgroundColor: `${iconColor}20`, // 20 = ~12% opacity
+                                      borderWidth: '1px',
+                                      borderStyle: 'solid',
+                                      borderColor: `${iconColor}40` // 40 = ~25% opacity
+                                    }}
+                                  >
+                                    {/* IKONKA Z INLINE STYLE - maksymalnie kolorowa! */}
+                                    <Icon 
+                                      className="w-5 h-5" 
+                                      style={{ 
+                                        color: iconColor,
+                                        filter: 'brightness(1.2) saturate(1.5)', // MAXA KOLORAWA!
+                                      }} 
+                                    />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-white font-medium text-sm group-hover:text-white transition-colors">
+                                      {service.title}
+                                    </div>
+                                  </div>
+                                  <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
                                 </div>
-                                <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0" />
-                              </div>
-                            </button>
+                              </button>
+                            </div>
                           );
                         })}
                       </div>

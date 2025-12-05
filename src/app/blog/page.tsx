@@ -7,6 +7,7 @@ import { Calendar, User, Clock, ArrowRight, Tag } from 'lucide-react';
 import { blogJsonLd } from '@/lib/schema';
 import { Metadata } from 'next';
 
+
 export const metadata: Metadata = {
   title: 'Blog - WHITESLOPE STUDIO | Web Development, Design i SEO',
   description: 'Odkryj najnowsze trendy w web development, designie i technologii. Praktyczne porady, tutoriale i insights od ekspertów WHITESLOPE STUDIO.',

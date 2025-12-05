@@ -7,6 +7,7 @@ import { MAIN_SERVICES, SERVICE_PACKAGES, getServicePackages } from '@/lib/data'
 import { MainService, ServicePackage } from '@/lib/types';
 import LottieAnimation from '@/components/ui/LottieAnimation';
 
+
 // Sprawdzamy czy service ID istnieje w MAIN_SERVICES
 const validServiceIds = MAIN_SERVICES.map(s => s.id);
 
@@ -93,7 +94,6 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
   
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative pt-15">
-      
       {/* WATERMARK - tylko na desktop */}
       <div className="hidden lg:flex absolute inset-0 z-0 pointer-events-none items-start justify-center pt-24">
         <h1 
