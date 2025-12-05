@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "Whiteslope Studio",
     images: [
       {
-        url: "https://whiteslope.studio/og-image.jpg",
+        url: "/_resources/image.jpg",
         width: 1200,
         height: 630,
         alt: "Whiteslope Studio - Strony internetowe Białystok od 1500 zł",
