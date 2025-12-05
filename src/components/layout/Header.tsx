@@ -432,7 +432,7 @@ export const Header = () => {
                     className="px-4 py-2 rounded-full font-medium bg-white text-black transition-all duration-300 hover:cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
-                    Skontaktuj się
+                    Kontakt
                   </motion.button>
 
                   {/* Social Media */}
@@ -695,7 +695,7 @@ export const Header = () => {
                     transition={{ duration: 0.3, delay: 0.45 }}
                     whileHover={{ x: 10 }}
                   >
-                    Skontaktuj się
+                    Kontakt
                   </motion.button>
                 </div>
 
