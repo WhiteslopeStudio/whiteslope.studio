@@ -196,7 +196,6 @@ export const ProcessSection = () => {
               style={{ fontWeight: 575 }}>
                 Nasza wspólna droga działania
               </span>
-              <FaRoad className="text-gray-200 w-8 h-8 sm:w-10 sm:h-10 opacity-80" />
             </h2>
           </div>
           
