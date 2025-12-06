@@ -79,7 +79,7 @@ export default function DesktopUslugiSection() {
   return (
     <section 
       ref={cardsAnimation.ref as React.RefObject<HTMLElement>}
-      className="py-12 bg-black relative overflow-hidden"
+      className="py-12 bg-[#050505] relative overflow-hidden"
     >
       <div className="relative z-10">
         <div className="relative max-w-7xl mx-auto px-4">

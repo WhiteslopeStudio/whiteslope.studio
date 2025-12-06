@@ -378,7 +378,7 @@ export const ProcessSection = () => {
         </div>
             {/* LOGA KLIENTÓW */}
         <div className="text-center mt-30 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-base text-blue-500 uppercase tracking-wider mb-6" style={{ color: '#abbfffff' }}>
+          <p className="text-base text-blue-500 uppercase tracking-wider mb-6" style={{ color: '#ffffffff' }}>
             Marki, z którymi tworzymy efekty:
           </p>
           <div className="flex gap-8 justify-center flex-wrap">
