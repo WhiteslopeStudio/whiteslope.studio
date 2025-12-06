@@ -153,7 +153,7 @@ export default function Chatbot() {
   // ==========================================
   if (!isOpen) {
     return (
-      <div className="fixed bottom-3 right-1 md:bottom-6 md:right-6 z-50 pointer-events-none">
+      <div className="fixed bottom-3 right-2 md:bottom-8 md:right-10 z-50 pointer-events-none">
         <button 
           onClick={handleOpenChat}
           className="group relative pointer-events-auto"
@@ -163,9 +163,9 @@ export default function Chatbot() {
 
           {/* GŁÓWNY PRZYCISK Z KOLOREM #8265db */}
           <div 
-            className="relative px-5 py-3 rounded-full backdrop-blur-xl shadow-2xl hover:shadow-[0_8px_32px_rgba(130,101,219,0.4)] transition-all duration-300 hover:scale-105 flex items-center gap-3 hover:cursor-pointer border border-[#8265db]/30 scale-[0.80] md:scale-100"
+            className="relative px-5 py-3 rounded-full backdrop-blur-xl shadow-2xl hover:shadow-[0_8px_32px_rgba(130,101,219,0.4)] transition-all duration-300 hover:scale-111 flex items-center gap-3 hover:cursor-pointer border border-[#8265db]/30 scale-[0.80] md:scale-110"
             style={{
-              backgroundColor: '#6532fcff',
+              backgroundColor: '#237cf2ff',
             }}
           >
             <div 

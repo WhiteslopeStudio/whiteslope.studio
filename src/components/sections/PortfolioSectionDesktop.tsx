@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, Maximize } from 'lucide-react';
+import { useSingleAnimation, useStaggerAnimation } from '@/utils/hooks'; // ← IMPORTUJ SWOJE HOOKI (dostosuj ścieżkę!)
 
 // Interface dla portfolio item
 interface PortfolioItem {
@@ -73,6 +74,35 @@ export default function PortfolioSectionDesktop() {
   const bgVideoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number | null>(null);
+
+  // ========== ANIMACJE ==========
+  // Nagłówek "Nasze realizacje"
+  const headingAnimation = useSingleAnimation(0, {
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+  });
+
+  // Przyciski nawigacyjne (2 przyciski)
+  const buttonsAnimation = useStaggerAnimation(2, {
+    initialDelay: 1000,
+    staggerDelay: 200,
+    duration: 700,
+  });
+
+  // Video container
+  const videoAnimation = useSingleAnimation(350, {
+    duration: 1000,
+    translateY: 40,
+    blurAmount: 12,
+  });
+
+  // Kropki (dots)
+  const dotsAnimation = useStaggerAnimation(portfolioData.length, {
+    initialDelay: 600,
+    staggerDelay: 50,
+    duration: 600,
+  });
 
   const currentItem = portfolioData[currentIndex];
 
@@ -219,116 +249,125 @@ export default function PortfolioSectionDesktop() {
         
         {/* NAGŁÓWEK + PRZYCISKI */}
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-3xl text-white/80 text-left">
+          {/* Nagłówek z animacją */}
+          <h2 
+            className="text-2xl font-3xl text-white/80 text-left"
+            style={headingAnimation.style}
+          >
             Nasze realizacje:
           </h2>
 
+          {/* Przyciski z animacją */}
           <div className="flex items-center gap-3">
             <button
               onClick={goToPrev}
               className="w-8 h-8 rounded-full bg-white/80 hover:bg-white/70 border border-white/20 flex items-center justify-center transition-all duration-300 active:scale-95 hover:cursor-pointer"
+              style={buttonsAnimation.getItemStyle(0)}
             >
               <ChevronLeft className="w-6 h-6 text-black" />
             </button>
             <button
               onClick={goToNext}
               className="w-8 h-8 rounded-full bg-white/80 hover:bg-white/70 border border-white/20 flex items-center justify-center transition-all duration-300 active:scale-95 hover:cursor-pointer"
+              style={buttonsAnimation.getItemStyle(1)}
             >
               <ChevronRight className="w-6 h-6 text-black" />
             </button>
           </div>
         </div>
 
+        {/* VIDEO CONTAINER z animacją */}
         <div
-  ref={videoContainerRef}
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
-  className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
-  style={{
-    boxShadow: isHovered
-      ? '0 30px 80px rgba(255,255,255,0.06), 0 0 120px rgba(255,255,255,0.04)'
-      : undefined,
-  }}
->
-  <video
-    ref={videoRef}
-    src={currentItem.video}
-    className="w-full h-auto aspect-video object-cover"
-    autoPlay
-    muted
-    playsInline
-    controls={false}
-  />
+          ref={videoContainerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="block relative w-full rounded-3xl overflow-hidden bg-black transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
+          style={{
+            ...videoAnimation.style, // ← DODAJEMY ANIMACJĘ
+            boxShadow: isHovered
+              ? '0 30px 80px rgba(255,255,255,0.06), 0 0 120px rgba(255,255,255,0.04)'
+              : undefined,
+          }}
+        >
+          <video
+            ref={videoRef}
+            src={currentItem.video}
+            className="w-full h-auto aspect-video object-cover"
+            autoPlay
+            muted
+            playsInline
+            controls={false}
+          />
 
-  {/* Gradient na dole dla lepszego kontrastu, ale bez przykrywania elementów */}
-  <div
-    className="absolute inset-0 pointer-events-none z-10"
-    style={{
-      background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.0) 60%, rgba(0, 0, 0, 1) 100%)',
-    }}
-  />
+          {/* Gradient na dole dla lepszego kontrastu */}
+          <div
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.0) 60%, rgba(0, 0, 0, 1) 100%)',
+            }}
+          />
 
-  {currentItem.logo && (
-    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
-      <img src={currentItem.logo} alt="Logo" className="h-16 w-auto" />
-    </div>
-  )}
+          {currentItem.logo && (
+            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
+              <img src={currentItem.logo} alt="Logo" className="h-16 w-auto" />
+            </div>
+          )}
 
-  {/* TYTUŁ I OPIS - zawsze widoczne */}
-  <a href={currentItem.href} className="absolute bottom-16 left-8 z-30 block">
-    <h3 className="text-white text-4xl font-base mb-2 drop-shadow-lg max-w-4xl">
-      {currentItem.title}
-    </h3>
-    <p className="text-gray-200 text-xl font-thin drop-shadow-lg max-w-2xl">
-      {currentItem.description}
-    </p>
-  </a>
+          {/* TYTUŁ I OPIS */}
+          <a href={currentItem.href} className="absolute bottom-16 left-8 z-30 block">
+            <h3 className="text-white text-4xl font-base mb-2 drop-shadow-lg max-w-4xl">
+              {currentItem.title}
+            </h3>
+            <p className="text-gray-200 text-xl font-thin drop-shadow-lg max-w-2xl">
+              {currentItem.description}
+            </p>
+          </a>
 
-  {/* PRZYCISKI W PRAWYM DOLNYM ROGU - zawsze widoczne */}
-  <div className="absolute bottom-8 right-8 z-30 flex items-center gap-3">
-    {/* PRZYCISK FULLSCREEN */}
-    <button
-      type="button"
-      aria-label="Fullscreen"
-      onClick={toggleFullscreen}
-      className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors"
-    >
-      <Maximize className="w-5 h-5 text-white" />
-    </button>
+          {/* PRZYCISKI W PRAWYM DOLNYM ROGU */}
+          <div className="absolute bottom-8 right-8 z-30 flex items-center gap-3">
+            {/* PRZYCISK FULLSCREEN */}
+            <button
+              type="button"
+              aria-label="Fullscreen"
+              onClick={toggleFullscreen}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors"
+            >
+              <Maximize className="w-5 h-5 text-white" />
+            </button>
 
-    {/* PRZYCISK ZOBACZ SZCZEGÓŁY */}
-    <button
-      type="button"
-      aria-label="Zobacz szczegóły projektu"
-      onClick={(e) => {
-        e.stopPropagation();
-        if (typeof window !== 'undefined') {
-          window.location.href = currentItem.href;
-        }
-      }}
-      className="group inline-flex items-center gap-3 rounded-full px-4 py-3 shadow-lg hover:scale-105 transform transition duration-300 hover:shadow-2xl"
-    >
-      <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors">
-        <ExternalLink className="w-5 h-5" />
-      </span>
-      <span className="text-white font-medium tracking-tight hover:cursor-pointer">
-        Zobacz szczegóły
-      </span>
-    </button>
-  </div>
+            {/* PRZYCISK ZOBACZ SZCZEGÓŁY */}
+            <button
+              type="button"
+              aria-label="Zobacz szczegóły projektu"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (typeof window !== 'undefined') {
+                  window.location.href = currentItem.href;
+                }
+              }}
+              className="group inline-flex items-center gap-3 rounded-full px-4 py-3 shadow-lg hover:scale-105 transform transition duration-300 hover:shadow-2xl"
+            >
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:cursor-pointer text-white bg-black transition-colors">
+                <ExternalLink className="w-5 h-5" />
+              </span>
+              <span className="text-white font-medium tracking-tight hover:cursor-pointer">
+                Zobacz szczegóły
+              </span>
+            </button>
+          </div>
 
-  {/* PASEK POSTĘPU */}
-  <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-30">
-    <div
-      className="h-full bg-white/30"
-      style={{
-        width: `${progress}%`,
-      }}
-    />
-  </div>
-</div>
+          {/* PASEK POSTĘPU */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10 z-30">
+            <div
+              className="h-full bg-white/30"
+              style={{
+                width: `${progress}%`,
+              }}
+            />
+          </div>
+        </div>
 
-        {/* KROPKI */}
+        {/* KROPKI z animacją */}
         <div className="flex justify-center items-center gap-2 mt-6 relative h-2">
           {portfolioData.map((_, index) => (
             <button
@@ -342,6 +381,7 @@ export default function PortfolioSectionDesktop() {
                   ? 'bg-white'
                   : 'bg-white/30 hover:bg-white/50'
               }`}
+              style={dotsAnimation.getItemStyle(index)} // ← ANIMACJA NA KAŻDEJ KROPCE
             />
           ))}
         </div>

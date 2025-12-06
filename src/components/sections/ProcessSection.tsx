@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import { PROCESS_STEPS } from '@/lib/data';
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
-import { FaFilePdf, FaDownload } from 'react-icons/fa';
+import { FaFilePdf, FaDownload, FaRoad } from 'react-icons/fa';
+import { useSingleScrollAnimation } from '@/utils/hooks'; // ← DODAJ TEN IMPORT
+
 
 interface Testimonial {
   id: number;
@@ -65,6 +67,25 @@ export const ProcessSection = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const AUTO_PLAY_DURATION = 7000;
+
+  // ========== ANIMACJE Z SCROLL TRIGGEREM ==========
+  // Nagłówek H2
+  const headingAnimation = useSingleScrollAnimation(0, {
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
+
+  // Podtytuł
+  const subtitleAnimation = useSingleScrollAnimation(150, { // 150ms opóźnienia po H2
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
   
 
   useEffect(() => {
@@ -166,12 +187,16 @@ export const ProcessSection = () => {
       <div className="relative z-10">
         <div className="text-center my-12 mb-16 relative z-10 max-w-10xl mx-auto px-4">
           <div className=" max-w-7xl mx-auto">
-            <h2 className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto" style={{ fontWeight: 575 }}>
+            <h2 
+              ref={headingAnimation.ref as React.RefObject<HTMLHeadingElement>} // ✅ DODANO REF
+              className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto flex items-center justify-center gap-3 sm:gap-4" 
+              style={{ fontWeight: 575, ...headingAnimation.style }}>
               
               <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}>
-                Nasza droga działania
+                Nasza wspólna droga działania
               </span>
+              <FaRoad className="text-gray-200 w-8 h-8 sm:w-10 sm:h-10 opacity-80" />
             </h2>
           </div>
           
@@ -353,7 +378,7 @@ export const ProcessSection = () => {
         </div>
             {/* LOGA KLIENTÓW */}
         <div className="text-center mt-30 relative z-10 max-w-7xl mx-auto px-4">
-          <p className="text-base uppercase tracking-wider mb-6" style={{ color: '#eaeaeaff' }}>
+          <p className="text-base text-blue-500 uppercase tracking-wider mb-6" style={{ color: '#abbfffff' }}>
             Marki, z którymi tworzymy efekty:
           </p>
           <div className="flex gap-8 justify-center flex-wrap">

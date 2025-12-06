@@ -429,7 +429,7 @@ export const Header = () => {
                   {/* Kontakt */}
                   <motion.button
                     onClick={() => router.push('/contact')}
-                    className="px-4 py-2 rounded-full font-medium bg-white text-black transition-all duration-300 hover:cursor-pointer"
+                    className="px-4 py-2 rounded-full font-medium bg-blue-500 text-white transition-all duration-300 hover:cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
                     Kontakt

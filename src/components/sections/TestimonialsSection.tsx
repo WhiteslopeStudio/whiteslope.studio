@@ -619,6 +619,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
+import { useSingleScrollAnimation } from '@/utils/hooks'; // ← DODAJ TEN IMPORT
+
 
 // Hook do animacji liczb
 const AnimatedCounter = ({ value, suffix = '' }: { value: number | string; suffix?: string }) => {
@@ -725,6 +727,25 @@ const stats = [
 export const TestimonialsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // ========== ANIMACJE Z SCROLL TRIGGEREM ==========
+  // Nagłówek H2
+  const headingAnimation = useSingleScrollAnimation(0, {
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
+
+  // Podtytuł
+  const subtitleAnimation = useSingleScrollAnimation(150, { // 150ms opóźnienia po H2
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
+
   return (
     <section 
       id="testimonials" 
@@ -749,19 +770,31 @@ export const TestimonialsSection = () => {
       }}
     >
       <div className="relative z-10">
-        {/* NAGŁÓWEK */}
+         {/* NAGŁÓWEK */}
         <div className="text-center mb-8 relative z-10 max-w-10xl mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto" style={{ fontWeight: 575 }}>
-
-              
+            <h2 
+              ref={headingAnimation.ref as React.RefObject<HTMLHeadingElement>} // ✅ DODANO REF
+              className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight mx-auto"
+              style={{ 
+                fontWeight: 575,
+                ...headingAnimation.style
+              }}
+            >
               <span className=" bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent"
               style={{ fontWeight: 575 }}> 
-                Twoja firma może się rozwijać z nami
+                Twoja firma może się rozwijać razem z nami
               </span>
 
             </h2>
-            <p className="mb-15 text-base lg:text-lg items-center text-center flex flex-col" style={{ color: '#9ca3af' }}>
+            <p 
+              ref={subtitleAnimation.ref as React.RefObject<HTMLParagraphElement>} // ✅ DODANO REF
+              className="mb-15 text-base lg:text-lg items-center text-center flex flex-col"
+              style={{ 
+                color: '#9ca3af',
+                ...subtitleAnimation.style
+              }}
+            >
               Realne wyniki, mierzalne rezultaty i zadowolenie
             </p>
           </div>

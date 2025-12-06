@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useSingleScrollAnimation, useScrollAnimation } from '@/utils/hooks';
 
 // ✅ IMPORT DANYCH z data.tsx
 import { MAIN_SERVICES } from '@/lib/data';
@@ -26,6 +27,25 @@ type ServiceIconId = 'website' | 'optimization' | 'ai-integration' | 'graphics' 
 export default function DesktopUslugiSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // ========== ANIMACJE Z SCROLL TRIGGEREM ==========
+  const headingAnimation = useSingleScrollAnimation(0, {
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
+
+  const cardsAnimation = useScrollAnimation(MAIN_SERVICES.length, {
+    initialDelay: 200,
+    staggerDelay: 100,
+    duration: 800,
+    translateY: 30,
+    blurAmount: 10,
+    threshold: 0.1,
+    rootMargin: '-50px',
+  });
+
   // BADGE MESSAGES dla każdej usługi
   const badgeMessages: Record<ServiceIconId, string> = {
     'website': '-7% z kodem WHITESLOPE7',
@@ -35,7 +55,7 @@ export default function DesktopUslugiSection() {
     'individual': 'Dopasowane do Twoich potrzeb',
     'email-marketing': 'Automatyzacja która sprzedaje',
     'video-marketing': 'Profesjonalny sprzęt filmowy 20k+ zł',
-    'audio-editing': 'Czysty dźwięk bez szumów i zakłóceń do Twoich filmów',
+    'audio-editing': 'Czysty dźwięk bez szumów i zakłóceń',
   };
 
   // Funkcja do skracania długich opisów
@@ -44,7 +64,7 @@ export default function DesktopUslugiSection() {
     return text.slice(0, maxLength).trim() + '...';
   };
 
-  // Mapowanie ikon - wspólne dla wszystkich kafelek
+  // Mapowanie ikon
   const iconMap: Record<ServiceIconId, any> = {
     'website': LayoutGrid,
     'optimization': Search,
@@ -58,24 +78,30 @@ export default function DesktopUslugiSection() {
 
   return (
     <section 
+      ref={cardsAnimation.ref as React.RefObject<HTMLElement>}
       className="py-12 bg-black relative overflow-hidden"
     >
       <div className="relative z-10">
-        {/* GRID 3 KOLUMNY z równą wysokością */}
         <div className="relative max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl font-3xl text-white text-center py-3 sm:py-5">
+          {/* Nagłówek */}
+          <h2 
+            ref={headingAnimation.ref as React.RefObject<HTMLHeadingElement>}
+            className="text-2xl text-white text-center py-3 sm:py-5"
+            style={headingAnimation.style}
+          >
             Nasze usługi:
           </h2>
-          <div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr"
-          >
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
             {MAIN_SERVICES.map((service: MainService, index: number) => {
               const IconComponent = iconMap[service.id as ServiceIconId] || LayoutGrid;
               const isHovered = hoveredIndex === index;
               const badgeMessage = badgeMessages[service.id as ServiceIconId];
-              const isNew = service.id === 'video-marketing' || service.id === 'audio-editing'; // Badge dla video-marketing i audio-editing
-              const polecamy = service.id === 'ai-integration' || service.id === 'optimization'; // Badge dla polecanych usług
-              const top = service.id === 'website'; // Badge dla top usługi
+              
+              // FLAGOWANIE USŁUG - teraz tylko tekstowe, w jednym kolorze
+              const isNew = service.id === 'video-marketing' || service.id === 'audio-editing';
+              const isPopular = service.id === 'ai-integration' || service.id === 'optimization';
+              const isTop = service.id === 'website';
 
               return (
                 <Link
@@ -84,79 +110,65 @@ export default function DesktopUslugiSection() {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="group cursor-pointer transition-all duration-500 relative h-full flex overflow-hidden rounded-2xl"
-                  style={{
-                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
-                  }}
+                  style={cardsAnimation.getItemStyle(index)}
                 >
-                  {/* BADGE NOWE - prostokąt, 45 stopni w lewym górnym */}
-                  {isNew && (
-                    <div 
-                      className="absolute top-5 -left-8 w-30 h-6 bg-red-500 flex items-center justify-center transform -rotate-45 z-20"
-                      style={{
-                        boxShadow: '0 2px 8px rgba(239, 68, 68, 0.5)',
-                        
-                      }}
-                    >
-                      <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Nowe!</span>
-                    </div>
-                  )}
-
-                  {/* BADGE POLECAMY - prostokąt, 45 stopni w lewym górnym */}
-                  {polecamy && (
-                    <div 
-                      className="absolute top-5 -left-8 w-30 h-6 bg-gray-500 flex items-center justify-center transform -rotate-45 z-20"
-                      style={{
-                        boxShadow: '0 2px 8px rgba(189, 196, 255, 0.19)',
-                        
-                      }}
-                    >
-                      <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Polecamy!</span>
-                    </div>
-                  )}
-
-                  {/* BADGE TOP - prostokąt, 45 stopni w lewym górnym */}
-                  {top && (
-                    <div 
-                      className="absolute top-5 -left-8 w-30 h-6 bg-yellow-500 flex items-center justify-center transform -rotate-45 z-20"
-                      style={{
-                        boxShadow: '0 2px 8px rgba(235, 148, 48, 0.5)',
-                        
-                      }}
-                    >
-                      <span className="text-white font-bold text-[10px] uppercase tracking-wider select-none">Top!</span>
-                    </div>
-                  )}
-
-                  {/* KARTA - pełna wysokość */}
+                  {/* KARTA - teraz jaśniejsza i bardziej czytelna */}
                   <div 
-                    className="flex flex-col gap-3 p-6 transition-all duration-500 overflow-hidden w-full h-full"
+                    className="flex flex-col gap-4 p-6 transition-all duration-500 overflow-hidden w-full h-full"
                     style={{
-                      background: isHovered ? '#1e1e20ff' : '#161618ff', // Ciemniejszy bg w stanie spoczynku
-                      border: `1px solid ${isHovered ? '#53535bff' : '#1a1a1aff'}`,
+                      background: isHovered 
+                        ? 'rgba(25, 133, 255, 0.08)' // Lekki niebieski przy hover
+                        : 'rgba(255, 255, 255, 0.03)', // Bardzo subtelne tło
+                      border: `1px solid ${isHovered ? 'rgba(25, 133, 255, 0.3)' : 'rgba(255, 255, 255, 0.08)'}`,
                       borderRadius: '16px',
                     }}
                   >
-                    {/* Nagłówek z numerem, tytułem i ikoną w jednej linii */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className={`text-xl font-bold transition-colors duration-500 flex-shrink-0 ${
-                        isHovered 
-                          ? 'text-white' 
-                          : 'text-white/90'
-                      }`}>
+                    {/* GÓRNA CZĘŚĆ - numer, tytuł, ikona, badge tekstowy */}
+                    <div className="flex items-start gap-3">
+                      {/* NUMER */}
+                      <span 
+                        className="text-xl font-bold flex-shrink-0 transition-colors duration-500"
+                        style={{
+                          color: isHovered ? '#1985FF' : 'rgba(255, 255, 255, 0.4)',
+                        }}
+                      >
                         {(index + 1).toString().padStart(2, '0')}
                       </span>
                       
-                      <h3 className={`text-lg md:text-xl font-bold transition-colors duration-500 flex-1 line-clamp-2 ${
-                        isHovered 
-                          ? 'text-white' 
-                          : 'text-white/90'
-                      }`}>
-                        {service.title}
-                      </h3>
+                      {/* TYTUŁ + BADGE TEKSTOWY */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <h3 
+                            className="text-lg md:text-xl font-bold transition-colors duration-500"
+                            style={{
+                              color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.95)',
+                            }}
+                          >
+                            {service.title}
+                          </h3>
+                          
+                          {/* TEKSTOWY BADGE - minimalistyczny */}
+                          {(isNew || isPopular || isTop) && (
+                            <span 
+                              className="text-[10px] font-semibold px-2 py-0.5 rounded-full transition-all duration-500"
+                              style={{
+                                backgroundColor: isHovered 
+                                  ? 'rgba(255, 25, 63, 0.91)' 
+                                  : 'rgba(255, 0, 0, 0.83)',
+                                color: isHovered ? '#fff1f1ff' : 'rgba(255, 225, 225, 0.88)',
+                                border: `1px solid ${isHovered ? 'rgba(176, 127, 255, 0.3)' : 'rgba(215, 136, 255, 0.1)'}`,
+                              }}
+                            >
+                              {isNew && 'NOWOŚĆ'}
+                              {isPopular && 'POLECAMY'}
+                              {isTop && 'POPULARNE'}
+                            </span>
+                          )}
+                        </div>
+                      </div>
 
-                      {/* Kontener dla ikony/strzałki z animacją przesuwania */}
+                      {/* IKONA/STRZAŁKA */}
                       <div className="relative w-5 h-5 flex-shrink-0 overflow-visible">
-                        {/* Ikonka usługi - odjeżdża w prawo na hover */}
                         <div 
                           className={`absolute inset-0 transition-all duration-500 ease-out ${
                             isHovered 
@@ -165,15 +177,13 @@ export default function DesktopUslugiSection() {
                           }`}
                         >
                           <IconComponent 
-                            className={`w-5 h-5 transition-colors duration-500 ${
-                              isHovered 
-                                ? 'text-white' 
-                                : 'text-white/70'
-                            }`} 
+                            className="w-5 h-5 transition-colors duration-500"
+                            style={{
+                              color: isHovered ? '#1985FF' : 'rgba(255, 255, 255, 0.5)',
+                            }}
                           />
                         </div>
                         
-                        {/* Strzałka - wjeżdża z lewej na hover */}
                         <div 
                           className={`absolute inset-0 transition-all duration-500 ease-out ${
                             isHovered 
@@ -186,27 +196,34 @@ export default function DesktopUslugiSection() {
                       </div>
                     </div>
 
-                    {/* Opis - wypełnia przestrzeń */}
-                    <div className="flex-grow mb-4">
-                      <p className={`text-sm leading-relaxed transition-colors duration-500 ${
-                        isHovered 
-                          ? 'text-gray-300' 
-                          : 'text-white/70'
-                      }`}>
+                    {/* OPIS - większy kontrast */}
+                    <div className="flex-grow">
+                      <p 
+                        className="text-sm leading-relaxed transition-colors duration-500"
+                        style={{
+                          color: isHovered 
+                            ? 'rgba(255, 255, 255, 0.85)' 
+                            : 'rgba(255, 255, 255, 0.6)',
+                        }}
+                      >
                         {truncateText(service.description || 'Profesjonalne rozwiązanie dostosowane do Twoich potrzeb.')}
                       </p>
                     </div>
 
-                    {/* BADGE - pasek na dole */}
+                    {/* BADGE NA DOLE - teraz bardziej widoczny */}
                     {badgeMessage && (
-                      <div className="mt-auto">
+                      <div className="mt-auto pt-3 border-t transition-colors duration-500" 
+                        style={{
+                          borderColor: isHovered 
+                            ? 'rgba(25, 133, 255, 0.2)' 
+                            : 'rgba(255, 255, 255, 0.05)',
+                        }}
+                      >
                         <div
-                          className="w-full py-2.5 text-center text-xs font-semibold transition-all duration-500"
+                          className="w-full py-2.5 text-center text-xs font-semibold transition-all duration-500 rounded-lg"
                           style={{
-                            backgroundColor: '#1985FF',
-                            color: '#ffffff',
-                            borderRadius: '8px',
-                            letterSpacing: '0.03em',
+                            backgroundColor: isHovered ? '#1985FF' : 'rgba(25, 133, 255, 0.15)',
+                            color: isHovered ? '#ffffff' : '#1985FF',
                           }}
                         >
                           {badgeMessage}
@@ -220,20 +237,6 @@ export default function DesktopUslugiSection() {
           </div>
         </div>
       </div>
-
-      {/* ANIMACJA SLIDE IN - CSS */}
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

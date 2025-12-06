@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useInView } from 'framer-motion';
 import { generateScrollContainerStyles } from './scrollContainer';
 
+
 /*
   Mobile detection hook ===================================
 */
@@ -429,5 +430,284 @@ export const usePagination = ({
     handleDotClick,
     canScrollLeft: activeIndex > 0,
     canScrollRight: activeIndex < totalItems - 1,
+  };
+};
+
+/* Intersection Observer Hook ========================================
+ * Hook który sprawdza czy element jest widoczny w viewport
+ */
+
+interface IntersectionObserverOptions {
+  // Próg widoczności (0.0 - 1.0)
+  threshold?: number;
+  // Margines wokół viewport (np. '-100px' żeby odpalić wcześniej)
+  rootMargin?: string;
+  // Czy animacja ma się odpalić tylko raz
+  triggerOnce?: boolean;
+}
+
+export const useIntersectionObserver = (
+  options: IntersectionObserverOptions = {}
+) => {
+  const {
+    threshold = 0.1, // 10% elementu musi być widoczne
+    rootMargin = '0px',
+    triggerOnce = true, // Domyślnie odpala się tylko raz
+  } = options;
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // Jeśli już było widoczne i triggerOnce=true, nie rób nic
+    if (triggerOnce && hasBeenVisible) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        setIsVisible(visible);
+        
+        if (visible && !hasBeenVisible) {
+          setHasBeenVisible(true);
+        }
+      },
+      {
+        threshold,
+        rootMargin,
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [threshold, rootMargin, triggerOnce, hasBeenVisible]);
+
+  return {
+    ref,
+    isVisible: triggerOnce ? hasBeenVisible : isVisible,
+  };
+};
+
+/* Stagger Animation Hook ========================================
+ * Hook do animacji wjeżdżania elementów (jak na TikToku)
+ * - Wjeżdżanie z dołu (translateY)
+ * - Przejście z blur na sharp
+ * - Fade in (opacity)
+ */
+
+interface StaggerAnimationOptions {
+  // Początkowe opóźnienie przed startem animacji (ms)
+  initialDelay?: number;
+  // Opóźnienie między każdym elementem (ms)
+  staggerDelay?: number;
+  // Czas trwania pojedynczej animacji (ms)
+  duration?: number;
+  // Odległość startowa w px (jak daleko z dołu startuje)
+  translateY?: number;
+  // Siła początkowego blura w px
+  blurAmount?: number;
+  // Funkcja easingu (CSS cubic-bezier)
+  easing?: string;
+  // Czy animacja ma startować od razu (true) czy czekać na trigger (false)
+  autoStart?: boolean;
+}
+
+export const useStaggerAnimation = (
+  itemCount: number,
+  options: StaggerAnimationOptions = {}
+) => {
+  const {
+    initialDelay = 0,
+    staggerDelay = 100,
+    duration = 800,
+    translateY = 30,
+    blurAmount = 10,
+    easing = 'cubic-bezier(0.16, 1, 0.3, 1)',
+    autoStart = true, // Nowy parametr
+  } = options;
+
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+  const [isTriggered, setIsTriggered] = useState(autoStart);
+
+  useEffect(() => {
+    if (!isTriggered) return;
+
+    // Uruchamiamy animację dla każdego elementu z odpowiednim opóźnieniem
+    const timers: NodeJS.Timeout[] = [];
+
+    for (let i = 0; i < itemCount; i++) {
+      const timer = setTimeout(() => {
+        setVisibleItems(prev => new Set([...prev, i]));
+      }, initialDelay + (i * staggerDelay));
+      
+      timers.push(timer);
+    }
+
+    // Cleanup - usuwamy wszystkie timery przy unmount
+    return () => {
+      timers.forEach(timer => clearTimeout(timer));
+    };
+  }, [itemCount, initialDelay, staggerDelay, isTriggered]);
+
+  // Funkcja która zwraca style dla konkretnego elementu
+  const getItemStyle = (index: number): React.CSSProperties => {
+    const isVisible = visibleItems.has(index);
+    
+    return {
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? 'translateY(0)' : `translateY(${translateY}px)`,
+      filter: isVisible ? 'blur(0px)' : `blur(${blurAmount}px)`,
+      transition: `all ${duration}ms ${easing}`,
+    };
+  };
+
+  return {
+    // Style dla konkretnego indeksu
+    getItemStyle,
+    // Stan widoczności (jeśli potrzebujesz)
+    visibleItems,
+    // Czy wszystkie elementy są już widoczne
+    isComplete: visibleItems.size === itemCount,
+    // Funkcja do manualnego triggera
+    trigger: () => setIsTriggered(true),
+    // Reset animacji
+    reset: () => {
+      setVisibleItems(new Set());
+      setIsTriggered(false);
+    },
+  };
+};
+
+/* Animated Text Hook ========================================
+ * Hook do animacji tekstu słowo po słowie
+ */
+
+interface AnimatedTextOptions {
+  // Początkowe opóźnienie (ms)
+  startDelay?: number;
+  // Opóźnienie między słowami (ms)
+  wordDelay?: number;
+  // Opcje animacji (te same co w useStaggerAnimation)
+  animationOptions?: Omit<StaggerAnimationOptions, 'initialDelay' | 'staggerDelay'>;
+}
+
+export const useAnimatedText = (
+  text: string,
+  options: AnimatedTextOptions = {}
+) => {
+  const {
+    startDelay = 0,
+    wordDelay = 100,
+    animationOptions = {}
+  } = options;
+
+  const words = text.split(' ');
+  const animation = useStaggerAnimation(words.length, {
+    initialDelay: startDelay,
+    staggerDelay: wordDelay,
+    ...animationOptions
+  });
+
+  return {
+    words,
+    ...animation
+  };
+};
+
+/* Single Element Animation Hook ========================================
+ * Hook do animacji pojedynczego elementu (uproszczona wersja)
+ */
+
+export const useSingleAnimation = (
+  delay: number = 0,
+  options: Omit<StaggerAnimationOptions, 'initialDelay' | 'staggerDelay'> = {}
+) => {
+  const animation = useStaggerAnimation(1, {
+    initialDelay: delay,
+    staggerDelay: 0,
+    ...options
+  });
+
+  return {
+    style: animation.getItemStyle(0),
+    isVisible: animation.visibleItems.has(0),
+    trigger: animation.trigger,
+    reset: animation.reset,
+  };
+};
+
+/* Scroll Animation Hook ========================================
+ * Kombinacja IntersectionObserver + Stagger Animation
+ * Animacja odpala się gdy element wjedzie w viewport
+ */
+
+interface ScrollAnimationOptions extends StaggerAnimationOptions {
+  // Opcje IntersectionObserver
+  threshold?: number;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+}
+
+export const useScrollAnimation = (
+  itemCount: number,
+  options: ScrollAnimationOptions = {}
+) => {
+  const {
+    threshold = 0.1,
+    rootMargin = '0px',
+    triggerOnce = true,
+    ...animationOptions
+  } = options;
+
+  // Obserwuj widoczność
+  const { ref, isVisible } = useIntersectionObserver({
+    threshold,
+    rootMargin,
+    triggerOnce,
+  });
+
+  // Animacja z autoStart=false
+  const animation = useStaggerAnimation(itemCount, {
+    ...animationOptions,
+    autoStart: false,
+  });
+
+  // Trigger animacji gdy element stanie się widoczny
+  useEffect(() => {
+    if (isVisible) {
+      animation.trigger();
+    }
+  }, [isVisible]);
+
+  return {
+    ref,
+    ...animation,
+  };
+};
+
+/* Single Scroll Animation Hook ========================================
+ * Pojedynczy element z scroll triggerem
+ */
+
+export const useSingleScrollAnimation = (
+  delay: number = 0,
+  options: Omit<ScrollAnimationOptions, 'initialDelay' | 'staggerDelay'> = {}
+) => {
+  const animation = useScrollAnimation(1, {
+    initialDelay: delay,
+    staggerDelay: 0,
+    ...options
+  });
+
+  return {
+    ref: animation.ref,
+    style: animation.getItemStyle(0),
+    isVisible: animation.visibleItems.has(0),
   };
 };
