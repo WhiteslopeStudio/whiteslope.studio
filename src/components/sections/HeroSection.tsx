@@ -256,7 +256,7 @@ export default function HeroSection() {
                 }}
               >
                 <span 
-                  className="bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text"
+                  className="text-white"
                   style={{
                     textShadow: '0 0 80px rgba(253, 159, 145, 0.3)',
                   }}

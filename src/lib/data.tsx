@@ -963,7 +963,7 @@ export const SERVICE_PACKAGES = [
       {
         id: "video-basic",
         name: "Social Media Pack",
-        price: "od 1500 zł",
+        price: "wycena indywidualna",
         description: "Profesjonalne rolki na Instagram, TikTok i YouTube Shorts - video marketing Białystok",
         features: [
           "3-5 krótkich rolek (15-60 sek każda)",
@@ -979,7 +979,7 @@ export const SERVICE_PACKAGES = [
       {
         id: "video-advanced",
         name: "Business Promo",
-        price: "od 3500 zł",
+        price: "wycena indywidualna",
         description: "Film promocyjny firmy - storytelling który sprzedaje - produkcja video Białystok",
         features: [
           "Wszystko z pakietu Social Media Pack",
@@ -997,7 +997,7 @@ export const SERVICE_PACKAGES = [
       {
         id: "video-premium",
         name: "Full Video Campaign",
-        price: "od 6000 zł",
+        price: "wycena indywidualna",
         description: "Kompleksowa kampania video - seria filmów promocyjnych i reklamowych - Białystok",
         features: [
           "Wszystko z pakietu Business Promo",
