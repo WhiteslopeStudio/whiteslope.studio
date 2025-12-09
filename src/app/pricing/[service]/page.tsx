@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Check, ArrowLeft, Star, Clock, Phone, Mail, Shield, Zap, Award, TrendingUp } from 'lucide-react';
@@ -6,6 +5,8 @@ import Link from 'next/link';
 import { MAIN_SERVICES, SERVICE_PACKAGES, getServicePackages } from '@/lib/data';
 import { MainService, ServicePackage } from '@/lib/types';
 import LottieAnimation from '@/components/ui/LottieAnimation';
+import GalleryCarousel from '@/components/ui/GalleryCarousel';
+import FloatingFeaturesVideo from '@/components/ui/FloatingFeaturesVideo';
 
 
 // Sprawdzamy czy service ID istnieje w MAIN_SERVICES
@@ -19,6 +20,12 @@ const serviceAnimations = {
   'graphics': '/\_resources/graphic.json',
   'individual': '/\_resources/invidual.json',
 };
+
+const PLACEHOLDER_GALLERY = [
+  '/_resources/portfolio1.webp',
+  '/_resources/portfolio2.webp',
+  '/_resources/portfolio3.webp',
+];
 
 // Static params dla SSG
 export async function generateStaticParams() {
@@ -85,6 +92,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
   const { service: serviceId } = await params;
   const service = MAIN_SERVICES.find(s => s.id === serviceId);
   const packages = getServicePackages(serviceId);
+  const galleryImages = service?.gallery && service.gallery.length > 0 ? service.gallery : PLACEHOLDER_GALLERY;
   
   if (!service || packages.length === 0) {
     notFound();
@@ -127,13 +135,13 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
         <div className="container mx-auto px-6">
           
           <div className="text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-normal mb-4">
+            <h1 className="text-3xl md:text-4xl font-normal mb-6">
               {service.title} - Wybierz idealny pakiet dla siebie
             </h1>
-            {/* <p className="text-lg text-gray-300 max-w-3xl mx-auto font-light">
-              Każdy pakiet został starannie zaprojektowany, aby zapewnić maksymalną wartość dla Twojego biznesu
-            </p> */}
           </div>
+
+          
+
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-8xl mx-auto items-start">
             {packages.map((pkg, index) => (
@@ -185,8 +193,51 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
             ))}
           </div>
 
-          {/* Custom Solution CTA - BEZ BACKGROUND I BORDER */}
-          <div className="text-center mt-16">
+          <div className="mt-12">
+            <GalleryCarousel images={galleryImages} title={service.title} />
+          </div>
+
+          <div className="mt-20">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-normal mb-4">
+                Dlaczego warto wybrać <br/>
+                <span className="bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent font-normal">
+                  {service.title.toLowerCase()}
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto font-light">
+                Poznaj wszystkie korzyści, które otrzymasz wybierając tę usługę
+              </p>
+            </div>
+            
+            {/* 6 bloków z cechami */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {service.features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-[#fd9f91]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="w-6 h-6 text-[#fd9f91]" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-white text-lg mb-2">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed font-light">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+          
+      </section>
+
+      {/* Service Features - BEZ BACKGROUND I BORDER */}
+      <section className="relative z-10 ">
+        {/* Custom Solution CTA - BEZ BACKGROUND I BORDER */}
+          <div className="text-center">
             <div className="p-8 max-w-4xl mx-auto">
               <h3 className="text-3xl font-normal text-white mb-4">
                 Żaden pakiet nie odpowiada Twoim potrzebom?
@@ -205,46 +256,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Service Features - BEZ BACKGROUND I BORDER */}
-      <section className="relative z-10 py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-normal mb-4">
-                Dlaczego warto wybrać <br/>
-                <span className="bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent font-normal">
-                  {service.title.toLowerCase()}
-                </span>
-              </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto font-light">
-                Poznaj wszystkie korzyści, które otrzymasz wybierając tę usługę
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {service.features.map((feature, index) => (
-                <div 
-                  key={index}
-                  className="flex items-start gap-4 p-6 transition-all duration-300"
-                >
-                  <div className="w-10 h-10 bg-[#fd9f91]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Star className="w-5 h-5 text-[#fd9f91]" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-white text-lg mb-2">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed font-light">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        
       </section>
 
       {/* Final CTA */}

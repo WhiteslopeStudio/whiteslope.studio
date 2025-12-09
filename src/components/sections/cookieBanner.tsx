@@ -4,13 +4,9 @@ import { useState, useEffect } from 'react';
 import { X, Cookie } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// ⚠️⚠️⚠️ TRYB TESTOWY WŁĄCZONY ⚠️⚠️⚠️
-// Banner pokazuje się przy każdym załadowaniu strony
-// Wyłącz tryb testowy: odkomentuj linijki w useEffect
-
 export const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   
   // Ustawienia cookies
   const [cookiePreferences, setCookiePreferences] = useState({
@@ -27,14 +23,17 @@ export const CookieBanner = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Sprawdź czy użytkownik już wyraził zgodę
+  // Pokaż baner tylko gdy brak wcześniejszej zgody; unikaj powtórnego triggera na mobile
   useEffect(() => {
-      const consent = localStorage.getItem('cookie_consent');
-    if (!consent) {
-      // 11 sekund na desktop, 3 sekundy na mobile
-      const delay = isMobile ? 2000 : 5000;
-      setTimeout(() => setIsVisible(true), delay);
-    }
+    if (isMobile === null) return;
+
+    const consent = localStorage.getItem('cookie_consent');
+    if (consent) return;
+
+    const delay = isMobile ? 2000 : 5000;
+    const timer = window.setTimeout(() => setIsVisible(true), delay);
+
+    return () => window.clearTimeout(timer);
   }, [isMobile]);
 
   // Zapisz zgodę i ZAMKNIJ

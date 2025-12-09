@@ -63,6 +63,7 @@ export interface MainService {
   subtitle: string;
   price: string;
   picture: string;
+  gallery?: string[];
   description: string;
   features: ServiceFeature[];
   ctaText: string;
