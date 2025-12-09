@@ -282,8 +282,8 @@ export default function SearchEngine() {
                         {MAIN_SERVICES.map((service: MainService, index: number) => {
                           const Icon = serviceIcons[service.id] || Package;
                           const color = serviceColors[service.id] || 'from-white/10 to-white/5';
-                          const iconColor = iconColors[service.id] || '#FFFFFF'; // Kolor dla ikonki
-                          const isNew = index === 6; // Siódmy pakiet (indeks 6)
+                          const iconColor = iconColors[service.id] || '#FFFFFF'; 
+                          const isNew = index === 6; 
                           
                           return (
                             <div key={index} className="relative">

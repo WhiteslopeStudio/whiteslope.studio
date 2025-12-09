@@ -193,9 +193,15 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
             ))}
           </div>
 
-          <div className="mt-12">
-            <GalleryCarousel images={galleryImages} title={service.title} />
-          </div>
+          {service.gallery && service.gallery.length > 0 && (
+            <section className="py-12">
+              <div className="mt-12">
+                <GalleryCarousel images={galleryImages} title={service.title} />
+              </div>
+            </section>
+          )}
+
+          {/* Service Features Section */}
 
           <div className="mt-20">
             <div className="text-center mb-16">

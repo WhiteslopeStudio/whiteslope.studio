@@ -1154,7 +1154,7 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Profesjonalna prezencja online",
     price: "od 1500 zł",
     picture: "_resources/usluga-strony.webp",
-    gallery: ["/_resources/portfolio1.webp", "/_resources/portfolio2.webp", "/_resources/portfolio3.webp"],
+    gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_ (1).webp", "/_resources/stronyInternetowe/www.easylesson.app_ (2).webp"],
     description:
       "Nowoczesne, responsywne strony internetowe zaprojektowane z myślą o Twoich klientach. Od prostych wizytówek po zaawansowane portale biznesowe.",
     features: [
@@ -1193,7 +1193,7 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Ulepsz istniejącą stronę",
     price: "od 800 zł",
     picture: "_resources/usluga-modernizacja.webp",
-    gallery: ["/_resources/portfolio2.webp", "/_resources/portfolio3.webp", "/_resources/portfolio4.webp"],
+    gallery: ["/_resources/optymalizacja/cyberfolks.pl_audyt-strony_.webp", "/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp"],
     description:
       "Masz już stronę, ale nie działa jak powinna? Oferujemy kompleksową optymalizację, migrację na nowoczesne technologie oraz poprawę SEO.",
     features: [
@@ -1231,7 +1231,8 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Chatboty, automatyzacja procesów i generatory treści",
     price: "od 1000 zł",
     picture: "_resources/usluga-ai.webp",
-    gallery: ["/_resources/portfolio3.webp", "/_resources/portfolio4.webp", "/_resources/portfolio5.webp"],
+    gallery: ["/_resources/integracjaAI/ai1.webp",
+       "/_resources/integracjaAI/ai2.webp"],
     description:
       "Wdrażamy rozwiązania AI dopasowane do Twoich potrzeb. Zaoszczędź czas, zwiększ efektywność i zadowolenie klientów dzięki inteligentnym narzędziom AI.",
     features: [
@@ -1269,7 +1270,14 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Profesjonalna identyfikacja wizualna",
     price: "od 700 zł",
     picture: "_resources/usluga-grafika.webp",
-    gallery: ["/_resources/portfolio4.webp", "/_resources/portfolio5.webp", "/_resources/portfolio6.webp"],
+    gallery: ["/_resources/grafika/wieslawski studio logo biale.webp",
+      "/_resources/grafika/tunelock logo 2.webp",
+      "/_resources/grafika/tok italia logo 5.webp",
+      "/_resources/grafika/mati records logo2.webp",
+      "/_resources/grafika/VOUCHER3D.webp",
+      "/_resources/grafika/make drums come true reklama4.webp",
+       "/_resources/grafika/make drums come true reklama6.webp",
+        "/_resources/grafika/make drums come true reklama5.webp"],
     description:
       "Potrzebujesz grafik, logo czy kompleksowej identyfikacji wizualnej? Nasz zespół graficzny stworzy materiały, które wyróżnią Twoją markę.",
     features: [
@@ -1307,7 +1315,8 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Rozwiązanie szyte na miarę",
     price: "od 2000 zł",
     picture: "_resources/usluga-indywidualna.webp",
-    gallery: ["/_resources/portfolio5.webp", "/_resources/portfolio6.webp", "/_resources/portfolio7.webp"],
+        gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_ (1).webp", "/_resources/stronyInternetowe/www.easylesson.app_ (2).webp"],
+
     description:
       "Żaden z naszych pakietów nie odpowiada Twoim potrzebom? Stwórzmy coś wyjątkowego razem. Indywidualne podejście do każdego projektu.",
     features: [
@@ -1341,7 +1350,7 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "MailerLite & Automatyzacja",
     price: "od 800 zł",
     picture: "_resources/usluga-integracja-email-marketing.webp",
-    gallery: ["/_resources/portfolio1.webp", "/_resources/portfolio4.webp", "/_resources/portfolio6.webp"],
+    gallery: ["/_resources/emailMarketing/emailMarketing1.webp", "/_resources/emailMarketing/emailMarketing2.webp", "/_resources/emailMarketing/emailMarketing3.webp"],
     description:
       "Profesjonalna integracja z MailerLite, automatyczne newslettery i kampanie email marketingowe dla zwiększenia konwersji.",
     features: [
@@ -1380,7 +1389,7 @@ export const MAIN_SERVICES: MainService[] = [
   subtitle: "Profesjonalne filmy promocyjne",
   price: "wycena indywidualna",
   picture: "_resources/usluga-video-marketing.webp", // Dodaj zdjęcie później
-  gallery: ["/_resources/portfolio2.webp", "/_resources/portfolio5.webp", "/_resources/portfolio7.webp"],
+  gallery: null,
   description:
     "Profesjonalne filmy promocyjne nagrywane sprzętem za ponad 20k zł. Rolki na Instagram, TikTok, YouTube, filmy reklamowe z dojazdem na miejsce.",
   features: [
@@ -1419,7 +1428,7 @@ export const MAIN_SERVICES: MainService[] = [
     subtitle: "Profesjonalna obróbka dźwięku",
     price: "od 100 zł",
     picture: "_resources/usluga-audio-editing.webp",
-    gallery: ["/_resources/portfolio3.webp", "/_resources/portfolio6.webp", "/_resources/portfolio1.webp"],
+    gallery: null,
     description:
       "Profesjonalna edycja i mastering nagrań audio. Popraw jakość dźwięku, usuń szumy i przygotuj materiały do publikacji.",
     features: [

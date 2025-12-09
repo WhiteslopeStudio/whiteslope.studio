@@ -6,11 +6,14 @@ import Image from 'next/image';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 
 interface GalleryCarouselProps {
-  images: string[];
+  images: string[] | null | undefined;
   title: string;
 }
 
 const GalleryCarousel = ({ images, title }: GalleryCarouselProps) => {
+  if (!images || images.length === 0) {
+    return null;
+  }
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -68,7 +71,7 @@ const GalleryCarousel = ({ images, title }: GalleryCarouselProps) => {
   return (
     <div className="relative">
       <div className="flex items-center justify-between mb-3">
-        <div className="text-sm text-gray-400">Przykładowe realizacje</div>
+        <div className="text-lg text-gray-400">Przykładowe realizacje</div>
         <div className="flex gap-2">
           <button
             type="button"
@@ -123,7 +126,7 @@ const GalleryCarousel = ({ images, title }: GalleryCarouselProps) => {
 
       {mounted && lightboxIndex !== null && createPortal(
         <div 
-          className="fixed inset-0 bg-black/95 flex items-center justify-center"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center"
           style={{ zIndex: 99999 }}
           onClick={closeLightbox}
         >
