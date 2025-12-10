@@ -1826,7 +1826,7 @@ function ContactContent() {
                     </p>
                     <div className="flex gap-4 justify-center">
                       <a
-                        href="mailto:kontakt@whiteslope.pl"
+                        href="mailto:kontakt@whiteslope.studio"
                         className="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-[#d4d4d4] transition-colors inline-flex items-center gap-2 hover:cursor-pointer"
                       >
                         <Mail className="w-5 h-5" />

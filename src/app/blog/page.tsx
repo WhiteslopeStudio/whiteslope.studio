@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Blog - WHITESLOPE STUDIO',
     description: 'Odkryj najnowsze trendy w web development, designie i technologii',
-    url: 'https://whiteslope.pl/blog',
+    url: 'https://whiteslope.studio/blog',
     type: 'website',
     images: [
       {
-        url: 'https://whiteslope.pl/blog-og-image.jpg',
+        url: 'https://whiteslope.studio/blog-og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Blog WHITESLOPE STUDIO',

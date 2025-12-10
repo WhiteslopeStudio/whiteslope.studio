@@ -227,8 +227,8 @@ const RESPONSE_BODY = {
   ],
   contact: {
     email: "kontakt@whiteslope.studio",
-    website: "https://whiteslope.pl",
-    portfolio: "https://whiteslope.pl/portfolio"
+    website: "https://whiteslope.studio",
+    portfolio: "https://whiteslope.studio/portfolio"
   },
   actions: [
     {

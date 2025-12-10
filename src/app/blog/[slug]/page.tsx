@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `https://whiteslope.pl/blog/${post.slug}`,
+      url: `https://whiteslope.studio/blog/${post.slug}`,
       images: [
         {
           url: post.image,
