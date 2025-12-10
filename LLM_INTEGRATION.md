@@ -2,6 +2,39 @@
 
 Kompletny system do integracji WHITESLOPE STUDIO z Web2Agent (Hostinger), ChatGPT, Claude i innymi LLM-ami.
 
+---
+
+## 🔍 **QUICK START: Where to find key APIs**
+
+### Main Info & Actions Endpoint
+**👉 File location:** `src/app/api/whiteslope-info/route.ts`  
+**👉 Live URL:** `https://whiteslope.studio/api/whiteslope-info`  
+**👉 What it has:** Company info + 6 available AI actions (lead, brief, calendar, quote, portfolio, brief-form)
+
+**How to use:**
+```bash
+# Any AI assistant can read this to learn what actions are available
+curl https://whiteslope.studio/api/whiteslope-info
+```
+
+### All AI Endpoints (Quick Reference)
+| Action | File | Endpoint | Method |
+|--------|------|----------|--------|
+| Get info & actions | `src/app/api/whiteslope-info/route.ts` | `/api/whiteslope-info` | GET |
+| Submit lead | `src/app/api/ai/lead/route.ts` | `/api/ai/lead` | POST |
+| Submit brief | `src/app/api/ai/brief/route.ts` | `/api/ai/brief` | POST |
+| Schedule meeting | `src/app/api/ai/calendar/route.ts` | `/api/ai/calendar` | POST |
+| Get instant quote | `src/app/api/ai/quote/route.ts` | `/api/ai/quote` | POST |
+| Search portfolio | `src/app/api/ai/portfolio/route.ts` | `/api/ai/portfolio` | GET |
+| Submit brief via form | `src/app/brief/page.tsx` | `/brief?params=...` | GET (click link) |
+
+### For Claude & Other Chatbots
+1. **First:** Read the info API: `https://whiteslope.studio/api/whiteslope-info`
+2. **Then:** Follow the `actions` array in that response
+3. **Or:** Check `LLM_INTEGRATION.md` section "Claude Integration" below
+
+---
+
 ## 📚 Pliki do użytku
 
 ### 1. **TypeScript Knowledge Base**
