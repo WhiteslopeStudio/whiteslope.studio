@@ -74,12 +74,17 @@ export const Footer = () => {
                   { name: 'Proces', href: '/#process' },
                   { name: 'Opinie', href: '/#testimonials' },
                   { name: 'Polityka prywatności', href: '/privacy&cookies/privacyPolicy' },
-                  { name: 'Polityka cookies', href: '/privacy&cookies/cookiesPolicy' }
+                  { name: 'Polityka cookies', href: '/privacy&cookies/cookiesPolicy' },
+                  { name: 'API dla AI', href: '/api/whiteslope-info', isApi: true }
                 ].map((item) => (
                   <li key={item.name}>
                     <a 
                       href={item.href}
-                      className="text-gray-400 hover:text-[#DD9C90] transition-colors duration-300 text-sm flex items-center group"
+                      className={`transition-colors duration-300 text-sm flex items-center group ${
+                        (item as any).isApi 
+                          ? 'text-[#DD9C90] hover:text-[#DD9C90]/80' 
+                          : 'text-gray-400 hover:text-[#DD9C90]'
+                      }`}
                     >
                       <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {item.name}

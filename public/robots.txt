@@ -100,3 +100,12 @@ Sitemap: https://whiteslope.studio/sitemap-blog.xml
 # AI Plugin Manifest: https://whiteslope.studio/.well-known/ai-plugin.json
 # Brief Submission: https://whiteslope.studio/api/ai/brief
 # Lead Submission: https://whiteslope.studio/api/ai/lead
+# Quote Request: https://whiteslope.studio/api/ai/quote
+# Schedule Meeting: https://whiteslope.studio/api/ai/calendar
+# Portfolio Search: https://whiteslope.studio/api/ai/portfolio
+# Brief Form (pre-filled): https://whiteslope.studio/brief
+# 
+# For AI assistants (Claude, ChatGPT, Gemini):
+# 1. Start here: https://whiteslope.studio/api/whiteslope-info
+# 2. Follow the "actions" array in the response
+# 3. Or visit footer link "API dla AI" for more info
