@@ -81,7 +81,7 @@ export const MeetingConfirmation = ({
             <Text style={footerText}>
               📧 kontakt@whiteslope.studio
               <br />
-              📞 +48 123 456 789
+              📞 +48 731 721 760
             </Text>
             <Text style={footerSubtext}>
               Białystok, Polska

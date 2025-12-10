@@ -262,12 +262,12 @@ export async function POST(request: Request) {
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
             📧 kontakt@whiteslope.studio<br/>
-            📞 +48 123 456 789
+            📞 +48 731 721 760
           </p>
         `;
         break;
 
-      case 'question':
+      case "question":
         subject = `Pytanie - ${sanitizeString(sanitizedData.subject)}`;
         const priorityText = sanitizedData.priority === 'high' ? '4 godzin' : 
                            sanitizedData.priority === 'medium' ? '24 godzin' : '48 godzin';
@@ -300,7 +300,7 @@ export async function POST(request: Request) {
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
             📧 kontakt@whiteslope.studio<br/>
-            📞 +48 123 456 789
+            📞 +48 731 721 760
           </p>
         `;
         break;
@@ -358,7 +358,7 @@ export async function POST(request: Request) {
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
             📧 kontakt@whiteslope.studio<br/>
-            📞 +48 123 456 789
+            📞 +48 731 721 760
           </p>
         `;
         break;
