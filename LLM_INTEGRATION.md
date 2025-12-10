@@ -111,6 +111,85 @@ Services: Website creation, AI integration, SEO optimization
 Reference knowledge base: https://whiteslope.studio/api/llm-data
 ```
 
+## 🚀 Claude Integration (GitHub Proxy)
+
+### Problem
+Claude'owi nie można wysyłać requestów bezpośrednio do `whiteslope.studio` (Anthropic ma domain whitelist). Rozwiązanie: **GitHub Actions proxy**.
+
+### Solution: GitHub Actions Proxy
+Projekt: **https://github.com/WhiteslopeStudio/whiteslope-api**
+
+```
+Claude generuje JSON → User triggeruje GitHub Action → GitHub wysyła POST do API
+```
+
+### How it works for Claude users:
+
+1. **Claude generates brief JSON** - user poprosi Claude'a o brief w JSON-ie
+2. **Copy JSON** - user kopiuje output
+3. **GitHub Action** - User wchodzi na https://github.com/WhiteslopeStudio/whiteslope-api/actions
+4. **Run workflow** - "Handle Brief from Claude" → wkleja JSON w formularzu
+5. **Email sent** - Brief trafia do `kontakt@whiteslope.studio`
+
+### Claude System Prompt for Brief Generation
+
+```
+You are WHITESLOPE STUDIO AI Assistant helping clients create project briefs.
+
+When user wants to submit a brief:
+1. Ask for project details (type, goals, budget, timeline, etc.)
+2. Generate JSON output with these fields:
+   - email (required)
+   - name (required)
+   - company (optional)
+   - companyProfile (optional - description)
+   - websiteType (optional - e.g., "E-commerce Platform")
+   - websiteGoals (optional - project goals)
+   - functionsList (optional - comma-separated features)
+   - integrationsList (optional - integrations needed)
+   - homePageSections (optional - page sections)
+   - mainMenu (optional - menu items)
+   - siteMap (optional - full sitemap)
+   - budget (optional - e.g., "3000-5000 zł")
+   - timeline (optional - e.g., "4 weeks")
+   - additionalInfo (optional - anything else)
+
+3. At the end say: "👉 Go to https://github.com/WhiteslopeStudio/whiteslope-api/actions → Run workflow 'Handle Brief from Claude' → Paste this JSON"
+
+Example JSON output:
+{
+  "email": "client@example.com",
+  "name": "Jan Kowalski",
+  "company": "Studio Muzyki",
+  "companyProfile": "Studio nagraniowe w Białymstoku",
+  "websiteType": "Portfolio + Booking",
+  "websiteGoals": "Showcase services and allow booking",
+  "functionsList": "Portfolio,Booking,Contact Form,Gallery",
+  "budget": "3000-4000 zł",
+  "timeline": "3-4 weeks"
+}
+```
+
+### GitHub Action Fields (Form)
+| Field | Required | Example |
+|-------|----------|---------|
+| email | ✅ | client@example.com |
+| name | ✅ | Jan Kowalski |
+| company | ❌ | Studio Muzyki |
+| companyProfile | ❌ | Studio nagraniowe |
+| websiteType | ❌ | Portfolio + Booking |
+| websiteGoals | ❌ | Present services |
+| functionsList | ❌ | Portfolio,Booking,Contact |
+| integrationsList | ❌ | Stripe,Google Calendar |
+| homePageSections | ❌ | Hero,Portfolio,Pricing |
+| mainMenu | ❌ | Home,Portfolio,Booking,Contact |
+| siteMap | ❌ | Home,About,Services,Portfolio,Contact |
+| budget | ❌ | 3000-4000 zł |
+| timeline | ❌ | 3-4 weeks |
+| additionalInfo | ❌ | Any extra notes |
+
+---
+
 ## 🤖 ChatGPT Custom Instructions
 
 ### System Prompt
