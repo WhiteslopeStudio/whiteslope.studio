@@ -338,6 +338,29 @@ const RESPONSE_BODY = {
           }
         ]
       }
+    },
+    {
+      name: "submit_brief_via_form",
+      endpoint: "/brief",
+      method: "GET (user clicks link)",
+      description: "Generuje wstępnie wypełniony formularz briefu. Użytkownik klika link, przegląda dane i wysyła. Używaj gdy nie możesz wysłać POST bezpośrednio do API.",
+      usage: "Po zebraniu danych briefu z rozmowy, wygeneruj URL z parametrami query i podaj go użytkownikowi.",
+      required_params: ["email", "companyProfile", "websiteType", "websiteGoals"],
+      optional_params: ["name", "phone", "company", "functionsList", "integrationsList", "homePageSections", "mainMenu", "siteMap", "inspirationLinks", "additionalInfo", "budget", "timeline", "channel"],
+      example_url: "https://www.whiteslope.studio/brief?email=user@example.com&name=Jan+Kowalski&company=Studio+XYZ&companyProfile=Studio+nagraniowe+w+Warszawie&websiteType=Portfolio+booking&websiteGoals=Prezentacja+oferty+i+rezerwacje&functionsList=Galeria,Booking,Cennik,Blog&integrationsList=Newsletter,Google+Analytics&budget=3000+zł&timeline=1+miesiąc&channel=claude",
+      formatting_rules: [
+        "URL-encode all values (spaces as +, special chars as %XX)",
+        "Arrays as comma-separated: functionsList=Item1,Item2,Item3",
+        "Always add channel=claude or channel=chatgpt to track source",
+        "Keep URLs under 2000 characters if possible"
+      ],
+      ai_workflow: [
+        "1. Have natural conversation with user about their project",
+        "2. Ask questions to fill required + relevant optional fields",
+        "3. Generate URL: https://www.whiteslope.studio/brief?[params]",
+        "4. Present link to user: 'Click this link to submit your brief'",
+        "5. Explain: 'You'll see a form with your data - review and click Submit'"
+      ]
     }
   ]
 };
