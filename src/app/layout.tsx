@@ -110,6 +110,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
+
+        {/* AI Integration Discovery */}
+        <meta name="ai-integration" content="true" />
+        <link rel="alternate" type="application/json" href="/api/whiteslope-info" title="Whiteslope AI Integration API" />
+        <link rel="plugin" href="/.well-known/ai-plugin.json" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Header />

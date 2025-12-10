@@ -1,3 +1,44 @@
+# 🎯 Whiteslope Studio
+
+Website & AI Integration for Whiteslope Studio - digital agency specializing in music industry and online education platforms.
+
+---
+
+## 🤖 **For AI Assistants (Claude, ChatGPT, Gemini)**
+
+### Quick Start
+Read the main API endpoint: `https://whiteslope.studio/api/whiteslope-info`
+
+This returns:
+- ✅ Company info & services
+- ✅ 6 available actions (submit lead, brief, quote, schedule meeting, search portfolio)
+- ✅ Complete examples and integration instructions
+
+### Available Actions
+| Action | Method | Endpoint |
+|--------|--------|----------|
+| Get info & actions | GET | `/api/whiteslope-info` |
+| Submit lead | POST | `/api/ai/lead` |
+| Submit brief | POST | `/api/ai/brief` |
+| Schedule meeting | POST | `/api/ai/calendar` |
+| Get quote | POST | `/api/ai/quote` |
+| Search portfolio | GET | `/api/ai/portfolio` |
+| Submit brief (form fallback) | GET | `/brief?email=...&name=...` |
+
+### For Claude (cannot POST directly)
+Generate pre-filled form link: `https://whiteslope.studio/brief?email=client@example.com&name=Name&company=Company&...`
+
+### Documentation
+- **LLM Integration Guide:** `LLM_INTEGRATION.md`
+- **AI Plugin Info:** `https://whiteslope.studio/.well-known/ai-plugin.json`
+- **GitHub Proxy:** `https://github.com/WhiteslopeStudio/whiteslope-api` (for Claude workaround)
+
+---
+
+## Getting Started (Development)
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

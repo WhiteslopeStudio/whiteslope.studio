@@ -1,0 +1,61 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "Whiteslope Studio AI Integration",
+  "name_for_human": "Whiteslope Studio - Web Development Agency",
+  "description_for_model": "API for AI assistants (Claude, ChatGPT, Gemini) to access Whiteslope Studio company info, submit leads/briefs, get quotes, schedule meetings, and search portfolio. Use this to help clients interact with Whiteslope without visiting website.",
+  "description_for_human": "AI-powered web development agency specializing in music industry and online education platforms",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://whiteslope.studio/.well-known/openapi.json",
+    "is_user_facing": false
+  },
+  "contact_email": "kontakt@whiteslope.studio",
+  "legal_info_url": "https://whiteslope.studio/privacy&cookies/privacyPolicy",
+  "main_endpoints": [
+    {
+      "name": "Get Agency Info & Available Actions",
+      "endpoint": "GET /api/whiteslope-info",
+      "description": "Returns company info, services, portfolio, and 6 available AI actions with examples"
+    },
+    {
+      "name": "Submit Lead",
+      "endpoint": "POST /api/ai/lead",
+      "description": "Simple lead capture - email and message"
+    },
+    {
+      "name": "Submit Project Brief",
+      "endpoint": "POST /api/ai/brief",
+      "description": "Comprehensive project brief (alternative: use /brief?params for pre-filled form)"
+    },
+    {
+      "name": "Schedule Meeting",
+      "endpoint": "POST /api/ai/calendar",
+      "description": "Collect meeting preferences with preferred date/time"
+    },
+    {
+      "name": "Get Instant Quote",
+      "endpoint": "POST /api/ai/quote",
+      "description": "Get preliminary pricing based on service type"
+    },
+    {
+      "name": "Search Portfolio",
+      "endpoint": "GET /api/ai/portfolio",
+      "description": "Search projects by query, category, or industry"
+    },
+    {
+      "name": "Submit Brief via Form (Claude workaround)",
+      "endpoint": "GET /brief?email=...&name=...&company=...",
+      "description": "Pre-filled form for users to review and submit (for when direct POST not possible)"
+    }
+  ],
+  "ai_instructions": {
+    "primary": "Always start by reading https://whiteslope.studio/api/whiteslope-info to learn available actions and how to use them",
+    "fallback": "If you cannot make POST requests, generate a pre-filled link to https://whiteslope.studio/brief?email=X&name=Y&company=Z&...",
+    "language": "Polish (pl-PL) - respond in client's preferred language",
+    "rate_limits": "100 requests/hour per IP. Use partner key 'whiteslope-internal-2024' to bypass.",
+    "cors": "All endpoints support CORS with Access-Control-Allow-Origin: *"
+  }
+}
