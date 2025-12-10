@@ -198,12 +198,7 @@ export async function POST(request: NextRequest) {
 
   const hasPartnerKey = apiKey === PARTNER_API_KEY;
 
-  if (!hasPartnerKey && !isAllowedAI(userAgent)) {
-    return NextResponse.json(
-      { message: "API dostępne dla AI asystentów lub z kluczem partnera" },
-      { status: 403, headers: corsHeaders }
-    );
-  }
+  // ✅ PUBLICZNE API - każdy może zapytać o wycenę (tylko rate limiting)
 
   if (!hasPartnerKey && clientIp !== "unknown") {
     const ok = checkRateLimit(clientIp);

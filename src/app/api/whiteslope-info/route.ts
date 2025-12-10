@@ -358,15 +358,10 @@ export async function GET(request: NextRequest) {
   // API key bypass (pełny dostęp, bez rate-limit)
   const hasPartnerKey = apiKey === PARTNER_API_KEY;
 
-  // User-Agent gate (chyba że klucz partnera)
-  if (!hasPartnerKey && !isAllowedAI(userAgent)) {
-    return NextResponse.json(
-      { message: "API dostępne tylko dla AI asystentów. Kontakt: kontakt@whiteslope.studio" },
-      { status: 403, headers: corsHeaders }
-    );
-  }
+  // ✅ PUBLICZNE API - każdy może czytać (bez UA gate)
+  // Tylko rate limiting dla ochrony przed spamem
 
-  // Rate limiting (tylko dla zwykłych AI UA)
+  // Rate limiting (chyba że klucz partnera)
   if (!hasPartnerKey && clientIp !== "unknown") {
     const ok = checkRateLimit(clientIp);
     if (!ok) {
@@ -378,7 +373,8 @@ export async function GET(request: NextRequest) {
   }
 
   // Logowanie
-  logAccess(hasPartnerKey ? "Klucz" : "AI", clientIp, userAgent);
+  const source = hasPartnerKey ? "Klucz" : (isAllowedAI(userAgent) ? "AI" : "Public");
+  console.log(`✅ Dostęp: ${source} | IP=${clientIp} | UA=${userAgent || "unknown"} | ${new Date().toISOString()}`);
 
   return NextResponse.json(RESPONSE_BODY, {
     status: 200,

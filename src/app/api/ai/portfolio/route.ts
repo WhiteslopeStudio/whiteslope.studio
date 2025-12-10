@@ -113,12 +113,7 @@ export async function GET(request: NextRequest) {
 
   const hasPartnerKey = apiKey === PARTNER_API_KEY;
 
-  if (!hasPartnerKey && !isAllowedAI(userAgent)) {
-    return NextResponse.json(
-      { message: "API dostępne dla AI asystentów lub z kluczem partnera" },
-      { status: 403, headers: corsHeaders }
-    );
-  }
+  // ✅ PUBLICZNE API - każdy może wyszukiwać portfolio (bez rate limitu dla GET)
 
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query")?.toLowerCase() || "";
