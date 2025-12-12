@@ -1,3 +1,5 @@
+'use client';
+
 import { useAdvancedInView, useDragScroll, useScrollContainerStyles } from '@/utils/hooks';
 import { motion } from 'framer-motion';
 import { PROCESS_STEPS } from '@/lib/data';

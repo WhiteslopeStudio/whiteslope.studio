@@ -14,7 +14,11 @@ interface LinkedInProfile {
   image: string;
 }
 
-const HeroSectionMobile = () => {
+interface HeroSectionMobileProps {
+  cityOverride?: string;
+}
+
+const HeroSectionMobile = ({ cityOverride }: HeroSectionMobileProps = {}) => {
   const [hoveredAvatar, setHoveredAvatar] = useState<number | null>(null);
   const [activeProofIndex, setActiveProofIndex] = useState(0);
   const router = useRouter();
@@ -107,15 +111,26 @@ const HeroSectionMobile = () => {
 
       {/* Główny nagłówek - większy na mobile */}
       <div className="text-center mb-6 px-4 mt-4">
-        <h2
+        <h1
           className="text-3xl sm:text-3xl md:text-3xl font-semibold text-white leading-tight"
           style={{ letterSpacing: '-0.02em', textShadow: '0 0 20px rgba(255,255,255,0.1)' }}
         >
-          Zyskaj więcej klientów dzięki profesjonalnej {" "}
-          <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-              stronie internetowej!
-          </span>
-        </h2>
+          {cityOverride ? (
+            <>
+              Strony internetowe {cityOverride} {" "}
+              <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
+                od 1500 zł
+              </span>
+            </>
+          ) : (
+            <>
+              Zyskaj więcej klientów dzięki profesjonalnej {" "}
+              <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
+                stronie internetowej!
+              </span>
+            </>
+          )}
+        </h1>
       </div>
 
       {/* Tekst pod nagłówkiem */}

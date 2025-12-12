@@ -108,7 +108,7 @@ export const linkedinProfiles = [
   },
 ];
 
-export default function HeroSection() {
+export default function HeroSection({ cityOverride }: { cityOverride?: string } = {}) {
   const [hoveredAvatar, setHoveredAvatar] = useState<number | null>(null);
   const [mousePos1, setMousePos1] = useState({ x: 50, y: 50 });
   const [mousePos2, setMousePos2] = useState({ x: 50, y: 50 });
@@ -239,7 +239,7 @@ export default function HeroSection() {
                 <h1 className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm">
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
                   <span className="text-sm font-medium text-gray-300">
-                    Strony internetowe Białystok od 1500 zł · Chatboty AI · Grafika 2D i 3D · Email marketing · Video marketing
+                    Strony internetowe {cityOverride || 'Białystok'} od 1500 zł · Chatboty AI · Grafika 2D i 3D · Email marketing · Video marketing
                   </span>
                 </h1>
               </AnimatedElement>
@@ -338,3 +338,6 @@ export default function HeroSection() {
     </section>
   );
 }
+
+// Named export for dynamic city pages
+export { HeroSection };

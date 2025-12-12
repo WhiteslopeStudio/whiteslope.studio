@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { PODLASKIE_CITIES, convertToSlug } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://whiteslope.studio';
   const currentDate = new Date().toISOString().split('T')[0];
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     // Main pages
     {
       url: baseUrl,
@@ -103,4 +104,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  // Generuj strony dla każdego miasta
+  const cityPages: MetadataRoute.Sitemap = PODLASKIE_CITIES.map(city => ({
+    url: `${baseUrl}/${convertToSlug(city)}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+
+  return [...staticPages, ...cityPages];
 }

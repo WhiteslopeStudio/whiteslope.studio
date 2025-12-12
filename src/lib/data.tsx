@@ -1463,3 +1463,85 @@ export const MAIN_SERVICES: MainService[] = [
   },
   
 ];
+
+// =========================
+// 🌍 MIASTA PODLASKIE - Lokalne SEO
+// =========================
+
+// Funkcja konwersji polskich znaków na ASCII dla URL
+export const convertToSlug = (text: string): string => {
+  const polishToAscii: { [key: string]: string } = {
+    'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
+    'Ą': 'a', 'Ć': 'c', 'Ę': 'e', 'Ł': 'l', 'Ń': 'n', 'Ó': 'o', 'Ś': 's', 'Ź': 'z', 'Ż': 'z'
+  };
+
+  return text
+    .replace(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, (match) => polishToAscii[match] || match)
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+};
+
+export const PODLASKIE_CITIES = [
+  "Białystok",
+  "Suwałki", 
+  "Łomża",
+  "Augustów",
+  "Bielsk Podlaski",
+  "Grajewo",
+  "Zambrów",
+  "Hajnówka", 
+  "Sokółka",
+  "Łapy",
+  "Siemiatycze",
+  "Wasilków",
+  "Kolno",
+  "Mońki",
+  "Wysokie Mazowieckie",
+  "Czarna Białostocka",
+  "Choroszcz",
+  "Ciechanowiec",
+  "Supraśl",
+  "Zabłudów",
+  "Tykocin",
+  "Drohiczyn"
+];
+
+// Helper function to get city metadata
+export const getCityMetadata = (citySlug: string): {
+  title: string;
+  description: string;
+  h1: string;
+  keywords: string;
+  cityName: string;
+} => {
+  // Znajdź miasto na podstawie slug'a
+  const miasto = PODLASKIE_CITIES.find(city => 
+    convertToSlug(city) === citySlug.toLowerCase()
+  );
+  
+  if (!miasto) {
+    // Fallback dla Białystoka jeśli miasto nie zostało znalezione
+    return getCityMetadata('bialystok');
+  }
+
+  const baseTitle = "Strony internetowe";
+  const basePriceInfo = "od 1500 zł";
+  const rating = "⭐⭐⭐⭐⭐";
+  const reviewsCount = "2 opinie";
+  
+  return {
+    title: `${baseTitle} ${miasto} ${basePriceInfo} | Whiteslope Studio | Profesjonalne Tworzenie Stron WWW`,
+    description: `${rating} Profesjonalne strony internetowe ${miasto} ${basePriceInfo}. Whiteslope Studio - zespół programistów obsługujący ${miasto}. Realizacja kilka dni. Chatboty AI, SEO. ${reviewsCount}. Darmowa konsultacja!`,
+    h1: `Strony internetowe ${miasto} ${basePriceInfo}`,
+    keywords: `strony internetowe ${miasto.toLowerCase()}, tworzenie stron ${miasto.toLowerCase()}, strony www ${miasto.toLowerCase()}, agencja webdev ${miasto.toLowerCase()}, sklepy internetowe ${miasto.toLowerCase()}, aplikacje webowe ${miasto.toLowerCase()}, SEO ${miasto.toLowerCase()}`,
+    cityName: miasto
+  };
+};
+
+// Check if city exists
+export const isCityValid = (citySlug: string): boolean => {
+  return PODLASKIE_CITIES.some(city => 
+    convertToSlug(city) === citySlug.toLowerCase()
+  );
+};
