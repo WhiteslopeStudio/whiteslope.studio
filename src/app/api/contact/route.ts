@@ -4,7 +4,7 @@ import { render } from '@react-email/components';
 import MeetingEmail from '@/emails/meeting-email';
 import MeetingConfirmation from '@/emails/meeting-confirmation';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // ==========================================
 // 🔒 FUNKCJE WALIDACYJNE SERVER-SIDE
@@ -362,6 +362,15 @@ export async function POST(request: Request) {
           </p>
         `;
         break;
+    }
+
+    // Sprawdź czy resend jest dostępne
+    if (!resend) {
+      console.error('❌ Resend nie jest skonfigurowane');
+      return NextResponse.json(
+        { error: 'Serwis email nie jest dostępny' },
+        { status: 500 }
+      );
     }
 
     // Wyślij email do admina
