@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/sections/cookieBanner";
-import { jsonLd, faqJsonLd } from "@/lib/schema"; // ← DODAJ faqJsonLd
+import { jsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
@@ -105,11 +105,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         
-        {/* FAQ Schema - NOWY! */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
+        {/* FAQ Schema removed to fix duplicate FAQPage issue - FAQ content is now in FaqSection component */}
 
         {/* AI Integration Discovery */}
         <meta name="ai-integration" content="true" />

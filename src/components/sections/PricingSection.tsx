@@ -45,7 +45,7 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
   const [startY, setStartY] = useState(0);
   const [currentY, setCurrentY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film];
+  const serviceIcons = [Globe, Wrench, Brain, Palette, Mail, Mail, Film, BsSoundwave];
 
   useEffect(() => {
     if (isOpen) {
@@ -242,7 +242,8 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   {otherServices.map((otherService) => {
-                    const IconComponent = serviceIcons[MAIN_SERVICES.indexOf(otherService)];
+                    const serviceIndex = MAIN_SERVICES.indexOf(otherService);
+                    const IconComponent = serviceIcons[serviceIndex] || Globe; // Safety fallback to Globe icon
                     return (
                       <button
                         key={otherService.id}
@@ -452,7 +453,7 @@ export const PricingSection = () => {
 
                 <div className="space-y-2">
                   {MAIN_SERVICES.map((service, index) => {
-                    const IconComponent = serviceIcons[index];
+                    const IconComponent = serviceIcons[index] || Globe; // Safety fallback to Globe icon
                     const isActive = index === activeService;
                     
                     return (
@@ -657,7 +658,7 @@ export const PricingSection = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 gap-3">
             {MAIN_SERVICES.map((service, index) => {
-              const IconComponent = serviceIcons[index];
+              const IconComponent = serviceIcons[index] || Globe; // Safety fallback to Globe icon
               return (
                 <div
                   key={service.id}

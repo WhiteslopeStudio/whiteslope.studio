@@ -179,6 +179,41 @@ export const Footer = () => {
           </div>
         </div>
 
+        {/* Cities section - full width horizontal */}
+        <div className="py-6 border-b border-gray-800/50">
+          <div className="text-center mb-4">
+            <h4 className="text-white font-semibold text-sm mb-4">Strony Internetowe dostarczamy w całym Podlasiu</h4>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 max-w-7xl mx-auto">
+              {[
+                "Białystok", "Suwałki", "Łomża", "Augustów",
+                "Bielsk Podlaski", "Grajewo", "Zambrów", "Hajnówka",
+                "Sokółka", "Łapy", "Siemiatycze", "Wasilków",
+                "Kolno", "Mońki", "Wysokie Mazowieckie",
+                "Czarna Białostocka", "Choroszcz", "Ciechanowiec",
+                "Supraśl", "Zabłudów", "Tykocin", "Drohiczyn"
+              ].map((city) => {
+                const citySlug = city.toLowerCase()
+                  .replace(/[ąćęłńóśźż]/g, (match) => ({
+                    'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
+                    'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z'
+                  }[match] || match))
+                  .replace(/\s+/g, '-')
+                  .replace(/[^\w-]/g, '');
+                
+                return (
+                  <a
+                    key={city}
+                    href={`/${citySlug}`}
+                    className="text-gray-400 hover:text-[#DD9C90] transition-colors duration-300 text-sm px-2 py-1 rounded hover:bg-gray-800/30"
+                  >
+                    {city}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         {/* Bottom section */}
         <div className="py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
