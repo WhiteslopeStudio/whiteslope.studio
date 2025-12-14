@@ -68,6 +68,15 @@ export const jsonLd = {
     highPrice: 'do ustalenia',
     offerCount: '3'
   },
+  
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    reviewCount: '3',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  
   sameAs: [
     'https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL',
     'https://www.instagram.com/whiteslopestudio/',

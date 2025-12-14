@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio | Digitalizacja Biznesu",
   
   // ← SKUPIONY DESCRIPTION (digitalizacja firm regionalnych)
-  description: "Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm w Podlaskiem. WhiteSlope Studio - osobiste podejście, szybka realizacja, hosting gratis. Digitalizacja biznesu od 3500 zł.",
+  description: "⭐⭐⭐⭐⭐ Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm w Podlaskiem. WhiteSlope Studio - osobiste podejście, szybka realizacja, hosting gratis. Digitalizacja biznesu od 3500 zł.",
   
   // ← SKUPIONE KEYWORDS (firmy regionalne + digitalizacja)
   keywords: "strony internetowe dla firm podlaskie, digitalizacja biznesu białystok, strony firmowe podlaskie, modernizacja stron internetowych, asystenci AI obsługa klienta, profesjonalne strony biznes, identyfikacja marki online, hosting gratis",
@@ -55,10 +55,10 @@ export const metadata: Metadata = {
     siteName: "Whiteslope Studio",
     images: [
       {
-        url: "/_resources/image.jpg",
+        url: "/_resources/logoWhiteSlope.webp",
         width: 1200,
         height: 630,
-        alt: "Whiteslope Studio - Strony internetowe Białystok od 1500 zł",
+        alt: "WhiteSlope Studio - Digitalizacja firm Podlaskie",
       },
     ],
     locale: "pl_PL",
