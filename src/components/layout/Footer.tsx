@@ -182,7 +182,7 @@ export const Footer = () => {
         {/* Cities section - full width horizontal */}
         <div className="py-6 border-b border-gray-800/50">
           <div className="text-center mb-4">
-            <h4 className="text-white font-semibold text-sm mb-4">Strony Internetowe dostarczamy w całym Podlasiu</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">Strony Internetowe dostarczamy na całym Podlasiu</h4>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 max-w-7xl mx-auto">
               {[
                 "Białystok", "Suwałki", "Łomża", "Augustów",
