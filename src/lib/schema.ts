@@ -6,7 +6,7 @@ export const jsonLd = {
   name: 'WHITESLOPE STUDIO - Strony Internetowe Białystok',
   alternateName: 'Whiteslope',
   url: 'https://whiteslope.studio',
-  logo: 'https://www.whiteslope.studio/_resources/logoWhiteSlope.webp',
+  logo: 'https://whiteslope.studio/_resources/logoWhiteSlope.webp',
   image: 'public/_resources/image.jpg',
   description: 'Strony internetowe Białystok Od 1500 zł. Tworzymy nowoczesne strony WWW, sklepy online, chatboty AI, grafikę, video i modernizację. Realizacja w kilka dni. Zespół z Białegostoku.',
   provider: {

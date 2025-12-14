@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.whiteslope.studio"
+        }
+      ],
+      "destination": "https://whiteslope.studio/$1",
+      "permanent": true
+    }
+  ]
+}
