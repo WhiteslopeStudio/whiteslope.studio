@@ -27,7 +27,7 @@ export async function generateMetadata({
   const metadata = getCityMetadata(citySlug);
   
   return {
-    metadataBase: new URL('https://whiteslope.studio'),
+    metadataBase: new URL('https://www.whiteslope.studio'),
     title: metadata.title,
     description: metadata.description,
     keywords: metadata.keywords,

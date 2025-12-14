@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://whiteslope.studio'),
+  metadataBase: new URL('https://www.whiteslope.studio'),
   
   // ← SKUPIONY TITLE (digitalizacja firm regionalnych)
   title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio | Digitalizacja Biznesu",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio",
     description: "Digitalizujemy firmy w Podlaskiem. Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie biznesu. Osobiste podejście, hosting gratis.",
-    url: "https://whiteslope.studio",
+    url: "https://www.whiteslope.studio",
     siteName: "Whiteslope Studio",
     images: [
       {
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: "Digitalizacja Firm Podlaskie | WhiteSlope Studio",
     description: "Tworzymy strony internetowe dla firm. Upraszczamy codzienne funkcjonowanie biznesu w internecie. Hosting gratis.",
     creator: "@whiteslope",
-    images: ["https://whiteslope.studio/og-image.jpg"],
+    images: ["https://www.whiteslope.studio/og-image.jpg"],
   },
   
   robots: {

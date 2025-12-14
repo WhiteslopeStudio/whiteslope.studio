@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { PODLASKIE_CITIES, convertToSlug } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://whiteslope.studio';
+  const baseUrl = 'https://www.whiteslope.studio';
   const currentDate = new Date().toISOString().split('T')[0];
 
   const staticPages: MetadataRoute.Sitemap = [
