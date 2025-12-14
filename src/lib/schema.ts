@@ -81,6 +81,63 @@ export const jsonLd = {
     'https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL',
     'https://www.instagram.com/whiteslopestudio/',
     'https://linkedin.com/company/whiteslope'
+  ],
+  
+  // Navigation dla Google Sitelinks
+  mainEntity: {
+    '@type': 'WebSite',
+    name: 'WhiteSlope Studio',
+    url: 'https://whiteslope.studio',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://whiteslope.studio/SearchEngine?query={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  }
+};
+
+// Schema dla głównych podstron (Sitelinks)
+export const siteNavigationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'WhiteSlope Studio - Główne usługi',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Cennik',
+      url: 'https://whiteslope.studio/pricing'
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Portfolio',
+      url: 'https://whiteslope.studio/projects'
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Kontakt',
+      url: 'https://whiteslope.studio/contact'
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      name: 'Blog',
+      url: 'https://whiteslope.studio/blog'
+    },
+    {
+      '@type': 'ListItem',
+      position: 5,
+      name: 'Strony Internetowe',
+      url: 'https://whiteslope.studio/pricing/website'
+    },
+    {
+      '@type': 'ListItem',
+      position: 6,
+      name: 'Chatboty AI',
+      url: 'https://whiteslope.studio/pricing/ai-integration'
+    }
   ]
 };
 
