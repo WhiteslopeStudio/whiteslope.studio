@@ -234,12 +234,12 @@ export default function HeroSection({ cityOverride }: { cityOverride?: string } 
           <div className="text-center flex flex-col justify-center items-center">
             <div className="space-y-5 max-w-full">
               
-              {/* H1 - BADGE z frazą kluczową SEO - animowany jako całość */}
+              {/* H1 - KRÓTSZE I SKUPIONE - digitalizacja firm */}
               <AnimatedElement delay={0}>
                 <h1 className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm">
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-300 to-blue-400 animate-pulse" />
                   <span className="text-sm font-medium text-gray-300">
-                    Strony internetowe {cityOverride || 'Białystok'} od 1500 zł · Chatboty AI · Grafika 2D i 3D · Email marketing · Video marketing
+                    Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm z Podlasia.
                   </span>
                 </h1>
               </AnimatedElement>

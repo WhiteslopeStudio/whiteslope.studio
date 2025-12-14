@@ -23,14 +23,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://whiteslope.studio'),
   
-  // ← POPRAWIONY TITLE (fraza kluczowa na początku)
-  title: "Strony Internetowe Białystok od 1500 zł | Whiteslope Studio | Profesjonalne Tworzenie Stron WWW",
+  // ← SKUPIONY TITLE (digitalizacja firm regionalnych)
+  title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio | Digitalizacja Biznesu",
   
-  // ← POPRAWIONY DESCRIPTION (więcej lokalności + CTA)
-  description: "Profesjonalne strony internetowe Białystok od 1500 zł. Whiteslope Studio - zespół programistów z Białegostoku. Realizacja kilka dni. Chatboty AI, SEO, CMS. Darmowa konsultacja!",
+  // ← SKUPIONY DESCRIPTION (digitalizacja firm regionalnych)
+  description: "Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm w Podlaskiem. WhiteSlope Studio - osobiste podejście, szybka realizacja, hosting gratis. Digitalizacja biznesu od 3500 zł.",
   
-  // ← POPRAWIONE KEYWORDS (więcej lokalnych fraz)
-  keywords: "strony internetowe białystok, tworzenie stron białystok, strony www białystok, agencja webdev białystok, strony internetowe podlaskie, sklepy internetowe białystok, aplikacje webowe białystok, SEO białystok, CMS, Next.js, React",
+  // ← SKUPIONE KEYWORDS (firmy regionalne + digitalizacja)
+  keywords: "strony internetowe dla firm podlaskie, digitalizacja biznesu białystok, strony firmowe podlaskie, modernizacja stron internetowych, asystenci AI obsługa klienta, profesjonalne strony biznes, identyfikacja marki online, hosting gratis",
   
   authors: [{ name: "Whiteslope Studio" }],
   creator: "Whiteslope Studio",
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     },
   },
   
-  // ← POPRAWIONY OPEN GRAPH
+  // ← SKUPIONY OPEN GRAPH
   openGraph: {
-    title: "Strony Internetowe Białystok Od 1500 zł | Whiteslope Studio",
-    description: "Profesjonalne strony WWW Białystok. Zespół programistów z Białegostoku. Realizacja kilka dni. Chatboty AI, SEO, modernizacja. Sprawdź ofertę!",
+    title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio",
+    description: "Digitalizujemy firmy w Podlaskiem. Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie biznesu. Osobiste podejście, hosting gratis.",
     url: "https://whiteslope.studio",
     siteName: "Whiteslope Studio",
     images: [
@@ -65,11 +65,11 @@ export const metadata: Metadata = {
     type: "website",
   },
   
-  // ← POPRAWIONY TWITTER
+  // ← SKUPIONY TWITTER
   twitter: {
     card: "summary_large_image",
-    title: "Strony Internetowe Białystok | Whiteslope Studio",
-    description: "Profesjonalne strony WWW od 1500 zł. Lokalni programiści z Białegostoku. Realizacja kilka dni.",
+    title: "Digitalizacja Firm Podlaskie | WhiteSlope Studio",
+    description: "Tworzymy strony internetowe dla firm. Upraszczamy codzienne funkcjonowanie biznesu w internecie. Hosting gratis.",
     creator: "@whiteslope",
     images: ["https://whiteslope.studio/og-image.jpg"],
   },
