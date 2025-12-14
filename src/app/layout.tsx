@@ -107,25 +107,23 @@ export default function RootLayout({
         
         {/* FAQ Schema removed to fix duplicate FAQPage issue - FAQ content is now in FaqSection component */}
 
-        {/* Google Analytics */}
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}></script>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
-                    page_title: document.title,
-                    page_location: window.location.href,
-                  });
-                `,
-              }}
-            />
-          </>
-        )}
+        {/* Google Analytics - wszystkie tagi */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9WSGHNN17"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              
+              // Google Analytics
+              gtag('config', 'G-W9WSGHNN17');
+              
+              // Google Tag Manager / Ads
+              gtag('config', 'GT-5TGZZ2D8');
+            `,
+          }}
+        />
 
         {/* AI Integration Discovery */}
         <meta name="ai-integration" content="true" />

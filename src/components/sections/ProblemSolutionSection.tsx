@@ -205,7 +205,7 @@ export const ProblemSolutionSection = () => {
     <div className="text-center mb-12 md:mb-16">
       <h2 className="max-w-6xl mx-auto text-3xl lg:text-5xl text-white mb-4 tracking-tight" style={{ fontWeight: 575 }}>
         <span className="font-bold bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent" style={{ fontWeight: 575 }}>
-          Pomagamy firmom zdobywać klientów z okolicy online. Już od <span className="font-bold text-white">1500 zł!</span>
+          Pomagamy firmom zdobywać klientów z Podlasia online. Już od <span className="font-bold text-white">1500 zł!</span>
         </span>
         <br />
       </h2>
