@@ -89,23 +89,23 @@ Disallow: /*?preview=
 # SITEMAPS
 # =========================
 
-Sitemap: https://whiteslope.studio/sitemap.xml
-Sitemap: https://whiteslope.studio/sitemap-portfolio.xml
-Sitemap: https://whiteslope.studio/sitemap-blog.xml
+Sitemap: https://www.whiteslope.studio/sitemap.xml
+Sitemap: https://www.whiteslope.studio/sitemap-portfolio.xml
+Sitemap: https://www.whiteslope.studio/sitemap-blog.xml
 
 # =========================
 # AI PLUGIN DISCOVERY
 # =========================
 # Main API Info: https://whiteslope.studio/api/whiteslope-info
-# AI Plugin Manifest: https://whiteslope.studio/.well-known/ai-plugin.json
-# Brief Submission: https://whiteslope.studio/api/ai/brief
-# Lead Submission: https://whiteslope.studio/api/ai/lead
-# Quote Request: https://whiteslope.studio/api/ai/quote
-# Schedule Meeting: https://whiteslope.studio/api/ai/calendar
-# Portfolio Search: https://whiteslope.studio/api/ai/portfolio
-# Brief Form (pre-filled): https://whiteslope.studio/brief
+# AI Plugin Manifest: https://www.whiteslope.studio/.well-known/ai-plugin.json
+# Brief Submission: https://www.whiteslope.studio/api/ai/brief
+# Lead Submission: https://www.whiteslope.studio/api/ai/lead
+# Quote Request: https://www.whiteslope.studio/api/ai/quote
+# Schedule Meeting: https://www.whiteslope.studio/api/ai/calendar
+# Portfolio Search: https://www.whiteslope.studio/api/ai/portfolio
+# Brief Form (pre-filled): https://www.whiteslope.studio/brief
 # 
 # For AI assistants (Claude, ChatGPT, Gemini):
-# 1. Start here: https://whiteslope.studio/api/whiteslope-info
+# 1. Start here: https://www.whiteslope.studio/api/whiteslope-info
 # 2. Follow the "actions" array in the response
 # 3. Or visit footer link "API dla AI" for more info
