@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.whiteslope.studio'),
   
   // ← SKUPIONY TITLE (digitalizacja firm regionalnych)
-  title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio | Digitalizacja Biznesu",
+  title: "Strony Internetowe dla Firm | WhiteSlope Studio | Digitalizacja Biznesu",
   
   // ← SKUPIONY DESCRIPTION (digitalizacja firm regionalnych)
   description: "⭐⭐⭐⭐⭐ Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm w Podlaskiem. WhiteSlope Studio - osobiste podejście, szybka realizacja, hosting gratis. Digitalizacja biznesu od 3500 zł.",
   
   // ← SKUPIONE KEYWORDS (firmy regionalne + digitalizacja)
-  keywords: "strony internetowe dla firm podlaskie, digitalizacja biznesu białystok, strony firmowe podlaskie, modernizacja stron internetowych, asystenci AI obsługa klienta, profesjonalne strony biznes, identyfikacja marki online, hosting gratis",
+  keywords: "strony internetowe dla firm, digitalizacja biznesu białystok, strony firmowe podlaskie, modernizacja stron internetowych, asystenci AI obsługa klienta, profesjonalne strony biznes, identyfikacja marki online, hosting gratis",
   
   authors: [{ name: "Whiteslope Studio" }],
   creator: "Whiteslope Studio",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   
   // ← SKUPIONY OPEN GRAPH
   openGraph: {
-    title: "Strony Internetowe dla Firm Podlaskie | WhiteSlope Studio",
+    title: "Strony Internetowe dla Firm | WhiteSlope Studio",
     description: "Digitalizujemy firmy w Podlaskiem. Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie biznesu. Osobiste podejście, hosting gratis.",
     url: "https://www.whiteslope.studio",
     siteName: "Whiteslope Studio",
