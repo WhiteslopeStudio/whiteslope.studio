@@ -107,9 +107,8 @@ const TIMELINES = [
 ];
 
 const MEETING_TYPES = [
-  { value: 'online', label: 'Online (Google Meet/Zoom)' },
-  { value: 'phone', label: 'Rozmowa telefoniczna' },
-  { value: 'onsite', label: 'Spotkanie w biurze (Białystok)' }
+  { value: 'online', label: 'Online (Google Meet/Zoom/Teams)' },
+  { value: 'phone', label: 'Rozmowa telefoniczna' }
 ];
 
 const PROJECT_TYPES = [
