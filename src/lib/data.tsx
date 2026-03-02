@@ -1172,10 +1172,7 @@ export const MAIN_SERVICES: MainService[] = [
         title: "Optymalizacja SEO",
         description: "Zadbamy o wysokie pozycje w Google dzięki nowoczesnym technikom pozycjonowania."
       },
-      {
-        title: "System CMS do zarządzania treścią",
-        description: "Łatwy w obsłudze panel administracyjny pozwoli Ci samodzielnie zarządzać treściami."
-      },
+
       {
         title: "Certyfikat SSL i bezpieczeństwo",
         description: "Bezpieczeństwo danych Twoich klientów i wyższe pozycje w wynikach wyszukiwania."
@@ -1220,10 +1217,6 @@ export const MAIN_SERVICES: MainService[] = [
         description: "Twoja strona będzie idealnie działać na wszystkich urządzeniach i rozdzielczościach."
       },
       {
-        title: "Bezpieczeństwo i backup",
-        description: "Nowoczesne zabezpieczenia, regularne kopie zapasowe i ochrona przed atakami."
-      },
-      {
         title: "Audyt techniczny i raport",
         description: "Szczegółowa analiza problemów i raport z wykonanych usprawnień."
       },
@@ -1243,28 +1236,22 @@ export const MAIN_SERVICES: MainService[] = [
       "Wdrażamy rozwiązania AI dopasowane do Twoich potrzeb. Zaoszczędź czas, zwiększ efektywność i zadowolenie klientów dzięki inteligentnym narzędziom AI.",
     features: [
       {
-        title: "Chatboty AI dostępne 24/7 (ChatGPT, Claude, Gemini)",
+        title: "Chatboty AI dla obsługi klienta",
         description: "Inteligentne chatboty obsługujące klientów przez całą dobę w Twoim stylu komunikacji."
       },
-      {
-        title: "Automatyzacja dokumentów i ekstrakcja danych (OCR)",
-        description: "Automatyczne przetwarzanie dokumentów, wyciąganie danych z PDF i obrazów."
-      },
+     
       {
         title: "Generowanie obrazów i wideo z tekstu",
         description: "Tworzenie unikalnych grafik i materiałów wideo na podstawie opisów tekstowych."
       },
-      {
-        title: "Rozpoznawanie obiektów i analiza zdjęć",
-        description: "Zaawansowana analiza wizualna - identyfikacja obiektów, tekstu i szczegółów na zdjęciach."
-      },
+      
       {
         title: "Inteligentne przetwarzanie i analiza tekstu",
         description: "Automatyczna analiza treści, tłumaczenia, streszczenia i kategoryzacja tekstów."
       },
       {
         title: "Pełna integracja z Twoją stroną/aplikacją",
-        description: "Seamless wdrożenie AI w istniejącą infrastrukturę bez zakłócania działania."
+        description: "Wdrożenie AI w istniejącą infrastrukturę bez zakłócania działania."
       },
     ],
     ctaText: "Wdróż AI w swojej firmie",
@@ -1303,10 +1290,7 @@ export const MAIN_SERVICES: MainService[] = [
         title: "Ikony i ilustracje",
         description: "Niestandardowe ikony i ilustracje doskonale dopasowane do stylu Twojej marki."
       },
-      {
-        title: "Wektory w wysokiej rozdzielczości",
-        description: "Skalowalne grafiki wektorowe idealne do druku i wyświetlania na każdym urządzeniu."
-      },
+     
       {
         title: "Grafiki 2D i modele 3D",
         description: "Zaawansowane grafiki płaskie i trójwymiarowe modele dla nowoczesnej prezentacji."
@@ -1318,36 +1302,28 @@ export const MAIN_SERVICES: MainService[] = [
   {
     id: "individual",
     title: "Indywidualny Plan",
-    subtitle: "Rozwiązanie szyte na miarę",
-    price: "od 2000 zł",
+    subtitle: "Konsultacja, projekt i długofalowa współpraca",
+    price: "Bezpłatna konsultacja / wg wyceny",
     picture: "_resources/usluga-indywidualna.webp",
         gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_ (1).webp", "/_resources/stronyInternetowe/www.easylesson.app_ (2).webp"],
 
     description:
-      "Żaden z naszych pakietów nie odpowiada Twoim potrzebom? Stwórzmy coś wyjątkowego razem. Indywidualne podejście do każdego projektu.",
+      "Zaczynamy od bezpłatnej konsultacji i szczegółowej wyceny, a następnie realizujemy dedykowane rozwiązanie dopasowane do Twojego biznesu.",
     features: [
       {
-        title: "Bezpłatna konsultacja",
-        description: "Szczegółowa rozmowa o Twoich potrzebach bez żadnych zobowiązań finansowych."
+        title: "Darmowa konsultacja",
+        description: "Rozmowa o celach, wymaganiach i możliwych kierunkach realizacji bez zobowiązań."
       },
       {
-        title: "Analiza potrzeb biznesowych",
-        description: "Dogłębne zrozumienie Twojego biznesu i celów dla optymalnego rozwiązania."
+        title: "Szczegółowa wycena",
+        description: "Otrzymujesz jasny plan prac, rekomendacje technologiczne i zakres dopasowany do budżetu."
       },
       {
-        title: "Dedykowane rozwiązanie",
-        description: "Projekt stworzony specjalnie pod Twoje unikalne wymagania i specyfikę branży."
-      },
-      {
-        title: "Elastyczny zakres prac",
-        description: "Dostosowanie zakresu usług do Twojego budżetu i priorytetów biznesowych."
-      },
-      {
-        title: "Indywidualna wycena projektu",
-        description: "Transparentna wycena oparta na rzeczywistym zakresie prac bez ukrytych kosztów."
+        title: "Współpraca długoterminowa",
+        description: "Możliwość stałej opieki technologicznej, regularnych optymalizacji i wsparcia priorytetowego."
       },
     ],
-    ctaText: "Omów swój pomysł",
+    ctaText: "Umów konsultację",
     animationDirection: "left",
   },
   {
@@ -1372,14 +1348,7 @@ export const MAIN_SERVICES: MainService[] = [
         title: "Segmentacja kontaktów",
         description: "Inteligentne dzielenie kontaktów na grupy dla lepszego targetowania wiadomości."
       },
-      {
-        title: "Kampanie email marketing",
-        description: "Profesjonalne kampanie e-mailowe z wysoką skutecznością konwersji."
-      },
-      {
-        title: "Analytics i raporty",
-        description: "Szczegółowe analizy otwarć, kliknięć i konwersji dla optymalizacji kampanii."
-      },
+
       {
         title: "Responsywne szablony email",
         description: "Piękne szablony e-maili idealnie wyświetlające się na wszystkich urządzeniach."
@@ -1394,73 +1363,73 @@ export const MAIN_SERVICES: MainService[] = [
   title: "Video Marketing",
   subtitle: "Profesjonalne filmy promocyjne",
   price: "wycena indywidualna",
-  picture: "_resources/usluga-video-marketing.webp", // Dodaj zdjęcie później
+  picture: "_resources/usluga-video-marketing.webp",
   gallery: null,
   description:
-    "Profesjonalne filmy promocyjne nagrywane sprzętem za ponad 20k zł. Rolki na Instagram, TikTok, YouTube, filmy reklamowe z dojazdem na miejsce.",
+    "Tworzymy rolki social media, filmy promocyjne — od koncepcji po gotowe materiały do publikacji.",
   features: [
     {
-      title: "Profesjonalny sprzęt filmowy",
-      description: "Sprzęt o wartości ponad 20 000 zł - kinowa jakość obrazu i dźwięku."
+      title: "Rolki social media i UGC",
+      description: "Tworzymy krótkie formy (Reels, TikTok, Shorts) oraz naturalny content UGC dopasowany do platformy."
     },
     {
-      title: "Filmy promocyjne z dojazdem",
-      description: "Przyjeżdżamy do Ciebie - nagrywamy na miejscu Twojej firmy lub wybranej lokalizacji."
+      title: "Filmy firmowe i reklamowe",
+      description: "Realizujemy materiały promocyjne (także około 120 sekund), które budują zaufanie i wspierają sprzedaż."
     },
     {
-      title: "Rolki na social media",
-      description: "Krótkie, dynamiczne rolki na Instagram, TikTok i YouTube Shorts - dopasowane do każdej platformy."
+      title: "Scenariusz i koncepcja kreatywna",
+      description: "Przygotowujemy koncepcję, storyboard i układ ujęć dopasowany do celu filmu oraz grupy docelowej."
     },
     {
-      title: "Filmy reklamowe YouTube",
-      description: "Dłuższe formy reklamowe dla YouTube - storytelling który sprzedaje."
+      title: "Nagrania dopasowanym sprzętem",
+      description: "Nagrania realizujemy iPhone / Lumix S5 II / opcjonalnie kamerą kinową przy większej produkcji."
     },
     {
-      title: "Montaż i postprodukcja",
-      description: "Profesjonalny montaż, korekcja kolorów, napisy, muzyka - gotowe do publikacji."
+      title: "Montaż i udźwiękowienie",
+      description: "Dynamiczny montaż z dopracowanym audio, napisami i animacjami graficznymi pod publikację."
     },
     {
-      title: "Strategia video content",
-      description: "Pomożemy zaplanować strategię wideo która przyciągnie klientów."
+      title: "Optymalizacja pod platformy",
+      description: "Dostosowujemy formaty pod stronę, YouTube i social media, z bezpiecznym kadrowaniem (safe zones)."
     },
   ],
   ctaText: "Umów nagranie",
   animationDirection: "left",
-  highlighted: true, // Wyróżnione
+  highlighted: true,
   },
   {    
     id: "audio-editing",
-    title: "Edytowanie Audio",
+    title: "Obróbka Audio",
     subtitle: "Profesjonalna obróbka dźwięku",
     price: "od 100 zł",
     picture: "_resources/usluga-audio-editing.webp",
     gallery: null,
     description:
-      "Profesjonalna edycja i mastering nagrań audio. Popraw jakość dźwięku, usuń szumy i przygotuj materiały do publikacji.",
+      "Oferujemy obróbkę audio do shortów, reklam i dłuższych materiałów z pełnym przygotowaniem plików do publikacji.",
     features: [
       {
-        title: "Redukcja szumów",
-        description: "Usuwanie niepożądanych dźwięków i szumów z nagrań."
+        title: "Obróbka audio do shortów",
+        description: "Profesjonalne czyszczenie i poprawa dźwięku w formatach do 60 sekund (Reels, TikTok, Shorts)."
       },
       {
-        title: "Korekcja dźwięku",
-        description: "Dopasowanie tonacji, głośności i balansu audio."
+        title: "Obróbka do reklam i dłuższych materiałów",
+        description: "Wyrównanie dynamiki, poprawa czytelności głosu i przygotowanie pod YouTube oraz kampanie reklamowe."
       },
       {
-        title: "Mastering",
-        description: "Profesjonalne przygotowanie nagrań do publikacji."
+        title: "Lektor AI + pełna obróbka",
+        description: "Generowanie głosu AI z dopasowaniem stylu, intonacji i finalnym masteringiem materiału."
       },
       {
-        title: "Usuwanie zakłóceń",
-        description: "Eliminacja trzasków, kliknięć i innych zakłóceń."
+        title: "Redukcja szumów i artefaktów",
+        description: "Usuwanie pogłosu, kliknięć, trzasków i innych zakłóceń z nagrania."
       },
       {
-        title: "Optymalizacja pod podcasty",
-        description: "Dostosowanie dźwięku do standardów podcastów i transmisji."
+        title: "Wyrównanie głośności i barwy",
+        description: "Spójny poziom głośności i lepsza prezencja głosu na różnych urządzeniach."
       },
       {
-        title: "Formatowanie plików",
-        description: "Konwersja i przygotowanie plików audio w różnych formatach."
+        title: "Eksport pod platformy",
+        description: "Finalne pliki przygotowane pod publikację na YouTube, social media i platformy reklamowe."
       },
     ],
     ctaText: "Zamów edycję",
