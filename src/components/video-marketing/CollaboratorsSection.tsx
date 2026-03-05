@@ -48,7 +48,7 @@ export default function CollaboratorsSection() {
             alt="WhiteSlope Studio"
             className="h-12 md:h-15 w-auto object-contain"
           />
-          <span className="text-lg" style={{ color: lightBorder }}>—</span>
+          
         </div>
 
         {/* Opis */}

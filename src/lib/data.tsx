@@ -1111,6 +1111,14 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     href: "https://korepetycje-eight.vercel.app",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
   },
+  {
+    id: "3",
+    title: "EasyLesson - platforma do nauki online",
+    image: "/_resources/easylesson.jpg",
+    category: "Aplikacja Webowa",
+    href: "https://easylesson.app",
+    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwym i efektywnym nauce przez interaktywne materiały i personalizowane podejście.",
+  }
 
 ];
 
