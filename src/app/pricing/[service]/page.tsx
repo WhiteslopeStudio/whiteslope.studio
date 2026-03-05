@@ -8,6 +8,7 @@ import LottieAnimation from '@/components/ui/LottieAnimation';
 import GalleryCarousel from '@/components/ui/GalleryCarousel';
 import FloatingFeaturesVideo from '@/components/ui/FloatingFeaturesVideo';
 import WebsitesServicePage from '@/components/websites/WebsitesServicePage';
+import VideoMarketingServicePage from '@/components/video-marketing/VideoMarketingServicePage';
 
 
 // Sprawdzamy czy service ID istnieje w MAIN_SERVICES
@@ -94,6 +95,10 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
 
   if (serviceId === 'website') {
     return <WebsitesServicePage />;
+  }
+
+  if (serviceId === 'video-marketing') {
+    return <VideoMarketingServicePage />;
   }
 
   const service = MAIN_SERVICES.find(s => s.id === serviceId);
