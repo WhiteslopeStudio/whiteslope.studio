@@ -5,18 +5,12 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Heart, MessageCircle, Send } from 'lucide-react';
 import { FaPinterestP, FaYoutube } from 'react-icons/fa6';
-
-const VIDEO_MARKETING_COLORS = {
-  ultrasonicBlue: '#560BAD',
-  indigoBloom: '#7209B7',
-  neonPink: '#F72585',
-  schoolBusYellow: '#f5fd00ff',
-  gold: '#fff200ff',
-};
+import { colors, fonts, headingStyle, ctaBaseClass, ctaSecondaryBaseClass, sectionCtas } from './theme';
 
 const SHORTS_FEED = [
-  'https://www.youtube.com/embed/nGAbHUE1eyI?autoplay=1&mute=1&controls=0&loop=1&playlist=nGAbHUE1eyI&start=0',
-  'https://www.youtube.com/embed/nGAbHUE1eyI?autoplay=1&mute=1&controls=0&loop=1&playlist=nGAbHUE1eyI&start=0',
+    'https://www.youtube.com/embed/nGAbHUE1eyI?autoplay=1&mute=1&controls=0&loop=1&playlist=nGAbHUE1eyI&start=0',
+    '/_resources/videoMarketing/VoucheryNagranie.mp4',
+
 
 ];
 
@@ -31,7 +25,7 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setVideoIndex((prev) => (prev + 1) % SHORTS_FEED.length);
-    }, 10000);
+    }, 18000);
 
     return () => clearInterval(interval);
   }, []);
@@ -67,7 +61,7 @@ export default function HeroSection() {
       className="relative overflow-hidden"
       style={{ 
         height: '88vh',
-        backgroundColor: VIDEO_MARKETING_COLORS.gold,
+        backgroundColor: colors.sectionBg.hero,
       }}
     >
       <div
@@ -84,11 +78,8 @@ export default function HeroSection() {
         {/* Left Content */}
         <div className="w-full lg:w-[55%] px-8 md:px-12 lg:pl-36 z-10">
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 leading-[0.9] tracking-tight text-black"
-            style={{ 
-              fontFamily: 'Incised901, serif',
-              letterSpacing: '-0.015em',
-            }}
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-6 text-black"
+            style={headingStyle}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -103,10 +94,8 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.h2
-            className=" font-bold text-lg md:text-xl lg:text-2xl mb-8 text-black/80 max-w-2xl leading-relaxed"
-            style={{ 
-              fontFamily: 'var(--font-geist-sans, "Geist", system-ui, sans-serif)',
-            }}
+            className="font-bold text-lg md:text-xl lg:text-2xl mb-8 text-black/80 max-w-2xl leading-relaxed"
+            style={{ fontFamily: fonts.body }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.10 }}
@@ -115,11 +104,11 @@ export default function HeroSection() {
           </motion.h2>
 
           <motion.button
-            className="px-8 py-4 rounded-full font-bold text-white text-base uppercase flex items-center gap-3 transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl"
+            className={ctaBaseClass}
             style={{
-              backgroundColor: VIDEO_MARKETING_COLORS.neonPink,
-              fontFamily: '"Courier New", Courier, monospace',
-              letterSpacing: '0.08em',
+              backgroundColor: sectionCtas.hero.primary.bgColor,
+              color: sectionCtas.hero.primary.textColor,
+              fontFamily: fonts.cta,
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,8 +116,9 @@ export default function HeroSection() {
             whileHover={{ 
               boxShadow: `0 20px 60px rgba(247, 37, 133, 0.6)`,
             }}
+            onClick={() => document.getElementById('brief')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Rozpocznij Projekt
+            {sectionCtas.hero.primary.label}
             <ArrowRight size={20} />
           </motion.button>
         </div>
@@ -183,13 +173,25 @@ export default function HeroSection() {
                   exit={{ y: '-100%' }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <iframe
-                    src={SHORTS_FEED[videoIndex]}
-                    className="absolute inset-0 w-full h-full"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    style={{ border: 'none' }}
-                  />
+                  {SHORTS_FEED[videoIndex].endsWith('.mp4') ? (
+                    <video
+                      className="absolute inset-0 w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source src={SHORTS_FEED[videoIndex]} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <iframe
+                      src={SHORTS_FEED[videoIndex]}
+                      className="absolute inset-0 w-full h-full"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      style={{ border: 'none' }}
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
 
@@ -233,7 +235,7 @@ export default function HeroSection() {
 
           {/* Floating speech bubble overlay on hover */}
           <motion.div
-            className="absolute top-20 -right-32 w-96 p-8 rounded-3xl shadow-2xl pointer-events-none z-40"
+            className="absolute top-20 -right-60 w-96 p-8 rounded-3xl shadow-2xl pointer-events-none z-40"
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.85)',
             }}
@@ -328,16 +330,23 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Right side - Creator Application Button */}
-          <motion.button
-            className="px-7 py-4 rounded-full font-medium text-base border-2 border-black bg-black text-white transition-all duration-300 hover:bg-black hover:text-white whitespace-nowrap"
+          <motion.a
+            href={sectionCtas.hero.secondary!.href}
+            className={ctaSecondaryBaseClass}
+            style={{
+              backgroundColor: sectionCtas.hero.secondary!.bgColor,
+              color: sectionCtas.hero.secondary!.textColor,
+              border: sectionCtas.hero.secondary!.border,
+              fontFamily: fonts.cta,
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Aplikuj jako Twórca
-          </motion.button>
+            {sectionCtas.hero.secondary!.label}
+          </motion.a>
         </div>
       </div>
     </section>

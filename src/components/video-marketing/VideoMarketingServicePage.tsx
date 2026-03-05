@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import HeroSection from './HeroSection';
+import HighlightsBar from './HighlightsBar';
+import StatementSection from './StatementSection';
+import TilesSection from './TilesSection';
+import VideoShowcaseSection from './VideoShowcaseSection';
+import CollaboratorsSection from './CollaboratorsSection';
+import VideoBriefSection from './VideoBriefSection';
 
 export default function VideoMarketingServicePage() {
   return (
@@ -11,16 +17,19 @@ export default function VideoMarketingServicePage() {
       </div>
 
       <HeroSection />
-      
-      {/* Placeholder for future sections */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto max-w-5xl">
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
-            <h2 className="text-4xl font-light mb-4">Upsell Section</h2>
-            <p className="text-white/60">Coming soon - szczegółowa sekcja upsell będzie tutaj</p>
-          </div>
-        </div>
-      </section>
+      <div className="px-8 md:px-12 lg:px-36">
+        <HighlightsBar />
+      </div>
+
+      <CollaboratorsSection />
+
+      <StatementSection />
+
+      <TilesSection />
+
+      <VideoShowcaseSection />
+
+      <VideoBriefSection />
     </div>
   );
 }
