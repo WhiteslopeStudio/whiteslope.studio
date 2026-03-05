@@ -168,7 +168,7 @@ export default function HeroSection() {
                     background: `radial-gradient(circle at ${mainButton.mousePosition.x}% ${mainButton.mousePosition.y}%, #248affff, #248affff 30%, #1c86ffff 60%, #1985ff)`,
                   }}
                 >
-                  Brief projektowy
+                  Wycena
                   <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link

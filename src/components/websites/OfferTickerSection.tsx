@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const OFFER_ITEMS = [
   { label: 'WEB DEVELOPMENT', href: '/pricing/website' },
-  { label: 'VIDEO MARKETING', href: '/contact?tab=quote&service=video' },
+  { label: 'VIDEO MARKETING', href: '/pricing/video-marketing' },
   { label: 'CHATBOTY AI', href: '/pricing/ai-integration' },
   { label: 'GRAFIKA', href: '/pricing/graphics' },
   { label: 'OPTYMALIZACJA', href: '/pricing/optimization' },

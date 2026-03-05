@@ -2318,6 +2318,7 @@ export const SERVICE_PACKAGES = [
           "Wsparcie po wdrożeniu: 1 miesiąc",
         ],
         timeline: "1-2 tygodni",
+        highlighted: true,
       },
       {
         id: "website-business",
@@ -2357,6 +2358,7 @@ export const SERVICE_PACKAGES = [
           "Wsparcie po wdrożeniu: 3 miesiące",
         ],
         timeline: "4-6 tygodni",
+        highlighted: true,
       },
     ],
   },
@@ -2394,7 +2396,6 @@ export const SERVICE_PACKAGES = [
           "Dokumentacja zmian",
         ],
         timeline: "2-3 tygodni",
-        highlighted: true,
       },
       {
         id: "optimization-migration",
@@ -2426,6 +2427,7 @@ export const SERVICE_PACKAGES = [
         id: "ai-chatbot",
         name: "Chatbot AI",
         price: "od 1000 zł",
+        highlighted: true,
         description: "Inteligentny asystent na Twoją stronę",
         features: [
           "Chatbot AI dostępny 24/7",
@@ -2450,6 +2452,7 @@ export const SERVICE_PACKAGES = [
           "Podstawowa analiza i poprawa tekstu (styl, skracanie, porządkowanie)",
         ],
         timeline: "2-3 tygodni",
+        highlighted: false,
       },
       {
         id: "ai-automation",
@@ -2499,7 +2502,6 @@ export const SERVICE_PACKAGES = [
           "2 rundy poprawek",
         ],
         timeline: "1-2 tygodni",
-        highlighted: true,
       },
       {
         id: "graphics-3d",
@@ -2606,7 +2608,6 @@ export const SERVICE_PACKAGES = [
           
         ],
         timeline: "1-2 tygodni",
-        highlighted: true,
       },
       {
         id: "email-automation",
@@ -2646,6 +2647,7 @@ export const SERVICE_PACKAGES = [
           "Optymalizacja pod każdą platformę + bezpieczne kadrowanie (safe zones)",
         ],
         timeline: "1-2 tygodnie",
+        highlighted: true,
       },
       {
         id: "video-advanced",
@@ -2681,6 +2683,7 @@ export const SERVICE_PACKAGES = [
           "Optymalizacja pod platformy reklamowe i social media + safe zones",
         ],
         timeline: "3-4 tygodnie",
+        highlighted: true,
       },
     ],
   },

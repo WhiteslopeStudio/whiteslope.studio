@@ -61,7 +61,7 @@ export default function ProcessSection() {
                     {' '}
                     oraz
                     {' '}
-                    <Link href="/contact?tab=quote&service=video" className="font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-4">video marketingu</Link>.
+                    <Link href="/pricing/video-marketing" className="font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-4">video marketingu</Link>.
                   </p>
                   <p className="mt-3 text-zinc-900/85 leading-relaxed">
                     W praktyce doradzamy, jakie treści przygotować najpierw, co można uprościć i jak poukładać komunikację,
@@ -162,7 +162,7 @@ export default function ProcessSection() {
                   <Link href="/pricing/graphics" className="block rounded-xl border border-black/10 bg-zinc-100 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors">
                     Grafice i identyfikacji
                   </Link>
-                  <Link href="/contact?tab=quote&service=video" className="block rounded-xl border border-black/10 bg-zinc-100 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  <Link href="/pricing/video-marketing" className="block rounded-xl border border-black/10 bg-zinc-100 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors">
                     Video marketingu
                   </Link>
                   <Link href="/pricing/optimization" className="block rounded-xl border border-black/10 bg-zinc-100 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors">

@@ -165,7 +165,7 @@ export default function ProjectsSection() {
           className="w-full sm:w-auto inline-flex items-center justify-center rounded-full h-12 px-8 text-sm md:text-base font-semibold text-white relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(25,133,255,0.3)] hover:shadow-[0_8px_30px_rgba(25,133,255,0.45)]"
           style={{ background: '#1985ff' }}
         >
-          Brief projektowy
+          Wycena
           <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
         <Link
