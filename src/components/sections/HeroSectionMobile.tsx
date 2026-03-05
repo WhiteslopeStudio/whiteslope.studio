@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ArrowRight, Check, Code, FileText, LayoutGrid, Linkedin, Palette, Search, Smartphone } from 'lucide-react';
 import { linkedinProfiles } from './HeroSection';
 import { MainService } from '@/lib/types';
 import { MAIN_SERVICES } from '@/lib/data';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useApprovalCarousel } from '@/utils/hooks';
 
 interface LinkedInProfile {
   name: string;
@@ -20,7 +21,6 @@ interface HeroSectionMobileProps {
 
 const HeroSectionMobile = ({ cityOverride }: HeroSectionMobileProps = {}) => {
   const [hoveredAvatar, setHoveredAvatar] = useState<number | null>(null);
-  const [activeProofIndex, setActiveProofIndex] = useState(0);
   const router = useRouter();
   
   const proofItems = [
@@ -28,6 +28,7 @@ const HeroSectionMobile = ({ cityOverride }: HeroSectionMobileProps = {}) => {
     'Integracja z chatbotem AI',
     'Szkolenie z obsługi strony',
   ];
+  const activeProofIndex = useApprovalCarousel(proofItems.length, 3000);
 
   // Funkcja dla pozycji avatarów
   const getAvatarPosition = (index: number, total: number) => {
@@ -61,14 +62,6 @@ const HeroSectionMobile = ({ cityOverride }: HeroSectionMobileProps = {}) => {
       };
     }
   };
-
-  // Karuzela proofów
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveProofIndex((prev) => (prev + 1) % proofItems.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Funkcja do obsługi kliknięcia w usługę
   const handleServiceClick = (serviceId: string) => {

@@ -141,7 +141,8 @@ const PROJECT_REQUIREMENTS = [
   'Mapa Google',
   'Integracja z social media',
   'Newsletter/mailing',
-  'Sklep internetowy/płatności online',
+
+
   'Rezerwacja online/kalendarz',
   'Panel administracyjny',
   'Wielojęzyczność',

@@ -7,6 +7,7 @@ import { MainService, ServicePackage } from '@/lib/types';
 import LottieAnimation from '@/components/ui/LottieAnimation';
 import GalleryCarousel from '@/components/ui/GalleryCarousel';
 import FloatingFeaturesVideo from '@/components/ui/FloatingFeaturesVideo';
+import WebsitesServicePage from '@/components/websites/WebsitesServicePage';
 
 
 // Sprawdzamy czy service ID istnieje w MAIN_SERVICES
@@ -90,6 +91,11 @@ export async function generateMetadata({
 
 export default async function ServicePage({ params }: { params: Promise<{ service: string }> }) {
   const { service: serviceId } = await params;
+
+  if (serviceId === 'website') {
+    return <WebsitesServicePage />;
+  }
+
   const service = MAIN_SERVICES.find(s => s.id === serviceId);
   const packages = getServicePackages(serviceId);
   const galleryImages = service?.gallery && service.gallery.length > 0 ? service.gallery : PLACEHOLDER_GALLERY;

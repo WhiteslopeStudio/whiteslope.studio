@@ -320,6 +320,9 @@ export async function POST(request: Request) {
           <p><strong>Termin realizacji:</strong> ${sanitizedData.timeline}</p>
           <p><strong>Czy ma stronę:</strong> ${sanitizedData.hasExistingSite ? 'Tak' : 'Nie'}</p>
           ${sanitizedData.currentSiteUrl ? `<p><strong>Obecna strona:</strong> ${sanitizeString(sanitizedData.currentSiteUrl)}</p>` : ''}
+          ${sanitizedData.preferredContact ? `<p><strong>Preferowany kontakt:</strong> ${sanitizedData.preferredContact === 'email' ? '📧 Email' : sanitizedData.preferredContact === 'phone' ? '📞 Telefon' : 'Dowolny'}</p>` : ''}
+          ${sanitizedData.contactHours ? `<p><strong>Godz. kontaktu:</strong> ${sanitizeString(sanitizedData.contactHours)}</p>` : ''}
+          ${sanitizedData.subject ? `<p><strong>Temat (dot.):</strong> ${sanitizeString(sanitizedData.subject)}</p>` : ''}
           
           <h3>Wymagania funkcjonalne (${sanitizedData.requirements.length}):</h3>
           <ul>

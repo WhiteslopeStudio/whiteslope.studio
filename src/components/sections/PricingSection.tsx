@@ -168,10 +168,10 @@ const BottomSheet = ({ isOpen, onClose, service, onServiceChange }: {
           </div>
 
           {/* Social Proof */}
-          <div className="mb-4 flex items-center gap-2">
+          {/* <div className="mb-4 flex items-center gap-2">
             <BsCheck2All className="w-4 h-4 text-[#2DE56B]" />
             <span className="text-xs text-black/70 font-medium">Wybrało już kilka osób w 2025</span>
-          </div>
+          </div> */}
 
           {/* Description */}
           <div className="mb-5">

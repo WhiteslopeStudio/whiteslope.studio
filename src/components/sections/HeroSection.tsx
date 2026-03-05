@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Linkedin } from 'lucide-react';
+import { useInteractiveButton } from '@/utils/hooks';
 
 const LightRays = ({ className }: any) => {
   return (
@@ -110,26 +111,8 @@ export const linkedinProfiles = [
 
 export default function HeroSection({ cityOverride }: { cityOverride?: string } = {}) {
   const [hoveredAvatar, setHoveredAvatar] = useState<number | null>(null);
-  const [mousePos1, setMousePos1] = useState({ x: 50, y: 50 });
-  const [mousePos2, setMousePos2] = useState({ x: 50, y: 50 });
-  const [isButton1Hovered, setIsButton1Hovered] = useState(false);
-  const [isButton2Hovered, setIsButton2Hovered] = useState(false);
-
-  const handleMouseMove1 = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isButton1Hovered) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos1({ x, y });
-  };
-
-  const handleMouseMove2 = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isButton2Hovered) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos2({ x, y });
-  };
+  const mainButton = useInteractiveButton();
+  const secondaryButton = useInteractiveButton();
 
   const getAvatarPosition = (index: number, total: number) => {
     if (hoveredAvatar === null) {
@@ -292,15 +275,12 @@ export default function HeroSection({ cityOverride }: { cityOverride?: string } 
                 <AnimatedElement delay={1100}>
                   <a
                     href="/pricing/website"
-                    onMouseMove={handleMouseMove2}
-                    onMouseEnter={() => setIsButton2Hovered(true)}
-                    onMouseLeave={() => {
-                      setIsButton2Hovered(false);
-                      setMousePos2({ x: 50, y: 50 });
-                    }}
+                    onMouseMove={mainButton.handleMouseMove}
+                    onMouseEnter={mainButton.handleMouseEnter}
+                    onMouseLeave={mainButton.handleMouseLeave}
                     className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
                     style={{
-                      background: `radial-gradient(circle at ${mousePos2.x}% ${mousePos2.y}%, #248affff, #248affff 30%, #1c86ffff 60%, #1985ff`,
+                      background: `radial-gradient(circle at ${mainButton.mousePosition.x}% ${mainButton.mousePosition.y}%, #248affff, #248affff 30%, #1c86ffff 60%, #1985ff)`,
                     }}
                   >
                     <span className="relative z-10 text-white h-full w-full flex items-center justify-center gap-2 px-8 font-semibold">
@@ -313,15 +293,12 @@ export default function HeroSection({ cityOverride }: { cityOverride?: string } 
                 <AnimatedElement delay={1250}>
                   <a
                     href="/contact#contact-form"
-                    onMouseMove={handleMouseMove1}
-                    onMouseEnter={() => setIsButton1Hovered(true)}
-                    onMouseLeave={() => {
-                      setIsButton1Hovered(false);
-                      setMousePos1({ x: 50, y: 50 });
-                    }}
+                    onMouseMove={secondaryButton.handleMouseMove}
+                    onMouseEnter={secondaryButton.handleMouseEnter}
+                    onMouseLeave={secondaryButton.handleMouseLeave}
                     className="w-full sm:w-auto h-12 rounded-full relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] inline-flex"
                     style={{
-                      background: `radial-gradient(circle at ${mousePos1.x}% ${mousePos1.y}%, #fffffff5 0%, #ffffffec 30%, #ffffffe3 60%, #ffffffda 100%)`,
+                      background: `radial-gradient(circle at ${secondaryButton.mousePosition.x}% ${secondaryButton.mousePosition.y}%, #fffffff5 0%, #ffffffec 30%, #ffffffe3 60%, #ffffffda 100%)`,
                     }}
                   >
                     <span className="relative z-10 text-black h-full w-full flex items-center justify-center gap-2 px-8 font-medium">
