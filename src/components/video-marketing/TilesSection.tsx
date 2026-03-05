@@ -41,7 +41,6 @@ const tiles: Tile[] = [
       'Dynamiczny montaż z motion graphics',
       'Format 9:16 pod Reels i TikTok',
       'Napisy, muzyka, efekty w pakiecie',
-      'Regularny kalendarz publikacji',
     ],
     bg: colors.black,
     textColor: colors.white,
