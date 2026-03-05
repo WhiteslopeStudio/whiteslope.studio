@@ -914,7 +914,7 @@ Pamiętaj, że każdy projekt jest inny. Jeśli czujesz, że Twoje potrzeby wykr
     },
 
     {
-      id: "21",
+      id: "96",
       title: "Dlaczego profesjonalne logo to inwestycja, która się zwraca?",
       excerpt: "Twoje logo to pierwszy punkt styku klienta z marką. Dowiedz się, jak profesjonalny design buduje autorytet i pomaga wyróżnić się na tle konkurencji.",
       content: `# Profesjonalne logo: Fundament Twojego wizerunku

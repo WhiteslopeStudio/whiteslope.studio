@@ -55,7 +55,7 @@ function useDragScroll() {
 }
 
 export default function OtherServicesSection() {
-  const others = MAIN_SERVICES.filter((s: MainService) => s.id !== 'website');
+  const others = MAIN_SERVICES;
   const drag = useDragScroll();
 
   return (
@@ -66,7 +66,7 @@ export default function OtherServicesSection() {
       ══════════════════════════════════════════════════ */}
       <div className="hidden md:block border-b border-white/10">
         <div className="container mx-auto px-6 pt-16 pb-4">
-          <h2 className="text-4xl font-semibold text-white">Pozostałe usługi</h2>
+          <h2 className="text-4xl font-semibold text-white">Nasze usługi</h2>
         </div>
 
         {others.map((service: MainService, idx: number) => {
@@ -155,7 +155,7 @@ export default function OtherServicesSection() {
       ══════════════════════════════════════════════════ */}
       <div className="md:hidden py-10 border-b border-white/10">
         <div className="px-6 mb-6">
-          <h2 className="text-2xl font-semibold text-white">Pozostałe usługi</h2>
+          <h2 className="text-2xl font-semibold text-white">Nasze usługi</h2>
         </div>
 
         <div
