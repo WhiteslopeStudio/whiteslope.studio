@@ -114,8 +114,8 @@ export default function VideoShowcaseSection() {
           </div>
 
           {/* Next + mobile CTA */}
-          <div className="mt-4 flex items-center gap-3 self-start">
-            <button
+          <div className="mt-4 flex flex-col items-start gap-3 self-start">
+              <button
               type="button"
               onClick={next}
               className="flex items-center gap-2 px-5 py-3 rounded-full cursor-pointer transition-all duration-300 hover:opacity-80"
@@ -186,18 +186,20 @@ export default function VideoShowcaseSection() {
                 />
               ))}
             </div>
-            <a
-              href="#brief"
-              className={`${ctaBaseClass} hidden lg:inline-flex`}
-              style={{
-                backgroundColor: colors.neonPink,
-                color: colors.white,
-                fontFamily: fonts.cta,
-              }}
-            >
-              Zamów realizację
-              <ArrowRight size={18} />
-            </a>
+            <div className="hidden lg:block">
+              <a
+                href="#brief"
+                className={ctaBaseClass}
+                style={{
+                  backgroundColor: colors.neonPink,
+                  color: colors.white,
+                  fontFamily: fonts.cta,
+                }}
+              >
+                Zamów realizację
+                <ArrowRight size={18} />
+              </a>
+            </div>
           </div>
         </div>
 
