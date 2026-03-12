@@ -75,7 +75,7 @@ export const sectionCtas: Record<string, { primary: CtaVariant; secondary?: CtaV
       textColor: colors.white,
     },
     secondary: {
-      label:     'Aplikuj jako Twórca',
+      label:     'Aplikuj jako Twórca UGC',
       href:      '/contact?tab=question',
       bgColor:   colors.black,
       textColor: colors.white,

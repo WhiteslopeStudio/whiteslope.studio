@@ -9,6 +9,8 @@ import {
   Zap,
   Linkedin,
   Github,
+  Instagram,
+  Facebook,
 } from "lucide-react";
 import { APP_CONFIG } from "@/lib/constants";
 import Image from "next/image";
@@ -44,7 +46,7 @@ export const Footer = () => {
 
               {/* Quick stats */}
               <div className="flex items-center gap-6 mb-6 text-xs">
-                <div className="flex items-center text-[#DD9C90]">
+                <div className="flex items-center text-gray-400">
                   <Award className="w-4 h-4 mr-1" />
                   <span>100% zadowolonych klientów</span>
                 </div>
@@ -82,8 +84,8 @@ export const Footer = () => {
                       href={item.href}
                       className={`transition-colors duration-300 text-sm flex items-center group ${
                         (item as any).isApi 
-                          ? 'text-[#DD9C90] hover:text-[#DD9C90]/80' 
-                          : 'text-gray-400 hover:text-[#DD9C90]'
+                          ? 'text-gray-300 hover:text-gray-300/70' 
+                          : 'text-gray-400 hover:text-white'
                       }`}
                     >
                       <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -108,7 +110,7 @@ export const Footer = () => {
                 ].map((service) => (
                   <li key={service}>
                     <div className="text-gray-400 text-sm flex items-center">
-                      <div className="w-1 h-1 bg-[#DD9C90] rounded-full mr-3 flex-shrink-0" />
+                      <div className="w-1 h-1 bg-gray-600 rounded-full mr-3 flex-shrink-0" />
                       {service}
                     </div>
                   </li>
@@ -118,7 +120,7 @@ export const Footer = () => {
               <div className="mt-6">
                 <a 
                   href="/pricing" 
-                  className="inline-flex items-center text-[#DD9C90] hover:text-[#DD9C90]/80 transition-colors text-sm font-semibold group"
+                  className="inline-flex items-center text-gray-400 hover:text-white transition-colors text-sm font-semibold group"
                 >
                   <span>Zobacz pełną ofertę</span>
                   <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -132,7 +134,7 @@ export const Footer = () => {
               
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
-                  <Mail className="w-5 h-5 text-[#DD9C90] mr-3 mt-0.5 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="text-white text-sm font-medium">{APP_CONFIG.email}</div>
                     <div className="text-gray-500 text-xs">Odpowiadamy w 24h</div>
@@ -140,7 +142,7 @@ export const Footer = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-[#DD9C90] mr-3 mt-0.5 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="text-white text-sm font-medium">{APP_CONFIG.phone}</div>
                     <div className="text-gray-500 text-xs">Pon-Pt 9:00-17:00</div>
@@ -148,7 +150,7 @@ export const Footer = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-[#DD9C90] mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="text-white text-sm font-medium">Białystok, Polska</div>
                     <div className="text-gray-500 text-xs">Działamy zdalnie</div>
@@ -159,22 +161,32 @@ export const Footer = () => {
               {/* CTA Button */}
               <a
                 href="/contact?tab=meeting"
-                className="inline-flex items-center bg-[#DD9C90] text-black px-6 py-3 rounded-lg font-bold 
-                active:scale-95 hover:scale-105 hover:bg-[#DD9C90]/90 transition-all duration-300 text-sm shadow-lg hover:shadow-[#DD9C90]/25"
+                className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-bold active:scale-95 hover:scale-105 hover:bg-blue-500 transition-all duration-300 text-sm shadow-lg hover:shadow-blue-600/25"
               >
                 <span>Skontaktuj się</span>
                 <ArrowRight className="w-4 h-4 ml-2" />
               </a>
 
-              {/* Social Media
               <div className="flex space-x-3 mt-6">
-                <a href="#" className="w-8 h-8 bg-gray-800 hover:bg-[#DD9C90] rounded-lg flex items-center justify-center transition-colors duration-300 group">
-                  <Linkedin className="w-4 h-4 text-gray-400 group-hover:text-black" />
+                <a
+                  href="https://www.instagram.com/whiteslopestudio/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 bg-gray-800 hover:bg-white/10 border border-white/10 rounded-lg flex items-center justify-center transition-colors duration-300 group"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
-                <a href="#" className="w-8 h-8 bg-gray-800 hover:bg-[#DD9C90] rounded-lg flex items-center justify-center transition-colors duration-300 group">
-                  <Github className="w-4 h-4 text-gray-400 group-hover:text-black" />
+                <a
+                  href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 bg-gray-800 hover:bg-white/10 border border-white/10 rounded-lg flex items-center justify-center transition-colors duration-300 group"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -204,7 +216,7 @@ export const Footer = () => {
                   <a
                     key={city}
                     href={`/${citySlug}`}
-                    className="text-gray-400 hover:text-[#DD9C90] transition-colors duration-300 text-sm px-2 py-1 rounded hover:bg-gray-800/30"
+                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm px-2 py-1 rounded hover:bg-gray-800/30"
                   >
                     {city}
                   </a>

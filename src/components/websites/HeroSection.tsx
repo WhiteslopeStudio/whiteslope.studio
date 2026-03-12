@@ -81,7 +81,7 @@ export default function HeroSection() {
   const activeMobileProofIndex = useApprovalCarousel(highlights.length, 3000);
 
   return (
-    <section className="relative h-[60svh] md:h-[90svh] md:min-h-[760px] overflow-hidden border-b border-white/10">
+    <section className="relative h-[72svh] md:h-[90svh] md:min-h-[760px] overflow-hidden border-b border-white/10">
       <div className="absolute inset-0 hidden md:block">
         {PROJECT_EXAMPLES.map((project, index) => (
           <div
@@ -114,7 +114,7 @@ export default function HeroSection() {
       <div className="absolute top-[31%] right-[-8%] w-[30rem] h-[30rem] rounded-full bg-yellow-300/10 blur-[170px] pointer-events-none hidden md:block" />
 
       <div className="relative z-10 h-full flex flex-col justify-center" style={{ paddingLeft: EDGE_PADDING, paddingRight: EDGE_PADDING }}>
-        <div className="relative max-w-[1120px] text-center md:text-left mx-auto md:mx-0 -mt-3 md:-mt-40">
+        <div className="relative max-w-[1120px] text-center md:text-left mx-auto md:mx-0 -mt-10 md:-mt-40">
 
           <div className="relative">
             <AnimatedBlock delay={0}>
@@ -125,7 +125,7 @@ export default function HeroSection() {
             </AnimatedBlock>
 
             <AnimatedBlock delay={120}>
-              <h1 className="mt-5 md:mt-6 text-3xl md:text-6xl lg:text-7xl font-bold leading-[1.1]">
+              <h1 className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-7xl font-bold leading-[1.1]">
                 <span className="md:hidden">
                   <span className="text-transparent bg-clip-text bg-gradient-to-tr from-gray-300 via-gray-100 to-white">
                     Strony internetowe
@@ -137,7 +137,7 @@ export default function HeroSection() {
                     o Twoim biznesie
                   </span>
                 </span>
-                <span className="hidden md:inline text-transparent bg-clip-text bg-gradient-to-tr from-gray-300 via-gray-100 to-white">Strony&nbsp;internetowe&nbsp;tworzone</span>
+                <span className="hidden md:inline text-transparent bg-clip-text bg-gradient-to-tr from-gray-300 via-gray-100 to-white">Strony internetowe tworzone</span>
                 <br className="hidden md:block" />
                 <span className="hidden md:inline text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">z myślą o Twoim biznesie</span>
               </h1>

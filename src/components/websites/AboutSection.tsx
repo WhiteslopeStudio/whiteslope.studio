@@ -82,21 +82,21 @@ export default function AboutSection() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-      <div className="mb-10 md:mb-14 flex items-center justify-center lg:justify-start gap-4">
+      <div className="mb-10 md:mb-14 flex items-center justify-center lg:justify-start gap-3 md:gap-4">
         <img
           src="/_resources/logoWhiteSlope.webp"
           alt="Whiteslope Studio"
-          className="h-9 md:h-11 w-auto object-contain"
+          className="h-7 md:h-11 w-auto object-contain"
         />
-        <span className="text-white/45 text-xl md:text-2xl">—</span>
-        <h2 className="text-3xl md:text-4xl font-semibold text-white">O nas</h2>
+        <span className="text-white/45 text-lg md:text-2xl">—</span>
+        <h2 className="text-lg md:text-4xl font-semibold text-white">O nas</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.25fr] gap-14 items-start">
         <div>
           <div className="mt-2">
             <div className="w-full max-w-[560px] mx-auto lg:mx-0">
-              <div className="relative h-[192px] sm:h-[210px] w-full" onMouseLeave={() => setHoveredIndex(null)}>
+              <div className="relative h-[158px] sm:h-[192px] md:h-[210px] w-full" onMouseLeave={() => setHoveredIndex(null)}>
                 {teamProfiles.map((profile, index) => {
                   const baseLeftPercent =
                     edgePaddingPercent +
@@ -122,8 +122,8 @@ export default function AboutSection() {
                       }}
                       className={`absolute top-1/2 rounded-full overflow-hidden border-2 transition-all duration-300 ${
                         isActive
-                          ? 'w-[156px] h-[156px] border-blue-300 shadow-[0_10px_34px_rgba(59,130,246,0.3)]'
-                          : 'w-[142px] h-[142px] border-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.45)]'
+                          ? 'w-[92px] h-[92px] sm:w-[156px] sm:h-[156px] border-blue-300 shadow-[0_10px_34px_rgba(59,130,246,0.3)]'
+                          : 'w-[80px] h-[80px] sm:w-[142px] sm:h-[142px] border-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.45)]'
                       }`}
                       style={{
                         left: `${baseLeftPercent}%`,
@@ -213,7 +213,7 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="relative mt-10 ml-auto max-w-[560px] text-right">
+          <div className="relative mt-10 max-w-[560px] text-left lg:text-right lg:ml-auto">
             <div className="absolute -bottom-20 right-[-18rem] w-[46rem] h-[19rem] rounded-full bg-blue-500/10 blur-[132px] pointer-events-none" />
             <div className="absolute -bottom-18 right-[-8rem] w-[26rem] h-[9rem] rounded-full bg-violet-200/12 blur-[88px] pointer-events-none" />
             <p className="relative z-10 text-white/88 text-lg md:text-2xl font-medium leading-relaxed">

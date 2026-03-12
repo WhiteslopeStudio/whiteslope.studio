@@ -339,25 +339,48 @@ export default function VideoBriefSection() {
               />
             </div>
 
-            <div className="flex items-center justify-between pt-2">
-              <p className="text-xs" style={{ fontFamily: fonts.body, color: `${colors.white}60` }}>
-                Wycena w ciągu 72h
-              </p>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`${ctaBaseClass} disabled:opacity-50 disabled:cursor-not-allowed`}
-                style={{ backgroundColor: colors.neonPink, color: colors.white, fontFamily: fonts.cta }}
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Wysyłanie...
-                  </>
-                ) : (
-                  <>Wyślij brief<ArrowRight size={18} /></>
-                )}
-              </button>
+            <div className="pt-2">
+              <div className="hidden md:flex items-center justify-between">
+                <p className="text-xs" style={{ fontFamily: fonts.body, color: `${colors.white}60` }}>
+                  Wycena w ciągu 72h
+                </p>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`${ctaBaseClass} disabled:opacity-50 disabled:cursor-not-allowed`}
+                  style={{ backgroundColor: colors.neonPink, color: colors.white, fontFamily: fonts.cta }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Wysyłanie...
+                    </>
+                  ) : (
+                    <>Wyślij<ArrowRight size={18} /></>
+                  )}
+                </button>
+              </div>
+
+              <div className="md:hidden flex flex-col items-center gap-3">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`${ctaBaseClass} w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed`}
+                  style={{ backgroundColor: colors.neonPink, color: colors.white, fontFamily: fonts.cta }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Wysyłanie...
+                    </>
+                  ) : (
+                    <>Wyślij<ArrowRight size={18} /></>
+                  )}
+                </button>
+                <p className="text-xs text-center" style={{ fontFamily: fonts.body, color: `${colors.white}60` }}>
+                  Wycena w ciągu 72h
+                </p>
+              </div>
             </div>
           </form>
 

@@ -23,7 +23,7 @@ const highlights = [
 
 export default function HighlightsBar() {
   return (
-    <div className="relative my-3  py-4">
+    <div className="relative my-3  py-4 overflow-x-clip">
       <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[40rem] h-[10rem] rounded-full blur-[130px] pointer-events-none"
         style={{ backgroundColor: `${colors.neonPink}22` }}
       />

@@ -118,7 +118,7 @@ export default function TilesSection() {
 
             {/* Heading */}
             <h2
-              className="text-3xl md:text-4xl xl:text-5xl font-normal leading-[0.95] mb-10"
+              className="font-normal leading-[0.95] mb-10 break-words [overflow-wrap:anywhere] text-[clamp(1.75rem,6vw,2.2rem)] lg:text-[clamp(2rem,3vw,2.8rem)]"
               style={{ ...headingStyle, color: tile.textColor }}
             >
               {tile.heading}

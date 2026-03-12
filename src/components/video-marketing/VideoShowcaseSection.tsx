@@ -63,13 +63,13 @@ export default function VideoShowcaseSection() {
 
   return (
     <section
-      className="w-full py-20 md:py-28 px-4 md:px-6"
+      className="w-full py-20 md:py-28 px-4 md:px-6 overflow-x-clip"
       style={{ backgroundColor: colors.black }}
     >
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start w-full">
 
-        {/* ── Left menu ── */}
-        <div className="flex-shrink-0 w-full lg:w-72 flex flex-col gap-2">
+        {/* ── Left menu / Mobile buttons ── */}
+        <div className="flex-shrink-0 w-full lg:w-72 order-2 lg:order-1 flex flex-col gap-2">
           <p
             className="text-xs uppercase tracking-[0.18em] mb-4"
             style={{ fontFamily: fonts.cta, color: `${colors.white}55` }}
@@ -77,62 +77,67 @@ export default function VideoShowcaseSection() {
             Wybierz rodzaj:
           </p>
 
-          {videos.map((v, i) => {
-            const isActive = i === activeIndex;
-            return (
-              <button
-                key={v.id}
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                className="text-left px-5 py-4 rounded-2xl transition-all duration-300 cursor-pointer"
-                style={{
-                  backgroundColor: isActive ? colors.gold : `${colors.white}08`,
-                  border: `1px solid ${isActive ? colors.gold : `${colors.white}12`}`,
-                }}
-              >
-                <p
-                  className="font-normal text-xl leading-tight"
+          <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible -mx-4 px-4 lg:mx-0 lg:px-0">
+            {videos.map((v, i) => {
+              const isActive = i === activeIndex;
+              return (
+                <button
+                  key={v.id}
+                  type="button"
+                  onClick={() => setActiveIndex(i)}
+                  className="flex-shrink-0 lg:flex-shrink text-left px-5 py-4 rounded-2xl transition-all duration-300 cursor-pointer min-w-max lg:min-w-full"
                   style={{
-                    ...headingStyle,
-                    color: isActive ? colors.black : colors.white,
+                    backgroundColor: isActive ? colors.gold : `${colors.white}08`,
+                    border: `1px solid ${isActive ? colors.gold : `${colors.white}12`}`,
                   }}
                 >
-                  {v.label}
-                </p>
-                {isActive && (
                   <p
-                    className="mt-2 text-sm leading-snug"
-                    style={{ fontFamily: fonts.body, color: `${colors.black}bb` }}
+                    className="font-normal text-xl leading-tight whitespace-nowrap"
+                    style={{
+                      ...headingStyle,
+                      color: isActive ? colors.black : colors.white,
+                    }}
                   >
-                    {v.description}
+                    {v.label}
                   </p>
-                )}
-              </button>
-            );
-          })}
+                  {isActive && (
+                    <p
+                      className="mt-2 text-sm leading-snug hidden lg:block"
+                      style={{ fontFamily: fonts.body, color: `${colors.black}bb` }}
+                    >
+                      {v.description}
+                    </p>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-          {/* Next button */}
-          <button
-            type="button"
-            onClick={next}
-            className="mt-4 flex items-center gap-2 px-5 py-3 rounded-full cursor-pointer transition-all duration-300 hover:opacity-80 self-start"
-            style={{
-              backgroundColor: `${colors.white}10`,
-              border: `1px solid ${colors.white}20`,
-              fontFamily: fonts.cta,
-              color: colors.white,
-              fontSize: '0.75rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-            }}
-          >
-            NASTĘPNY
-            <ArrowRight size={14} />
-          </button>
+          {/* Next + mobile CTA */}
+          <div className="mt-4 flex items-center gap-3 self-start">
+            <button
+              type="button"
+              onClick={next}
+              className="flex items-center gap-2 px-5 py-3 rounded-full cursor-pointer transition-all duration-300 hover:opacity-80"
+              style={{
+                backgroundColor: `${colors.white}10`,
+                border: `1px solid ${colors.white}20`,
+                fontFamily: fonts.cta,
+                color: colors.white,
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+              }}
+            >
+              NASTĘPNY
+              <ArrowRight size={14} />
+            </button>
+
+          </div>
         </div>
 
         {/* ── Video player ── */}
-        <div className="flex-1 w-full">
+        <div className="flex-1 w-full order-1 lg:order-2">
           <div
             className="relative w-full overflow-hidden rounded-3xl bg-black"
             style={{ aspectRatio: '16/9' }}
@@ -164,7 +169,7 @@ export default function VideoShowcaseSection() {
           </div>
 
           {/* Progress dots */}
-          <div className="flex items-center justify-between mt-6">
+          <div className="flex items-center justify-center lg:justify-between mt-6">
             <div className="flex items-center gap-2">
               {videos.map((v, i) => (
                 <button
@@ -183,7 +188,7 @@ export default function VideoShowcaseSection() {
             </div>
             <a
               href="#brief"
-              className={ctaBaseClass}
+              className={`${ctaBaseClass} hidden lg:inline-flex`}
               style={{
                 backgroundColor: colors.neonPink,
                 color: colors.white,

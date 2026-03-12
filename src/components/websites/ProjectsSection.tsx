@@ -106,8 +106,8 @@ function Ticker({ direction }: { direction: 'left' | 'right' }) {
       {[...IMAGES, ...IMAGES].map((src, i) => (
         <div
           key={i}
-          className="flex-shrink-0 rounded-xl overflow-hidden shadow-[0_4px_18px_rgba(0,0,0,0.10)] pointer-events-none"
-          style={{ height: `${TILE_HEIGHT}px`, aspectRatio: '16/9' }}
+          className="flex-shrink-0 rounded-xl overflow-hidden shadow-[0_4px_18px_rgba(0,0,0,0.10)] pointer-events-none h-[140px] md:h-[220px]"
+          style={{ aspectRatio: '16/9' }}
         >
           <img src={src} alt="" className="h-full w-full object-cover" draggable={false} />
         </div>

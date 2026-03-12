@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import BreadcrumbNav from '@/components/ui/BreadcrumbNav';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import OfferTickerSection from './OfferTickerSection';
@@ -11,9 +11,7 @@ export default function WebsitesServicePage() {
   return (
     <div className="min-h-screen bg-black text-white pt-16">
       <div className="container mx-auto px-6 pt-8">
-        <Link href="/pricing" className="text-white/70 hover:text-white transition-colors text-sm">
-          ← Wróć do cennika
-        </Link>
+        <BreadcrumbNav serviceName="Strona internetowa" serviceId="website" />
       </div>
 
       <HeroSection />

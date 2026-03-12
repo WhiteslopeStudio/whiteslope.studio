@@ -418,13 +418,13 @@ export default function BriefSection() {
                     </>
                   ) : (
                     <>
-                      Wyślij zapytanie
+                      Wyślij brief
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
                 </button>
                 <p className="text-white/35 text-xs text-center leading-relaxed">
-                  📋 Otrzymasz szczegółową wycenę w ciągu 72 godzin wraz z harmonogramem prac
+                  Wycena w 72h
                 </p>
 
               </div>
