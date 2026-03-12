@@ -10,7 +10,7 @@ export default function ProcessSection() {
               Materiały startowe
             </div>
 
-            <h2 className="mt-5 text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight">
+            <h2 className="mt-5 text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight font-instrument-serif">
               Materiały potrzebne do współpracy i wskazówki na początek tworzenia strony internetowej
             </h2>
 
