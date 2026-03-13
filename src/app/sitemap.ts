@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { PODLASKIE_CITIES, convertToSlug } from '@/lib/data';
+import { PODLASKIE_CITIES, convertToSlug, BLOG_POSTS } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.whiteslope.studio';
@@ -137,5 +137,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...cityPages];
+  // Generuj strony dla każdego wpisu blogowego
+  const blogPostPages: MetadataRoute.Sitemap = BLOG_POSTS.map(post => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.date ?? currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...cityPages, ...blogPostPages];
 }

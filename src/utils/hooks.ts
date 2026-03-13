@@ -23,6 +23,54 @@ export const useMobileDetection = () => {
   return isMobile;
 };
 
+export const useInteractiveButton = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    if (!isHovered) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setMousePosition({ x: 50, y: 50 });
+  };
+
+  return {
+    mousePosition,
+    isHovered,
+    handleMouseMove,
+    handleMouseEnter,
+    handleMouseLeave,
+  };
+};
+
+export const useApprovalCarousel = (itemsLength: number, intervalMs: number = 3000) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (itemsLength <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % itemsLength);
+    }, intervalMs);
+
+    return () => clearInterval(interval);
+  }, [itemsLength, intervalMs]);
+
+  return activeIndex;
+};
+
 /*
   Advanced in-view hook ====================================
 */

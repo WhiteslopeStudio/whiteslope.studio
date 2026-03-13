@@ -7,6 +7,8 @@ import { MainService, ServicePackage } from '@/lib/types';
 import LottieAnimation from '@/components/ui/LottieAnimation';
 import GalleryCarousel from '@/components/ui/GalleryCarousel';
 import FloatingFeaturesVideo from '@/components/ui/FloatingFeaturesVideo';
+import WebsitesServicePage from '@/components/websites/WebsitesServicePage';
+import VideoMarketingServicePage from '@/components/video-marketing/VideoMarketingServicePage';
 
 
 // Sprawdzamy czy service ID istnieje w MAIN_SERVICES
@@ -51,9 +53,143 @@ export async function generateMetadata({
     };
   }
 
-  const priceRange = packages.length > 0 
-    ? `od ${packages[packages.length - 1].price}` 
+  const normalizePriceForMeta = (price: string): string => {
+    const trimmed = price.trim();
+
+    // Keep non-numeric labels readable in metadata (e.g. "wycena indywidualna").
+    if (/wycena/i.test(trimmed)) {
+      return trimmed;
+    }
+
+    // Avoid duplicated prefix like "od od 1500 zl".
+    if (/^od\s+/i.test(trimmed)) {
+      return trimmed;
+    }
+
+    return `od ${trimmed}`;
+  };
+
+  const priceSource = packages.length > 0
+    ? packages[0].price
     : service.price;
+  const priceRange = normalizePriceForMeta(priceSource);
+
+  if (serviceId === 'video-marketing') {
+    const videoMarketingKeywords = [
+      'agencja UGC',
+      'jak dziala agencja UGC',
+      'co to jest firma UGC',
+      'na czym polega praca UGC',
+      'jak zaczac z UGC',
+      'ile zarabia sie na UGC',
+      'ile mozna zarobic na UGC',
+      'czy UGC sie oplaca',
+      'jak zarabiac na UGC',
+      'gdzie szukac zlecen UGC',
+      'jak zostac UGC kreatorem',
+      'najlepsze agencje UGC w Polsce',
+      'agencja UGC Polska',
+      'agencja UGC Warszawa',
+      'agencja UGC AI',
+      'jak wybrac agencje UGC',
+      'agencja UGC social media',
+      'tworcy UGC',
+      'jak zdobyc tresci UGC',
+      'video marketing',
+    ].join(', ');
+
+    const videoMarketingTitle =
+      'Agencja UGC i Video Marketing - FAQ, Cennik, Zarobki, Wspolpraca | WHITESLOPE';
+    const videoMarketingDescription =
+      'Video marketing i UGC w praktyce: czym zajmuje sie agencja UGC, jak zaczac, ile mozna zarobic, gdzie szukac zlecen i jak wybrac partnera do wspolpracy. Kompleksowe FAQ dla tworcow i firm.';
+
+    return {
+      title: videoMarketingTitle,
+      description: videoMarketingDescription,
+      keywords: videoMarketingKeywords,
+      authors: [{ name: 'WHITESLOPE' }],
+      creator: 'WHITESLOPE',
+      publisher: 'WHITESLOPE',
+      alternates: {
+        canonical: `/pricing/${serviceId}`,
+      },
+      openGraph: {
+        title: videoMarketingTitle,
+        description: videoMarketingDescription,
+        url: `/pricing/${serviceId}`,
+        siteName: 'WHITESLOPE',
+        type: 'website',
+        locale: 'pl_PL',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Agencja UGC i Video Marketing - FAQ i Cennik',
+        description: videoMarketingDescription,
+      },
+      robots: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    };
+  }
+
+  if (serviceId === 'website') {
+    const websiteBialystokKeywords = [
+      'Najlepsze agencje tworzące strony internetowe w Białymstoku',
+      'Agencje tworzące strony internetowe Białystok opinie',
+      'Ile kosztuje stworzenie strony internetowej w agencji w Białymstoku',
+      'Ile kosztuje profesjonalna strona www w Białymstoku',
+      'Ranking agencji web design w Białymstoku',
+      'Porównanie ofert agencji webowych z Białegostoku',
+      'Jak wybrać agencję do projektowania stron www w Białymstoku',
+      'Firmy projektujące strony internetowe Białystok cennik',
+      'Agencje oferujące responsywne strony internetowe w Białymstoku',
+      'Najlepsze agencje SEO dla stron internetowych Białystok',
+      'strony internetowe Białystok',
+      'tworzenie stron Białystok',
+      'agencja stron internetowych Białystok',
+    ].join(', ');
+
+    const websiteBialystokTitle =
+      'Strony Internetowe Białystok - Ranking Agencji, Opinie i Cennik | WHITESLOPE';
+    const websiteBialystokDescription =
+      'Kompleksowy przewodnik: ranking agencji web design w Białymstoku, porównanie ofert, opinie i koszty stworzenia profesjonalnej strony www. Sprawdź jak wybrać agencję i na co zwrócić uwagę.';
+
+    return {
+      title: websiteBialystokTitle,
+      description: websiteBialystokDescription,
+      keywords: websiteBialystokKeywords,
+      authors: [{ name: 'WHITESLOPE' }],
+      creator: 'WHITESLOPE',
+      publisher: 'WHITESLOPE',
+      alternates: {
+        canonical: `/pricing/${serviceId}`,
+      },
+      openGraph: {
+        title: websiteBialystokTitle,
+        description: websiteBialystokDescription,
+        url: `/pricing/${serviceId}`,
+        siteName: 'WHITESLOPE',
+        type: 'website',
+        locale: 'pl_PL',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Strony Internetowe Białystok - Opinie i Cennik',
+        description: websiteBialystokDescription,
+      },
+      robots: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    };
+  }
 
   return {
     title: `${service.title} - Pakiety ${priceRange} | WHITESLOPE`,
@@ -90,6 +226,15 @@ export async function generateMetadata({
 
 export default async function ServicePage({ params }: { params: Promise<{ service: string }> }) {
   const { service: serviceId } = await params;
+
+  if (serviceId === 'website') {
+    return <WebsitesServicePage />;
+  }
+
+  if (serviceId === 'video-marketing') {
+    return <VideoMarketingServicePage />;
+  }
+
   const service = MAIN_SERVICES.find(s => s.id === serviceId);
   const packages = getServicePackages(serviceId);
   const galleryImages = service?.gallery && service.gallery.length > 0 ? service.gallery : PLACEHOLDER_GALLERY;

@@ -1,62 +1,53 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export const PromoBanner = () => {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const lastScrollY = useRef(0);
 
   // Detect mobile
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Ukrywanie bannera TYLKO NA MOBILE
+  // Ukrywanie bannera na WSZYSTKICH urządzeniach
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Tylko na mobile (< 768px)
-      if (window.innerWidth < 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsVisible(false); // scroll w dół - ukryj
-        } else {
-          setIsVisible(true); // scroll w górę - pokaż
-        }
-      } else {
-        // Desktop - zawsze widoczny
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY <= 40) {
         setIsVisible(true);
+      } else if (scrollDelta > 4) {
+        setIsVisible(false); // scroll w dół - ukryj
+      } else if (scrollDelta < -4) {
+        setIsVisible(true); // scroll w górę - pokaż
       }
-      
-      setLastScrollY(currentScrollY);
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 0 }}
-          animate={{ y: 0 }}
-          exit={{ y: -100 }}
-          transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-          onClick={() => router.push('/contact')}
-          className="fixed top-[70px] sm:top-[80px] left-0 right-0 z-[40] overflow-hidden cursor-pointer group"
-        >
+    <motion.div
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -200 }}
+      transition={{ duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }}
+      onClick={() => router.push('/contact')}
+      className="fixed top-[70px] sm:top-[80px] left-0 right-0 z-[40] overflow-hidden cursor-pointer group"
+    >
           {/* Fioletowy gradient */}
           <div className="relative bg-gradient-to-r from-[#1985ff] to-[#1985ff]">
             
@@ -80,13 +71,12 @@ export const PromoBanner = () => {
                 {/* MOBILE - kompaktowy tekst */}
                 {isMobile ? (
                   <p className="text-white font-medium text-xs whitespace-nowrap">
-                    wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę
-                  </p>
+Darmowe video na start dla firm z okolic Białegostoku!                  </p>
                 ) : (
                   /* DESKTOP - pełny tekst */
                   <div className="flex items-center justify-center gap-3">
                     <p className="text-white font-semibold text-sm">
-                      wpisz kod w wiadomości „WHITEZONE7" – 7% taniej na stronę internetową!
+                      Jeśli jesteś z okolic Białegostoku, otrzymujesz <text className="font-bold">DARMOWY</text> kontent video na stronę na start!
                     </p>
                     
                     {/* Separator */}
@@ -109,7 +99,5 @@ export const PromoBanner = () => {
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
         </motion.div>
-      )}
-    </AnimatePresence>
   );
 };

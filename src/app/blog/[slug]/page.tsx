@@ -1,5 +1,6 @@
 // BEZ 'use client' - SSR
 import { Calendar, User, Clock, ArrowLeft, Tag } from 'lucide-react';
+import OtherServicesSection from '@/components/websites/OtherServicesSection';
 import { BLOG_POSTS } from '@/lib/data';
 import { articleJsonLd } from '@/lib/schema';
 import { BlogPost } from '@/lib/types';
@@ -359,6 +360,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
       )}
+
+      {/* Our Services */}
+      <OtherServicesSection />
+
     </div>
   );
 }
