@@ -379,7 +379,7 @@ export async function POST(request: Request) {
     // Wyślij email do admina
     console.log('📧 Wysyłanie emaila do admina...');
     const adminEmailResult = await resend.emails.send({
-      from: 'Formularz WhiteSlope <onboarding@resend.dev>',
+      from: 'Formularz WhiteSlope <kontakt@whiteslope.studio>',
       to: ['kontakt@whiteslope.studio'],
       subject: subject,
       html: emailContent,
@@ -390,7 +390,7 @@ export async function POST(request: Request) {
     // Wyślij automatyczną odpowiedź do użytkownika
     console.log('📧 Wysyłanie automatycznej odpowiedzi...');
     const userEmailResult = await resend.emails.send({
-      from: 'WhiteSlope <onboarding@resend.dev>',
+      from: 'WhiteSlope <kontakt@whiteslope.studio>',
       to: [sanitizedData.email],
       subject: `Potwierdzenie: ${subject}`,
       html: autoReplyContent,

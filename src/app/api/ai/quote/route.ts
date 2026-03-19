@@ -272,7 +272,7 @@ export async function POST(request: NextRequest) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       
       await resend.emails.send({
-        from: "WhiteSlope AI Quote <onboarding@resend.dev>",
+        from: "WhiteSlope AI Quote <kontakt@whiteslope.studio>",
         to: ["kontakt@whiteslope.studio"],
         subject: `💰 Zapytanie o wycenę z AI (${channel}) - ${pricing.name}`,
         html: `

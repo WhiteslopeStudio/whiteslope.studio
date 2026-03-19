@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, Bot, Zap, Globe, Plus, Trash2,
-  Check,
+  Check, MessagesSquare, Wrench, ShoppingBag, Target,
 } from 'lucide-react';
 import {
   useInteractiveButton,
@@ -14,6 +14,7 @@ import {
 import { FAQ_DATA } from '../../lib/data';
 import AboutSection from '../websites/AboutSection';
 import OfferTickerSection from '../websites/OfferTickerSection';
+import TechSupportDemo from './demos/tech-support/TechSupportDemo';
 
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 
@@ -189,6 +190,9 @@ export default function AIChatbotServicePage() {
     { id: '04', text: 'Cena od 1000 zł jednorazowo' },
   ];
   const activeMobileProofIndex = useApprovalCarousel(heroHighlights.length, 3000);
+
+  // ── Playground state ───────────────────────────────────────────────────────
+  const [activePlaygroundTab, setActivePlaygroundTab] = useState('tech-support');
 
   // ── FAQ state ──────────────────────────────────────────────────────────────
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -498,6 +502,87 @@ export default function AIChatbotServicePage() {
                   <div className="text-sm text-gray-500 leading-snug">{stat.desc}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          AI PLAYGROUND — interactive demos in 20/80 layout
+      ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-[#020617] border-b border-white/10 relative overflow-hidden">
+        {/* Tło i dekoracje */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/10 blur-[150px] pointer-events-none" />
+
+        <div className="container mx-auto px-6 relative z-10 max-w-[1400px]">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Poznaj możliwości <span className="text-blue-400">Agentów AI</span>
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto">
+              Przetestuj interaktywne demo i zobacz, jak sztuczna inteligencja radzi sobie z zadaniami w czasie rzeczywistym.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 bg-white/[0.02] border border-white/10 rounded-3xl p-6 md:p-8">
+
+            {/* 20% - LEWE MENU */}
+            <div className="flex flex-col gap-2 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-6">
+              {[
+                { id: 'assistant', label: 'Asystent (Czat)', icon: MessagesSquare },
+                { id: 'tech-support', label: 'Wsparcie Techniczne', icon: Wrench },
+                { id: 'store-advisor', label: 'Doradca Sklepowy', icon: ShoppingBag },
+                { id: 'lead-hunter', label: 'Łowca Leadów', icon: Target },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activePlaygroundTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActivePlaygroundTab(tab.id)}
+                    className={`flex items-center gap-3 px-5 py-4 rounded-2xl text-left font-medium transition-all duration-300 ${
+                      isActive
+                        ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)]'
+                        : 'text-white/60 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 80% - PRAWA STRONA (KOMPONENTY) */}
+            <div className="min-h-[500px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activePlaygroundTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="h-full"
+                >
+                  {activePlaygroundTab === 'tech-support' && <TechSupportDemo />}
+
+                  {activePlaygroundTab === 'assistant' && (
+                    <div className="h-full flex items-center justify-center text-white/40 border border-dashed border-white/10 rounded-2xl">
+                      Moduł Asystenta (Wkrótce)
+                    </div>
+                  )}
+                  {activePlaygroundTab === 'store-advisor' && (
+                    <div className="h-full flex items-center justify-center text-white/40 border border-dashed border-white/10 rounded-2xl">
+                      Moduł Doradcy Sklepowego (Wkrótce)
+                    </div>
+                  )}
+                  {activePlaygroundTab === 'lead-hunter' && (
+                    <div className="h-full flex items-center justify-center text-white/40 border border-dashed border-white/10 rounded-2xl">
+                      Moduł Łowcy Leadów (Wkrótce)
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

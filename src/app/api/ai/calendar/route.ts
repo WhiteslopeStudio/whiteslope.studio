@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
   try {
     console.log("📧 Wysyłanie propozycji spotkania z AI...");
     const adminEmailResult = await resend.emails.send({
-      from: "WhiteSlope AI Calendar <onboarding@resend.dev>",
+      from: "WhiteSlope AI Calendar <kontakt@whiteslope.studio>",
       to: ["kontakt@whiteslope.studio"],
       subject,
       html,
@@ -215,7 +215,7 @@ export async function POST(request: NextRequest) {
     `;
 
     await resend.emails.send({
-      from: "WhiteSlope <onboarding@resend.dev>",
+      from: "WhiteSlope <kontakt@whiteslope.studio>",
       to: [email],
       subject: `Potwierdzenie spotkania - WhiteSlope`,
       html: userReplyHtml

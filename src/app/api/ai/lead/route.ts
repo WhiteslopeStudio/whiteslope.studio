@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
   try {
     console.log("📧 Wysyłanie leadu z AI...");
     const adminEmailResult = await resend.emails.send({
-      from: "WhiteSlope AI Lead <onboarding@resend.dev>",
+      from: "WhiteSlope AI Lead <kontakt@whiteslope.studio>",
       to: ["kontakt@whiteslope.studio"],
       subject,
       html,
@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     `;
 
     await resend.emails.send({
-      from: "WhiteSlope <onboarding@resend.dev>",
+      from: "WhiteSlope <kontakt@whiteslope.studio>",
       to: [email],
       subject: `Potwierdzenie zgłoszenia - WhiteSlope`,
       html: userReplyHtml
