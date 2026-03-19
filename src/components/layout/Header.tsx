@@ -2,18 +2,169 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Instagram, Facebook } from 'lucide-react';
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Rocket,
+  ShoppingBag,
+  CalendarDays,
+  HeadphonesIcon,
+  Database,
+  FileText,
+  Zap,
+  Globe,
+  Activity,
+  PenTool,
+  Smartphone,
+  Video,
+  Image as ImageIcon,
+  Sparkles,
+  ArrowRight,
+  Workflow,
+  Megaphone,
+  SearchCheck,
+  LayoutDashboard,
+  Instagram,
+  Facebook,
+  Search,
+} from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { HOMEPAGE_MENU_ITEMS, SUBPAGES_MENU_ITEMS, APP_CONFIG, MAIN_SERVICES } from '@/lib/constants';
 import { useMobileDetection } from '@/utils/hooks';
-import { Search } from 'lucide-react';
 import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
+
+const MEGA_MENU = [
+  {
+    title: 'Integracja AI',
+    iconHoverClass: 'group-hover:text-blue-400 group-hover:bg-blue-500/10',
+    items: [
+      {
+        label: 'Chatboty E-commerce',
+        desc: 'Automatyczny doradca w sklepie',
+        href: '/pricing/ai-integration',
+        icon: ShoppingBag,
+        badge: 'Bestseller',
+        badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+      },
+      {
+        label: 'Chatboty Rezerwacje',
+        desc: 'Umawianie spotkań w kalendarzu',
+        href: '/pricing/ai-integration',
+        icon: CalendarDays,
+      },
+      {
+        label: 'Pomoc Techniczna 24/7',
+        desc: 'Odpowiedzi na bazie dokumentacji',
+        href: '/pricing/ai-integration',
+        icon: HeadphonesIcon,
+      },
+    ],
+  },
+  {
+    title: 'Automatyzacje',
+    iconHoverClass: 'group-hover:text-violet-400 group-hover:bg-violet-500/10',
+    items: [
+      {
+        label: 'Wdrożenia CRM',
+        href: '/pricing/automations',
+        desc: 'HubSpot, Pipedrive, automatyzacja',
+        icon: Database,
+        badge: 'Top',
+        badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+      },
+      {
+        label: 'Obieg Dokumentów',
+        href: '/pricing/automations',
+        desc: 'Make/Zapier i wyciąganie danych',
+        icon: FileText,
+      },
+      {
+        label: 'Zarządzanie Leadami',
+        href: '/pricing/automations',
+        desc: 'Ścieżki sprzedażowe i powiadomienia',
+        icon: Zap,
+      },
+      {
+        label: 'Integracje Systemów (API)',
+        href: '/pricing/automations',
+        desc: 'Łączymy narzędzia, które ze sobą nie gadają',
+        icon: Workflow,
+      },
+    ],
+  },
+  {
+    title: 'Dedykowane Systemy',
+    iconHoverClass: 'group-hover:text-cyan-400 group-hover:bg-cyan-500/10',
+    items: [
+      {
+        label: 'Aplikacje SaaS MVP',
+        href: '/pricing/saas',
+        desc: 'Twój własny startup od zera',
+        icon: Rocket,
+        badge: '🔥 Hot',
+        badgeColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      },
+      {
+        label: 'Strony Internetowe',
+        href: '/pricing/website',
+        desc: 'Wizytówki i rozbudowane serwisy',
+        icon: Globe,
+      },
+      {
+        label: 'Audyty i Szybkość',
+        href: '/pricing/optimization',
+        desc: 'Optymalizacja PageSpeed i SEO',
+        icon: Activity,
+      },
+      {
+        label: 'Dedykowane Systemy Webowe',
+        href: '/pricing/optimization',
+        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
+        icon: LayoutDashboard,
+      },
+    ],
+  },
+  {
+    title: 'Marketing & Wideo',
+    iconHoverClass: 'group-hover:text-rose-400 group-hover:bg-rose-500/10',
+    items: [
+      {
+        label: 'Twórcy UGC',
+        href: '/pricing/video-marketing',
+        desc: 'Rolki i TikToki, które sprzedają',
+        icon: Smartphone,
+        badge: 'Promocja',
+        badgeColor: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+      },
+      {
+        label: 'Video Marketing',
+        href: '/pricing/video-marketing',
+        desc: 'Reklamy i wideo korporacyjne',
+        icon: Video,
+      },
+      {
+        label: 'Kampanie Ads (Meta/Google)',
+        href: '/pricing/video-marketing',
+        desc: 'Skalowalne generowanie leadów i sprzedaży',
+        icon: Megaphone,
+      },
+      {
+        label: 'Pozycjonowanie (SEO)',
+        href: '/pricing/optimization',
+        desc: 'Organiczny ruch, który zostaje na lata',
+        icon: SearchCheck,
+      },
+    ],
+  },
+];
 
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOffersDropdownOpen, setIsOffersDropdownOpen] = useState(false);
+  const [activeMegaColumn, setActiveMegaColumn] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
@@ -286,19 +437,18 @@ export const Header = () => {
                   */}
                   {/* ========== KONIEC ODKRYJ ========== */}
 
-                  {/* OFERTA DROPDOWN */}
+                  {/* OFERTA MEGA MENU */}
                   <div
-                    className="relative"
                     ref={offersDropdownRef}
                     onMouseEnter={() => setIsOffersDropdownOpen(true)}
                     onMouseLeave={() => setIsOffersDropdownOpen(false)}
                   >
                     <motion.button
-                      onClick={() => router.push("/pricing")}
+                      onClick={() => router.push('/pricing')}
                       className={`flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                         isOnServicePage
-                          ? "text-white bg-white/5"
-                          : "text-[#d4d4d4] hover:text-white"
+                          ? 'text-white bg-white/5'
+                          : 'text-[#d4d4d4] hover:text-white'
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
@@ -314,67 +464,102 @@ export const Header = () => {
                     <AnimatePresence>
                       {isOffersDropdownOpen && (
                         <motion.div
-                          initial={{ 
-                            height: 0,
-                            opacity: 0,
-                            scaleY: 0
-                          }}
-                          animate={{ 
-                            height: 'auto',
-                            opacity: 1,
-                            scaleY: 1,
-                            transition: {
-                              height: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] },
-                              opacity: { duration: 0.25, ease: "easeOut" },
-                              scaleY: { duration: 0.35, ease: [0.4, 0.0, 0.2, 1] }
-                            }
-                          }}
-                          exit={{ 
-                            height: 0,
-                            opacity: 0,
-                            scaleY: 0,
-                            transition: {
-                              duration: 0.2,
-                              ease: "easeIn"
-                            }
-                          }}
-                          style={{ originY: 0 }}
-                          className="absolute top-full left-0 mt-2 w-64 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden"
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2, ease: 'easeInOut' }}
+                          className="absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-xl border-t border-b border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
                         >
-                          <motion.div 
-                            className="py-2"
-                            initial={{ opacity: 0 }}
-                            animate={{ 
-                              opacity: 1,
-                              transition: { delay: 0.15, duration: 0.2 }
-                            }}
-                          >
-                            {MAIN_SERVICES.map((service: { label: string; href: string }, index: number) => (
-                              <motion.button
-                                key={service.href}
+                          <div className="container mx-auto px-6 pt-10 pb-6">
+                            <div className="grid grid-cols-4 gap-10">
+                              {MEGA_MENU.map((column, colIndex) => (
+                                <motion.div
+                                  key={column.title}
+                                  className={`flex flex-col transition-opacity duration-200 ${
+                                    activeMegaColumn === null || activeMegaColumn === colIndex
+                                      ? 'opacity-100'
+                                      : 'opacity-40'
+                                  }`}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: colIndex * 0.05 + 0.1, duration: 0.3 }}
+                                  onMouseEnter={() => setActiveMegaColumn(colIndex)}
+                                  onMouseLeave={() => setActiveMegaColumn(null)}
+                                >
+                                  <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-6 border-b border-white/10 pb-3 flex items-center gap-2">
+                                    {column.title}
+                                  </h3>
+                                  <div className="flex flex-col gap-6 mt-2">
+                                    {column.items.map((item, itemIndex) => {
+                                      const Icon = item.icon;
+                                      return (
+                                      <button
+                                        key={`${item.href}-${itemIndex}`}
+                                        onClick={() => {
+                                          setIsOffersDropdownOpen(false);
+                                          setActiveMegaColumn(null);
+                                          router.push(item.href);
+                                        }}
+                                        className="group flex items-start gap-4 text-left transition-all duration-300 hover:translate-x-1 w-full"
+                                      >
+                                        <div
+                                          className={`p-2 rounded-lg bg-white/5 border border-white/10 text-white/50 transition-colors flex-shrink-0 ${column.iconHoverClass}`}
+                                        >
+                                          <Icon className="w-5 h-5" />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-gray-200 group-hover:text-white font-medium text-[15px] transition-colors">
+                                              {item.label}
+                                            </span>
+                                            {item.badge && (
+                                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${item.badgeColor} uppercase tracking-wider`}>
+                                                {item.badge}
+                                              </span>
+                                            )}
+                                          </div>
+                                          <span className="text-gray-400 text-xs mt-1 font-light group-hover:text-gray-300 transition-colors">
+                                            {item.desc}
+                                          </span>
+                                        </div>
+                                      </button>
+                                      );
+                                    })}
+                                  </div>
+                                </motion.div>
+                              ))}
+                            </div>
+
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.4 }}
+                              className="mt-12 pt-6 border-t border-white/10 flex items-center justify-between"
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center">
+                                  <Sparkles className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                  <h4 className="text-white font-medium text-lg">Potrzebujesz dedykowanego rozwiązania?</h4>
+                                  <p className="text-gray-400 text-sm">Zbudujmy indywidualny projekt uszyty na miarę Twojego biznesu.</p>
+                                </div>
+                              </div>
+
+                              <button
                                 onClick={() => {
                                   setIsOffersDropdownOpen(false);
-                                  router.push(service.href);
+                                  setActiveMegaColumn(null);
+                                  router.push('/contact');
                                 }}
-                                className={`block w-full text-left px-4 py-3 transition-all duration-200 hover:cursor-pointer ${
-                                  pathname === service.href
-                                    ? "text-white bg-white/5"
-                                    : "text-[#d4d4d4] hover:text-white hover:bg-white/5"
-                                }`}
-                                initial={{ opacity: 0 }}
-                                animate={{ 
-                                  opacity: 1,
-                                  transition: {
-                                    delay: 0.2 + (index * 0.05),
-                                    duration: 0.2,
-                                    ease: "easeOut"
-                                  }
-                                }}
+                                className="flex items-center justify-center rounded-full h-10 px-6 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 transition-colors border border-white/10 group"
                               >
-                                {service.label}
-                              </motion.button>
-                            ))}
-                          </motion.div>
+                                Bezpłatna wycena
+                                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                              </button>
+                            </motion.div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
