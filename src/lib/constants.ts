@@ -1,4 +1,163 @@
 
+import type { LucideIcon } from 'lucide-react';
+import {
+  ShoppingBag,
+  CalendarDays,
+  HeadphonesIcon,
+  Database,
+  FileText,
+  Zap,
+  Workflow,
+  Rocket,
+  Globe,
+  Activity,
+  LayoutDashboard,
+  Smartphone,
+  Video,
+  Megaphone,
+  SearchCheck,
+} from 'lucide-react';
+
+export interface MegaMenuItemDef {
+  label: string;
+  desc: string;
+  href: string;
+  icon: LucideIcon;
+  badge?: string;
+  badgeColor?: string;
+}
+
+export interface MegaMenuColumnDef {
+  title: string;
+  iconHoverClass: string;
+  items: MegaMenuItemDef[];
+}
+
+export const MEGA_MENU: MegaMenuColumnDef[] = [
+  {
+    title: 'Integracja AI',
+    iconHoverClass: 'group-hover:text-blue-400 group-hover:bg-blue-500/10',
+    items: [
+      {
+        label: 'Chatboty E-commerce',
+        desc: 'Automatyczny doradca w sklepie',
+        href: '/pricing/ai-integration',
+        icon: ShoppingBag,
+        badge: 'Bestseller',
+        badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+      },
+      {
+        label: 'Chatboty Rezerwacje',
+        desc: 'Umawianie spotkań w kalendarzu',
+        href: '/pricing/ai-integration',
+        icon: CalendarDays,
+      },
+      {
+        label: 'Pomoc Techniczna 24/7',
+        desc: 'Odpowiedzi na bazie dokumentacji',
+        href: '/pricing/ai-integration',
+        icon: HeadphonesIcon,
+      },
+    ],
+  },
+  {
+    title: 'Automatyzacje',
+    iconHoverClass: 'group-hover:text-violet-400 group-hover:bg-violet-500/10',
+    items: [
+      {
+        label: 'Wdrożenia CRM',
+        href: '/pricing/automations',
+        desc: 'HubSpot, Pipedrive, automatyzacja',
+        icon: Database,
+        badge: 'Top',
+        badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+      },
+      {
+        label: 'Obieg Dokumentów',
+        href: '/pricing/automations',
+        desc: 'Make/Zapier i wyciąganie danych',
+        icon: FileText,
+      },
+      {
+        label: 'Zarządzanie Leadami',
+        href: '/pricing/automations',
+        desc: 'Ścieżki sprzedażowe i powiadomienia',
+        icon: Zap,
+      },
+      {
+        label: 'Integracje Systemów (API)',
+        href: '/pricing/automations',
+        desc: 'Łączymy narzędzia, które ze sobą nie gadają',
+        icon: Workflow,
+      },
+    ],
+  },
+  {
+    title: 'Dedykowane Systemy',
+    iconHoverClass: 'group-hover:text-cyan-400 group-hover:bg-cyan-500/10',
+    items: [
+      {
+        label: 'Aplikacje SaaS MVP',
+        href: '/pricing/saas',
+        desc: 'Twój własny startup od zera',
+        icon: Rocket,
+        badge: '🔥 Hot',
+        badgeColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      },
+      {
+        label: 'Strony Internetowe',
+        href: '/pricing/website',
+        desc: 'Wizytówki i rozbudowane serwisy',
+        icon: Globe,
+      },
+      {
+        label: 'Audyty i Szybkość',
+        href: '/pricing/optimization',
+        desc: 'Optymalizacja PageSpeed i SEO',
+        icon: Activity,
+      },
+      {
+        label: 'Dedykowane Systemy Webowe',
+        href: '/pricing/optimization',
+        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
+        icon: LayoutDashboard,
+      },
+    ],
+  },
+  {
+    title: 'Marketing & Wideo',
+    iconHoverClass: 'group-hover:text-rose-400 group-hover:bg-rose-500/10',
+    items: [
+      {
+        label: 'Twórcy UGC',
+        href: '/pricing/video-marketing',
+        desc: 'Rolki i TikToki, które sprzedają',
+        icon: Smartphone,
+        badge: 'Promocja',
+        badgeColor: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+      },
+      {
+        label: 'Video Marketing',
+        href: '/pricing/video-marketing',
+        desc: 'Reklamy i wideo korporacyjne',
+        icon: Video,
+      },
+      {
+        label: 'Kampanie Ads (Meta/Google)',
+        href: '/pricing/video-marketing',
+        desc: 'Skalowalne generowanie leadów i sprzedaży',
+        icon: Megaphone,
+      },
+      {
+        label: 'Pozycjonowanie (SEO)',
+        href: '/pricing/optimization',
+        desc: 'Organiczny ruch, który zostaje na lata',
+        icon: SearchCheck,
+      },
+    ],
+  },
+];
+
 // Homepage menu - sekcje + podstrony
 export const HOMEPAGE_MENU_ITEMS = [
   { label: 'Home', href: '#home', type: 'section' },

@@ -18,7 +18,10 @@ import { BlogSection } from '@/components/sections/BlogSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import HeroSectionMobile from '@/components/sections/HeroSectionMobile';
 
-import DesktopUslugiSection from '@/components/sections/DesktopUslugiSection';
+import ServicesShowcase from '@/components/sections/ServicesShowcase';
+import WebsitesShowcase from '@/components/sections/WebsitesShowcase';
+import AiShowcase from '@/components/sections/AiShowcase';
+import VideoShowcase from '@/components/sections/VideoShowcase';
 import PortfolioSectionDesktop from '@/components/sections/PortfolioSectionDesktop';
 
 // 🎯 IMPORT PINNED SECTION (zaawansowany wrapper)
@@ -114,8 +117,17 @@ export default function HomePage() {
           {/* 🎬 PORTFOLIO DESKTOP */}
           {!isMobile && <PortfolioSectionDesktop />}
 
-          {/* 🛠️ DESKTOP USŁUGI */}
-          {!isMobile && <DesktopUslugiSection />}
+          {/* 🛠️ SERVICES SHOWCASE */}
+          <ServicesShowcase />
+
+          {/* 🌐 WEBSITES & SAAS SHOWCASE */}
+          <WebsitesShowcase />
+
+          {/* 🤖 AI INTEGRATION SHOWCASE */}
+          <AiShowcase />
+
+          {/* 🎬 VIDEO & MARKETING SHOWCASE */}
+          <VideoShowcase />
 
           {/* 📱 PORTFOLIO MOBILE */}
           {isMobile && <PortfolioSection />}

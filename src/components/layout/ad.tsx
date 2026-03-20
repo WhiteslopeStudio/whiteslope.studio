@@ -76,7 +76,7 @@ Darmowe video na start dla firm z okolic Białegostoku!                  </p>
                   /* DESKTOP - pełny tekst */
                   <div className="flex items-center justify-center gap-3">
                     <p className="text-white font-semibold text-sm">
-                      Jeśli jesteś z okolic Białegostoku, otrzymujesz <text className="font-bold">DARMOWY</text> kontent video na stronę na start!
+                      Jeśli jesteś z okolic Białegostoku, otrzymujesz <span className="font-bold">DARMOWY</span> kontent video na stronę na start!
                     </p>
                     
                     {/* Separator */}
