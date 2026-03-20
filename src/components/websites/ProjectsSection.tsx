@@ -11,20 +11,14 @@ const LOGOS: { src: string; invert?: boolean }[] = [
 ];
 
 const IMAGES = [
-  '/_resources/portfolio1.webp',
-  '/_resources/portfolio2.webp',
-  '/_resources/portfolio3.webp',
-  '/_resources/portfolio4.webp',
-  '/_resources/portfolio5.webp',
-  '/_resources/portfolio6.webp',
-  '/_resources/stronyInternetowe/www.wieslawski.studio_.webp',
-  '/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp',
-  '/_resources/stronyInternetowe/www.easylesson.app_.webp',
-  '/_resources/stronyInternetowe/www.easylesson.app_ (1).webp',
-  '/_resources/stronyInternetowe/www.easylesson.app_ (2).webp',
-
-
- 
+  '/_resources/stronyInternetowe/WieslawskiStudio.webp',
+  '/_resources/stronyInternetowe/PatrykKulesza.webp',
+  '/_resources/stronyInternetowe/Easylesson.webp',
+  '/_resources/stronyInternetowe/DamianBogdanowicz.webp',
+  '/_resources/stronyInternetowe/WieslawskiStudio.webp',
+  '/_resources/stronyInternetowe/PatrykKulesza.webp',
+  '/_resources/stronyInternetowe/Easylesson.webp',
+  '/_resources/stronyInternetowe/DamianBogdanowicz.webp',
 ];
 
 const SPEED = 0.25;

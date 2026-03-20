@@ -75,7 +75,7 @@ const PORTFOLIO_PROJECTS = [
     tags: ["edukacja", "korepetycje", "platforma", "booking", "interaktywna tablica", "SaaS"],
     description: "Nasza własna platforma do korepetycji z interaktywną tablicą (inspiracja Miro). Pełny system zarządzania lekcjami.",
     url: "https://www.easylesson.app",
-    image: "/_resources/stronyInternetowe/www.easylesson.app_.webp",
+    image: "/_resources/stronyInternetowe/Easylesson.webp",
     industry: "edukacja",
     features: ["Interaktywna tablica", "Kalendarz lekcji", "Profile nauczycieli i uczniów", "System płatności"]
   },

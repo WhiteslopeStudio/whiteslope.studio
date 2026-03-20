@@ -262,18 +262,22 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
         </h1>
       </div>
 
-      {/* Back Navigation */}
-      <div className="relative z-10 pt-8 pb-4">
-        <div className="container mx-auto px-6">
-          <Link 
-            href="/pricing" 
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-            <span className="font-light">Wróć do cennika</span>
-          </Link>
-        </div>
-      </div>
+ <div className="absolute top-32 left-0 w-full z-10 pointer-events-none">
+  <div className="w-full px-6 md:px-12">
+    <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-extralight">
+      <Link 
+        href="/pricing" 
+        className="pointer-events-auto text-gray-500 hover:text-white transition-colors duration-300"
+      >
+        Cennik
+      </Link>
+      <span className="text-gray-800 select-none">/</span>
+      <span className="text-gray-300 select-none">
+        {service.title}
+      </span>
+    </div>
+  </div>
+</div>
 
       {/* Packages Section - ZACZYNA SIĘ OD TEGO */}
       <section className="relative z-10 pt-20 pb-16">

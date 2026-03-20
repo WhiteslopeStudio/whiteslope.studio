@@ -23,6 +23,21 @@ export default function ProcessSection() {
               na zapytania związane z Białymstokiem i okolicą.
             </p>
 
+            {/* --- WIDEO TUTAJ --- */}
+            <div className="mt-8 rounded-2xl border border-black/10 bg-zinc-200/50 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+              <div className="aspect-video w-full overflow-hidden rounded-xl">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube-nocookie.com/embed/_4TJyWuqkUk"
+                  title="Wskazówki na początek tworzenia strony"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            {/* ------------------ */}
+
             <div className="mt-10 space-y-5">
               <details open className="group rounded-2xl border border-black/10 bg-zinc-50 p-6 md:p-8 shadow-[0_10px_26px_rgba(0,0,0,0.08)] backdrop-blur-sm">
                 <summary className="list-none cursor-pointer">
@@ -31,17 +46,6 @@ export default function ProcessSection() {
                     <span className="text-zinc-600 text-sm group-open:hidden">Rozwiń</span>
                     <span className="text-zinc-600 text-sm hidden group-open:inline">Zwiń</span>
                   </div>
-                  {/* <div className="mt-4 rounded-xl border border-black/10 bg-zinc-200/70 p-2 shadow-[0_6px_18px_rgba(0,0,0,0.08)]">
-                    <iframe
-                      className="w-full h-[320px] md:h-[380px] rounded-lg"
-                      src="https://www.youtube-nocookie.com/embed/nGAbHUE1eyI"
-                      title="FAQ video 1"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div> */}
                   <h3 className="mt-3 text-2xl font-semibold text-zinc-950">Jakie treści są potrzebne, aby stworzyć stronę www?</h3>
                 </summary>
                 <div className="mt-4">
@@ -77,17 +81,6 @@ export default function ProcessSection() {
                     <span className="text-zinc-600 text-sm group-open:hidden">Rozwiń</span>
                     <span className="text-zinc-600 text-sm hidden group-open:inline">Zwiń</span>
                   </div>
-                  {/* <div className="mt-4 rounded-xl border border-black/10 bg-zinc-200/70 p-2 shadow-[0_6px_18px_rgba(0,0,0,0.08)]">
-                    <iframe
-                      className="w-full h-[320px] md:h-[380px] rounded-lg"
-                      src="https://www.youtube-nocookie.com/embed/nGAbHUE1eyI"
-                      title="FAQ video 2"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div> */}
                   <h3 className="mt-3 text-2xl font-semibold text-zinc-950">Co z pozycjonowaniem nowej strony internetowej?</h3>
                 </summary>
                 <div className="mt-4">
@@ -109,17 +102,6 @@ export default function ProcessSection() {
                     <span className="text-zinc-600 text-sm group-open:hidden">Rozwiń</span>
                     <span className="text-zinc-600 text-sm hidden group-open:inline">Zwiń</span>
                   </div>
-                  {/* <div className="mt-4 rounded-xl border border-black/10 bg-zinc-200/70 p-2 shadow-[0_6px_18px_rgba(0,0,0,0.08)]">
-                    <iframe
-                      className="w-full h-[320px] md:h-[380px] rounded-lg"
-                      src="https://www.youtube-nocookie.com/embed/nGAbHUE1eyI"
-                      title="FAQ video 3"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div> */}
                   <h3 className="mt-3 text-2xl font-semibold text-zinc-950">W czym możemy pomóc przy budowaniu strony?</h3>
                 </summary>
                 <div className="mt-4">

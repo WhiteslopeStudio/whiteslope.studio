@@ -2905,28 +2905,37 @@ export const CONTACT_SERVICES = [
 export const PROJECT_EXAMPLES: ProjectExample[] = [
   {
     id: "1",
+    title: "EasyLesson - platforma do nauki online",
+    image: "/_resources/stronyInternetowe/Easylesson.webp",
+    category: "Aplikacja Webowa",
+    href: "https://easylesson.app",
+    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwym i efektywnym nauce przez interaktywne materiały i personalizowane podejście.",
+  },
+  {
+    id: "2",
+    title: "Damian Bogdanowicz - profesjonalne usługi kręcenia krótkich filmów reklamowych",
+    image: "/_resources/stronyInternetowe/DamianBogdanowicz.webp",
+    category: "Strona portfolio dla fotografa i filmowca",
+    href: "https://damian-bogdanowicz-site.vercel.app/",
+    description: "Nowoczesna strona dla profesjonalnego studia filmowego. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
+  },
+  {
+    id: "3",
     title: "Wiesławski Studio - profesjonalne studio muzyczne",
-    image: "/_resources/wieslawskiStudio.webp",
+    image: "/_resources/stronyInternetowe/WieslawskiStudio.webp",
     category: "Strona biznesowa",
     href: "https://www.wieslawski.studio/",
     description: "Nowoczesna strona dla profesjonalnego studia muzycznego. Już po 24 godzinach od uruchomienia pojawiły się pierwsze zapytania od klientów. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
   },
   {
-    id: "2",
+    id: "4",
     title: "Patryk Kulesza - korepetycje matematyka, angielski i programowanie",
-    image: "/_resources/patrykkul.webp",
+    image: "/_resources/stronyInternetowe/PatrykKulesza.webp",
     category: "Strona usługowa",
     href: "https://korepetycje-eight.vercel.app",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
   },
-  {
-    id: "3",
-    title: "EasyLesson - platforma do nauki online",
-    image: "/_resources/easylesson.jpg",
-    category: "Aplikacja Webowa",
-    href: "https://easylesson.app",
-    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwym i efektywnym nauce przez interaktywne materiały i personalizowane podejście.",
-  }
+  
 
 ];
 

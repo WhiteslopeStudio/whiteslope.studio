@@ -8,7 +8,7 @@ import { jsonLd, siteNavigationJsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
-import { PromoBanner } from '@/components/layout/ad';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -138,7 +138,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Header />
-        <PromoBanner />
+        
         {children}
         <SearchEngineProvider />
         <CookieBanner />
