@@ -114,11 +114,11 @@ export default function HomePage() {
           {/* 🚀 HERO SECTION */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
 
-          {/* 🎬 PORTFOLIO DESKTOP */}
-          {!isMobile && <PortfolioSectionDesktop />}
+          {/* 🎬 PORTFOLIO DESKTOP
+          {!isMobile && <PortfolioSectionDesktop />} */}
 
           {/* 🛠️ SERVICES SHOWCASE */}
-          <ServicesShowcase />
+          {<ServicesShowcase />}
 
           {/* 🌐 WEBSITES & SAAS SHOWCASE */}
           <WebsitesShowcase />

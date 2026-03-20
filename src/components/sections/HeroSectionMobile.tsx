@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { ArrowRight, Check, Code, FileText, LayoutGrid, Linkedin, Palette, Search, Smartphone } from 'lucide-react';
-import { linkedinProfiles } from './HeroSection';
+import { linkedinProfiles } from '@/lib/linkedinData';
 import { MainService } from '@/lib/types';
 import { MAIN_SERVICES } from '@/lib/data';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useApprovalCarousel } from '@/utils/hooks';
+
 
 interface LinkedInProfile {
   name: string;

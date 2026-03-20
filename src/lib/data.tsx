@@ -2905,7 +2905,7 @@ export const CONTACT_SERVICES = [
 export const PROJECT_EXAMPLES: ProjectExample[] = [
   {
     id: "1",
-    title: "EasyLesson - platforma do nauki online",
+    title: "EasyLesson - platforma SaaS do nauki online",
     image: "/_resources/stronyInternetowe/Easylesson.webp",
     category: "Aplikacja Webowa",
     href: "https://easylesson.app",
