@@ -16,6 +16,7 @@ import {
   Video,
   Megaphone,
   SearchCheck,
+  Volume2,
 } from 'lucide-react';
 
 export interface MegaMenuItemDef {
@@ -34,6 +35,45 @@ export interface MegaMenuColumnDef {
 }
 
 export const MEGA_MENU: MegaMenuColumnDef[] = [
+  {
+    title: 'Dedykowane Systemy',
+    iconHoverClass: 'group-hover:text-cyan-400 group-hover:bg-cyan-500/10',
+    items: [
+      {
+        label: 'Aplikacje SaaS MVP',
+        href: '/pricing/saas',
+        desc: 'Twój własny startup od zera',
+        icon: Rocket,
+        badge: '🔥 NEW',
+        badgeColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      },
+      {
+        label: 'Poprawki istniejących stron',
+        href: '/pricing/website',
+        desc: 'Modernizacja i optymalizacja istniejących rozwiązań',
+        icon: Activity,
+      },
+      {
+        label: 'Email marketing',
+        href: '/pricing/email-marketing',
+        desc: 'Skuteczne kampanie emailowe, które sprzedają',
+        icon: Database,
+      },
+      {
+        label: 'Strony Internetowe',
+        href: '/pricing/website',
+        desc: 'Wizytówki i rozbudowane serwisy',
+        icon: Globe,
+      },
+      
+      {
+        label: 'Dedykowane Systemy Webowe',
+        href: '/pricing/optimization',
+        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
+        icon: LayoutDashboard,
+      },
+    ],
+  },
   {
     title: 'Integracja AI',
     iconHoverClass: 'group-hover:text-blue-400 group-hover:bg-blue-500/10',
@@ -64,14 +104,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
     title: 'Automatyzacje',
     iconHoverClass: 'group-hover:text-violet-400 group-hover:bg-violet-500/10',
     items: [
-      {
-        label: 'Wdrożenia CRM',
-        href: '/pricing/automations',
-        desc: 'HubSpot, Pipedrive, automatyzacja',
-        icon: Database,
-        badge: 'Top',
-        badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
-      },
+      
       {
         label: 'Obieg Dokumentów',
         href: '/pricing/automations',
@@ -92,48 +125,23 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       },
     ],
   },
-  {
-    title: 'Dedykowane Systemy',
-    iconHoverClass: 'group-hover:text-cyan-400 group-hover:bg-cyan-500/10',
-    items: [
-      {
-        label: 'Aplikacje SaaS MVP',
-        href: '/pricing/saas',
-        desc: 'Twój własny startup od zera',
-        icon: Rocket,
-        badge: '🔥 Hot',
-        badgeColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
-      },
-      {
-        label: 'Strony Internetowe',
-        href: '/pricing/website',
-        desc: 'Wizytówki i rozbudowane serwisy',
-        icon: Globe,
-      },
-      {
-        label: 'Audyty i Szybkość',
-        href: '/pricing/optimization',
-        desc: 'Optymalizacja PageSpeed i SEO',
-        icon: Activity,
-      },
-      {
-        label: 'Dedykowane Systemy Webowe',
-        href: '/pricing/optimization',
-        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
-        icon: LayoutDashboard,
-      },
-    ],
-  },
+  
   {
     title: 'Marketing & Wideo',
     iconHoverClass: 'group-hover:text-rose-400 group-hover:bg-rose-500/10',
     items: [
       {
+        label: 'Pozycjonowanie (SEO)',
+        href: '/pricing/optimization',
+        desc: 'Organiczny ruch, który zostaje na lata',
+        icon: SearchCheck,
+      },
+      {
         label: 'Twórcy UGC',
         href: '/pricing/video-marketing',
         desc: 'Rolki i TikToki, które sprzedają',
         icon: Smartphone,
-        badge: 'Promocja',
+        badge: '🔥 Promocja',
         badgeColor: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
       },
       {
@@ -143,17 +151,24 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
         icon: Video,
       },
       {
-        label: 'Kampanie Ads (Meta/Google)',
+        label: 'Kampanie Meta Ads',
         href: '/pricing/video-marketing',
         desc: 'Skalowalne generowanie leadów i sprzedaży',
         icon: Megaphone,
       },
       {
-        label: 'Pozycjonowanie (SEO)',
-        href: '/pricing/optimization',
-        desc: 'Organiczny ruch, który zostaje na lata',
-        icon: SearchCheck,
+        label: 'Grafika 2D i 3D',
+        href: '/pricing/graphics',
+        desc: 'Projektowanie i tworzenie grafik',
+        icon: LayoutDashboard,
       },
+      {
+        label: 'Obróbka Dźwięku',
+        href: '/pricing/audio-editing',
+        desc: 'Montaż i optymalizacja dźwięku',
+        icon: Volume2,
+      }
+      
     ],
   },
 ];
