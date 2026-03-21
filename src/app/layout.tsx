@@ -11,18 +11,19 @@ import { SearchEngineProvider } from '@/components/SearchEngineProvider';
 // Zmień ten import:
 
 // Na ten (dodając Unbounded):
-import { Gothic_A1, Unbounded } from "next/font/google";
+import { Gothic_A1, Geist } from "next/font/google";
 
-const gothicA1 = Gothic_A1({
+const gothicA1 = Geist({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
-  variable: "--font-gothic", // Ta nazwa idzie do CSS
+  variable: "--font-geist",
 });
 
-const unbounded = Unbounded({
+// Konfiguracja Geist (zastępuje Unbounded)
+const geistSans = Geist({
   subsets: ["latin"],
-  weight: ["700", "900"],
-  variable: "--font-unbounded", // Ta nazwa idzie do Twojego h2
+  weight: ["900"], // Tylko najgrubsza waga
+  variable: "--font-geist", // Ta zmienna zastąpi --font-unbounded
 });
 
 // const geistSans = Geist({
@@ -154,7 +155,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/json" href="/api/whiteslope-info" title="Whiteslope AI Integration API" />
         <link rel="plugin" href="/.well-known/ai-plugin.json" />
         </head>
-        <body  className={`${gothicA1.variable} ${unbounded.variable} antialiased`}>          <Header />
+        <body  className={`${gothicA1.variable} ${geistSans.variable} antialiased`}>          <Header />
         
         {children}
         <SearchEngineProvider />

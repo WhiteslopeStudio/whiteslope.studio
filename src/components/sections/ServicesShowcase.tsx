@@ -105,14 +105,14 @@ export default function AutomationShowcase() {
           </div>
 
           <h2 
-            className="text-white text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-10 uppercase"
+            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
             style={{
               fontFamily: 'var(--font-unbounded), sans-serif',
-              letterSpacing: '-0.02em',
+       
             }}
           >
-            Firma na <br /> 
-            <span style={{ color: PURPLE_LIGHT }}>Autopilocie</span>
+            Automatyzacja procesów i  <br /> 
+            <span style={{ color: PURPLE_LIGHT }}>ekosystemy AI</span>
           </h2>
 
           <h3 className="text-white text-xl md:text-2xl font-bold leading-snug mb-12 max-w-xl opacity-90">

@@ -81,15 +81,14 @@ export default function VideoShowcase() {
           </div>
 
           <h2 
-            className="text-white font-bold leading-[1.1] mb-8 uppercase"
+            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
             style={{
               fontFamily: 'var(--font-unbounded), sans-serif',
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.75rem)', 
-              letterSpacing: '0.05em',
+       
             }}
           >
-            Wideo, które przyciąga. <br /> 
-            <span style={{ color: YELLOW }}>Kontent który sprzedaje</span>
+            Produkcja contentu i  <br /> 
+            wizerunek marki premium <span style={{ color: YELLOW }}></span>
           </h2>
 
           <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-12 max-w-xl opacity-90">

@@ -92,15 +92,14 @@ export default function AiShowcase() {
           
 
           <h2 
-            className="text-white font-bold leading-[0.95] mb-10 uppercase"
+            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
             style={{
               fontFamily: 'var(--font-unbounded), sans-serif',
-              fontSize: 'clamp(2rem, 3.2vw, 4rem)',
-              letterSpacing: '-0.02em',
+       
             }}
           >
-            Skonfiguruj własnego <br /> 
-            <span style={{ color: PURPLE_LIGHT }}>Asystenta AI</span>
+            Wdróż własne AI z  <br /> 
+            <span style={{ color: PURPLE_LIGHT }}>Twoją bazą wiedzy</span>
           </h2>
 
           <div className="space-y-6 mb-10">

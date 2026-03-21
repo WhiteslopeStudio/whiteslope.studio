@@ -77,7 +77,7 @@ export default function WebsitesShowcase() {
        
             }}
           >
-            Specjaliści i doradcy w tworzeniu stron i produktów SaaS
+            Projektujemy strony biznesowe <br/> i produkty SaaS
           </h2>
 
           <h3 className="text-[#ffffff] text-lg md:text-xl font-bold leading-snug mb-10 max-w-xl" style={{ opacity: 0.9 }}>

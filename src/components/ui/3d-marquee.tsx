@@ -61,7 +61,7 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
                   alt="Whiteslope Showcase"
                   fill
                   sizes="(max-width: 768px) 240px, 420px"
-                  className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                  className="object-cover opacity-100 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                 />
                 
                 {/* Overlay przy hoverze */}
