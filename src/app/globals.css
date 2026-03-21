@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 .hero-video {
-  width: calc(104% );
-  transform: translateX(-4%);
+  width: calc(100% );
+
 }
 
 @media (max-width: 1289px) {
@@ -26,7 +26,7 @@
 }
 
 body {
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-gothic), sans-serif;
 }
 
 html {

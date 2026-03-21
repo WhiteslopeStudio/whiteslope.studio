@@ -1,8 +1,6 @@
 'use client';
 
-import { useCallback } from 'react'
-
-import { useState, useLayoutEffect, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 // 🚫 ANIMACJA INTRO - WYŁĄCZONA (odkomentuj jak chcesz wrócić)
 // import IntroAnimation from '@/components/layout/IntroAnimation';
@@ -28,15 +26,14 @@ import PortfolioSectionDesktop from '@/components/sections/PortfolioSectionDeskt
 import PinnedAnimationSection from '@/components/layout/PinnedAnimationSection';
 
 export default function HomePage() {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  );
+  // Stan sprawdzający, czy komponent jest już zamontowany w przeglądarce (rozwiązuje błąd Hydracji)
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   // ✅ OD RAZU POKAZUJEMY TREŚĆ (bez animacji intro)
   const [introCompleted, setIntroCompleted] = useState(true);
 
-  // 🚫 STARA LOGIKA ANIMACJI - WYŁĄCZONA
-  // Odkomentuj poniższy kod jak chcesz przywrócić animację intro
+  // 🚫 STARA LOGIKA ANIMACJI - ZACHOWANA (jako komentarz wg prośby)
   /*
   const [showIntro, setShowIntro] = useState(false);
   
@@ -77,10 +74,16 @@ export default function HomePage() {
         timestamp: Date.now(),
       })
     );
-
+  }, []);
   */
 
+  // ✅ POŁĄCZONA LOGIKA MOUNT I RESIZE
   useEffect(() => {
+    setIsMounted(true);
+    
+    // Ustawienie początkowe
+    setIsMobile(window.innerWidth < 768);
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -89,39 +92,36 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+  // Dopóki React nie sprawdzi warunków po stronie klienta, renderujemy pusty kontener
+  // Zapobiega to błędowi: "HTML didn't match the client"
+  if (!isMounted) {
+    return <main className="min-h-screen bg-black" />;
+  }
 
   return (
     <main className="min-h-screen bg-black">
       {/* 🚫 ANIMACJA INTRO - WYŁĄCZONA */}
-      {/* Odkomentuj poniższy blok jak chcesz przywrócić animację */}
-      {/*
-      {showIntro && !isMobile && (
+      {/* {showIntro && !isMobile && (
         <IntroAnimation onComplete={handleIntroComplete} />
       )}
       */}
 
-      {/* ✅ ZAWSZE POKAZUJEMY TREŚĆ (introCompleted jest zawsze true) */}
+      {/* ✅ TREŚĆ GŁÓWNA */}
       {introCompleted && (
         <>
-          {/* 🚀 HERO SECTION */}
+          {/* 🚀 HERO SECTION - Teraz bezpiecznie przełącza wersje */}
           {isMobile ? <HeroSectionMobile /> : <HeroSection />}
 
-          {/* 🎬 PORTFOLIO DESKTOP
-          {!isMobile && <PortfolioSectionDesktop />} */}
-
-          {/* 🛠️ SERVICES SHOWCASE */}
-          {<ServicesShowcase />}
+          {/* 🎬 PORTFOLIO DESKTOP */}
+          {/* {!isMobile && <PortfolioSectionDesktop />} */}
 
           {/* 🌐 WEBSITES & SAAS SHOWCASE */}
           <WebsitesShowcase />
+
+          {/* 🛠️ SERVICES SHOWCASE */}
+          <ServicesShowcase />
+
+          
 
           {/* 🤖 AI INTEGRATION SHOWCASE */}
           <AiShowcase />
@@ -133,22 +133,19 @@ export default function HomePage() {
           {isMobile && <PortfolioSection />}
 
           {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
-          <ProblemSolutionSection />
+          {/* <ProblemSolutionSection /> */}
 
           {/* 💬 TESTIMONIALS */}
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
 
           {/* 🔄 PROCESS SECTION */}
-          <ProcessSection />
+          {/* <ProcessSection /> */}
 
           {/* 🎯 EXPERIENCE */}
           {/* <ExperienceSection /> */}
 
           {/* 💰 PRICING */}
-          <PricingSection />
-
-          {/* 📋 BRIEF */}
-          {/* <BriefSection /> */}
+          {/* <PricingSection /> */}
 
           {/* 📝 BLOG */}
           <BlogSection />

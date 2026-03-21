@@ -1,231 +1,171 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { ArrowRight, Check } from 'lucide-react';
+import { Check, EnvelopeSimple, User, Cpu, Gear, ArrowRight, Brain } from "@phosphor-icons/react";
 import dynamic from 'next/dynamic';
-
-// ─── Helper do wyróżniania słów kluczowych ────────────────────────────────────
-type Seg = { t: string; h?: boolean };
-function RichDesc({ parts, color }: { parts: Seg[]; color: string }) {
-  return (
-    <>
-      {parts.map((p, i) =>
-        p.h ? <span key={i} style={{ color, fontWeight: 600 }}>{p.t}</span>
-             : <span key={i}>{p.t}</span>
-      )}
-    </>
-  );
-}
+import { PrimaryButton, SecondaryButton } from '@/components/ui/Button';
 
 const AssistantDemo = dynamic(
   () => import('@/components/ai-integration/demos/assistant/AssistantDemo'),
   { ssr: false }
 );
 
-// ─── Tematy dla całej sekcji ──────────────────────────────────────────────────
-type ServiceKey = '' | 'Korepetycje' | 'Salon Fryzjerski' | 'Makijaż';
+const PURPLE_LIGHT = '#a78bfa';
+const GRAY_LIGHT = '#a1a1a1';
+const GRAY_BORDER = '#262626';
 
-const SECTION_THEMES: Record<ServiceKey, {
-  glowBg: string;
-  accentColor: string;
-  accentShadow: string;
-  checkBg: string;
-  checkBorder: string;
-  checkColor: string;
-  demoBorder: string;
-  demoGlow: string;
-  topLine: string;
-}> = {
-  '': {
-    glowBg: 'radial-gradient(circle at 15% 50%, rgba(37,99,235,0.08) 0%, transparent 70%)',
-    accentColor: '#60a5fa',
-    accentShadow: '0 0 20px rgba(59,130,246,0.5), 0 0 40px rgba(59,130,246,0.3)',
-    checkBg: 'rgba(59,130,246,0.1)',
-    checkBorder: 'rgba(59,130,246,0.3)',
-    checkColor: '#60a5fa',
-    demoBorder: 'rgba(59,130,246,0.2)',
-    demoGlow: '0 0 60px rgba(37,99,235,0.1), 0 0 120px rgba(37,99,235,0.05)',
-    topLine: 'rgba(59,130,246,0.4)',
-  },
-  'Korepetycje': {
-    glowBg: 'radial-gradient(circle at 15% 50%, rgba(99,102,241,0.1) 0%, transparent 70%)',
-    accentColor: '#818cf8',
-    accentShadow: '0 0 20px rgba(99,102,241,0.6), 0 0 40px rgba(99,102,241,0.35)',
-    checkBg: 'rgba(99,102,241,0.12)',
-    checkBorder: 'rgba(99,102,241,0.35)',
-    checkColor: '#818cf8',
-    demoBorder: 'rgba(99,102,241,0.35)',
-    demoGlow: '0 0 60px rgba(99,102,241,0.18), 0 0 120px rgba(99,102,241,0.08)',
-    topLine: 'rgba(99,102,241,0.55)',
-  },
-  'Salon Fryzjerski': {
-    glowBg: 'radial-gradient(circle at 15% 50%, rgba(245,158,11,0.1) 0%, transparent 70%)',
-    accentColor: '#fbbf24',
-    accentShadow: '0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.35)',
-    checkBg: 'rgba(245,158,11,0.1)',
-    checkBorder: 'rgba(245,158,11,0.35)',
-    checkColor: '#fbbf24',
-    demoBorder: 'rgba(245,158,11,0.35)',
-    demoGlow: '0 0 60px rgba(245,158,11,0.15), 0 0 120px rgba(245,158,11,0.07)',
-    topLine: 'rgba(245,158,11,0.55)',
-  },
-  'Makijaż': {
-    glowBg: 'radial-gradient(circle at 15% 50%, rgba(244,63,94,0.09) 0%, transparent 70%)',
-    accentColor: '#fb7185',
-    accentShadow: '0 0 20px rgba(244,63,94,0.6), 0 0 40px rgba(244,63,94,0.35)',
-    checkBg: 'rgba(244,63,94,0.1)',
-    checkBorder: 'rgba(244,63,94,0.3)',
-    checkColor: '#fb7185',
-    demoBorder: 'rgba(244,63,94,0.3)',
-    demoGlow: '0 0 60px rgba(244,63,94,0.12), 0 0 120px rgba(244,63,94,0.06)',
-    topLine: 'rgba(244,63,94,0.5)',
-  },
-};
-
-const TRANSITION = 'background 0.9s ease, border-color 0.9s ease, box-shadow 0.9s ease, color 0.9s ease';
-
-const ITEMS: { label: string; parts: Seg[] }[] = [
+const ITEMS = [
   {
-    label: 'Chatboty konwersacyjne',
-    parts: [{ t: 'Odpowiadają automatycznie na powtarzalne pytania klientów ' }, { t: '24/7', h: true }, { t: '.' }],
+    label: 'Chatboty E-commerce',
+    desc: 'Automatyczny doradca w sklepie online, który zwiększa konwersję.',
   },
   {
-    label: 'Asystenci głosowi',
-    parts: [{ t: 'AI obsługuje rozmowy ' }, { t: 'bez angażowania', h: true }, { t: ' Twojego zespołu.' }],
+    label: 'Chatboty rezerwacji',
+    desc: 'Umawianie spotkań w kalendarzu',
   },
   {
-    label: 'Automatyzacje procesów',
-    parts: [{ t: 'Eliminujemy ' }, { t: 'ręczną pracę', h: true }, { t: ' tam, gdzie to możliwe.' }],
+    label: 'Pomoc techniczna 24/7',
+    desc: 'Odpowiedzi na bazie dokumentacji firmy, bez angażowania zespołu.',
   },
 ];
 
 export default function AiShowcase() {
-  const router = useRouter();
-  const [activeService, setActiveService] = useState<ServiceKey>('');
+  const [formData, setFormData] = useState({ name: '', email: '', consent: false });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
-  const handleThemeChange = useCallback((service: string) => {
-    const key = (service as ServiceKey) in SECTION_THEMES ? (service as ServiceKey) : '';
-    setActiveService(key);
-  }, []);
-
-  const theme = SECTION_THEMES[activeService];
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.consent) return;
+    setStatus('loading');
+    
+    // TUTAJ PODŁĄCZYMY n8n / RESEND / MAILCHIMP
+    setTimeout(() => setStatus('success'), 1500);
+  };
 
   return (
-    <section
-      className="bg-[#030303] relative overflow-hidden border-t border-white/5"
-      style={{ transition: TRANSITION }}
-    >
-      {/* Ambient glow – zmienia się z tematem */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: theme.glowBg, transition: 'background 0.9s ease' }}
-      />
+    <section className="relative w-full bg-black py-24 overflow-hidden border-b" style={{ borderColor: GRAY_BORDER }}>
+      
+      {/* TŁO */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
+           style={{ backgroundImage: `radial-gradient(${GRAY_LIGHT} 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-24 md:py-32 relative z-10">
-        <div className="flex flex-col md:flex-row gap-16 lg:gap-24 min-h-[600px]">
+      <div className="flex flex-col lg:flex-row items-stretch w-full min-h-[850px]">
+        
+        {/* --- LEWO: DEMO ASYSTENTA (50%) --- */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-4 md:p-12 lg:p-20 lg:border-r border-b lg:border-b-0" style={{ borderColor: GRAY_BORDER }}>
+          
+          <div className="w-full max-w-2xl relative">
+            <div className="absolute -top-12 left-0 flex items-center gap-3 mb-4">
+               <Gear size={16} weight="fill" className="text-[#a78bfa] animate-spin-slow" />
+               <span className="text-[10px] font-mono uppercase text-white/40 tracking-[0.3em]">
+                 Whiteslope Studio Interkatywny asystent AI - Demo
+               </span>
+            </div>
 
-          {/* ─── LEWA strona: Tekst (5/12) ─── */}
-          <div className="w-full md:w-5/12 flex flex-col justify-between py-4">
-            <div className="sticky top-32">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                {/* Nagłówek */}
-                <h2 className="text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-white leading-[1.15] mb-12 tracking-tight">
-                  Sztuczna Inteligencja w Twoim{' '}
-                  <span
-                    style={{
-                      color: theme.accentColor,
-                      textShadow: theme.accentShadow,
-                      transition: 'color 0.9s ease, text-shadow 0.9s ease',
-                    }}
-                  >
-                    zespole
-                  </span>
-                </h2>
+            <div className="relative border bg-[#050505] shadow-2xl" style={{ borderColor: GRAY_BORDER }}>
+              <div className="flex items-center justify-between px-5 py-3 border-b bg-white/[0.02]" style={{ borderColor: GRAY_BORDER }}>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Podgląd chatbota</span>
+                </div>
+              </div>
+              
+              <div className="p-1 min-h-[500px] overflow-hidden">
+                <AssistantDemo onClose={() => {}} onThemeChange={() => {}} />
+              </div>
+            </div>
 
-                {/* Lista z check ikonami */}
-                <ul className="space-y-7 mb-16">
-                  {ITEMS.map((item, i) => (
-                    <motion.li
-                      key={item.label}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div
-                        className="mt-1 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{
-                          background: theme.checkBg,
-                          border: `1px solid ${theme.checkBorder}`,
-                          transition: TRANSITION,
-                        }}
-                      >
-                        <Check
-                          className="w-3.5 h-3.5"
-                          style={{ color: theme.checkColor, transition: 'color 0.9s ease' }}
-                        />
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold text-lg">{item.label}</p>
-                        <p className="text-gray-400 text-base mt-1.5 leading-relaxed">
-                          <RichDesc parts={item.parts} color={theme.checkColor} />
-                        </p>
-                      </div>
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  onClick={() => router.push('/contact')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white hover:bg-gray-100 text-black font-bold text-lg transition-all duration-300 group shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)]"
-                >
-                  Zautomatyzuj swój biznes
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-                </motion.button>
-              </motion.div>
+            <div className="mt-8 flex items-start gap-4 p-4 border border-[#a78bfa]/10 bg-[#a78bfa]/5">
+               <Cpu size={20} className="text-[#a78bfa] flex-shrink-0" />
+               <p className="text-[11px] font-mono text-gray-400 uppercase tracking-tight leading-relaxed">
+                 Powyższy moduł to uproszczona wersja naszego silnika. <br />
+                 Pełna wersja wdraża bazę wiedzy Twojej firmy (PDF, URL, Notion).
+               </p>
             </div>
           </div>
+        </div>
 
-          {/* ─── PRAWA strona: Demo AI (7/12) ─── */}
-          <div className="w-full md:w-7/12 flex flex-col">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="relative rounded-3xl overflow-hidden"
-              style={{
-                border: `1px solid ${theme.demoBorder}`,
-                boxShadow: theme.demoGlow,
-                transition: 'border-color 0.9s ease, box-shadow 0.9s ease',
-              }}
+        {/* --- PRAWO: TREŚĆ (50%) --- */}
+        <div className="w-full lg:w-1/2 flex flex-col items-start text-left px-6 md:px-12 lg:px-20 py-12">
+          
+          
+
+          <h2 
+            className="text-white font-bold leading-[0.95] mb-10 uppercase"
+            style={{
+              fontFamily: 'var(--font-unbounded), sans-serif',
+              fontSize: 'clamp(2rem, 3.2vw, 4rem)',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            Skonfiguruj własnego <br /> 
+            <span style={{ color: PURPLE_LIGHT }}>Asystenta AI</span>
+          </h2>
+
+          <div className="space-y-6 mb-10">
+            <p className="text-lg leading-relaxed" style={{ color: GRAY_LIGHT }}>
+              Odbierz dostęp do naszego <span className="text-white font-bold italic">AI Chatbot Buildera</span>. 
+              Samodzielnie ustaw styl odpowiedzi i przetestuj go przed wdrożeniem.
+            </p>
+          </div>
+
+          {/* LISTA KORZYŚCI */}
+          <div className="space-y-6 mb-10 w-full">
+            {ITEMS.map((item, i) => (
+              <div key={i} className="flex items-start gap-4 group">
+                <div className="mt-1 w-5 h-5 border flex items-center justify-center flex-shrink-0 transition-none" 
+                     style={{ borderColor: GRAY_BORDER, backgroundColor: 'rgba(167,139,250,0.05)' }}>
+                  <Check size={12} weight="bold" style={{ color: PURPLE_LIGHT }} />
+                </div>
+                <div>
+                  <p className="text-white font-bold text-base uppercase tracking-tight">{item.label}</p>
+                  <p className="text-sm leading-relaxed mt-1" style={{ color: GRAY_LIGHT }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* NOWE MIEJSCE DLA CTA PRZYCISKU */}
+          <div className="mb-16 w-full">
+            <PrimaryButton 
+              href="/pricing/ai-integration" 
+              className="!bg-[#a78bfa] !text-black !border-[#a78bfa] hover:!bg-white hover:!text-black transition-none"
             >
-              {/* Dekoracyjna linia u góry */}
-              <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[1px] z-10"
-                style={{
-                  background: `linear-gradient(to right, transparent, ${theme.topLine}, transparent)`,
-                  transition: 'background 0.9s ease',
-                }}
-              />
+              Zobacz pełną ofertę AI
+            </PrimaryButton>
+          </div>
 
-              <AssistantDemo onClose={() => {}} onThemeChange={handleThemeChange} />
-            </motion.div>
+          <div className="w-full mt-auto p-8 border bg-white" style={{ borderColor: GRAY_BORDER }}>
+            <div className="flex items-center gap-3 mb-6">
+              <Brain size={20} className="text-[#a78bfa]" />
+              <p className="text-black font-black uppercase text-[11px] tracking-[0.2em]">
+                Skonfiguruj chatbota AI w naszej aplikacji - Odbierz darmowy dostęp do AI Buildera
+              </p>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <input type="text" required placeholder="IMIĘ I NAZWISKO"
+                value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full h-14 bg-white border border-black px-5 text-black text-[11px] font-bold tracking-widest outline-none focus:border-[#a78bfa] placeholder:text-black/40" />
+
+              <input type="email" required placeholder="ADRES E-MAIL"
+                value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full h-14 bg-white border border-black px-5 text-black text-[11px] font-bold tracking-widest outline-none focus:border-[#a78bfa] placeholder:text-black/40" />
+
+              <label className="flex items-start gap-3 mt-2 cursor-pointer">
+                <input type="checkbox" required checked={formData.consent} onChange={(e) => setFormData({...formData, consent: e.target.checked})}
+                  className="mt-1 appearance-none w-4 h-4 border border-black checked:bg-[#a78bfa] cursor-pointer" />
+                <span className="text-[9px] text-black uppercase leading-relaxed tracking-tighter">
+                  Wyrażam zgodę na przetwarzanie danych w celu wysłania dostępu do AI Builder zgodnie z <a href="/privacy" className="underline text-blue hover:underline">Polityką Prywatności</a>.
+                </span>
+              </label>
+
+              <button type="submit" disabled={status !== 'idle' || !formData.consent}
+                className="h-14 mt-4 bg-black text-white font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-[#a78bfa] hover:text-black transition-none disabled:bg-neutral-200 disabled:text-neutral-400 flex items-center justify-center gap-3">
+                {status === 'idle' ? (<>Odbierz dostęp <ArrowRight size={16} weight="bold" /></>) : status === 'loading' ? ('Generowanie...') : ('Wysłano poprawnie')}
+              </button>
+            </form>
           </div>
 
         </div>

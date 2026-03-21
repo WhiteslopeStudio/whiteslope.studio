@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -8,18 +8,32 @@ import { jsonLd, siteNavigationJsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
+// Zmień ten import:
 
+// Na ten (dodając Unbounded):
+import { Gothic_A1, Unbounded } from "next/font/google";
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const gothicA1 = Gothic_A1({
   subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  variable: "--font-gothic", // Ta nazwa idzie do CSS
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const unbounded = Unbounded({
   subsets: ["latin"],
+  weight: ["700", "900"],
+  variable: "--font-unbounded", // Ta nazwa idzie do Twojego h2
 });
+
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.whiteslope.studio'),
@@ -139,9 +153,8 @@ export default function RootLayout({
         <meta name="ai-integration" content="true" />
         <link rel="alternate" type="application/json" href="/api/whiteslope-info" title="Whiteslope AI Integration API" />
         <link rel="plugin" href="/.well-known/ai-plugin.json" />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
+        </head>
+        <body  className={`${gothicA1.variable} ${unbounded.variable} antialiased`}>          <Header />
         
         {children}
         <SearchEngineProvider />
