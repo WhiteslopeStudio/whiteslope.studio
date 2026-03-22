@@ -161,7 +161,7 @@ export const VideoPlayer = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm"
           >
             <div className="w-32 h-[2px] bg-white/10 rounded-full overflow-hidden">
               <motion.div

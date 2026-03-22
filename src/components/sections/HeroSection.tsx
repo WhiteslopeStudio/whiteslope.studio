@@ -9,7 +9,11 @@ const BLUE = '#0088ff';
 const GRAY_LIGHT = '#a1a1a1';
 const GRAY_BORDER = '#262626';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  cityOverride?: string;
+}
+
+export default function HeroSection({ cityOverride }: HeroSectionProps = {}) {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const serviceCards = [
@@ -48,9 +52,18 @@ export default function HeroSection() {
               letterSpacing: '-0.03em',
             }}
           >
-            Pokaż się
-             Online<br/>
-            z dobrej strony
+            {cityOverride ? (
+              <>
+                Strony internetowe {cityOverride} <br />
+                od 1500 zł
+              </>
+            ) : (
+              <>
+                Pokaż się
+                 Online<br/>
+                z dobrej strony
+              </>
+            )}
           </h1>
 
           <div className="space-y-12">

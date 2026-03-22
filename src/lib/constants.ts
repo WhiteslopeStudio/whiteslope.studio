@@ -36,16 +36,38 @@ export interface MegaMenuColumnDef {
 
 export const MEGA_MENU: MegaMenuColumnDef[] = [
   {
-    title: 'Dedykowane Systemy',
+    title: 'Web Development',
     iconHoverClass: 'group-hover:text-cyan-400 group-hover:bg-cyan-500/10',
     items: [
+      {
+        label: 'Strony Internetowe',
+        href: '/pricing/website',
+        desc: 'Wizytówki i rozbudowane serwisy',
+        icon: Globe,
+        badge: 'Najlepszy wybór',
+        badgeColor: 'bg-[#BF2E5B] text-[#FFFFFF] border-red-200',
+      },
+      {
+        label: 'Pozycjonowanie (SEO)',
+        href: '/pricing/optimization',
+        desc: 'Organiczny ruch, który zostaje na lata',
+        icon: SearchCheck,
+        badge: 'Ważne',
+        badgeColor: 'bg-[#50C223] text-white border-yellow-500/30',
+      },
       {
         label: 'Aplikacje SaaS MVP',
         href: '/pricing/website',
         desc: 'Twój własny startup od zera',
         icon: Rocket,
-        badge: '🔥 NEW',
+        
         badgeColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      },
+      {
+        label: 'Dedykowane Systemy Webowe',
+        href: '/pricing/website',
+        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
+        icon: LayoutDashboard,
       },
       {
         label: 'Poprawki istniejących stron',
@@ -53,25 +75,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
         desc: 'Modernizacja i optymalizacja istniejących rozwiązań',
         icon: Activity,
       },
-      {
-        label: 'Email marketing',
-        href: '/pricing/email-marketing',
-        desc: 'Skuteczne kampanie emailowe, które sprzedają',
-        icon: Database,
-      },
-      {
-        label: 'Strony Internetowe',
-        href: '/pricing/website',
-        desc: 'Wizytówki i rozbudowane serwisy',
-        icon: Globe,
-      },
       
-      {
-        label: 'Dedykowane Systemy Webowe',
-        href: '/pricing/website',
-        desc: 'Panele B2B, portale i aplikacje wewnętrzne',
-        icon: LayoutDashboard,
-      },
     ],
   },
   {
@@ -79,25 +83,28 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
     iconHoverClass: 'group-hover:text-blue-400 group-hover:bg-blue-500/10',
     items: [
       {
+        label: 'Chat Pomoc Techniczna 24/7',
+        desc: 'Odpowiedzi na bazie danych o firmie',
+        href: '/pricing/ai-integration',
+        icon: HeadphonesIcon,
+        badge: 'Trend',
+        badgeColor: 'bg-[#2350C2] text-white border-blue-200',
+      },
+      {
         label: 'Chatboty E-commerce',
         desc: 'Automatyczny doradca w sklepie',
         href: '/pricing/ai-integration',
         icon: ShoppingBag,
-        badge: 'Bestseller',
-        badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
       },
       {
         label: 'Chatboty Rezerwacje',
         desc: 'Umawianie spotkań w kalendarzu',
         href: '/pricing/ai-integration',
         icon: CalendarDays,
+        
+        badgeColor: 'bg-emerald-100 text-emerald-700 border-emerald-200',
       },
-      {
-        label: 'Pomoc Techniczna 24/7',
-        desc: 'Odpowiedzi na bazie dokumentacji',
-        href: '/pricing/ai-integration',
-        icon: HeadphonesIcon,
-      },
+      
     ],
   },
   {
@@ -108,7 +115,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       {
         label: 'Obieg Dokumentów',
         href: '/pricing/ai-integration',
-        desc: 'Make/Zapier i wyciąganie danych',
+        desc: 'n8n i wyciąganie danych',
         icon: FileText,
       },
       {
@@ -120,7 +127,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       {
         label: 'Integracje Systemów (API)',
         href: '/pricing/ai-integration',
-        desc: 'Łączymy narzędzia, które ze sobą nie gadają',
+        desc: 'Łączymy narzędzia',
         icon: Workflow,
       },
     ],
@@ -131,23 +138,21 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
     iconHoverClass: 'group-hover:text-rose-400 group-hover:bg-rose-500/10',
     items: [
       {
-        label: 'Pozycjonowanie (SEO)',
-        href: '/pricing/optimization',
-        desc: 'Organiczny ruch, który zostaje na lata',
-        icon: SearchCheck,
+        label: 'Email marketing',
+        href: '/pricing/email-marketing',
+        desc: 'Prosty Email marketing',
+        icon: Database,
       },
       {
         label: 'Twórcy UGC',
         href: '/pricing/video-marketing',
-        desc: 'Rolki i TikToki, które sprzedają',
+        desc: 'Rolki i TikToki, opieka nad górą lejka',
         icon: Smartphone,
-        badge: '🔥 Promocja',
-        badgeColor: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
       },
       {
         label: 'Video Marketing',
         href: '/pricing/video-marketing',
-        desc: 'Reklamy i wideo korporacyjne',
+        desc: 'Reklamy i wideo',
         icon: Video,
       },
       {
@@ -165,7 +170,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       {
         label: 'Obróbka Dźwięku',
         href: '/pricing/audio-editing',
-        desc: 'Montaż i optymalizacja dźwięku',
+        desc: 'Obróbka dźwięku do filmów',
         icon: Volume2,
       }
       

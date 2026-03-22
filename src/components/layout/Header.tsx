@@ -397,18 +397,18 @@ export const Header = () => {
                   <h3
                     style={{
                       fontSize: '18px',
-                      fontWeight: 500,
+                      fontWeight: 800,
                       color: 'rgba(255,255,255,0.88)',
                       lineHeight: 1.3,
                       letterSpacing: '-0.02em',
                       marginBottom: '8px',
                     }}
                   >
-                    Wdróż własne AI
+                    Wdróż własny chatbot AI
                     <br />z Twoją bazą wiedzy
                   </h3>
 
-                  <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
                     Odbierz dostęp do naszego AI Chatbot Buildera. Ustaw styl odpowiedzi i przetestuj go przed wdrożeniem.
                   </p>
 
@@ -422,7 +422,7 @@ export const Header = () => {
                     <p
                       style={{
                         fontSize: '10px',
-                        color: 'rgba(255,255,255,0.2)',
+                        color: 'rgba(255, 255, 255, 0.93)',
                         letterSpacing: '0.06em',
                         textTransform: 'uppercase' as const,
                         marginBottom: '10px',
@@ -437,28 +437,28 @@ export const Header = () => {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         width: '100%',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '0.5px solid rgba(255,255,255,0.1)',
+                        background: '#ffffff',
+                        border: '1px solid #000000',
                         padding: '12px 14px',
                         borderRadius: '4px',
                         cursor: 'pointer',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                        e.currentTarget.style.background = '#f2f2f2';
+                        e.currentTarget.style.borderColor = '#000000';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                        e.currentTarget.style.background = '#ffffff';
+                        e.currentTarget.style.borderColor = '#000000';
                       }}
                     >
-                      <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.8)' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 500, color: '#000000' }}>
                         Odbierz dostęp do AI Buildera
                       </span>
-                      <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)' }}>→</span>
+                      <span style={{ fontSize: '12px', color: '#000000' }}>→</span>
                     </button>
 
-                    <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.12)', lineHeight: 1.5, marginTop: '10px' }}>
+                    <p style={{ fontSize: '10px', color: 'rgba(233, 233, 233, 0.86)', lineHeight: 1.5, marginTop: '10px' }}>
                       Wyrażam zgodę na przetwarzanie danych zgodnie z Polityką Prywatności.
                     </p>
                   </div>
@@ -469,22 +469,20 @@ export const Header = () => {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', flex: 1 }}>
                     {MEGA_MENU.map((column, colIndex) => {
                       const kolumnowyHref: Record<string, string> = {
+                        'Web Development': '/pricing/website',
                         'Integracja AI': '/pricing/ai-integration',
                         'Automatyzacje': '/pricing/ai-integration',
-                        'Dedykowane Systemy': '/pricing/saas',
                         'Marketing & Wideo': '/pricing/video-marketing',
                       };
 
-                      const featuredItem = column.items.find(
-                        (item) => item.label === 'Strony Internetowe' || item.label === 'Pozycjonowanie (SEO)'
-                      );
-                      const regularItems = column.items.filter(
-                        (item) => item.label !== 'Strony Internetowe' && item.label !== 'Pozycjonowanie (SEO)'
-                      );
+                      const columnItems = column.items;
 
                       const pobieramy_href = (label: string, fallback: string) => {
-                        if (label === 'Strony Internetowe') return '/pricing/website';
+                        if (label === 'Strony Internetowe' || label === 'Aplikacje SaaS MVP') return '/pricing/website';
                         if (label === 'Pozycjonowanie (SEO)') return '/pricing/optimization';
+                        if (label === 'Chatboty Rezerwacje' || label === 'Pomoc Techniczna 24/7' || label === 'Chatboty E-commerce') {
+                          return '/pricing/ai-integration';
+                        }
                         return kolumnowyHref[column.title] ?? fallback;
                       };
 
@@ -519,41 +517,8 @@ export const Header = () => {
                             {column.title}
                           </p>
 
-                          {/* Najważniejsze NA GÓRZE */}
-                          {featuredItem && (
-                            <div style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #efefef' }}>
-                              <button
-                                onClick={() => {
-                                  setIsOffersDropdownOpen(false);
-                                  setActiveMegaColumn(null);
-                                  router.push(pobieramy_href(featuredItem.label, featuredItem.href));
-                                }}
-                                style={{
-                                  display: 'block',
-                                  width: '100%',
-                                  textAlign: 'left',
-                                  background: 'transparent',
-                                  border: 'none',
-                                  padding: '8px 8px',
-                                  borderRadius: '4px',
-                                  cursor: 'pointer',
-                                  transition: 'background 0.12s',
-                                }}
-                                onMouseEnter={(e) => { e.currentTarget.style.background = '#f2f2f2'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                              >
-                                <div style={{ fontSize: '16px', fontWeight: 600, color: '#111', lineHeight: 1.2 }}>
-                                  {featuredItem.label}
-                                </div>
-                                <div style={{ fontSize: '12px', color: '#aaa', marginTop: '3px' }}>
-                                  {featuredItem.desc}
-                                </div>
-                              </button>
-                            </div>
-                          )}
-
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
-                            {regularItems.map((item, itemIndex) => (
+                          <div style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #efefef' }}>
+                            {columnItems.map((item, itemIndex) => (
                               <button
                                 key={`${item.href}-${itemIndex}`}
                                 onClick={() => {
@@ -562,41 +527,41 @@ export const Header = () => {
                                   router.push(pobieramy_href(item.label, item.href));
                                 }}
                                 style={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '6px',
-                                  padding: '7px 8px',
-                                  borderRadius: '4px',
-                                  border: 'none',
-                                  background: 'transparent',
-                                  textAlign: 'left',
+                                  display: 'block',
                                   width: '100%',
+                                  textAlign: 'left',
+                                  background: '#f8f9fb',
+                                  border: 'none',
+                                  borderRadius: '6px',
+                                  padding: '10px 12px',
                                   cursor: 'pointer',
-                                  transition: 'background 0.12s',
+                                  transition: 'background 0.15s, transform 0.15s',
                                 }}
-                                onMouseEnter={(e) => { e.currentTarget.style.background = '#f2f2f2'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                                onMouseEnter={(e) => { e.currentTarget.style.background = '#eef2f7'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.background = '#f8f9fb'; e.currentTarget.style.transform = 'translateY(0)'; }}
                               >
-                                <span style={{ fontSize: '14px', fontWeight: 400, color: '#333' }}>
-                                  {item.label}
-                                </span>
-                                {item.badge && (
-                                  <span
-                                    style={{
-                                      fontSize: '9px',
-                                      fontWeight: 500,
-                                      letterSpacing: '0.07em',
-                                      textTransform: 'uppercase' as const,
-                                      color: '#999',
-                                      border: '0.5px solid #e0e0e0',
-                                      padding: '1px 5px',
-                                      borderRadius: '2px',
-                                      marginLeft: 'auto',
-                                    }}
-                                  >
-                                    {item.badge}
-                                  </span>
-                                )}
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                  <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>{item.label}</span>
+                                  {item.badge && (
+                                    <span
+                                      className={
+                                        item.badgeColor ??
+                                        'bg-slate-100 text-slate-700 border border-slate-200'
+                                      }
+                                      style={{
+                                        fontSize: '10px',
+                                        fontWeight: 700,
+                                        letterSpacing: '0.06em',
+                                        textTransform: 'uppercase',
+                                        padding: '2px 6px',
+                                        borderRadius: '999px',
+                                      }}
+                                    >
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>{item.desc}</div>
                               </button>
                             ))}
                           </div>

@@ -5,13 +5,10 @@ import HeroSection from "@/components/sections/HeroSection";
 import HeroSectionMobile from "@/components/sections/HeroSectionMobile";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import PortfolioSectionDesktop from "@/components/sections/PortfolioSectionDesktop";
-import DesktopUslugiSection from "@/components/sections/DesktopUslugiSection";
-import { ProblemSolutionSection } from "@/components/sections/ProblemSolutionSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import ExperienceSection from "@/components/sections/ExperienceSection";
-import { PricingSection } from "@/components/sections/PricingSection";
-import BriefSection from "@/components/sections/BriefSection";
+import ServicesShowcase from "@/components/sections/ServicesShowcase";
+import WebsitesShowcase from "@/components/sections/WebsitesShowcase";
+import AiShowcase from "@/components/sections/AiShowcase";
+import VideoShowcase from "@/components/sections/VideoShowcase";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { FAQSection } from "@/components/sections/FaqSection";
 
@@ -32,7 +29,6 @@ export default function CityPageClient({ cityName }: CityPageClientProps) {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* ✅ ZAWSZE POKAZUJEMY TREŚĆ (introCompleted jest zawsze true) */}
       {introCompleted && (
         <>
           {/* 🚀 HERO SECTION */}
@@ -42,32 +38,17 @@ export default function CityPageClient({ cityName }: CityPageClientProps) {
             <HeroSection cityOverride={cityName} />
           )}
 
-          {/* 🎬 PORTFOLIO DESKTOP */}
-          {!isMobile && <PortfolioSectionDesktop />}
+          {/* 🌐 WEBSITES & SAAS SHOWCASE */}
+          <WebsitesShowcase />
 
-          {/* 🛠️ DESKTOP USŁUGI */}
-          {!isMobile && <DesktopUslugiSection />}
+          {/* 🛠️ SERVICES SHOWCASE */}
+          <ServicesShowcase />
 
-          {/* 📱 PORTFOLIO MOBILE */}
-          {isMobile && <PortfolioSection />}
+          {/* 🤖 AI INTEGRATION SHOWCASE */}
+          <AiShowcase />
 
-          {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
-          <ProblemSolutionSection />
-
-          {/* 💬 TESTIMONIALS */}
-          <TestimonialsSection />
-
-          {/* 🔄 PROCESS SECTION */}
-          <ProcessSection />
-
-          {/* 🎯 EXPERIENCE */}
-          {/* <ExperienceSection /> */}
-
-          {/* 💰 PRICING */}
-          <PricingSection />
-
-          {/* 📋 BRIEF */}
-          {/* <BriefSection /> */}
+          {/* 🎬 VIDEO & MARKETING SHOWCASE */}
+          <VideoShowcase />
 
           {/* 📝 BLOG */}
           <BlogSection />
