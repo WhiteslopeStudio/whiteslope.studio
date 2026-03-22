@@ -41,7 +41,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
     items: [
       {
         label: 'Aplikacje SaaS MVP',
-        href: '/pricing/saas',
+        href: '/pricing/website',
         desc: 'Twój własny startup od zera',
         icon: Rocket,
         badge: '🔥 NEW',
@@ -68,7 +68,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       
       {
         label: 'Dedykowane Systemy Webowe',
-        href: '/pricing/optimization',
+        href: '/pricing/website',
         desc: 'Panele B2B, portale i aplikacje wewnętrzne',
         icon: LayoutDashboard,
       },
@@ -107,19 +107,19 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       
       {
         label: 'Obieg Dokumentów',
-        href: '/pricing/automations',
+        href: '/pricing/ai-integration',
         desc: 'Make/Zapier i wyciąganie danych',
         icon: FileText,
       },
       {
         label: 'Zarządzanie Leadami',
-        href: '/pricing/automations',
+        href: '/pricing/ai-integration',
         desc: 'Ścieżki sprzedażowe i powiadomienia',
         icon: Zap,
       },
       {
         label: 'Integracje Systemów (API)',
-        href: '/pricing/automations',
+        href: '/pricing/ai-integration',
         desc: 'Łączymy narzędzia, które ze sobą nie gadają',
         icon: Workflow,
       },
