@@ -263,7 +263,7 @@ export default function SearchEngine() {
                         </div>
                         <div className="text-left">
                           <p className="text-white font-semibold text-lg mb-0.5">Asystent Whiteslope</p>
-                          <p className="text-sm text-white/70">Twój inteligentny asystent gotowy, by zrewolucjonizować Twoje doświadczenie klienta</p>
+                          <p className="text-sm text-white/70 max-w-md">Twój inteligentny asystent gotowy, by zrewolucjonizować Twoje doświadczenie klienta</p>
                         </div>
                       </div>
                       <div className="px-5 py-2.5 backdrop-blur-xl bg-white/20 hover:bg-white/30 text-white rounded-xl transition-all font-medium text-sm border border-white/30 whitespace-nowrap">

@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Mail, Phone, MapPin, Clock, Calendar, Tag, MessageSquare, FileText } from 'lucide-react';
+import {
+  ArrowRight, ArrowLeft, CheckCircle, Check, Mail, Phone, MapPin, Clock,
+  Calendar, Tag, MessageSquare, FileText, Globe, Boxes, Building2, TrendingUp, Wrench,
+} from 'lucide-react';
 
 const QUICK_ACTIONS = [
   { label: 'Umów spotkanie', href: '/contact?tab=meeting', icon: Calendar, desc: 'Bezpłatna konsultacja online' },
@@ -34,19 +37,6 @@ const HOSTING_OPTIONS = [
   { id: 'cms_hosting', label: 'Z CMS – 60 zł/msc' },
 ];
 
-const EXTRA_FEATURES = [
-  'Formularz kontaktowy',
-  'Galeria zdjęć',
-  'Blog / Aktualności',
-  'Mapa Google',
-  'Newsletter / Automation mailing',
-  'Rezerwacja online / Kalendarz',
-  'Wielojęzyczność',
-  'Logowanie użytkowników',
-  'Integracje zewnętrzne API',
-  'Chatbot online',
-];
-
 const BUDGETS = [
   'Do 2 000 zł',
   '2 000–3 500 zł',
@@ -56,6 +46,32 @@ const BUDGETS = [
   'Powyżej 20 000 zł',
   'Nie jestem pewien – potrzebuję wyceny',
 ];
+
+// kategorie projektu wybierane kafelkami w kroku 2
+const PROJECT_CATEGORIES = [
+  { id: 'website', label: 'Strona internetowa', desc: 'Wizytówka, biznesowa lub rozbudowany serwis', icon: Globe },
+  { id: 'saas', label: 'Aplikacja SaaS', desc: 'Produkt subskrypcyjny z panelem klienta', icon: Boxes },
+  { id: 'system', label: 'Dedykowany system webowy dla firmy', desc: 'Narzędzie szyte na miarę pod procesy firmy', icon: Building2 },
+  { id: 'seo', label: 'Pozycjonowanie SEO', desc: 'Widoczność i ruch organiczny w wyszukiwarce', icon: TrendingUp },
+  { id: 'fixes', label: 'Poprawki istniejących stron', desc: 'Redesign, poprawki i rozbudowa obecnej strony', icon: Wrench },
+];
+
+// metadane kroków formularza, używane przez pasek postępu na górze
+// (3 kroki: dane kontaktowe, rodzaj projektu, reszta brief + wiadomość)
+const KROKI = [
+  { numer: 1, tytul: 'Szybki start' },
+  { numer: 2, tytul: 'Rodzaj projektu' },
+  { numer: 3, tytul: 'Szczegóły' },
+];
+
+// ikonka do kroku 1 (dane kontaktowe)
+function IkonaDokumentu({ className = '' }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="currentColor" d="M14 14.5h1v-9h-3v1h2zM6.5 17V3h14v14zm-3 3V6.616h1V19h12.385v1z" />
+    </svg>
+  );
+}
 
 function RadioGroup<T extends string>({
   name, options, value, onChange,
@@ -99,7 +115,8 @@ function CheckGroup({
   value: string[];
   onChange: (v: string[]) => void;
 }) {
-  const toggle = (item: string) =>
+  // dodaje lub usuwa pojedynczy element z listy zaznaczonych
+  const przelacza_element = (item: string) =>
     onChange(value.includes(item) ? value.filter(v => v !== item) : [...value, item]);
 
   return (
@@ -110,7 +127,7 @@ function CheckGroup({
           <button
             key={o}
             type="button"
-            onClick={() => toggle(o)}
+            onClick={() => przelacza_element(o)}
             className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-all duration-200 ${
               active
                 ? 'bg-blue-500/20 border-blue-500 text-blue-300'
@@ -158,14 +175,99 @@ function SelectNative({ value, onChange, children }: {
   );
 }
 
+// pasek postępu na górze karty z formularzem
+//
+// wyjaśnienie wyrównania linii: kółka i ich podpisy są rysowane w DWÓCH oddzielnych
+// rzędach grid o tych samych kolumnach (repeat(N, 1fr)). Dzięki temu kółko i podpis
+// zawsze mają ten sam środek w poziomie. Linia łącząca kółka jest osobnym elementem
+// z position: absolute, ustawionym dokładnie na wysokości środka kółek (top-4, czyli
+// połowa wysokości kółka 32px) i policzona tak, żeby zaczynać się i kończyć w środku
+// pierwszego i ostatniego kółka - nie na krawędziach całego paska.
+function WskaznikPostepu({
+  krokAktualny, najwyzszyOdwiedzonyKrok, onKliknijKrok,
+}: {
+  krokAktualny: number;
+  najwyzszyOdwiedzonyKrok: number;
+  onKliknijKrok: (numer: number) => void;
+}) {
+  const liczbaKrokow = KROKI.length;
+  const polowaKolumny = 100 / (2 * liczbaKrokow);
+  const szerokoscLinii = 100 - 2 * polowaKolumny;
+  const postepProcent = ((Math.min(krokAktualny, liczbaKrokow) - 1) / (liczbaKrokow - 1)) * szerokoscLinii;
+
+  return (
+    <div className="mb-8">
+      <div className="relative h-8">
+        <div
+          className="absolute top-4 h-px bg-white/10"
+          style={{ left: `${polowaKolumny}%`, width: `${szerokoscLinii}%` }}
+        />
+        <div
+          className="absolute top-4 h-px bg-blue-500 transition-all duration-300"
+          style={{ left: `${polowaKolumny}%`, width: `${postepProcent}%` }}
+        />
+        <div className="relative grid h-8" style={{ gridTemplateColumns: `repeat(${liczbaKrokow}, 1fr)` }}>
+          {KROKI.map(krok => {
+            const ukonczony = krok.numer < krokAktualny;
+            const aktywny = krok.numer === krokAktualny;
+            const osiagalny = krok.numer <= najwyzszyOdwiedzonyKrok;
+            return (
+              <div key={krok.numer} className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => onKliknijKrok(krok.numer)}
+                  disabled={!osiagalny}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center border-2 text-xs font-semibold transition-colors ${
+                    ukonczony
+                      ? 'bg-blue-500 border-blue-500 text-white hover:bg-blue-400 cursor-pointer'
+                      : aktywny
+                        ? 'border-blue-400 text-blue-300 bg-blue-500/10'
+                        : osiagalny
+                          ? 'border-white/25 text-white/50 hover:border-white/40 cursor-pointer'
+                          : 'border-white/15 text-white/30 cursor-not-allowed'
+                  }`}
+                >
+                  {ukonczony ? <Check className="w-4 h-4" /> : krok.numer}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid mt-1.5" style={{ gridTemplateColumns: `repeat(${liczbaKrokow}, 1fr)` }}>
+        {KROKI.map(krok => (
+          <div
+            key={krok.numer}
+            className={`text-center text-[11px] font-medium ${
+              krok.numer === krokAktualny ? 'text-white' : krok.numer < krokAktualny ? 'text-white/60' : 'text-white/30'
+            }`}
+          >
+            {krok.tytul}
+          </div>
+        ))}
+      </div>
+
+      {krokAktualny === liczbaKrokow && (
+        <p className="mt-4 text-center text-xs font-medium text-blue-300">
+          To już ostatni krok — sprawdź dane i wyślij brief.
+        </p>
+      )}
+    </div>
+  );
+}
+
 // ─── GŁÓWNY KOMPONENT ─────────────────────────────────────────────────────────
 
 export default function BriefSection() {
+  const [krokAktualny, setKrokAktualny] = useState(1);
+  const [najwyzszyOdwiedzonyKrok, setNajwyzszyOdwiedzonyKrok] = useState(1);
+
+  const [projectCategory, setProjectCategory] = useState('');
   const [pageSize, setPageSize] = useState<'landing' | 'business' | 'large'>('business');
   const [cms, setCms] = useState<'static' | 'cms'>('static');
   const [contentOptions, setContentOptions] = useState<string[]>([]);
   const [hosting, setHosting] = useState<'standard' | 'cms_hosting'>('standard');
-  const [extraFeatures, setExtraFeatures] = useState<string[]>([]);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -173,8 +275,6 @@ export default function BriefSection() {
   const [phone, setPhone] = useState('');
   const [phonePreferred, setPhonePreferred] = useState(false);
   const [company, setCompany] = useState('');
-  const [hoursFrom, setHoursFrom] = useState('');
-  const [hoursTo, setHoursTo] = useState('');
   const [contactHours, setContactHours] = useState('');
   const [budget, setBudget] = useState(BUDGETS[0]);
   const [subject, setSubject] = useState('');
@@ -185,18 +285,64 @@ export default function BriefSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const validate = () => {
+  const jestStrona = projectCategory === 'website';
+
+  // sprawdza dane kontaktowe z pierwszego kroku
+  const waliduje_krok_pierwszy = () => {
     const e: Record<string, string> = {};
     if (!name.trim() || name.trim().length < 2) e.name = 'Podaj imię i nazwisko (min. 2 znaki)';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'Podaj prawidłowy adres email';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  // sprawdza czy w drugim kroku wybrano rodzaj projektu
+  const waliduje_krok_drugi = () => {
+    const e: Record<string, string> = {};
+    if (!projectCategory) e.category = 'Wybierz rodzaj projektu, żeby przejść dalej';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  // sprawdza temat i wiadomość z trzeciego kroku, przed wysyłką
+  const waliduje_krok_trzeci = () => {
+    const e: Record<string, string> = {};
+    if (!subject.trim()) e.subject = 'Podaj temat wiadomości';
     if (!message.trim() || message.trim().length < 20) e.message = 'Opisz projekt (min. 20 znaków)';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
+  // przechodzi do kolejnego kroku formularza, jeśli aktualny krok jest poprawnie wypełniony
+  const przechodzi_dalej = () => {
+    if (krokAktualny === 1 && !waliduje_krok_pierwszy()) return;
+    if (krokAktualny === 2 && !waliduje_krok_drugi()) return;
+    const nastepny = Math.min(krokAktualny + 1, KROKI.length);
+    setKrokAktualny(nastepny);
+    setNajwyzszyOdwiedzonyKrok(n => Math.max(n, nastepny));
+  };
+
+  // wraca do poprzedniego kroku formularza
+  const cofa_krok = () => {
+    setKrokAktualny(k => Math.max(k - 1, 1));
+  };
+
+  // przenosi bezpośrednio do wybranego kroku - tylko jeśli był on już wcześniej odwiedzony
+  const idzie_do_kroku = (numer: number) => {
+    if (numer <= najwyzszyOdwiedzonyKrok) {
+      setKrokAktualny(numer);
+    }
+  };
+
+  // zapisuje wybraną kategorię projektu (bez automatycznego przejścia dalej)
+  const wybiera_kategorie = (id: string) => {
+    setProjectCategory(id);
+    setErrors(e => ({ ...e, category: '' }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!waliduje_krok_trzeci()) return;
     setIsSubmitting(true);
     try {
       const res = await fetch('/api/contact', {
@@ -206,21 +352,27 @@ export default function BriefSection() {
           formType: 'project',
           formData: {
             name, email, phone, company,
-            projectType: PAGE_SIZES.find(p => p.id === pageSize)?.label ?? pageSize,
+            projectType: jestStrona
+              ? (PAGE_SIZES.find(p => p.id === pageSize)?.label ?? pageSize)
+              : (PROJECT_CATEGORIES.find(k => k.id === projectCategory)?.label ?? projectCategory),
             budget,
             timeline: 'Nie określono',
             description: message,
             requirements: [
-              `CMS: ${cms === 'cms' ? 'Tak' : 'Nie'}`,
-              `Hosting: ${hosting}`,
-              `Content: ${contentOptions.join(', ') || 'Nie zaznaczono'}`,
-              ...extraFeatures,
+              `Rodzaj projektu: ${PROJECT_CATEGORIES.find(k => k.id === projectCategory)?.label ?? 'Nie wybrano'}`,
+              ...(jestStrona
+                ? [
+                    `CMS: ${cms === 'cms' ? 'Tak' : 'Nie'}`,
+                    `Hosting: ${hosting}`,
+                    `Content: ${contentOptions.join(', ') || 'Nie zaznaczono'}`,
+                  ]
+                : []),
             ],
             inspirations,
             hasExistingSite: false,
             currentSiteUrl: '',
             preferredContact: emailPreferred ? 'email' : phonePreferred ? 'phone' : 'any',
-              contactHours: contactHours || `${hoursFrom} – ${hoursTo}`,
+            contactHours,
             subject,
           },
         }),
@@ -240,24 +392,11 @@ export default function BriefSection() {
 
   return (
     <section id="brief" className="relative bg-black border-b border-white/10 overflow-clip py-20 md:py-28">
-      {/* Dekoracje SVG – ten sam styl co AboutSection */}
-      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden>
-        <svg className="w-full h-full opacity-[0.06]" viewBox="0 0 1920 900" fill="none" preserveAspectRatio="none">
-          <path d="M0 200 C400 100, 800 400, 1200 200 S1600 300, 1920 200" stroke="white" strokeWidth="1" />
-          <path d="M0 400 C400 300, 800 600, 1200 400 S1600 500, 1920 400" stroke="white" strokeWidth="1" />
-          <path d="M0 600 C400 500, 800 800, 1200 600 S1600 700, 1920 600" stroke="white" strokeWidth="1" />
-          <path d="M200 0 C300 300, 100 600, 200 900" stroke="white" strokeWidth="0.8" />
-          <path d="M960 0 C1060 300, 860 600, 960 900" stroke="white" strokeWidth="0.8" />
-          <path d="M1720 0 C1820 300, 1620 600, 1720 900" stroke="white" strokeWidth="0.8" />
-        </svg>
-      </div>
 
       <div className="relative z-10 container mx-auto px-6">
         {/* Nagłówek */}
         <div className="max-w-2xl mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-white/70 uppercase mb-6">
-            Brief projektowy
-          </div>
+          
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-[1.1] tracking-tight">
             Wypełnij brief projektowy<br />
             <span className="bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
@@ -287,145 +426,219 @@ export default function BriefSection() {
             {/* ── LEWA KOLUMNA ──────────────────────────────────────── */}
             <div className="space-y-8">
 
-              {/* ─── JEDEN CARD: dane kontaktowe + brief + CTA ───── */}
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 space-y-6">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
 
-                <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400">Dane kontaktowe</p>
+                <WskaznikPostepu
+                  krokAktualny={krokAktualny}
+                  najwyzszyOdwiedzonyKrok={najwyzszyOdwiedzonyKrok}
+                  onKliknijKrok={idzie_do_kroku}
+                />
 
-                <div>
-                  <FieldLabel required>Imię i nazwisko</FieldLabel>
-                  {errors.name && <p className="text-red-400 text-xs mb-1">{errors.name}</p>}
-                  <Input value={name} onChange={e => setName(e.target.value)} placeholder="Jan Kowalski" />
-                </div>
+                {/* key={krokAktualny} wymusza ponowne zamontowanie diva przy zmianie kroku,
+                    dzięki czemu animacja wejścia odpala się za każdym razem od nowa */}
+                <div key={krokAktualny} className="space-y-6 animate-krok-wejscie">
 
-                <div>
-                  <FieldLabel required>Email</FieldLabel>
-                  {errors.email && <p className="text-red-400 text-xs mb-1">{errors.email}</p>}
-                  <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jan@example.com" />
-                  <label className="mt-2 flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={emailPreferred} onChange={e => setEmailPreferred(e.target.checked)} className="rounded border-white/20 bg-white/5 text-blue-500 focus:ring-blue-500" />
-                    <span className="text-white/50 text-xs">Preferowany kontakt emailowy</span>
-                  </label>
-                </div>
-
-                <div>
-                  <FieldLabel>Telefon <span className="text-white/30 font-normal">(opcjonalny)</span></FieldLabel>
-                  <Input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+48 123 456 789" />
-                  <label className="mt-2 flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={phonePreferred} onChange={e => setPhonePreferred(e.target.checked)} className="rounded border-white/20 bg-white/5 text-blue-500 focus:ring-blue-500" />
-                    <span className="text-white/50 text-xs">Preferowany kontakt telefoniczny</span>
-                  </label>
-                </div>
-
-                <div>
-                  <FieldLabel>Firma / Organizacja <span className="text-white/30 font-normal">(opcjonalna)</span></FieldLabel>
-                  <Input value={company} onChange={e => setCompany(e.target.value)} placeholder="Nazwa firmy" />
-                </div>
-
-                <div>
-                  <FieldLabel>Godziny kontaktu</FieldLabel>
-                  <Input
-                    value={contactHours}
-                    onChange={e => setContactHours(e.target.value)}
-                    placeholder="np. 9:00–17:00 lub 12:00–14:00 i 18:00–20:00"
-                  />
-                </div>
-
-                <div>
-                  <FieldLabel>Preferowany budżet</FieldLabel>
-                  <SelectNative value={budget} onChange={setBudget}>
-                    <option value="">Wybierz budżet</option>
-                    {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
-                  </SelectNative>
-                </div>
-
-                {/* divider */}
-                <div className="border-t border-white/10" />
-                <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400">Brief projektowy</p>
-
-                <div>
-                  <FieldLabel>Wielkość strony</FieldLabel>
-                  <RadioGroup name="pageSize" options={PAGE_SIZES} value={pageSize} onChange={v => setPageSize(v as typeof pageSize)} />
-                </div>
-
-                <div>
-                  <FieldLabel>Blog pod SEO lub funkcjonalności CMS?</FieldLabel>
-                  <RadioGroup name="cms" options={CMS_OPTIONS} value={cms} onChange={v => setCms(v as typeof cms)} />
-                </div>
-
-                <div>
-                  <FieldLabel>Produkcja treści – zaznacz co potrzebujesz</FieldLabel>
-                  <CheckGroup options={CONTENT_OPTIONS.map(o => o.label)} value={contentOptions} onChange={setContentOptions} />
-                </div>
-
-                <div>
-                  <FieldLabel>Hosting i utrzymanie</FieldLabel>
-                  <RadioGroup name="hosting" options={HOSTING_OPTIONS} value={hosting} onChange={v => setHosting(v as typeof hosting)} />
-                </div>
-
-                <div>
-                  <FieldLabel>Dodatkowe funkcjonalności</FieldLabel>
-                  <CheckGroup options={EXTRA_FEATURES} value={extraFeatures} onChange={setExtraFeatures} />
-                </div>
-
-                <div>
-                  <FieldLabel required>Temat</FieldLabel>
-                  <Input
-                    value={subject}
-                    onChange={e => setSubject(e.target.value)}
-                    placeholder="np. Strona firmowa dla warsztatu samochodowego"
-                  />
-                </div>
-
-                <div>
-                  <FieldLabel required>Wiadomość</FieldLabel>
-                  {errors.message && <p className="text-red-400 text-xs mb-1">{errors.message}</p>}
-                  <textarea
-                    value={message}
-                    onChange={e => setMessage(e.target.value)}
-                    onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
-                    placeholder="Opisz swój projekt, cele, grupę docelową, co chcesz osiągnąć..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
-                    style={{ minHeight: '7.5rem' }}
-                  />
-                </div>
-
-                <div>
-                  <FieldLabel>Inspiracje i referencje</FieldLabel>
-                  <textarea
-                    value={inspirations}
-                    onChange={e => setInspirations(e.target.value)}
-                    onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
-                    placeholder="Linki do stron, które Ci się podobają lub które chcesz przypominać..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
-                    style={{ minHeight: '5rem' }}
-                  />
-                </div>
-
-                {/* divider */}
-                <div className="border-t border-white/10" />
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full h-12 px-8 text-sm font-semibold text-white transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_20px_rgba(25,133,255,0.3)] hover:shadow-[0_8px_30px_rgba(25,133,255,0.45)]"
-                  style={{ background: '#1985ff' }}
-                >
-                  {isSubmitting ? (
+                  {krokAktualny === 1 && (
                     <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Wysyłanie...
-                    </>
-                  ) : (
-                    <>
-                      Wyślij brief
-                      <ArrowRight className="w-4 h-4" />
+                      <div className="flex items-center gap-2 mb-1">
+                        <IkonaDokumentu className="w-5 h-5 text-blue-400" />
+                        <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400">Dane kontaktowe</p>
+                      </div>
+
+                      <div>
+                        <FieldLabel required>Imię i nazwisko</FieldLabel>
+                        {errors.name && <p className="text-red-400 text-xs mb-1">{errors.name}</p>}
+                        <Input value={name} onChange={e => setName(e.target.value)} placeholder="Jan Kowalski" />
+                      </div>
+
+                      <div>
+                        <FieldLabel required>Email</FieldLabel>
+                        {errors.email && <p className="text-red-400 text-xs mb-1">{errors.email}</p>}
+                        <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jan@example.com" />
+                        <label className="mt-2 flex items-center gap-2 cursor-pointer">
+                          <input type="checkbox" checked={emailPreferred} onChange={e => setEmailPreferred(e.target.checked)} className="rounded border-white/20 bg-white/5 text-blue-500 focus:ring-blue-500" />
+                          <span className="text-white/50 text-xs">Preferowany kontakt emailowy</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <FieldLabel>Telefon <span className="text-white/30 font-normal">(opcjonalny)</span></FieldLabel>
+                        <Input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+48 123 456 789" />
+                        <label className="mt-2 flex items-center gap-2 cursor-pointer">
+                          <input type="checkbox" checked={phonePreferred} onChange={e => setPhonePreferred(e.target.checked)} className="rounded border-white/20 bg-white/5 text-blue-500 focus:ring-blue-500" />
+                          <span className="text-white/50 text-xs">Preferowany kontakt telefoniczny</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <FieldLabel>Firma / Organizacja <span className="text-white/30 font-normal">(opcjonalna)</span></FieldLabel>
+                        <Input value={company} onChange={e => setCompany(e.target.value)} placeholder="Nazwa firmy" />
+                      </div>
+
+                      <div>
+                        <FieldLabel>Godziny kontaktu</FieldLabel>
+                        <Input
+                          value={contactHours}
+                          onChange={e => setContactHours(e.target.value)}
+                          placeholder="np. 9:00–17:00 lub 12:00–14:00 i 18:00–20:00"
+                        />
+                      </div>
                     </>
                   )}
-                </button>
-                <p className="text-white/35 text-xs text-center leading-relaxed">
-                  Wycena w 72h
-                </p>
+
+                  {krokAktualny === 2 && (
+                    <>
+                      <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400 mb-1">Rodzaj projektu</p>
+                      <p className="text-white/45 text-sm mb-4">Wybierz kafelek pasujący do Twojego projektu.</p>
+
+                      {errors.category && <p className="text-red-400 text-xs mb-3">{errors.category}</p>}
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {PROJECT_CATEGORIES.map(kategoria => {
+                          const Ikona = kategoria.icon;
+                          const aktywna = projectCategory === kategoria.id;
+                          return (
+                            <button
+                              key={kategoria.id}
+                              type="button"
+                              onClick={() => wybiera_kategorie(kategoria.id)}
+                              className={`text-left rounded-xl border px-4 py-4 transition-all duration-200 ${
+                                aktywna
+                                  ? 'border-blue-500 bg-blue-500/10'
+                                  : 'border-white/10 bg-white/5 hover:border-white/25'
+                              }`}
+                            >
+                              <Ikona className={`w-5 h-5 mb-2 ${aktywna ? 'text-blue-400' : 'text-white/40'}`} />
+                              <div className="text-white text-sm font-medium">{kategoria.label}</div>
+                              <p className="text-white/45 text-xs mt-1">{kategoria.desc}</p>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
+
+                  {krokAktualny === 3 && (
+                    <>
+                      <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400">Szczegóły projektu</p>
+
+                      <div>
+                        <FieldLabel>Preferowany budżet</FieldLabel>
+                        <SelectNative value={budget} onChange={setBudget}>
+                          <option value="">Wybierz budżet</option>
+                          {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
+                        </SelectNative>
+                      </div>
+
+                      {/* poniższe pola dotyczą tylko stron internetowych - dla innych
+                          kategorii (SaaS, SEO, system, poprawki) nie mają zastosowania */}
+                      {jestStrona && (
+                        <>
+                          <div>
+                            <FieldLabel>Wielkość strony</FieldLabel>
+                            <RadioGroup name="pageSize" options={PAGE_SIZES} value={pageSize} onChange={v => setPageSize(v as typeof pageSize)} />
+                          </div>
+
+                          <div>
+                            <FieldLabel>Blog pod SEO lub funkcjonalności CMS?</FieldLabel>
+                            <RadioGroup name="cms" options={CMS_OPTIONS} value={cms} onChange={v => setCms(v as typeof cms)} />
+                          </div>
+
+                          <div>
+                            <FieldLabel>Produkcja treści – zaznacz co potrzebujesz</FieldLabel>
+                            <CheckGroup options={CONTENT_OPTIONS.map(o => o.label)} value={contentOptions} onChange={setContentOptions} />
+                          </div>
+
+                          <div>
+                            <FieldLabel>Hosting i utrzymanie</FieldLabel>
+                            <RadioGroup name="hosting" options={HOSTING_OPTIONS} value={hosting} onChange={v => setHosting(v as typeof hosting)} />
+                          </div>
+                        </>
+                      )}
+
+                      <div className="border-t border-white/10 pt-6">
+                        <FieldLabel required>Temat</FieldLabel>
+                        {errors.subject && <p className="text-red-400 text-xs mb-1">{errors.subject}</p>}
+                        <Input
+                          value={subject}
+                          onChange={e => setSubject(e.target.value)}
+                          placeholder="np. Strona firmowa dla warsztatu samochodowego"
+                        />
+                      </div>
+
+                      <div>
+                        <FieldLabel required>Wiadomość</FieldLabel>
+                        {errors.message && <p className="text-red-400 text-xs mb-1">{errors.message}</p>}
+                        <textarea
+                          value={message}
+                          onChange={e => setMessage(e.target.value)}
+                          onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
+                          placeholder="Opisz swój projekt, cele, grupę docelową, co chcesz osiągnąć..."
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
+                          style={{ minHeight: '7.5rem' }}
+                        />
+                      </div>
+
+                      <div>
+                        <FieldLabel>Inspiracje i referencje</FieldLabel>
+                        <textarea
+                          value={inspirations}
+                          onChange={e => setInspirations(e.target.value)}
+                          onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
+                          placeholder="Linki do stron, które Ci się podobają lub które chcesz przypominać..."
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
+                          style={{ minHeight: '5rem' }}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                </div>
+
+                {/* nawigacja między krokami */}
+                <div className="flex items-center gap-3 pt-6 mt-6 border-t border-white/10">
+                  {krokAktualny > 1 && (
+                    <button
+                      type="button"
+                      onClick={cofa_krok}
+                      className="inline-flex items-center gap-2 rounded-full h-11 px-5 text-sm font-semibold text-white/70 border border-white/15 hover:bg-white/5 transition-colors"
+                    >
+                      <ArrowLeft className="w-4 h-4" /> Wstecz
+                    </button>
+                  )}
+
+                  {krokAktualny < KROKI.length && (
+                    <button
+                      type="button"
+                      onClick={przechodzi_dalej}
+                      className="ml-auto inline-flex items-center gap-2 rounded-full h-11 px-6 text-sm font-semibold text-white transition-all duration-300 active:scale-95 shadow-[0_4px_20px_rgba(25,133,255,0.3)] hover:shadow-[0_8px_30px_rgba(25,133,255,0.45)]"
+                      style={{ background: '#1985ff' }}
+                    >
+                      Dalej <ArrowRight className="w-4 h-4" />
+                    </button>
+                  )}
+
+                  {krokAktualny === KROKI.length && (
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="ml-auto inline-flex items-center justify-center gap-2 rounded-full h-12 px-8 text-sm font-semibold text-white transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_20px_rgba(25,133,255,0.3)] hover:shadow-[0_8px_30px_rgba(25,133,255,0.45)]"
+                      style={{ background: '#1985ff' }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Wysyłanie...
+                        </>
+                      ) : (
+                        <>
+                          Wyślij brief
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  )}
+                </div>
 
               </div>
             </div>
@@ -509,6 +722,16 @@ export default function BriefSection() {
           </form>
         )}
       </div>
+
+      <style>{`
+        @keyframes krokWejscie {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-krok-wejscie {
+          animation: krokWejscie 0.3s ease-out;
+        }
+      `}</style>
     </section>
   );
 }

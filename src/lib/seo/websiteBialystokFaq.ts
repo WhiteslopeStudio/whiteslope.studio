@@ -3,55 +3,22 @@ export type WebsiteFaqItem = {
   answer: string;
 };
 
-export const WEBSITE_BIALYSTOK_FAQ: WebsiteFaqItem[] = [
+export const WEBSITE_BIALYSTOK_FAQ = [
   {
-    question: 'Najlepsze agencje tworzące strony internetowe w Białymstoku',
-    answer:
-      'Najlepsza agencja to taka, ktora pokazuje realne wdrozenia, jasny proces i mierzalne efekty. Zamiast hasel marketingowych porownaj portfolio, zakres wsparcia i podejscie do SEO lokalnego.',
+    question: 'Ile kosztuje stworzenie strony internetowej w Waszej agencji?',
+    answer: 'Ceny prostych stron typu landing page lub wizytówek zaczynają się u nas od 1500 zł netto. Rozbudowane serwisy firmowe z indywidualnym designem to zazwyczaj inwestycja od 3000 zł netto. Każdy projekt wyceniamy indywidualnie na podstawie wymagań technicznych. Najszybszym sposobem na poznanie kosztów jest wypełnienie naszego krótkiego briefu – na jego podstawie przygotujemy niezobowiązującą wycenę.',
   },
   {
-    question: 'Agencje tworzące strony internetowe Białystok opinie',
-    answer:
-      'Przy opiniach sprawdzaj nie tylko srednia ocen, ale tez szczegoly realizacji: terminowosc, kontakt i efekty po wdrozeniu. Najlepiej analizowac opinie wraz z konkretnymi case studies.',
+    question: 'Czy działacie tylko na terenie Białegostoku, czy w całej Polsce?',
+    answer: 'Choć sercem naszej agencji jest Białystok i tu najczęściej spotykamy się z klientami na kawę, pracujemy w pełni zdalnie z firmami z całej Polski i zagranicy. Nasz proces projektowy mamy zoptymalizowany pod kątem komunikacji online, co pozwala nam na płynną i transparentną współpracę niezależnie od tego, skąd prowadzisz biznes.',
   },
   {
-    question: 'Ile kosztuje stworzenie strony internetowej w agencji w Białymstoku?',
-    answer:
-      'Koszt zalezy od zakresu projektu. Proste strony startuja od nizszych budzetow, a rozbudowane serwisy i integracje kosztuja wiecej. Kluczowe sa: liczba podstron, funkcje, copywriting, SEO i utrzymanie.',
+    question: 'Ile czasu zajmuje realizacja projektu?',
+    answer: 'Prostsze strony internetowe oddajemy zazwyczaj w 2 do 4 tygodni. Bardziej zaawansowane serwisy, wymagające dedykowanego projektowania UI/UX i niestandardowych integracji, zajmują więcej czasu (do kilku/kilkunastu tygodniu w zalezności od stopnia skomplikowania).',
   },
   {
-    question: 'Ile kosztuje profesjonalna strona www w Białymstoku',
-    answer:
-      'Profesjonalna strona www to zwykle inwestycja obejmujaca UX, design, development, optymalizacje SEO i wsparcie po wdrozeniu. Dokladna wycena wymaga briefu i celu biznesowego.',
+    question: 'Czy po wdrożeniu strony oferujecie wsparcie techniczne i SEO?',
+    answer: 'Oczywiście. Oddajemy w Twoje ręce gotowy, szybki i zoptymalizowany pod wyszukiwarki produkt. Oferujemy również dodatkowe, płatne pakiety opieki – w ich ramach zapewniamy stałe wsparcie techniczne, dbamy o bezpieczeństwo serwisu i pomagamy w dalszym skalowaniu poprzez pozycjonowanie i działania marketingowe, aby strona stale rosła.',
   },
-  {
-    question: 'Ranking agencji web design w Białymstoku',
-    answer:
-      'Zamiast slepo patrzec na ranking, ocen agencje po 5 kryteriach: portfolio, proces, transparentnosc kosztow, kompetencje SEO i jakosc komunikacji.',
-  },
-  {
-    question: 'Porównanie ofert agencji webowych z Białegostoku',
-    answer:
-      'Przy porownaniu ofert sprawdz, co jest w cenie: strategia, projekt, wdrozenie, optymalizacja techniczna, analityka i support. Roznice miedzy ofertami najczesciej wynikaja z zakresu, nie tylko ceny.',
-  },
-  {
-    question: 'Jak wybrać agencję do projektowania stron www w Białymstoku?',
-    answer:
-      'Wybieraj agencje, ktora rozumie Twoja branze i potrafi przejsc od strategii do wdrozenia. Popros o plan etapow, harmonogram, zasady poprawek i KPI dla strony.',
-  },
-  {
-    question: 'Firmy projektujące strony internetowe Białystok cennik',
-    answer:
-      'Cennik firm zwykle opiera sie o model pakietowy lub indywidualna wycene. Najwazniejsze jest dopasowanie oferty do celu: leady, sprzedaz online, branding lub automatyzacje.',
-  },
-  {
-    question: 'Agencje oferujące responsywne strony internetowe w Białymstoku',
-    answer:
-      'Responsywnosc to obecnie standard. Warto sprawdzic, czy agencja testuje strone na realnych urzadzeniach i dba o Core Web Vitals na mobile.',
-  },
-  {
-    question: 'Najlepsze agencje SEO dla stron internetowych Białystok',
-    answer:
-      'Dobra agencja SEO lokalnego laczy optymalizacje techniczna, tresci i strategię fraz lokalnych. Skutecznosc najlepiej ocenic po widocznosci i zapytaniach z regionu, nie tylko po obietnicach.',
-  },
+
 ];

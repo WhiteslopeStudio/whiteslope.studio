@@ -160,27 +160,22 @@ export default function Chatbot() {
           aria-label="Otwórz AI asystenta WhiteSlope"
         >
           
-
-          {/* GŁÓWNY PRZYCISK Z KOLOREM #8265db */}
           <div 
-            className="relative px-5 py-3 rounded-full backdrop-blur-xl shadow-2xl hover:shadow-[0_8px_32px_rgba(130,101,219,0.4)] transition-all duration-300 hover:scale-111 flex items-center gap-3 hover:cursor-pointer border border-[#8265db]/30 scale-[0.80] md:scale-110"
+            className="relative flex items-center gap-3 rounded-full border border-zinc-200 bg-white px-5 py-3 shadow-[0_16px_45px_rgba(0,0,0,0.16)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_22px_60px_rgba(0,0,0,0.2)] scale-[0.80] md:scale-110 hover:cursor-pointer"
             style={{
-              backgroundColor: '#237cf2ff',
+              backgroundColor: '#0062ff',
             }}
           >
             <div 
-              className="absolute inset-0 rounded-full op acity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                backgroundColor: 'rgba(130, 101, 219, 0.2)',
+                background: 'radial-gradient(circle at 50% 100%, rgba(59,130,246,0.12), rgba(59,130,246,0.04) 40%, rgba(255,255,255,0) 75%)',
               }}
             ></div>
 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-white relative z-10 group-hover:scale-110 transition-transform duration-300">
               <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clipRule="evenodd" />
             </svg>
-
-            
-            <span className="text-sm font-medium text-white relative z-10">Zapytaj Asystenta</span>
           </div>
         </button>
       </div>
@@ -194,23 +189,22 @@ export default function Chatbot() {
     <>
       {/* Backdrop blur overlay */}
       <div 
-        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300"
+        className="fixed inset-0 bg-black/10 backdrop-blur-[2px] z-40 transition-opacity duration-300"
         onClick={() => setIsOpen(false)}
       ></div>
 
       {/* Chat window - PRAWY DOLNY RÓG */}
-      <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
-        <div className="w-[420px] sm:w-[460px] md:w-[500px] max-w-[calc(100vw-3rem)] h-[600px] max-h-[calc(100vh-8rem)] backdrop-blur-3xl bg-black/40 border border-white/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto animate-in slide-in-from-bottom-8 fade-in duration-300">
+      <div className="fixed top-0 right-0 bottom-0 z-50 pointer-events-none">
+        <div className="w-[min(94vw,560px)] h-full max-w-[calc(100vw-1rem)] md:max-w-[560px] backdrop-blur-xl bg-white border-l border-zinc-200 shadow-[0_30px_90px_rgba(0,0,0,0.18)] flex flex-col overflow-hidden pointer-events-auto animate-in slide-in-from-right-10 fade-in duration-300">
           
           {/* HEADER */}
-          <div className="relative bg-white/5 border-b border-white/10 p-4">
+          <div className="relative bg-white border-b border-zinc-200 p-5 md:p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                {/* AVATAR BOX z nowym kolorem */}
                 <div 
-                  className="w-10 h-10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center"
+                  className="w-11 h-11 rounded-2xl flex items-center justify-center border border-blue-100 shadow-sm"
                   style={{
-                    backgroundColor: '#8265db',
+                    background: 'linear-gradient(135deg, #1a75ff 0%, #0057ff 60%, #004ae6 100%)',
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-white relative z-10 group-hover:scale-110 transition-transform duration-300">
@@ -218,13 +212,13 @@ export default function Chatbot() {
             </svg>
                 </div>
                 <div>
-                  <h2 className="text-white font-semibold text-base">Asystent Whiteslope</h2>
-                  <p className="text-white/50 text-xs">Jestem tutaj, aby pomóc!</p>
+                  <h2 className="text-zinc-950 font-semibold text-base md:text-lg">Asystent Whiteslope</h2>
+                  <p className="text-zinc-500 text-xs md:text-sm">Jestem tutaj, aby pomóc!</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="hover:cursor-pointer p-2 backdrop-blur-xl bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white/60 hover:text-white transition-all duration-200 hover:scale-105"
+                className="hover:cursor-pointer p-2.5 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-xl text-zinc-500 hover:text-zinc-900 transition-all duration-200 hover:scale-105"
                 aria-label="Zamknij chat"
               >
                 <X className="w-4 h-4" />
@@ -233,7 +227,7 @@ export default function Chatbot() {
           </div>
 
           {/* MESSAGES CONTAINER */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent hover:scrollbar-thumb-white/20">
+          <div className="flex-1 overflow-y-auto p-4 md:p-5 space-y-4 bg-white scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-transparent hover:scrollbar-thumb-zinc-400">
             {messages.map((msg, index) => (
               <div 
                 key={index}
@@ -243,10 +237,10 @@ export default function Chatbot() {
                   {/* USER MESSAGE */}
                   {msg.role === 'user' && (
                     <div 
-                      className="px-4 py-3 rounded-2xl rounded-tr-md shadow-lg border"
+                      className="px-4 py-3 rounded-2xl rounded-tr-md shadow-sm border"
                       style={{
-                        backgroundColor: '#8265db',
-                        borderColor: 'rgba(130, 101, 219, 0.3)',
+                        background: 'linear-gradient(135deg, #1a75ff 0%, #0057ff 100%)',
+                        borderColor: 'rgba(0, 87, 255, 0.18)',
                       }}
                     >
                       <p className="text-white text-sm leading-relaxed">{msg.content}</p>
@@ -255,35 +249,35 @@ export default function Chatbot() {
 
                   {/* BOT MESSAGE */}
                   {msg.role === 'bot' && (
-                    <div className="backdrop-blur-xl bg-white/5 border border-white/10 p-4 rounded-2xl rounded-tl-md shadow-lg">
+                    <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-2xl rounded-tl-md shadow-sm">
                       {/* Bot avatar + name */}
-                      <div className="flex items-center gap-2 mb-2 pb-2 border-b border-white/10">
+                      <div className="flex items-center gap-2 mb-2 pb-2 border-b border-zinc-200">
                         <div 
-                          className="w-6 h-6 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center"
+                          className="w-6 h-6 rounded-xl flex items-center justify-center shadow-sm"
                           style={{
-                            backgroundColor: '#8265db',
+                            background: 'linear-gradient(135deg, #1a75ff 0%, #0057ff 100%)',
                           }}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-white relative z-10 group-hover:scale-110 transition-transform duration-300">
               <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clipRule="evenodd" />
             </svg>
                         </div>
-                        <span className="text-xs text-white/50 font-medium">Asystent Whiteslope</span>
+                        <span className="text-xs text-zinc-500 font-medium">Asystent Whiteslope</span>
                       </div>
                       
                       {/* Message content with markdown */}
-                      <div className="text-white/90 text-sm leading-relaxed prose prose-sm prose-invert max-w-none">
+                      <div className="text-zinc-800 text-sm leading-relaxed prose prose-sm max-w-none">
                         <ReactMarkdown
                           components={{
-                            strong: ({node, ...props}) => <strong className="text-white font-semibold" {...props} />,
-                            em: ({node, ...props}) => <em className="text-white/80 italic" {...props} />,
+                            strong: ({node, ...props}) => <strong className="text-zinc-950 font-semibold" {...props} />,
+                            em: ({node, ...props}) => <em className="text-zinc-700 italic" {...props} />,
                             p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
                             ul: ({node, ...props}) => <ul className="list-disc list-inside space-y-1 my-2" {...props} />,
                             ol: ({node, ...props}) => <ol className="list-decimal list-inside space-y-1 my-2" {...props} />,
                             li: ({node, ...props}) => <li className="ml-2" {...props} />,
                             a: ({node, ...props}) => (
                               <a 
-                                className="underline hover:text-white transition-colors" 
+                                className="underline text-blue-700 hover:text-zinc-950 transition-colors" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 {...props} 
@@ -297,7 +291,7 @@ export default function Chatbot() {
                       
                       {/* Dynamic buttons */}
                       {msg.role === 'bot' && msg.buttons && msg.buttons.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-white/10">
+                        <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-zinc-200">
                           {msg.buttons.map((button, btnIndex) => (
                             <a
                               key={btnIndex}
@@ -305,10 +299,10 @@ export default function Chatbot() {
                               className={`
                                 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95
                                 ${button.variant === 'primary' 
-                                  ? 'backdrop-blur-xl bg-white/20 border border-white/30 text-white hover:bg-white/30' 
+                                  ? 'bg-blue-600 border border-blue-600 text-white hover:bg-blue-500' 
                                   : button.variant === 'secondary'
-                                  ? 'backdrop-blur-xl bg-white/10 border border-white/20 text-white/80 hover:bg-white/20'
-                                  : 'border border-white/20 text-white/70 hover:text-white hover:border-white/40'
+                                  ? 'bg-zinc-100 border border-zinc-200 text-zinc-800 hover:bg-zinc-200'
+                                  : 'border border-zinc-200 text-zinc-700 hover:text-zinc-950 hover:border-zinc-300'
                                 }
                               `}
                               target="_self"
@@ -328,26 +322,26 @@ export default function Chatbot() {
             {/* Loading indicator */}
             {loading && (
               <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="backdrop-blur-xl bg-white/5 border border-white/10 p-4 rounded-2xl rounded-bl-md shadow-lg">
-                  <div className="flex items-center gap-2 mb-2 pb-2 border-b border-white/10">
+                <div className="bg-zinc-50 border border-zinc-200 p-4 rounded-2xl rounded-bl-md shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 pb-2 border-b border-zinc-200">
                     <div 
-                      className="w-6 h-6 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center animate-pulse"
+                      className="w-6 h-6 rounded-xl flex items-center justify-center animate-pulse"
                       style={{
-                        backgroundColor: '#8265db',
+                        background: 'linear-gradient(135deg, #1a75ff 0%, #0057ff 100%)',
                       }}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-white relative z-10 group-hover:scale-110 transition-transform duration-300">
               <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clipRule="evenodd" />
             </svg>
                     </div>
-                    <span className="text-xs text-white/50 font-medium">Asystent Whiteslope pisze...</span>
+                    <span className="text-xs text-zinc-500 font-medium">Asystent Whiteslope pisze...</span>
                   </div>
                   <div className="flex space-x-1 mt-2">
-                    <div className="w-2 h-2 bg-white/50 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-white/50 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                    <div className="w-2 h-2 bg-white/50 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                    <div className="w-2 h-2 bg-blue-500/60 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-blue-500/60 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="w-2 h-2 bg-blue-500/60 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
                   </div>
-                  <p className="text-white/30 text-xs mt-2">Analizuję...</p>
+                  <p className="text-zinc-400 text-xs mt-2">Analizuję...</p>
                 </div>
               </div>
             )}
@@ -357,7 +351,7 @@ export default function Chatbot() {
           </div>
 
           {/* INPUT AREA */}
-          <div className="p-4 backdrop-blur-xl bg-white/5 border-t border-white/10">
+          <div className="p-4 md:p-5 bg-white border-t border-zinc-200">
             
             {/* Input field + send button */}
             <div className="flex gap-2 mb-3">
@@ -367,12 +361,12 @@ export default function Chatbot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Zapytaj o nasze usługi..."
-                  className="w-full p-3 pr-14 backdrop-blur-xl bg-white/10 border border-white/20 rounded-full text-white placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-200 text-sm"
+                  className="w-full p-3 pr-14 bg-white border border-zinc-200 rounded-full text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 text-sm shadow-sm"
                   disabled={loading}
                   maxLength={500}
                 />
                 {input.length > 0 && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/30 text-xs">
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 text-xs">
                     {input.length}/500
                   </div>
                 )}
@@ -382,15 +376,15 @@ export default function Chatbot() {
                 disabled={loading || !input.trim()}
                 className={`p-3 rounded-full transition-all duration-200 ${
                   loading || !input.trim()
-                    ? 'backdrop-blur-xl bg-white/5 border border-white/10 text-white/30 cursor-not-allowed'
-                    : 'backdrop-blur-xl border hover:scale-105 active:scale-95'
+                    ? 'bg-zinc-100 border border-zinc-200 text-zinc-300 cursor-not-allowed'
+                    : 'border hover:scale-105 active:scale-95'
                 }`}
                 style={
                   loading || !input.trim() 
                     ? {} 
                     : {
-                        backgroundColor: '#8265db',
-                        borderColor: 'rgba(130, 101, 219, 0.3)',
+                        backgroundColor: '#0057ff',
+                        borderColor: 'rgba(0, 87, 255, 0.18)',
                         color: 'white'
                       }
                 }
@@ -408,7 +402,7 @@ export default function Chatbot() {
             <div className="flex gap-2 mb-3 flex-wrap">
               <button 
                 onClick={() => setInput("Jakie usługi oferujecie?")}
-                className="hover:cursor-pointer text-xs px-3 py-1.5 backdrop-blur-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 hover:text-white rounded-full transition-all duration-200 flex items-center gap-1"
+                className="hover:cursor-pointer text-xs px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-full transition-all duration-200 flex items-center gap-1"
                 disabled={loading}
               >
                 <Globe className="w-3 h-3" />
@@ -416,7 +410,7 @@ export default function Chatbot() {
               </button>
               <button 
                 onClick={() => setInput("Ile kosztuje strona internetowa?")}
-                className="hover:cursor-pointer text-xs px-3 py-1.5 backdrop-blur-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 hover:text-white rounded-full transition-all duration-200 flex items-center gap-1"
+                className="hover:cursor-pointer text-xs px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-full transition-all duration-200 flex items-center gap-1"
                 disabled={loading}
               >
                 <DollarSign className="w-3 h-3" />
@@ -424,7 +418,7 @@ export default function Chatbot() {
               </button>
               <button 
                 onClick={() => setInput("Jak wygląda proces współpracy?")}
-                className="hover:cursor-pointer text-xs px-3 py-1.5 backdrop-blur-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/60 hover:text-white rounded-full transition-all duration-200 flex items-center gap-1"
+                className="hover:cursor-pointer text-xs px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 hover:text-zinc-950 rounded-full transition-all duration-200 flex items-center gap-1"
                 disabled={loading}
               >
                 <TrendingUp className="w-3 h-3" />
@@ -433,21 +427,21 @@ export default function Chatbot() {
             </div>
             
             {/* WhiteSlope branding footer */}
-            <div className="pt-2 border-t border-white/20">
-              <div className="text-xs text-white/90 text-center space-y-1 font-medium">
+            <div className="pt-2 border-t border-zinc-200">
+              <div className="text-xs text-zinc-700 text-center space-y-1 font-medium">
                 <p className="flex items-center justify-center gap-1">
                   <Zap className="w-3 h-3" />
-                  Powered by <span className="text-white font-bold">WhiteSlope</span> AI
+                  Powered by <span className="text-zinc-950 font-bold">WhiteSlope</span> AI
                 </p>
                 <p className="flex items-center justify-center gap-2">
-                  <a href="/pricing/ai-integration" className="text-white/80 hover:text-white underline transition-colors duration-200 flex items-center gap-1">
+                  <a href="/pricing/ai-integration" className="text-zinc-600 hover:text-zinc-950 underline transition-colors duration-200 flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-white relative z-10 group-hover:scale-110 transition-transform duration-300">
               <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clipRule="evenodd" />
             </svg>
                     Chcesz taki chatbot?
                   </a>
-                  <span className="text-white/40">•</span>
-                  <a href="/contact?tab=meeting" className="text-white/80 hover:text-white underline transition-colors duration-200 flex items-center gap-1">
+                  <span className="text-zinc-400">•</span>
+                  <a href="/contact?tab=meeting" className="text-zinc-600 hover:text-zinc-950 underline transition-colors duration-200 flex items-center gap-1">
                     <Phone className="w-3 h-3" />
                     Konsultacja
                   </a>
