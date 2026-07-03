@@ -1,233 +1,151 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowRight, 
-  ArrowLeft, 
-  MonitorPlay, 
-  VideoCamera, 
-  Broadcast, 
-} from "@phosphor-icons/react";
-import { PrimaryButton } from '@/components/ui/Button';
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import { Check, ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-const YELLOW = '#ffde52'; 
-const GRAY_LIGHT = '#a1a1a1';
-const GRAY_BORDER = '#262626';
-
-const VIDEO_SERVICES = [
-  { 
-    id: 'film', 
-    title: 'Video Marketing', 
-    icon: VideoCamera, 
-    description: 'Produkcje filmowe 4K Brand Story.',
-    longDescription: 'Tworzymy luksusowe filmy dokumentalne i opowieści o markach, które budują autorytet i emocjonalną więź z Twoim klientem.',
-    type: 'mp4',
-    src: '/_resources/videoMarketing/WieslawskiStudioFilm.mp4' 
-  },
-  { 
-    id: 'ugc', 
-    title: 'UGC', 
-    icon: Broadcast, 
-    description: 'User Generated Content.',
-    longDescription: 'Autentyczne treści od twórców, które nie wyglądają jak reklama. Idealne do budowania zaufania w kampaniach na TikTok i Reels.',
-    type: 'youtube',
-    src: 'https://www.youtube.com/embed/nGAbHUE1eyI' 
-  },
-  { 
-    id: 'ads', 
-    title: 'Film marketingowy', 
-    icon: MonitorPlay, 
-    description: 'Reklamy pod konwersję (Ads).',
-    longDescription: 'Dynamiczne kreacje wideo zoptymalizowane pod wysoki CTR. Skupiamy się na "scroll-stoppers", które natychmiast przyciągają uwagę.',
-    type: 'mp4',
-    src: '/_resources/videoMarketing/VoucheryNagranie.mp4' 
-  },
+// Nowa, rozszerzona lista usług
+const SERVICES = [
+  { id: 'email', title: 'Email marketing' },
+  { id: 'video', title: 'Video Marketing + UGC' },
+  { id: 'graphics', title: 'Grafika 2D i 3D' },
+  { id: 'audio', title: 'Obróbka dźwięku' },
 ];
 
 export default function VideoShowcase() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const active = VIDEO_SERVICES[activeIdx];
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Parallax dla filmu
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  const next = () => setActiveIdx((i) => (i + 1) % VIDEO_SERVICES.length);
-  const prev = () => setActiveIdx((i) => (i - 1 + VIDEO_SERVICES.length) % VIDEO_SERVICES.length);
-
-  useEffect(() => {
-    if (active.type === 'mp4' && videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch(() => {});
-    }
-  }, [activeIdx, active.type]);
+  const videoY = useTransform(scrollYProgress, [0, 0.5, 1], ["0px", "0px", "50px"]);
 
   return (
-    <section className="relative w-full bg-black py-24 overflow-hidden border-t" style={{ borderColor: GRAY_BORDER }}>
-      
-      {/* GRID BACKGROUND */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-           style={{ backgroundImage: `radial-gradient(${GRAY_LIGHT} 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-
-      <div className="flex flex-col lg:flex-row items-stretch w-full min-h-[850px]">
+    <section className="relative w-full bg-white pb-[80px] overflow-hidden ">
+      <div className="w-full max-w-[1640px] mx-auto px-[24px]">
         
-        {/* --- LEWO: Treść (50%) --- */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left px-6 md:px-12 lg:px-20 z-10 py-4">
+        {/* --- GŁÓWNA KARTA BENTO (DARK MODE) --- */}
+        {/* Tło ustawione na elegancki, ciemny szary HEX #161616 */}
+        <div 
+          ref={containerRef}
+          className="relative group w-full bg-[#161616] rounded-[32px] border border-zinc-800 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-zinc-700 cursor-pointer flex flex-col lg:flex-row"
+        >
           
-          <div className="w-full flex justify-start mb-16">
-             <img 
-              src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING.webp"
-              className="h-14 md:h-16 object-contain"
-              alt="Logo Marketing"
-            />
-          </div>
+          <Link href="/pricing/video-marketing" className="absolute inset-0 z-30" aria-label="Wyceń wideo marketing" />
 
-          <h2 
-            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
-            style={{
-              fontFamily: 'var(--font-unbounded), sans-serif',
-       
-            }}
-          >
-            Produkcja contentu i  <br /> 
-            wizerunek marki premium <span style={{ color: YELLOW }}></span>
-          </h2>
+          
 
-          <h3 className="text-white text-lg md:text-xl font-bold leading-snug mb-12 max-w-xl opacity-90">
-             Filmy i tworzenie contentu to potężne narzędzie do zwiększania ruchu i zaufania Twojej marki.
-          </h3>
+          {/* --- LEWO: Treść --- */}
+          <div className="w-full lg:w-[45%] flex flex-col items-start text-left p-[32px] lg:p-[64px] z-20 relative pointer-events-none">
+            
+            {/* LOGO: Wersja jasna (bez _czarny) */}
+            <div className="w-full flex justify-start mb-[32px] lg:mb-[40px]">
+               <img 
+                src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING.webp"
+                className="h-[30px] lg:h-[40px] object-contain pointer-events-none"
+                alt="Whiteslope Studio Video Marketing"
+              />
+            </div>
 
-          <div className="flex flex-wrap gap-2 mb-10">
-            {VIDEO_SERVICES.map((service, i) => {
-              const isActive = activeIdx === i;
-              const Icon = service.icon;
-              
-              return (
-                <div
-                  key={service.id}
-                  onClick={() => setActiveIdx(i)}
-                  className="group relative inline-flex items-center justify-center px-6 py-3 border cursor-pointer select-none overflow-hidden transition-none"
-                  style={{ 
-                    backgroundColor: isActive ? '#ffffff' : 'transparent',
-                    color: isActive ? '#000000' : GRAY_LIGHT,
-                    borderColor: isActive ? '#ffffff' : GRAY_BORDER,
-                  }}
-                >
-                  <div className="relative flex items-center gap-2">
-                    <div className="transition-all duration-200 group-hover:scale-0 group-hover:opacity-0 group-hover:w-0">
-                      <Icon size={18} weight="bold" />
-                    </div>
-                    <span className="text-sm font-bold uppercase tracking-tight">{service.title}</span>
-                    <div className="absolute -right-6 opacity-0 translate-x-4 transition-all duration-200 group-hover:relative group-hover:right-0 group-hover:opacity-100 group-hover:translate-x-0">
-                      <ArrowRight size={18} weight="bold" />
-                    </div>
+            {/* BIAŁE NAPISY */}
+            <h2 className="text-[36px] lg:text-[42px] font-bold text-white leading-[1.05] tracking-tight mb-[24px]">
+              3. Marketing & Wideo
+            </h2>
+
+            {/* Szary, elegancki opis */}
+            <p className="text-[16px] text-zinc-400 leading-relaxed font-normal mb-[40px] max-w-[480px]">
+              Luksusowe filmy i autentyczny content UGC to najskuteczniejsze narzędzia do budowania autorytetu, zwiększania ruchu i zaufania:
+            </p>
+
+            <ul className="flex flex-col gap-[16px] mb-[48px] w-full">
+              {SERVICES.map((service) => (
+                <li key={service.id} className="flex items-center gap-[14px]">
+                  {/* Ciemne checkboxy pasujące do reszty */}
+                  <div className="w-[24px] h-[24px] rounded-full bg-[#222222] border border-[#333333] flex items-center justify-center flex-shrink-0 text-zinc-300 shadow-sm">
+                    <Check size={14} strokeWidth={3} />
                   </div>
-                </div>
-              );
-            })}
+                  <span className="text-[16px] font-semibold text-zinc-200 tracking-tight">
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="group relative inline-flex overflow-hidden rounded-full p-[4px] transition-transform active:scale-95 cursor-pointer">
+  
+  {/* UNIKALNE STYLE DLA WERSJI ŻÓŁTEJ */}
+  <style>{`
+    @keyframes rotateYellowButton {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .spinner-element-yellow {
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: conic-gradient(from 0deg, rgba(255, 208, 0, 0) 30%, #ffd000 100%);
+      transform-origin: center;
+    }
+
+    .group:hover .spinner-element-yellow {
+      animation: rotateYellowButton 1.2s linear infinite;
+    }
+  `}</style>
+
+  {/* Tylko i wyłącznie żółta obwódka */}
+  <span className="absolute spinner-element-yellow opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+  
+  <Link
+    href="/video-marketing"
+    className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
+  >
+    Wybieram
+    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+  </Link>
+
+</div>
+
+            
           </div>
 
-          <div className="min-h-[160px] w-full mb-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-[2px] w-12" style={{ backgroundColor: YELLOW }} />
-                <p className="text-base font-bold uppercase tracking-tighter" style={{ color: YELLOW }}>
-                  {active.description}
-                </p>
-              </div>
-              <p className="text-lg md:text-xl leading-relaxed max-w-md" style={{ color: GRAY_LIGHT }}>
-                {active.longDescription}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-6 mt-auto w-full pt-8 border-t" style={{ borderColor: GRAY_BORDER }}>
-            <PrimaryButton 
-              href="/pricing/video-marketing"
-              className="!bg-[#ffde52] !text-black !border-[#ffde52] hover:!bg-white hover:!text-black transition-none"
+          {/* --- PRAWO: Powiększony Film z efektem Parallax --- */}
+          <div className="w-full lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-[60%] h-[400px] lg:h-full z-10 overflow-hidden pointer-events-none bg-black">
+            
+            <motion.div 
+              style={{ y: videoY }} 
+              className="absolute inset-x-0 top-[-7.5%] h-[115%] w-full origin-bottom"
             >
-              Wybierz
-            </PrimaryButton>
-          </div>
-        </div>
+              <video 
+                src="/_resources/videoMarketing/WieslawskiStudioFilm.mp4" 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.01]" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+              />
+            </motion.div>
 
-        {/* --- PRAWO: VIDEO PLAYER (50%) --- */}
-        {/* USUNIĘTO lg:border-l */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center p-6 md:p-12 lg:px-20" style={{ borderColor: GRAY_BORDER }}>
-          
-          <div className="relative w-full aspect-video bg-black overflow-hidden mb-8 border border-[#262626]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full"
-              >
-                {active.type === 'youtube' ? (
-                  <iframe 
-                    src={`${active.src}?autoplay=1&mute=1&controls=0&loop=1&playlist=${active.src.split('/').pop()}`} 
-                    className="w-full h-full" 
-                    allow="autoplay; encrypted-media" 
-                  />
-                ) : (
-                  <video 
-                    ref={videoRef}
-                    src={active.src} 
-                    className="w-full h-full object-cover" 
-                    muted loop playsInline autoPlay 
-                  />
-                )}
-              </motion.div>
-            </AnimatePresence>
+            {/* 
+              Długi, ultra-płynny gradient odcinający tekst od filmu. 
+              Używa tego samego HEXA co tło (#161616), dzięki czemu film idealnie zanika w lewej krawędzi.
+            */}
+            <div className="hidden lg:block absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-[#161616] via-[#161616]/70 to-transparent z-10" />
+            
+            {/* Wtopienie od góry na mobile */}
+            <div className="block lg:hidden absolute inset-x-0 top-0 h-[100px] bg-gradient-to-b from-[#161616] to-transparent z-10" />
+
+            {/* Dodatkowy cień od prawej budujący kinowy mrok */}
+            <div className="absolute inset-0 bg-gradient-to-l from-black/60 via-black/5 to-transparent z-10" />
+
           </div>
 
-          <div className="relative w-full group">
-            <div className="flex items-center gap-4">
-              {/* Lewa Strzałka - teraz zmienia film */}
-              <button 
-                onClick={prev}
-                className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
-              >
-                <ArrowLeft size={22} weight="bold" />
-              </button>
-
-              <div 
-                id="thumb-container"
-                className="flex-1 flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth py-2"
-              >
-                {VIDEO_SERVICES.map((v, i) => {
-                  const isActive = i === activeIdx;
-                  return (
-                    <button
-                      key={v.id}
-                      onClick={() => setActiveIdx(i)}
-                      className={`relative flex-shrink-0 w-32 md:w-40 aspect-video transition-opacity duration-200 cursor-pointer ${
-                        isActive ? 'opacity-100 border-white' : 'opacity-60 hover:opacity-100'
-                      }`}
-                    >
-                      <div className="w-full h-full border border-[#262626] overflow-hidden">
-                        {v.type === 'mp4' ? (
-                          <video src={v.src} className="w-full h-full object-cover" muted />
-                        ) : (
-                          <div className="w-full h-full bg-neutral-900 flex items-center justify-center">
-                            <MonitorPlay size={20} className="text-white/20" />
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Prawa Strzałka - teraz zmienia film */}
-              <button 
-                onClick={next}
-                className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
-              >
-                <ArrowRight size={22} weight="bold" />
-              </button>
-            </div>
-          </div>
         </div>
 
       </div>

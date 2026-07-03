@@ -173,20 +173,7 @@ export const Header = () => {
                     >
                       Start
                     </motion.button>
-
-                    {/* REALIZACJE */}
-                    <motion.button
-                      onClick={() => router.push("/projects")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                        pathname === "/projects"
-                          ? "text-white bg-white/5"
-                          : "text-[#d4d4d4] hover:text-white"
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      Realizacje
-                    </motion.button>
-
+                    
                     {/* OFERTA — trigger mega menu */}
                     <div
                       style={{ position: 'relative' }}
@@ -223,6 +210,22 @@ export const Header = () => {
                         </motion.div>
                       </motion.button>
                     </div>
+
+
+                    {/* REALIZACJE */}
+                    <motion.button
+                      onClick={() => router.push("/projects")}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        pathname === "/projects"
+                          ? "text-white bg-white/5"
+                          : "text-[#d4d4d4] hover:text-white"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Realizacje
+                    </motion.button>
+
+                    
 
                     {/* BLOG */}
                     <motion.button

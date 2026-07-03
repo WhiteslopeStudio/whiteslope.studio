@@ -161,7 +161,7 @@ export default function Chatbot() {
         >
           
           <div 
-            className="relative flex items-center gap-3 rounded-full border border-zinc-200 bg-white px-5 py-3 shadow-[0_16px_45px_rgba(0,0,0,0.16)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_22px_60px_rgba(0,0,0,0.2)] scale-[0.80] md:scale-110 hover:cursor-pointer"
+            className="relative flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-[0_16px_45px_rgba(0,0,0,0.16)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_22px_60px_rgba(0,0,0,0.2)] scale-[0.80] md:scale-110 hover:cursor-pointer"
             style={{
               backgroundColor: '#0062ff',
             }}

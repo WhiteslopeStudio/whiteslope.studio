@@ -1,186 +1,162 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-// Używamy Phosphor Icons dla naturalnego, luksusowego sznytu
-import { Robot, Target, VideoCamera, ShoppingCart, ArrowRight , Database, FileText, Lightning, Link} from "@phosphor-icons/react";
-import { PrimaryButton, SecondaryButton } from '@/components/ui/Button';
-import { ThreeDProjectWall } from '@/components/ui/3d-marquee'; // Ta biblioteka, o którą prosiłeś
+import React from 'react';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { Check, ArrowRight } from "lucide-react";
 
-const PURPLE_LIGHT = '#a78bfa'; // Spokojny, jasny fiolet
-const GRAY_LIGHT = '#a1a1a1';
-const GRAY_BORDER = '#262626';
+// Ładowanie asystenta bez SSR
+const AssistantDemo = dynamic(
+  () => import('@/components/ai-integration/demos/assistant/AssistantDemo'),
+  { ssr: false }
+);
 
-// DANE USŁUG I PROJEKTÓW DO ŚCIANY MARQUEE
-const AUTOMATION_PROJECTS = [
-  { 
-    id: 'ads', 
-    title: 'Analiza Meta Ads', 
-    icon: Target, 
-    image: '/_resources/Automations/Automation8nWorkflow.webp', 
-    description: 'n8n + AI Media Buyer w Twojej firmie.', 
-    longDescription: 'Zmień n8n w AI-powered media buyera. Automatycznie pobieramy dane z Meta Ads, a Gemini AI kategoryzuje kreacje i wypluwa gotowe wnioski do Google Sheets.' 
-  },
-  { 
-    id: 'video', 
-    title: 'Marketing Video AI', 
-    icon: VideoCamera, 
-    image: '/_resources/Automations/Automation2.webp', 
-    description: 'Trend-based video generation.', 
-    longDescription: 'Budujemy workflowy łączące Seedance AI, Perplexity i GPT, aby generować filmy marketingowe na podstawie aktualnych trendów całkowicie automatycznie.' 
-  },
-  { 
-    id: 'crm', 
-    title: 'Wdrożenia CRM', 
-    icon: Database, 
-    image: '/_resources/Automations/Automation3.webp', // Możesz podmienić na dedykowaną fotkę
-    description: 'HubSpot, Pipedrive, automatyzacja.', 
-    longDescription: 'Projektujemy i wdrażamy systemy CRM, które same dbają o porządek w danych. Koniec z ręcznym wpisywaniem klientów – n8n zrobi to za Ciebie.' 
-  },
-  { 
-    id: 'docs', 
-    title: 'Obieg Dokumentów', 
-    icon: FileText, 
-    image: '/_resources/Automations/Automation2.webp', 
-    description: 'Make/Zapier i wyciąganie danych.', 
-    longDescription: 'Automatyzujemy czytanie faktur, segregowanie umów i przesyłanie ich do odpowiednich folderów lub systemów księgowych. 100% precyzji, 0% nudy.' 
-  },
-  { 
-    id: 'leads', 
-    title: 'Zarządzanie Leadami', 
-    icon: Lightning, 
-    image: '/_resources/Automations/Automation3.webp', 
-    description: 'Ścieżki sprzedażowe i powiadomienia.', 
-    longDescription: 'Każdy lead z Twojej strony trafia natychmiast do handlowca z kompletem informacji. System sam pilnuje follow-upów i statusów sprzedaży.' 
-  },
-  { 
-    id: 'api', 
-    title: 'Integracje Systemów (API)', 
-    icon: Link, 
-    image: '/_resources/Automations/Automation8nWorkflow.webp', 
-    description: 'Łączymy narzędzia, które ze sobą nie gadają.', 
-    longDescription: 'Budujemy niestandardowe mosty API między Twoimi ulubionymi narzędziami. Jeśli coś nie ma wbudowanej integracji – my ją stworzymy w n8n.' 
-  },
-  { 
-    id: '360', 
-    title: 'E-commerce 360°', 
-    icon: ShoppingCart, 
-    image: '/_resources/Automations/Automation3.webp', 
-    description: 'Zdjęcia produktów zamienione w wideo.', 
-    longDescription: 'Zwiększ sprzedaż w swoim sklepie. n8n błyskawicznie konwertuje statyczne zdjęcia produktów na profesjonalne prezentacje wideo 360°.' 
-  },
-  {
-    id: 'ai_strategy',
-    title: 'Briefy kreatywne AI',
-    icon: Robot,
-    image: '/_resources/Automations/Automation8nWorkflow.webp', 
-    description: 'Generowanie pomysłów przez AI.', 
-    longDescription: 'Wykorzystujemy zebrane dane o reklamach, aby AI sugerowało nowe skrypty i briefy kreatywne dla Twoich twórców wideo.'
-  }
+// Oczyszczona lista usług (w stylu premium, bez pigułek)
+const SERVICES = [
+  { id: 'support_bot', title: 'Chat Pomoc Techniczna 24/7' },
+  { id: 'booking_bot', title: 'Chatboty Rezerwacje' },
+  { id: 'docs', title: 'Obieg Dokumentów' },
+  { id: 'leads', title: 'Zarządzanie Leadami' },
+  { id: 'api', title: 'Integracje Systemów (API)' }
 ];
 
 export default function AutomationShowcase() {
-  // Ustawiamy domyślnie pierwszą usługę, żeby opis nigdy nie był pusty
-  const [hoveredService, setHoveredService] = useState(AUTOMATION_PROJECTS[0]);
-
   return (
-    <section className="relative w-full bg-black py-24 overflow-hidden border-t" style={{ borderColor: GRAY_BORDER }}>
-      
-      {/* TŁO SIATKA */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-           style={{ backgroundImage: `radial-gradient(${GRAY_LIGHT} 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-
-      <div className="flex flex-col lg:flex-row items-stretch w-full min-h-[900px]">
+    <section className="relative w-full bg-white overflow-hidden">
+      <div className="w-full max-w-[1640px] mx-auto px-[24px] pb-[80px]">
         
-        {/* --- LEWO: TREŚĆ (50%) --- */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left px-6 md:px-12 lg:px-16 z-10 py-4">
+        {/* --- GŁÓWNA KARTA BENTO --- */}
+        <div className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-200 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-zinc-300 cursor-pointer min-h-[650px] lg:min-h-[700px] flex items-center">
           
-          {/* LOGO FIOLETOWE DO LEWEJ */}
-          <div className="w-full flex justify-start mb-16">
-             <img 
-              src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI.webp"
-              className="h-14 md:h-16 object-contain"
-              alt="Logo Automation"
+          {/* Niewidoczny link pokrywający całą kartę (Z-index 30) */}
+          <Link href="/pricing/ai-integration" className="absolute inset-0 z-30 rounded-[32px]" aria-label="Wyceń automatyzację" />
+
+          {/* --- TŁO: 4 pionowe pasy (po 1/8 szerokości) w lewej połowie --- */}
+          <div className="absolute inset-0 z-0 flex pointer-events-none w-1/2">
+            
+            {/* Pas 1: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 100%)' }} />
+            
+            {/* Pas 2: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 75%)' }} />
+            
+            {/* Pas 3: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 50%)' }} />
+            
+            {/* Pas 4: Pionowy (niebieski->zinc-50) + Poziomy (transparent->zinc-50 od prawej do lewej) */}
+            <div 
+              className="flex-1" 
+              style={{ 
+                background: `
+                  linear-gradient(to left, #f5f5f5 0%, transparent 100%), 
+                  linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 25%)
+                ` 
+              }} 
             />
           </div>
 
-          <h2 
-            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
-            style={{
-              fontFamily: 'var(--font-unbounded), sans-serif',
-       
-            }}
-          >
-            Automatyzacja procesów i  <br /> 
-            <span style={{ color: PURPLE_LIGHT }}>ekosystemy AI</span>
-          </h2>
+          {/* --- TŁO: Subtelny fioletowy gradient (Mac-style glow) --- */}
+          <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[70%] rounded-full bg-purple-500/10 blur-[100px] pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-100 opacity-70" />
+          <div className="absolute bottom-[-10%] right-[15%] w-[40%] h-[40%] rounded-full bg-purple-400/15 blur-[80px] pointer-events-none z-0" />
 
-          <h3 className="text-white text-xl md:text-2xl font-bold leading-snug mb-12 max-w-xl opacity-90">
-             Budujemy rozwiązania, które łączą <span style={{ color: PURPLE_LIGHT }}>kod z inteligencją AI</span>, eliminując nudę i błędy z Twojej codzienności.
-          </h3>
-
-          {/* TAGI USŁUG (Hashtagi style z Instant Hover) */}
-          <div className="flex flex-wrap gap-2 mb-12 border-b pb-12" style={{ borderColor: GRAY_BORDER }}>
-            {AUTOMATION_PROJECTS.map((service) => {
-              const isActive = hoveredService.id === service.id;
-              
-              return (
-                <div
-                  key={service.id}
-                  onMouseEnter={() => setHoveredService(service)}
-                  className="group relative inline-flex items-center justify-center px-6 py-3 border cursor-pointer select-none overflow-hidden transition-none"
-                  style={{ 
-                    backgroundColor: isActive ? '#ffffff' : 'transparent',
-                    color: isActive ? '#000000' : GRAY_LIGHT,
-                    borderColor: isActive ? '#ffffff' : GRAY_BORDER,
-                  }}
-                >
-                  <div className="relative flex items-center gap-2">
-                    <span className="text-sm font-bold uppercase tracking-tight">{service.title}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* OPIS USŁUGI (Zostaje po zjechaniu) */}
-          <div className="min-h-[160px] w-full mb-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-[2px] w-12" style={{ backgroundColor: PURPLE_LIGHT }} />
-                <p className="text-base font-bold uppercase tracking-tighter" style={{ color: PURPLE_LIGHT }}>
-                  {hoveredService.description}
-                </p>
-              </div>
-              <p className="text-lg md:text-xl leading-relaxed max-w-md" style={{ color: GRAY_LIGHT }}>
-                {hoveredService.longDescription}
-              </p>
-            </div>
-          </div>
-
-          {/* PRZYCISKI CTA (Primary Fioletowy) */}
-          <div className="flex flex-wrap gap-6 mt-auto w-full pt-8 border-t" style={{ borderColor: GRAY_BORDER }}>
-            <PrimaryButton 
-              href="/pricing/ai-integration" 
-              className="!bg-[#a78bfa] !text-black !border-[#a78bfa] hover:!bg-white hover:!text-black transition-none"
-            >
-              Wyceń proces AI
-            </PrimaryButton>
+          {/* --- LEWO: Treść --- */}
+          <div className="w-full lg:w-[50%] flex flex-col items-start text-left p-[32px] pb-[580px] lg:pb-[64px] lg:p-[64px] z-20 relative pointer-events-none">
             
-            <SecondaryButton href="/pricing/ai-integration">
-              Jak to działa?
-            </SecondaryButton>
-          </div>
-        </div>
+            {/* LOGO: Umieszczone naturalnie nad H2 */}
+            <div className="w-full flex justify-start mb-[32px] lg:mb-[40px]">
+               <img 
+                src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp"
+                className="h-[30px] lg:h-[40px] object-contain pointer-events-none"
+                alt="Whiteslope Studio Automation & AI"
+              />
+            </div>
 
-        {/* --- PRAWO: Ściana Projektów Marquee (50%) --- */}
-        <div className="w-full lg:w-1/2 relative h-[500px] lg:h-auto overflow-hidden order-first lg:order-last">
-          {/* Używamy ThreeDProjectWall, biblioteki o którą prosiłeś */}
-          <div className="absolute inset-0 lg:-right-32 h-full w-[110%]">
-            <ThreeDProjectWall projects={AUTOMATION_PROJECTS} />
+            <h2 className="text-[36px] lg:text-[42px] font-bold text-zinc-950 leading-[1.05] tracking-tight mb-[24px]">
+              2. Automatyzacja procesów<br />i ekosystemy AI
+            </h2>
+
+            <p className="text-[16px] text-zinc-600 leading-relaxed font-normal mb-[40px] max-w-[480px]">
+              Budujemy rozwiązania, które łączą kod z inteligencją AI, eliminując nudę i powtarzalne błędy z Twojej codzienności:
+            </p>
+
+            {/* Czysta lista - wiodący FIOLETOWY kolor */}
+            <ul className="flex flex-col gap-[16px] mb-[48px] w-full">
+              {SERVICES.map((service) => (
+                <li key={service.id} className="flex items-center gap-[14px]">
+                  <div className="w-[24px] h-[24px] rounded-full bg-purple-400 border border-purple-100 flex items-center justify-center flex-shrink-0 text-purple-100 shadow-sm">
+                    <Check size={14} strokeWidth={3} />
+                  </div>
+                  <span className="text-[16px] font-semibold text-zinc-900 tracking-tight">
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="group relative inline-flex overflow-hidden rounded-full p-[4px] transition-transform active:scale-95 cursor-pointer">
+  
+  {/* UNIKALNE STYLE DLA WERSJI LAWENDOWEJ */}
+  <style>{`
+    @keyframes rotateLavenderButton {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .spinner-element-lavender {
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      /* Lawendowy przejrzysty przechodzi w pełny lawendowy fiolet (#b794f4) */
+      background: conic-gradient(from 0deg, rgba(183, 148, 244, 0) 30%, #a947ff 100%);
+      transform-origin: center;
+    }
+
+    .group:hover .spinner-element-lavender {
+      animation: rotateLavenderButton 1.2s linear infinite;
+    }
+  `}</style>
+
+  {/* Tylko i wyłącznie lawendowa obwódka */}
+  <span className="absolute spinner-element-lavender opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+  
+  {/* Środek przycisku */}
+  <Link
+    href="/marketing"
+    className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
+  >
+    Wybieram
+    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+  </Link>
+
+</div>
+            
           </div>
-          {/* Subtelny "cień" pod ścianą dla efektu głębi */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
+
+          {/* --- PRAWO: Interaktywny Chatbot --- */}
+          {/* ZMIANA: Zwiększona wysokość z lg:h-[75%] na lg:h-[90%] */}
+          <div className="absolute bottom-0 right-0 w-[100%] lg:w-[50%] h-[550px] lg:h-[90%] z-40 flex items-end justify-center px-[16px] md:px-[32px] lg:px-[64px] pointer-events-none">
+            
+            {/* Wnętrze z Chatbotem - Reaguje na kliknięcia */}
+            <div className="w-full h-full bg-zinc-100 rounded-t-[24px] lg:rounded-t-[32px] border-t border-l border-r border-zinc-200 shadow-[0_-10px_40px_rgba(147,51,234,0.08)] overflow-hidden relative pointer-events-auto transition-transform duration-1000 group-hover:scale-[1.01] origin-bottom flex flex-col">
+              
+              {/* Belka informacyjna nad Chatbotem */}
+              <div className="bg-zinc-50 border-b border-zinc-200 p-[12px] flex items-center justify-center shrink-0">
+                <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-[0.2em]">
+                  Interaktywne Demo
+                </span>
+              </div>
+              
+              {/* Komponent Chatbota */}
+              <div className="flex-1 overflow-hidden relative">
+                <AssistantDemo onClose={() => {}} onThemeChange={() => {}} />
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>

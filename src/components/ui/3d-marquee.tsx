@@ -13,15 +13,13 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
 
   const rows = [
     [...projects, ...projects, ...projects],
-    [...projects, ...projects, ...projects].reverse(),
-    [...projects.slice(1), ...projects, ...projects, ...projects.slice(0, 1)],
-    [...projects, ...projects, ...projects],
-    [...projects, ...projects, ...projects].reverse(),
-    [...projects.slice(1), ...projects, ...projects, ...projects.slice(0, 1)],
+    [...projects.slice(1), ...projects.slice(2), ...projects.slice(1)],
+    [...projects.slice(2), ...projects.slice(0), ...projects.slice(2)]
+
   ];
 
   return (
-    <div className="relative w-full h-[500px] md:h-[750px] overflow-hidden bg-black">
+    <div className="relative w-full h-[500px] md:h-[750px] overflow-hidden bg-white">
       
       {/* KONTENER IZOMETRYCZNY (2D)
           Usunięto rotateX/Y/Z na rzecz czystego rotate i skew.
@@ -30,20 +28,21 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
       <div 
         className="absolute inset-0 flex flex-col gap-6 md:gap-8"
         style={{
-          // rotate(-15deg) - przechyla całość
-          // skewX(20deg) - nadaje efekt izometrii (ściana "ucieka" w bok)
-          transform: "rotate(-15deg) skewX(20deg) scale(1)",
-          transformOrigin: "center center",
-          // Wymuszamy płaski styl renderowania (brak 3D)
+          // 1. translate: pierwsza wartość to oś X (w prawo), druga to oś Y (w górę/dół).
+          // Dałem 10% w prawo i -15% w górę (czyli kamera idzie w lewo i w dół). 
+          // Możesz płynnie zmieniać te dwie liczby, żeby wykadrować to idealnie!
+          transform: "translate(-37%, -4%) rotate(-15deg) skewX(20deg) scale(1)",
+          
+          // 2. transformOrigin MUSI być poprawne, inaczej kąty obrotu się psują.
+          transformOrigin: "center center", 
+          
           transformStyle: "flat", 
         }}
       >
         {rows.map((row, rowIndex) => (
           <motion.div
             key={`row-${rowIndex}`}
-            animate={{ 
-              x: rowIndex % 2 === 0 ? ["0%", "-33.33%"] : ["-33.33%", "0%"] 
-            }}
+            
             transition={{
               duration: 35 + rowIndex * 10,
               ease: "linear",
@@ -54,7 +53,7 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
             {row.map((proj, idx) => (
               <div
                 key={`${rowIndex}-${idx}`}
-                className="relative flex-shrink-0 w-[240px] h-[140px] md:w-[420px] md:h-[240px] rounded-2xl overflow-hidden border border-white/5 bg-neutral-950 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] group"
+                className="relative flex-shrink-0 w-[240px] h-[140px] md:w-[420px] md:h-[240px] rounded-[12px] overflow-hidden border border-white/5 bg-neutral-950 shadow-[20px_20px_50px_rgba(0,0,0,0.1)] group"
               >
                 <Image
                   src={proj.image}
@@ -68,7 +67,7 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 {/* Glass highlight na krawędzi */}
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all" />
+                <div className="absolute inset-0 rounded-[12px] ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all" />
               </div>
             ))}
           </motion.div>
@@ -76,10 +75,11 @@ export const ThreeDProjectWall = ({ projects }: { projects: Project[] }) => {
       </div>
 
       {/* MASKI ZANIKANIA (Vignette) - mocniejsze, aby ukryć krawędzie rzędów */}
-      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black via-black/60 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black via-black/60 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black via-black/40 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black via-black/40 to-transparent z-10 pointer-events-none" />
-    </div>
+      {/* {/* <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-white/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white via-white/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-white via-white/40 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-white via-white/40 to-transparent z-10 pointer-events-none" />
+     */}
+      </div> 
   );
 };

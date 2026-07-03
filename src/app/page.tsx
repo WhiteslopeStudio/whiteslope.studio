@@ -6,6 +6,9 @@ import { useCallback, useState, useEffect } from 'react';
 // import IntroAnimation from '@/components/layout/IntroAnimation';
 
 import HeroSection from '@/components/sections/HeroSection';
+import LogoTicker from '../components/sections/LogoTicker';
+import AboutUsSection from '@/components/sections/AboutUsSection';
+import WebsitesShowcase from '@/components/sections/WebsitesShowcase';
 import { ProblemSolutionSection } from '@/components/sections/ProblemSolutionSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
@@ -15,15 +18,22 @@ import { FAQSection } from '@/components/sections/FaqSection';
 import { BlogSection } from '@/components/sections/BlogSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import HeroSectionMobile from '@/components/sections/HeroSectionMobile';
+import KnowledgeBaseSection from '@/components/sections/KnowledgeBaseSection';
+import ServicesIntro from '@/components/sections/ServicesIntro';
+import CaseStudies from '@/components/sections/CaseStudies';
+import BriefSection from '@/components/sections/BriefSection';
+
 
 import ServicesShowcase from '@/components/sections/ServicesShowcase';
-import WebsitesShowcase from '@/components/sections/WebsitesShowcase';
+
 import AiShowcase from '@/components/sections/AiShowcase';
 import VideoShowcase from '@/components/sections/VideoShowcase';
 import PortfolioSectionDesktop from '@/components/sections/PortfolioSectionDesktop';
 
 // 🎯 IMPORT PINNED SECTION (zaawansowany wrapper)
 import PinnedAnimationSection from '@/components/layout/PinnedAnimationSection';
+import TrustOverlay from '@/components/ui/TrustOverlay';
+import BriefPage from './brief/page';
 
 export default function HomePage() {
   // Stan sprawdzający, czy komponent jest już zamontowany w przeglądarce (rozwiązuje błąd Hydracji)
@@ -115,19 +125,34 @@ export default function HomePage() {
           {/* 🎬 PORTFOLIO DESKTOP */}
           {/* {!isMobile && <PortfolioSectionDesktop />} */}
 
+
+          <LogoTicker />
+
+          <ServicesIntro />
           {/* 🌐 WEBSITES & SAAS SHOWCASE */}
           <WebsitesShowcase />
-
           {/* 🛠️ SERVICES SHOWCASE */}
           <ServicesShowcase />
+          {/* 🤖 AI INTEGRATION SHOWCASE */}
+          {/* <AiShowcase /> */}
+          {/* 🎬 VIDEO & MARKETING SHOWCASE */}
+          <VideoShowcase />
+
+          {/* <CaseStudies /> */}
+
+          <AboutUsSection />
+          <KnowledgeBaseSection />
+
+          <BriefSection />
+          
 
           
 
-          {/* 🤖 AI INTEGRATION SHOWCASE */}
-          <AiShowcase />
+          
 
-          {/* 🎬 VIDEO & MARKETING SHOWCASE */}
-          <VideoShowcase />
+          
+
+          
 
           {/* 📱 PORTFOLIO MOBILE */}
           {isMobile && <PortfolioSection />}
@@ -147,11 +172,13 @@ export default function HomePage() {
           {/* 💰 PRICING */}
           {/* <PricingSection /> */}
 
-          {/* 📝 BLOG */}
-          <BlogSection />
+          {/* 📝 BLOG
+          <BlogSection /> */}
 
           {/* ❓ FAQ */}
           <FAQSection />
+
+          <TrustOverlay />
         </>
       )}
     </main>

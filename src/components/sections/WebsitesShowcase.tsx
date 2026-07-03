@@ -1,151 +1,150 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-// Upewnij się, że masz: npm install @phosphor-icons/react
-import { Monitor, Lightning, PenNib, ChartLineUp, ArrowRight } from "@phosphor-icons/react";
-import { PrimaryButton, SecondaryButton } from '@/components/ui/Button';
-import { ThreeDProjectWall } from '@/components/ui/3d-marquee';
-import { PROJECT_EXAMPLES } from '@/lib/data';
-
-const BLUE = '#0088ff';
-const GRAY_LIGHT = '#a1a1a1';
-const GRAY_BORDER = '#262626';
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import { Check, ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const SERVICES = [
-  { 
-    id: 'web', 
-    title: 'Strony internetowe', 
-    icon: Monitor, 
-    description: 'Nowoczesne wizytówki i strony firmowe high-end.', 
-    longDescription: 'Tworzymy strony, które nie tylko wyglądają obłędnie, ale przede wszystkim konwertują. Wykorzystujemy Next.js dla maksymalnej szybkości i unikalnego UX.' 
-  },
-  { 
-    id: 'saas', 
-    title: 'Systemy SaaS', 
-    icon: Lightning, 
-    description: 'Skalowalne platformy i aplikacje subskrypcyjne.', 
-    longDescription: 'Budujemy fundamenty pod Twój cyfrowy biznes. Od architektury bazy danych po zaawansowane panele administracyjne gotowe na duży ruch.' 
-  },
-  { 
-    id: 'fixes', 
-    title: 'Poprawki stron', 
-    icon: PenNib, 
-    description: 'Optymalizacja i naprawa istniejących rozwiązań.', 
-    longDescription: 'Twój obecny serwis działa wolno? Wykonujemy głęboki audyt techniczny i poprawiamy Core Web Vitals, przywracając mu pełną sprawność.' 
-  },
-  { 
-    id: 'seo', 
-    title: 'Pozycjonowanie SEO', 
-    icon: ChartLineUp, 
-    description: 'Widoczność, która przekłada się na realny zysk.', 
-    longDescription: 'SEO to nie magia, to dane. Optymalizujemy strukturę i treści tak, aby algorytmy Google pokochały Twoją stronę i windowały ją w wynikach.' 
-  },
+  { id: 'web', title: 'Strony internetowe' },
+  { id: 'seo', title: 'Pozycjonowanie (SEO)' },
+  { id: 'saas', title: 'Aplikacje SaaS' },
+  { id: 'systems', title: 'Dedykowane Systemy Webowe' },
+  { id: 'fixes', title: 'Poprawki istniejących stron' }
 ];
 
 export default function WebsitesShowcase() {
-  // Ustawiamy domyślnie pierwszą usługę, żeby opis nigdy nie był pusty
-  const [hoveredService, setHoveredService] = useState<typeof SERVICES[0]>(SERVICES[0]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 0.5, 1], ["0px", "0px", "50px"]);
 
   return (
-    <section className="relative w-full bg-black py-24 overflow-hidden border-t" style={{ borderColor: GRAY_BORDER }}>
-      <div className="flex flex-col lg:flex-row items-stretch w-full">
+    <section id="websites" className="relative w-full bg-white py-[80px] overflow-hidden ">
+      <div className="w-full max-w-[1640px] mx-auto px-[24px]">
         
-        {/* --- LEWO: Scena Projektów (50%) --- */}
-        <div className="w-full lg:w-1/2 relative h-[500px] lg:h-auto overflow-hidden">
-          <div className="absolute inset-0 lg:-left-20">
-            <ThreeDProjectWall projects={PROJECT_EXAMPLES} />
-          </div>
-        </div>
-
-        {/* --- PRAWO: Treść (50%) --- */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left px-6 md:px-12 lg:px-16">
+        <div 
+          ref={containerRef}
+className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-200 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-zinc-300 cursor-pointer min-h-[550px] lg:min-h-[600px] flex items-center"        >
           
-          {/* LOGO DO LEWEJ */}
-          <div className="w-full flex justify-start mb-16">
-             <img 
-              src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV.webp"
-              className="h-14 md:h-16 object-contain"
-              alt="Logo WebDev"
+          <Link href="/pricing/website" className="absolute inset-0 z-30 rounded-[32px]" aria-label="Wyceń projekt" />
+
+          {/* --- TŁO: 4 pionowe pasy (po 1/8 szerokości) w lewej połowie --- */}
+          <div className="absolute inset-0 z-0 flex pointer-events-none w-1/2">
+            
+            {/* Pas 1: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #b8c3ff 0%, #f4f4f5 100%)' }} />
+            
+            {/* Pas 2: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #b8c3ff 0%, #f4f4f5 75%)' }} />
+            
+            {/* Pas 3: Gradient do zinc-50 */}
+            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #b8c3ff 0%, #f4f4f5 50%)' }} />
+            
+            {/* Pas 4: Pionowy (niebieski->zinc-50) + Poziomy (transparent->zinc-50 od prawej do lewej) */}
+            <div 
+              className="flex-1" 
+              style={{ 
+                background: `
+                  linear-gradient(to left, #f4f4f5 0%, transparent 100%), 
+                  linear-gradient(to bottom, #b8c3ff 0%, #f4f4f5 25%)
+                ` 
+              }} 
             />
           </div>
 
-          <h2 
-            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
-            style={{
-              fontFamily: 'var(--font-unbounded), sans-serif',
-       
-            }}
-          >
-            Projektujemy strony biznesowe <br/> i produkty SaaS
-          </h2>
+          {/* --- TŁO: Subtelny niebieski gradient (poświata) --- */}
+          <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[70%] rounded-full bg-blue-500/10 blur-[100px] pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-100 opacity-70" />
+          <div className="absolute bottom-[-10%] right-[15%] w-[40%] h-[40%] rounded-full bg-blue-400/15 blur-[80px] pointer-events-none z-0" />
+          {/* --- LOGO: Idealnie wyrównane z pierwszą linią H2 --- */}
+          <img 
+            src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp"
+            className="absolute top-[40px] right-[32px] lg:top-[50px] lg:right-[64px] h-[30px] lg:h-[40px] object-contain z-20 pointer-events-none"
+            alt="Whiteslope Studio Web Development"
+          />
 
-          <h3 className="text-[#ffffff] text-lg md:text-xl font-bold leading-snug mb-10 max-w-xl" style={{ opacity: 0.9 }}>
-            Zobacz czemu warto tworzyć strony z <span style={{ color: BLUE }}>Whiteslope Studio Professional Web Development Team</span>
-          </h3>
-
-          {/* USŁUGI - TAGI Z ANIMACJĄ IKONA -> STRZAŁKA */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {SERVICES.map((service) => {
-              const isActive = hoveredService.id === service.id;
-              const Icon = service.icon;
-              
-              return (
-                <div
-                  key={service.id}
-                  onMouseEnter={() => setHoveredService(service)}
-                  // Usunięto onMouseLeave, aby opis zostawał
-                  className="group relative inline-flex items-center justify-center px-6 py-3 border cursor-pointer select-none overflow-hidden transition-none"
-                  style={{ 
-                    backgroundColor: isActive ? '#ffffff' : 'transparent',
-                    color: isActive ? '#000000' : GRAY_LIGHT,
-                    borderColor: isActive ? '#ffffff' : GRAY_BORDER,
-                  }}
-                >
-                  <div className="relative flex items-center gap-2">
-                    {/* Ikona: znika przy hoverze (skaluje się do 0) */}
-                    <div className="transition-all duration-200 ease-in-out group-hover:scale-0 group-hover:opacity-0 group-hover:w-0">
-                      <Icon size={18} weight="bold" />
-                    </div>
-
-                    <span className="text-sm font-bold uppercase tracking-tight">{service.title}</span>
-
-                    {/* Strzałka: pojawia się przy hoverze (wjeżdża z prawej) */}
-                    <div className="absolute -right-6 opacity-0 translate-x-4 transition-all duration-200 ease-in-out group-hover:relative group-hover:right-0 group-hover:opacity-100 group-hover:translate-x-0">
-                      <ArrowRight size={18} weight="bold" />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* DYNAMICZNY OPIS - Zostaje ostatnio wybrany */}
-          <div className="min-h-[140px] w-full mb-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-[2px] w-12" style={{ backgroundColor: BLUE }} />
-                <p className="text-base font-bold uppercase tracking-tighter" style={{ color: BLUE }}>
-                  {hoveredService.description}
-                </p>
-              </div>
-              <p className="text-base md:text-lg leading-relaxed max-w-md" style={{ color: GRAY_LIGHT }}>
-                {hoveredService.longDescription}
-              </p>
-            </div>
-          </div>
-
-          {/* PRZYCISKI CTA */}
-          <div className="flex flex-wrap gap-6 mt-auto w-full pt-8 border-t" style={{ borderColor: GRAY_BORDER }}>
-            <PrimaryButton href="/pricing/website">
-              Wybierz
-            </PrimaryButton>
+          {/* --- LEWO: Treść --- */}
+          <div className="w-full lg:w-[50%] flex flex-col items-start text-left p-[32px] pb-[350px] lg:pb-[64px] lg:p-[64px] z-20 relative pointer-events-none">
             
-            <SecondaryButton href="/projects">
-              Zobacz Projekty
-            </SecondaryButton>
+            <h2 className="text-[36px] lg:text-[42px] font-bold text-zinc-950 leading-[1.05] tracking-tight mb-[24px] pr-[120px] lg:pr-0">
+              1. Strony internetowe,<br />systemy B2B i produkty SaaS
+            </h2>
+
+            <p className="text-[16px] text-zinc-600 leading-relaxed font-normal mb-[40px] max-w-[480px]">
+              Tworzymy dedykowane rozwiązania cyfrowe, które skalują biznes. Zobacz, w czym specjalizuje się nasz zespół inżynieryjny:
+            </p>
+
+            <ul className="flex flex-col gap-[16px] mb-[48px] w-full">
+              {SERVICES.map((service) => (
+                <li key={service.id} className="flex items-center gap-[14px]">
+                  <div className="w-[24px] h-[24px] rounded-full bg-blue-500 border border-blue-100 flex items-center justify-center flex-shrink-0 text-blue-100 shadow-sm">
+                    <Check size={14} strokeWidth={3} />
+                  </div>
+                  <span className="text-[16px] font-semibold text-zinc-900 tracking-tight">
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+          <div className="group relative inline-flex overflow-hidden rounded-full p-[4px] transition-transform active:scale-95 cursor-pointer">
+  
+  {/* Unikalne style tylko dla wersji Niebieskiej (Blue) */}
+  <style>{`
+    @keyframes rotateBlue {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .border-spinner-blue {
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      /* Przejście z przezroczystego niebieskiego do czystego niebieskiego #0022ff */
+      background: conic-gradient(from 0deg, rgba(0, 34, 255, 0) 30%, #0022ff 100%);
+      transform-origin: center;
+    }
+
+    .group:hover .border-spinner-blue {
+      animation: rotateBlue 1.2s linear infinite;
+    }
+  `}</style>
+
+  {/* Świecący niebieski border */}
+  <span className="absolute border-spinner-blue opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+  
+  {/* Środek przycisku */}
+  <Link
+    href="/website"
+    className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
+  >
+    Wybieram
+    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+  </Link>
+
+</div>
+            
           </div>
+
+          {/* --- PRAWO: Zdjęcie --- */}
+          <div className="absolute bottom-0 right-0 w-[95%] lg:w-[65%] h-[320px] lg:h-[85%] z-10 flex items-end justify-end px-[16px] lg:px-[40px] pointer-events-none">
+            <motion.div style={{ y: imageY }} className="w-full h-full flex items-end justify-end origin-bottom">
+              <img 
+                src="/_resources/stronyInternetowe/ShowWebsites.webp"
+                alt="Przykłady stron internetowych Whiteslope"
+                className="w-full h-full object-contain object-bottom drop-shadow-[0_24px_40px_rgba(0,87,255,0.08)] transition-transform duration-1000 group-hover:scale-[1.01] origin-bottom"
+              />
+            </motion.div>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

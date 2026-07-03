@@ -1,36 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Check, EnvelopeSimple, User, Cpu, Gear, ArrowRight, Brain } from "@phosphor-icons/react";
 import dynamic from 'next/dynamic';
-import { PrimaryButton, SecondaryButton } from '@/components/ui/Button';
+import { Check, Brain, ArrowRight, Cpu } from "lucide-react";
 
+// Ładowanie asystenta bez SSR
 const AssistantDemo = dynamic(
   () => import('@/components/ai-integration/demos/assistant/AssistantDemo'),
   { ssr: false }
 );
 
-const PURPLE_LIGHT = '#a78bfa';
-const GRAY_LIGHT = '#a1a1a1';
-const GRAY_BORDER = '#262626';
-
-const ITEMS = [
-  {
-    label: 'Chatboty E-commerce',
-    desc: 'Automatyczny doradca w sklepie online, który zwiększa konwersję.',
-  },
-  {
-    label: 'Chatboty rezerwacji',
-    desc: 'Umawianie spotkań w kalendarzu',
-  },
-  {
-    label: 'Pomoc techniczna 24/7',
-    desc: 'Odpowiedzi na bazie dokumentacji firmy, bez angażowania zespołu.',
-  },
-];
-
-export default function AiShowcase() {
+export default function AiShowcaseExtension() {
   const [formData, setFormData] = useState({ name: '', email: '', consent: false });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
@@ -38,133 +18,110 @@ export default function AiShowcase() {
     e.preventDefault();
     if (!formData.consent) return;
     setStatus('loading');
-    
-    // TUTAJ PODŁĄCZYMY n8n / RESEND / MAILCHIMP
     setTimeout(() => setStatus('success'), 1500);
   };
 
   return (
-    <section className="relative w-full bg-black py-24 overflow-hidden border-b" style={{ borderColor: GRAY_BORDER }}>
-      
-      {/* TŁO */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-           style={{ backgroundImage: `radial-gradient(${GRAY_LIGHT} 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-
-      <div className="flex flex-col lg:flex-row items-stretch w-full min-h-[850px]">
+    <section className="relative w-full bg-white pb-[80px] pt-[20px] overflow-hidden">
+      <div className="w-full max-w-[1640px] mx-auto px-[24px]">
         
-        {/* --- LEWO: DEMO ASYSTENTA (50%) --- */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-4 md:p-12 lg:p-20 lg:border-r border-b lg:border-b-0" style={{ borderColor: GRAY_BORDER }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-[24px]">
           
-          <div className="w-full max-w-2xl relative">
-            <div className="absolute -top-12 left-0 flex items-center gap-3 mb-4">
-               <Gear size={16} weight="fill" className="text-[#a78bfa] animate-spin-slow" />
-               <span className="text-[10px] font-mono uppercase text-white/40 tracking-[0.3em]">
-                 Whiteslope Studio Interkatywny asystent AI - Demo
-               </span>
-            </div>
-
-            <div className="relative border bg-[#050505] shadow-2xl" style={{ borderColor: GRAY_BORDER }}>
-              <div className="flex items-center justify-between px-5 py-3 border-b bg-white/[0.02]" style={{ borderColor: GRAY_BORDER }}>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Podgląd chatbota</span>
-                </div>
+          {/* BENTO 1: FORMULARZ (Lewa strona) - Identyczny styl tła co ściana 3D */}
+          <div className="lg:col-span-5 w-full bg-zinc-50 rounded-[32px] border border-zinc-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)] p-[32px] md:p-[48px] flex flex-col justify-between">
+            
+            <div className="mb-[40px]">
+              <div className="flex items-center gap-[12px] mb-[20px]">
+                <div className="w-[8px] h-[8px] rounded-full bg-purple-600" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500">
+                  Darmowy dostęp
+                </span>
               </div>
               
-              <div className="p-1 min-h-[500px] overflow-hidden">
-                <AssistantDemo onClose={() => {}} onThemeChange={() => {}} />
-              </div>
-            </div>
-
-            <div className="mt-8 flex items-start gap-4 p-4 border border-[#a78bfa]/10 bg-[#a78bfa]/5">
-               <Cpu size={20} className="text-[#a78bfa] flex-shrink-0" />
-               <p className="text-[11px] font-mono text-gray-400 uppercase tracking-tight leading-relaxed">
-                 Powyższy moduł to uproszczona wersja naszego silnika. <br />
-                 Pełna wersja wdraża bazę wiedzy Twojej firmy (PDF, URL, Notion).
-               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* --- PRAWO: TREŚĆ (50%) --- */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left px-6 md:px-12 lg:px-20 py-12">
-          
-          
-
-          <h2 
-            className="text-[#ffffff] text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.15] mb-8 uppercase"
-            style={{
-              fontFamily: 'var(--font-unbounded), sans-serif',
-       
-            }}
-          >
-            Wdróż własne AI z  <br /> 
-            <span style={{ color: PURPLE_LIGHT }}>Twoją bazą wiedzy</span>
-          </h2>
-
-          <div className="space-y-6 mb-10">
-            <p className="text-lg leading-relaxed" style={{ color: GRAY_LIGHT }}>
-              Odbierz dostęp do naszego <span className="text-white font-bold italic">AI Chatbot Buildera</span>. 
-              Samodzielnie ustaw styl odpowiedzi i przetestuj go przed wdrożeniem.
-            </p>
-          </div>
-
-          {/* LISTA KORZYŚCI */}
-          <div className="space-y-6 mb-10 w-full">
-            {ITEMS.map((item, i) => (
-              <div key={i} className="flex items-start gap-4 group">
-                <div className="mt-1 w-5 h-5 border flex items-center justify-center flex-shrink-0 transition-none" 
-                     style={{ borderColor: GRAY_BORDER, backgroundColor: 'rgba(167,139,250,0.05)' }}>
-                  <Check size={12} weight="bold" style={{ color: PURPLE_LIGHT }} />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-base uppercase tracking-tight">{item.label}</p>
-                  <p className="text-sm leading-relaxed mt-1" style={{ color: GRAY_LIGHT }}>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* NOWE MIEJSCE DLA CTA PRZYCISKU */}
-          <div className="mb-16 w-full">
-            <PrimaryButton 
-              href="/pricing/ai-integration" 
-              className="!bg-[#a78bfa] !text-black !border-[#a78bfa] hover:!bg-white hover:!text-black transition-none"
-            >
-              Zobacz pełną ofertę AI
-            </PrimaryButton>
-          </div>
-
-          <div className="w-full mt-auto p-8 border bg-white" style={{ borderColor: GRAY_BORDER }}>
-            <div className="flex items-center gap-3 mb-6">
-              <Brain size={20} className="text-[#a78bfa]" />
-              <p className="text-black font-black uppercase text-[11px] tracking-[0.2em]">
-                Skonfiguruj chatbota AI w naszej aplikacji - Odbierz darmowy dostęp do AI Buildera
+              <h3 className="text-[28px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-[12px]">
+                Przetestuj AI Buildera.
+              </h3>
+              <p className="text-[15px] text-zinc-600 leading-relaxed">
+                Skonfiguruj własnego asystenta. Dopasuj styl odpowiedzi do swojej marki przed wdrożeniem go na stronę internetową.
               </p>
             </div>
-            
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              <input type="text" required placeholder="IMIĘ I NAZWISKO"
-                value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full h-14 bg-white border border-black px-5 text-black text-[11px] font-bold tracking-widest outline-none focus:border-[#a78bfa] placeholder:text-black/40" />
 
-              <input type="email" required placeholder="ADRES E-MAIL"
-                value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full h-14 bg-white border border-black px-5 text-black text-[11px] font-bold tracking-widest outline-none focus:border-[#a78bfa] placeholder:text-black/40" />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-[12px]">
+              {/* Inputy bez twardych borderów, czysta biel + cień */}
+              <input 
+                type="text" 
+                required 
+                placeholder="Imię i nazwisko"
+                value={formData.name} 
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                className="w-full h-[52px] bg-white rounded-[16px] px-[20px] text-[15px] text-zinc-900 outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.04)]" 
+              />
 
-              <label className="flex items-start gap-3 mt-2 cursor-pointer">
-                <input type="checkbox" required checked={formData.consent} onChange={(e) => setFormData({...formData, consent: e.target.checked})}
-                  className="mt-1 appearance-none w-4 h-4 border border-black checked:bg-[#a78bfa] cursor-pointer" />
-                <span className="text-[9px] text-black uppercase leading-relaxed tracking-tighter">
-                  Wyrażam zgodę na przetwarzanie danych w celu wysłania dostępu do AI Builder zgodnie z <a href="/privacy" className="underline text-blue hover:underline">Polityką Prywatności</a>.
+              <input 
+                type="email" 
+                required 
+                placeholder="Adres e-mail"
+                value={formData.email} 
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full h-[52px] bg-white rounded-[16px] px-[20px] text-[15px] text-zinc-900 outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-zinc-400 shadow-[0_2px_8px_rgba(0,0,0,0.04)]" 
+              />
+
+              <label className="flex items-start gap-[12px] mt-[8px] mb-[8px] cursor-pointer group">
+                <div className="relative flex items-center justify-center mt-[2px]">
+                  <input 
+                    type="checkbox" 
+                    required 
+                    checked={formData.consent} 
+                    onChange={(e) => setFormData({...formData, consent: e.target.checked})}
+                    className="peer appearance-none w-[18px] h-[18px] rounded-[6px] border border-zinc-300 checked:bg-purple-600 checked:border-purple-600 transition-all cursor-pointer bg-white shadow-sm" 
+                  />
+                  <Check className="absolute w-[12px] h-[12px] text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth={3} />
+                </div>
+                <span className="text-[12px] text-zinc-500 leading-relaxed">
+                  Zgadzam się na przetwarzanie danych w celu wysłania dostępu zgodnie z <a href="/privacy" className="text-purple-600 font-medium hover:underline">Polityką Prywatności</a>.
                 </span>
               </label>
 
-              <button type="submit" disabled={status !== 'idle' || !formData.consent}
-                className="h-14 mt-4 bg-black text-white font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-[#a78bfa] hover:text-black transition-none disabled:bg-neutral-200 disabled:text-neutral-400 flex items-center justify-center gap-3">
-                {status === 'idle' ? (<>Odbierz dostęp <ArrowRight size={16} weight="bold" /></>) : status === 'loading' ? ('Generowanie...') : ('Wysłano poprawnie')}
+              <button 
+                type="submit" 
+                disabled={status !== 'idle' || !formData.consent}
+                className="w-full h-[52px] mt-[4px] rounded-[16px] bg-zinc-900 text-white font-semibold text-[15px] hover:bg-purple-600 transition-colors duration-300 disabled:bg-zinc-200 disabled:text-zinc-400 flex items-center justify-center gap-[8px]"
+              >
+                {status === 'idle' ? (
+                  <>Odbierz dostęp <ArrowRight size={18} /></>
+                ) : status === 'loading' ? (
+                  'Przetwarzanie...'
+                ) : (
+                  'Wysłano poprawnie'
+                )}
               </button>
             </form>
+          </div>
+
+          {/* BENTO 2: DEMO ASYSTENTA (Prawa strona) - Identyczny styl */}
+          <div className="lg:col-span-7 w-full bg-zinc-50 rounded-[32px] border border-zinc-100 shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)] p-[16px] md:p-[24px] flex flex-col relative overflow-hidden">
+            
+            {/* Czysty nagłówek zamiast kropek macOS */}
+            <div className="flex items-center gap-[10px] mb-[20px] px-[8px]">
+              <div className="w-[8px] h-[8px] rounded-full bg-purple-600 animate-pulse" />
+              <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">
+                Interaktywny podgląd chatbota
+              </span>
+            </div>
+
+            {/* Miejsce na komponent czatu - wyczyszczone do samej bieli */}
+            <div className="w-full flex-grow min-h-[400px] bg-white rounded-[20px] overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+              <AssistantDemo onClose={() => {}} onThemeChange={() => {}} />
+            </div>
+
+            {/* Pasek informacyjny na dole - bez twardej ramki */}
+            <div className="mt-[20px] flex items-center gap-[16px] p-[20px] bg-purple-50/80 rounded-[20px]">
+              <Cpu className="w-[20px] h-[20px] text-purple-600 flex-shrink-0" />
+              <p className="text-[13px] font-medium text-purple-900/80 leading-relaxed">
+                Powyżej widzisz uproszczoną wersję. Pełny silnik analizuje pliki PDF, strukturę WWW oraz firmowe bazy Notion, by odpowiadać wyłącznie potwierdzonymi faktami z życia Twojej firmy.
+              </p>
+            </div>
+
           </div>
 
         </div>
