@@ -12,7 +12,7 @@ import {
   Search,
 } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
-import { HOMEPAGE_MENU_ITEMS, SUBPAGES_MENU_ITEMS, APP_CONFIG, MAIN_SERVICES, MEGA_MENU } from '@/lib/constants';
+import { HOMEPAGE_MENU_ITEMS, SUBPAGES_MENU_ITEMS, APP_CONFIG, MAIN_SERVICES, KATEGORIE_MEGA_MENU } from '@/lib/constants';
 import { useMobileDetection } from '@/utils/hooks';
 import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
 
@@ -31,6 +31,11 @@ export const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { open } = useSearchEngine();
+  // przechowuje id kategorii najechanej myszką w mega menu, null = nic nie najechane
+  const [aktywnaKategoriaMenu, setAktywnaKategoriaMenu] = useState<string | null>(null);
+
+  // czyści najechaną kategorię - odpalane przy opuszczeniu całego panelu albo kliknięciu pozycji
+  const resetujemy_aktywna_kategorie = () => setAktywnaKategoriaMenu(null);
 
   const isHomepage = pathname === "/";
 
@@ -237,7 +242,7 @@ export const Header = () => {
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
-                      Blog
+                      Aktualności
                     </motion.button>
 
                     {/* CENNIK */}
@@ -252,33 +257,43 @@ export const Header = () => {
                     >
                       Cennik
                     </motion.button>
+
+                    {/* CENNIK */}
+                    <motion.button
+                      onClick={() => router.push("/contact")}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        pathname === "/contact"
+                          ? "text-white bg-white/5"
+                          : "text-[#d4d4d4] hover:text-white"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Kontakt
+                    </motion.button>
+                  
                   </div>
+
+                  
 
                   {/* PRAWA STRONA */}
                   <div className="flex items-center gap-2">
                     <motion.button
                       onClick={open}
-                      className="flex items-center gap-2 px-4 py-3 rounded-full bg-white/12 border border-white/12 text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
+                      className="flex items-center gap-2 px-4 py-3 rounded-full bg-zinc-200 border border-zinc-900 text-gray-300 hover:text-white hover:bg-zinc-200 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Search className="w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm font-medium">Znajdź na Whiteslope</span>
-                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5 text-white/70 border border-white/20 rounded flex-shrink-0">
+                      <Search className="w-4 h-4 flex-shrink-0 text-black" />
+                      <span className="text-sm font-medium text-black">Znajdź na Whiteslope</span>
+                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white text-black/70 border border-white/20 rounded flex-shrink-0">
                         <span className="text-xs">⌘</span>K
                       </kbd>
-                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white/5 text-white/70 border border-white/20 rounded flex-shrink-0">
+                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white text-black/70 border border-white/20 rounded flex-shrink-0">
                         <span className="text-xs">Ctrl</span>K
                       </kbd>
                     </motion.button>
 
-                    <motion.button
-                      onClick={() => router.push('/contact')}
-                      className="px-6 py-2 rounded-full font-medium bg-white/95 text-black transition-all duration-300 hover:cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      Skontaktuj się
-                    </motion.button>
+                    
 
                     <div className="flex items-center gap-2">
                       <a
@@ -365,6 +380,8 @@ export const Header = () => {
             >
               <div
                 style={{
+                  width: 'min(1320px, calc(100vw - 48px))',
+                  minWidth: '1200px',
                   overflow: 'hidden',
                   backdropFilter: 'blur(24px)',
                   WebkitBackdropFilter: 'blur(24px)',
@@ -467,117 +484,167 @@ export const Header = () => {
                   </div>
                 </div>
 
-                {/* prawa strona — kolumny oferty */}
-                <div style={{ background: '#fff', padding: '48px 32px 28px', display: 'flex', flexDirection: 'column', borderRadius: '0 16px 16px 0' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', flex: 1 }}>
-                    {MEGA_MENU.map((column, colIndex) => {
-                      const kolumnowyHref: Record<string, string> = {
-                        'Web Development': '/pricing/website',
-                        'Integracja AI': '/pricing/ai-integration',
-                        'Automatyzacje': '/pricing/ai-integration',
-                        'Marketing & Wideo': '/pricing/video-marketing',
-                      };
+                {/* prawa strona — nawigacja kategorii + rozwijana lista pozycji */}
+                <div
+                  style={{
+                    background: '#fff',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '0 16px 16px 0',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '240px 1fr',
+                      flex: 1,
+                      height: '340px',        // ← zmiana: było minHeight, teraz height
+                      overflow: 'hidden',     // ← zabezpieczenie: gdyby coś było za wysokie, zostanie ucięte, a nie rozepchnie panelu
+                    }}
+                    onMouseLeave={resetujemy_aktywna_kategorie}
+                  >
 
-                      const columnItems = column.items;
-
-                      const pobieramy_href = (label: string, fallback: string) => {
-                        if (label === 'Strony Internetowe' || label === 'Aplikacje SaaS MVP') return '/pricing/website';
-                        if (label === 'Pozycjonowanie (SEO)') return '/pricing/optimization';
-                        if (label === 'Chatboty Rezerwacje' || label === 'Pomoc Techniczna 24/7' || label === 'Chatboty E-commerce') {
-                          return '/pricing/ai-integration';
-                        }
-                        return kolumnowyHref[column.title] ?? fallback;
-                      };
-
-                      return (
-                        <motion.div
-                          key={column.title}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: colIndex * 0.05 + 0.08, duration: 0.25 }}
-                          onMouseEnter={() => setActiveMegaColumn(colIndex)}
-                          onMouseLeave={() => setActiveMegaColumn(null)}
-                          style={{
-                            paddingRight: colIndex < MEGA_MENU.length - 1 ? '20px' : 0,
-                            paddingLeft: colIndex > 0 ? '20px' : 0,
-                            borderRight: colIndex < MEGA_MENU.length - 1 ? '1px solid #efefef' : 'none',
-                            opacity: activeMegaColumn === null || activeMegaColumn === colIndex ? 1 : 0.18,
-                            transition: 'opacity 0.2s',
-                          }}
-                        >
-                          <p
+                    {/* wąska kolumna z 3 kategoriami głównymi, styl jak w sklepach internetowych */}
+                    <div
+                      style={{
+                        borderRight: '1px solid #efefef',
+                        padding: '24px 0',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      {KATEGORIE_MEGA_MENU.map((kategoria) => {
+                        const czyAktywna = aktywnaKategoriaMenu === kategoria.id;
+                        return (
+                          <button
+                            key={kategoria.id}
+                            onMouseEnter={() => setAktywnaKategoriaMenu(kategoria.id)}
+                            onClick={() => {
+                              setIsOffersDropdownOpen(false);
+                              resetujemy_aktywna_kategorie();
+                              router.push(kategoria.href);
+                            }}
                             style={{
-                              fontSize: '10px',
-                              fontWeight: 700,
-                              letterSpacing: '0.16em',
-                              textTransform: 'uppercase' as const,
-                              color: '#111',
-                              paddingBottom: '12px',
-                              borderBottom: '1.5px solid #111',
-                              marginBottom: '14px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              width: '100%',
+                              textAlign: 'left',
+                              background: czyAktywna ? '#dddddd' : 'transparent',
+                              border: 'none',
+                              borderLeft: czyAktywna ? '2px solid #111' : '2px solid transparent',
+                              padding: '14px 22px',
+                              cursor: 'pointer',
+                              transition: 'background 0.15s, border-color 0.15s',
                             }}
                           >
-                            {column.title}
-                          </p>
+                            <span style={{ fontSize: '18px', fontWeight: 500, color: '#000000' }}>
+                              {kategoria.title}
+                            </span>
+                            <span style={{ fontSize: '20px', fontWeight: 900, color: czyAktywna ? '#000000' : '#252525' }}>›</span>
+                          </button>
+                        );
+                      })}
+                    </div>
 
-                          <div style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #efefef' }}>
-                            {columnItems.map((item, itemIndex) => (
-                              <button
-                                key={`${item.href}-${itemIndex}`}
-                                onClick={() => {
-                                  setIsOffersDropdownOpen(false);
-                                  setActiveMegaColumn(null);
-                                  router.push(pobieramy_href(item.label, item.href));
-                                }}
-                                style={{
-                                  display: 'block',
-                                  width: '100%',
-                                  textAlign: 'left',
-                                  background: '#f8f9fb',
-                                  border: 'none',
-                                  borderRadius: '6px',
-                                  padding: '10px 12px',
-                                  cursor: 'pointer',
-                                  transition: 'background 0.15s, transform 0.15s',
-                                }}
-                                onMouseEnter={(e) => { e.currentTarget.style.background = '#eef2f7'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.background = '#f8f9fb'; e.currentTarget.style.transform = 'translateY(0)'; }}
-                              >
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                  <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>{item.label}</span>
-                                  {item.badge && (
-                                    <span
-                                      className={
-                                        item.badgeColor ??
-                                        'bg-slate-100 text-slate-700 border border-slate-200'
-                                      }
-                                      style={{
-                                        fontSize: '10px',
-                                        fontWeight: 700,
-                                        letterSpacing: '0.06em',
-                                        textTransform: 'uppercase',
-                                        padding: '2px 6px',
-                                        borderRadius: '999px',
-                                      }}
+                    {/* prawa część: pozycje aktywnej kategorii albo znak wodny w tle, gdy nic nie jest najechane */}
+                    <div style={{ position: 'relative', padding: '24px 32px' }}>
+
+                      {!aktywnaKategoriaMenu && (
+                        <img
+                          src="/_resources/logoWhiteSlope.webp"
+                          alt=""
+                          style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '600px',
+                            filter: 'invert(1)',
+                            opacity: 0.1,
+                            pointerEvents: 'none',
+                          }}
+                        />
+                      )}
+
+                      {aktywnaKategoriaMenu && (() => {
+                        const kategoria = KATEGORIE_MEGA_MENU.find((k) => k.id === aktywnaKategoriaMenu);
+                        if (!kategoria) return null;
+
+                        return (
+                          <div>
+                            {/* <p
+                              style={{
+                                fontSize: '10px',
+                                fontWeight: 700,
+                                letterSpacing: '0.16em',
+                                textTransform: 'uppercase' as const,
+                                color: '#111',
+                                paddingBottom: '12px',
+                                borderBottom: '1.5px solid #111',
+                                marginBottom: '14px',
+                              }}
+                            >
+                              {kategoria.title}
+                            </p> */}
+
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+                              {kategoria.items.map((pozycja, indeks) => (
+                                <button
+                                  key={`${pozycja.href}-${indeks}`}
+                                  onClick={() => {
+                                    setIsOffersDropdownOpen(false);
+                                    resetujemy_aktywna_kategorie();
+                                    router.push(pozycja.href);
+                                  }}
+                                  // Zmienione: hover:bg-zinc-200 (szary) oraz rounded-none (ostre kąty)
+                                  className="group block w-full h-[64px] text-left bg-[#f8f9fb] hover:bg-zinc-100 border-none rounded-none py-[10px] px-[12px] cursor-pointer transition-colors duration-150"
+                                >
+                                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    
+                                    {/* Tytuł pozostaje z efektem niebieskiego podkreślenia */}
+                                    <span 
+                                      className="text-[18px] font-medium text-[#00132d] transition-colors group-hover:text-blue-900 group-hover:underline underline-offset-4 decoration-blue-600"
                                     >
-                                      {item.badge}
+                                      {pozycja.label}
                                     </span>
-                                  )}
-                                </div>
-                                <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>{item.desc}</div>
-                              </button>
-                            ))}
+                                    
+                                    {pozycja.badge && (
+                                      <span
+                                        className={pozycja.badgeColor ?? 'bg-slate-100 text-slate-700 border border-slate-200 group-hover:text-blue-600'}
+                                        style={{
+                                          fontSize: '10px',
+                                          fontWeight: 700,
+                                          letterSpacing: '0.06em',
+                                          textTransform: 'uppercase',
+                                          padding: '2px 6px',
+                                          borderRadius: '999px',
+                                        }}
+                                      >
+                                        {pozycja.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                  
+                                  {/* Opis */}
+                                  <div className="text-[12px] text-[#6b7280] mt-[4px] group-hover:text-blue-900">
+                                    {pozycja.desc}
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
                           </div>
-                        </motion.div>
-                      );
-                    })}
+                        );
+                      })()}
+                    </div>
+
                   </div>
 
-                  {/* stopka */}
+                  {/* stopka — bez zmian względem tego, co już masz */}
                   <div
                     style={{
                       marginTop: '20px',
-                      paddingTop: '16px',
+                      padding: '16px 32px 0',
                       borderTop: '1px solid #efefef',
                       display: 'flex',
                       alignItems: 'center',
@@ -585,19 +652,19 @@ export const Header = () => {
                     }}
                   >
                     <img
-  src="/_resources/whiteslope studio literka sygnet2.png"
-  alt="Whiteslope Studio"
-  style={{
-    height: '30px',
-    width: 'auto',
-    filter: 'grayscale(1) brightness(10) invert(0) sepia(1) hue-rotate(200deg) saturate(8) brightness(0.6)',
-  }}
-/>
+                      src="/_resources/whiteslope studio literka sygnet2.png"
+                      alt="Whiteslope Studio"
+                      style={{
+                        height: '30px',
+                        width: 'auto',
+                        filter: 'grayscale(1) brightness(10) invert(0) sepia(1) hue-rotate(200deg) saturate(8) brightness(0.6)',
+                      }}
+                    />
 
                     <button
                       onClick={() => {
                         setIsOffersDropdownOpen(false);
-                        setActiveMegaColumn(null);
+                        resetujemy_aktywna_kategorie();
                         router.push('/contact');
                       }}
                       style={{
@@ -610,6 +677,7 @@ export const Header = () => {
                         borderRadius: '6px',
                         cursor: 'pointer',
                         transition: 'background 0.15s',
+                        marginBottom: '13px',
                       }}
                       onMouseEnter={(e) => { e.currentTarget.style.background = '#333'; }}
                       onMouseLeave={(e) => { e.currentTarget.style.background = '#111'; }}

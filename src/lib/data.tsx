@@ -2908,6 +2908,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     title: "EasyLesson - platforma SaaS do nauki online",
     image: "/_resources/stronyInternetowe/Easylesson.webp",
     category: "Aplikacja Webowa",
+    rowType: "web", // <--- DODANE
     href: "https://easylesson.app",
     description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwym i efektywnym nauce przez interaktywne materiały i personalizowane podejście.",
   },
@@ -2916,6 +2917,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     title: "Damian Bogdanowicz - profesjonalne usługi kręcenia krótkich filmów reklamowych",
     image: "/_resources/stronyInternetowe/DamianBogdanowicz.webp",
     category: "Strona portfolio dla fotografa i filmowca",
+    rowType: "web", // <--- DODANE
     href: "https://damian-bogdanowicz-site.vercel.app/",
     description: "Nowoczesna strona dla profesjonalnego studia filmowego. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
   },
@@ -2924,6 +2926,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     title: "Wiesławski Studio - profesjonalne studio muzyczne",
     image: "/_resources/stronyInternetowe/WieslawskiStudio.webp",
     category: "Strona biznesowa",
+    rowType: "web", // <--- DODANE
     href: "https://www.wieslawski.studio/",
     description: "Nowoczesna strona dla profesjonalnego studia muzycznego. Już po 24 godzinach od uruchomienia pojawiły się pierwsze zapytania od klientów. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
   },
@@ -2932,11 +2935,30 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     title: "Patryk Kulesza - korepetycje matematyka, angielski i programowanie",
     image: "/_resources/stronyInternetowe/PatrykKulesza.webp",
     category: "Strona usługowa",
+    rowType: "web", // <--- DODANE
     href: "https://korepetycje-eight.vercel.app",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
   },
-  
 
+
+  {
+    id: "5",
+    title: "Chatbot AI dla Easylesson.app - integracja z Gemini",
+    image: "/_resources/easylesson.webp",
+    category: "Automatyzacja & AI",
+    rowType: "ai",
+    href: "https://easylesson.app/",
+    description: "Integracja Chatbota AI z platformą edukacyjną Easylesson.app. Chatbot wspiera użytkowników w nawigacji po platformie, odpowiada na pytania dotyczące kursów i materiałów edukacyjnych, a także automatyzuje procesy związane z rejestracją i obsługą klienta.",
+  },
+
+  {id: "6",
+    title: "Film promocyjny dla Wiesławski Studio",
+    image: "/_resources/optymalizacja/wieslawski-studio-film-promocyjny.webp",
+    category: "Film promocyjny",
+    rowType: "marketing",
+    href: "https://wieslawski.studio/",
+    description: "Projekt polegał na zaprojektowniu voucherów świąteczncyh i stworzeniu filmu 3D promocyjnego dla Wiesławski Studio, który miał na celu zwiększenie przyciągnięcie nowych klientów. Film został zoptymalizowany pod kątem publikacji w mediach społecznościowych oraz na stronie internetowej studia.",
+  }
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [

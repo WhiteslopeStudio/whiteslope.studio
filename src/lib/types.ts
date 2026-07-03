@@ -14,13 +14,14 @@ export interface ServicePricing {
 }
 
 export interface ProjectExample {
-  
   id: string;
   title: string;
   image: string;
   category: string;
   href?: string;
-  description: String;
+  description: string;
+  // Dodajemy to pole:
+  rowType?: 'web' | 'ai' | 'marketing'; 
 }
 
 export interface ProcessStep {

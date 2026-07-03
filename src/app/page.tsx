@@ -143,7 +143,7 @@ export default function HomePage() {
           {/* <CaseStudies /> */}
 
           <AboutUsSection />
-          <KnowledgeBaseSection />
+          {/* <KnowledgeBaseSection /> */}
 
           <BriefSection />
           

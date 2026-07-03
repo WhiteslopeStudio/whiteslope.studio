@@ -178,6 +178,47 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
   },
 ];
 
+export const KATEGORIE_MEGA_MENU = [
+  {
+    id: 'web',
+    title: 'Web Development',
+    href: '/pricing/website',
+    items: [
+      { label: 'Strony Internetowe', desc: 'Wizytówki i rozbudowane serwisy', badge: 'Najlepszy wybór', badgeColor: 'bg-blue-50 text-blue-700 border border-blue-200', href: '/pricing/website' },
+      { label: 'Pozycjonowanie (SEO)', desc: 'Organiczny ruch, który zostaje na lata', badge: 'Ważne', badgeColor: 'bg-amber-50 text-amber-700 border border-amber-200', href: '/pricing/optimization' },
+      { label: 'Aplikacje SaaS MVP', desc: 'Twój własny startup od zera', href: '/pricing/website' },
+      { label: 'Dedykowane Systemy Webowe', desc: 'Panele B2B, portale i aplikacje wewnętrzne', href: '/pricing/website' },
+      { label: 'Poprawki istniejących stron', desc: 'Modernizacja i optymalizacja istniejących rozwiązań', href: '/pricing/website' },
+    ],
+  },
+  {
+    id: 'automatyzacja',
+    title: 'Automatyzacja & AI',
+    href: '/pricing/ai-integration',
+    items: [
+      { label: 'Chat Pomoc Techniczna 24/7', desc: 'Odpowiedzi na bazie danych o firmie', badge: 'Trend', badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200', href: '/pricing/ai-integration' },
+      { label: 'Chatboty E-commerce', desc: 'Automatyczny doradca w sklepie', href: '/pricing/ai-integration' },
+      { label: 'Chatboty Rezerwacje', desc: 'Umawianie spotkań w kalendarzu', href: '/pricing/ai-integration' },
+      { label: 'Obieg Dokumentów', desc: 'n8n i wyciąganie danych', href: '/pricing/ai-integration' },
+      { label: 'Zarządzanie Leadami', desc: 'Ścieżki sprzedażowe i powiadomienia', href: '/pricing/ai-integration' },
+      { label: 'Integracje Systemów (API)', desc: 'Łączymy narzędzia', href: '/pricing/ai-integration' },
+    ],
+  },
+  {
+    id: 'marketing',
+    title: 'Marketing & Wideo',
+    href: '/pricing/video-marketing',
+    items: [
+      { label: 'Email marketing', desc: 'Prosty Email marketing', href: '/pricing/video-marketing' },
+      { label: 'Twórcy UGC', desc: 'Rolki i TikToki, opieka nad górą lejka', href: '/pricing/video-marketing' },
+      { label: 'Video Marketing', desc: 'Reklamy i wideo', href: '/pricing/video-marketing' },
+      { label: 'Kampanie Meta Ads', desc: 'Skalowalne generowanie leadów i sprzedaży', href: '/pricing/video-marketing' },
+      { label: 'Grafika 2D i 3D', desc: 'Projektowanie i tworzenie grafik', href: '/pricing/video-marketing' },
+      { label: 'Obróbka Dźwięku', desc: 'Obróbka dźwięku do filmów', href: '/pricing/video-marketing' },
+    ],
+  },
+];
+
 // Homepage menu - sekcje + podstrony
 export const HOMEPAGE_MENU_ITEMS = [
   { label: 'Home', href: '#home', type: 'section' },

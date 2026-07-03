@@ -8,7 +8,7 @@ export default function ServicesIntro() {
       <div className="w-full max-w-[1580px] mx-auto flex flex-col">
         
         <h2 className="text-[28px] md:text-[40px] font-[400] text-zinc-950 leading-[1.05] tracking-tight m-0 p-0 ">
-        W czym możemy Ci pomóc? 
+        Nasza oferta 
   
   
   {/* Ikona z relative -top-1 dla lekkiego podniesienia */}
