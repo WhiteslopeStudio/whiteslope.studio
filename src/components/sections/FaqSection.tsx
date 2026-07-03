@@ -111,10 +111,8 @@ export const FAQSection = () => {
           >
             {/* Tekst nałożony na Twoją grafikę */}
             <div className="relative z-10">
-              <h2 className="text-[32px] md:text-[40px] font-bold text-black tracking-tight leading-[1.1] mb-[12px]">
-                Masz pytania?
-              </h2>
-              <p className="text-[16px] md:text-[18px] text-black/99 font-semibold leading-relaxed max-w-[75%]">
+    
+              <p className="text-[18px] md:text-[24px] text-black/99 font-bold leading-relaxed max-w-[75%]">
                 Sprawdź najczęstsze kwestie związane z procesem, współpracą i wdrożeniami.
               </p>
             </div>

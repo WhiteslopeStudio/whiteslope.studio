@@ -94,7 +94,7 @@ export default function AboutUsSection() {
         {/* --- NAGŁÓWEK SEKCJI --- */}
         <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h2 className="text-[32px] font-bold text-zinc-950 leading-[1.05] tracking-tight">
+            <h2 className="text-[40px] font-bold text-zinc-950 leading-[1.05] tracking-tight">
               Poznaj nas bliżej ;)
             </h2>
           </div>

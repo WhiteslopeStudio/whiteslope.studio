@@ -7,7 +7,7 @@ export default function ServicesIntro() {
     <section id="services" className="w-full bg-white pt-[90px] pb-0 px-[24px]">
       <div className="w-full max-w-[1580px] mx-auto flex flex-col">
         
-        <h2 className="text-[28px] md:text-[32px] font-[400] text-zinc-950 leading-[1.05] tracking-tight m-0 p-0 ml-[52px]">
+        <h2 className="text-[28px] md:text-[40px] font-[400] text-zinc-950 leading-[1.05] tracking-tight m-0 p-0 ">
         W czym możemy Ci pomóc? 
   
   
