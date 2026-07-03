@@ -9,14 +9,12 @@ const YOUTUBE_VIDEOS = [
     id: '1',
     title: 'Sekrety Stron Biznesowych – Pozyskuj klientów w 2 minuty!',
     desc: 'Chcesz, aby Twoja firma wyglądała profesjonalnie w sieci i skutecznie pozyskiwała klientów? W tym wideo eksperci z Whiteslope Studio zdradzają kluczowe sekrety.',
-
     videoId: '_4TJyWuqkUk',
   },
   {
     id: '2',
     title: 'Wsparcie po wdrożeniu strony? TAK! ✅',
     desc: 'Szkolenie z obsługi strony i pomoc w razie problemów. Whiteslope Studio - strony internetowe dla Twojej firmy 🚀',
-
     videoId: 'nGAbHUE1eyI',
   },
 ];
@@ -52,21 +50,31 @@ export default function KnowledgeBaseSection() {
   };
 
   return (
-    // Bardzo jasne szare tło sekcji, usunięty top border, mniejszy padding
-    <section className="w-full bg-zinc-50 py-[60px] overflow-hidden">
+    // Główna sekcja z szarym tłem. 'relative' trzyma pasy w ryzach.
+    <section className="relative w-full bg-zinc-50 overflow-hidden px-4 md:px-8">
       
-      {/* Zamknięcie całego kontentu w białym, lekko zaokrąglonym bloku */}
-      <div className="w-full max-w-[1640px] mx-auto bg-white rounded-[24px] border border-zinc-100 p-[32px] md:p-[48px] shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-        
-        {/* --- TOP: NAGŁÓWEK BLOGA I NAWIGACJA --- */}
+      {/* --- TŁO: 8 pasów (limonkowo-żółtych) POZA białym divem --- */}
+      {/* max-w-[1640px] sprawia, że pasy są tej samej szerokości co biały div */}
+      <div className="absolute inset-x-0 bottom-0 z-0 h-[350px] w-full max-w-[1640px] mx-auto flex pointer-events-none opacity-60">
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #bcff9b7e 0%, #fafafa 60%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #c5ff9b8b 0%, #fafafa 90%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #c5ff9b84 0%, #fafafa 25%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #d9ff9b90 0%, #fafafa 50%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #daff9b87 0%, #fafafa 85%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #f7ff9b8b 0%, #fafafa 35%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #ffff9b72 0%, #fafafa 70%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to top, #fff89b69 0%, #fafafa 95%)' }} />
+      </div>
+
+      {/* --- GŁÓWNA BIAŁA KARTA --- */}
+      {/* KLUCZ: 'relative z-10' sprawia, że biała karta jest ZAWSZE nad gradientami */}
+<div className="relative z-10 border-t border-b border-zinc-200 w-full max-w-[1640px] mx-auto bg-transparent p-[32px] md:p-[48px] shadow-[0_2px_8px_rgba(0,0,0,0.02)]">        {/* --- TOP: NAGŁÓWEK BLOGA I NAWIGACJA --- */}
         <div className="flex items-center justify-between mb-[40px]">
-          {/* Mniejszy nagłówek (28px), usunięty badge Edukacja */}
           <h2 className="text-[28px] font-bold text-zinc-950 leading-[1.05] tracking-tight">
             Blog
           </h2>
           
           <div className="flex items-center gap-[24px]">
-            {/* Przesunięte tutaj strzałki karuzeli (tagi usunięte) */}
             <div className="flex items-center gap-[12px]">
               <button 
                 onClick={() => scroll('left')}
@@ -98,7 +106,7 @@ export default function KnowledgeBaseSection() {
           </div>
         </div>
 
-        {/* --- KARUZELA BLOGÓW (4 na szerokość ekranu) --- */}
+        {/* --- KARUZELA BLOGÓW --- */}
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
@@ -129,9 +137,8 @@ export default function KnowledgeBaseSection() {
         </div>
 
         {/* --- SEKCJA WIDEO --- */}
-        <div className="mt-[40px] pt-[40px] border-t border-zinc-100">
+        <div className="mt-[40px] pt-[40px] border-t border-zinc-200/80">
           <div className="flex items-center justify-between mb-[32px]">
-            {/* Ten sam rozmiar nagłówka co przy sekcji Blog */}
             <h2 className="text-[28px] font-bold text-zinc-950 tracking-tight">
               Filmy
             </h2>
@@ -140,17 +147,16 @@ export default function KnowledgeBaseSection() {
               href="https://www.youtube.com/@WhiteslopeStudio" 
               target="_blank" 
               rel="noreferrer"
-              className="inline-flex items-center gap-[8px] px-[20px] py-[10px] rounded-full bg-[#FF0000] text-white text-[14px] font-semibold hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-[8px] px-[20px] py-[10px] rounded-full bg-[#FF0000] text-white text-[14px] font-semibold hover:bg-red-700 transition-colors shadow-md"
             >
               <Youtube className="w-[18px] h-[18px]" /> Subskrybuj kanał
             </a>
           </div>
 
-          {/* Grid na sztywno podzielony na 4 kolumny. Jeśli są 2 filmy - reszta okien po prostu zostaje pusta */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
             {YOUTUBE_VIDEOS.map((video) => (
               <div key={video.id} className="flex flex-col">
-                <div className="w-full aspect-video rounded-[16px] overflow-hidden bg-zinc-900 mb-[16px]">
+                <div className="w-full aspect-video rounded-[16px] overflow-hidden bg-zinc-900 mb-[16px] shadow-sm">
                   <iframe
                     className="w-full h-full"
                     src={`https://www.youtube.com/embed/${video.videoId}`}
@@ -159,7 +165,6 @@ export default function KnowledgeBaseSection() {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <span className="text-[13px] font-medium text-zinc-500 mb-[8px]">{video.date}</span>
                 <h4 className="text-[16px] font-bold text-zinc-950 leading-[1.3] mb-[8px]">
                   {video.title}
                 </h4>

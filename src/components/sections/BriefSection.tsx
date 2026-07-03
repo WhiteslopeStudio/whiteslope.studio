@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle, ArrowRight, User, Mail, Tag, MessageSquare, Phone, MapPin, Clock } from 'lucide-react';
+import { CheckCircle, ArrowRight, Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 
-// ─── POLA FORMULARZA ────────────────────────────────────────────────────────
+// ─── POLE FORMULARZA (z widocznym, szarawym tłem i dolną krawędzią) ─────────
 
 function EtykietaPola({ children, wymagane }: { children: React.ReactNode; wymagane?: boolean }) {
   return (
-    <label className="block text-sm font-semibold text-white/80 mb-2">
-      {children} {wymagane && <span className="text-red-400">*</span>}
+    <label className="block text-[14px] font-semibold text-zinc-950 mb-2 ml-1">
+      {children} {wymagane && <span className="text-blue-600">*</span>}
     </label>
   );
 }
@@ -17,7 +17,7 @@ function PoleTekstowe({ ...wlasciwosci }: React.InputHTMLAttributes<HTMLInputEle
   return (
     <input
       {...wlasciwosci}
-      className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/10 transition-colors"
+      className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-3.5 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300"
     />
   );
 }
@@ -34,20 +34,17 @@ export default function BriefSection() {
   const [wysylanie, setWysylanie] = useState(false);
   const [wyslano, setWyslano] = useState(false);
 
-  // pozycja myszki nad przyciskiem submit, wyrażona w procentach (0-100)
-  // - potrzebna do przesuwania środka gradientu radialnego za kursorem
-  const [pozycjaMyszy, setPozycjaMyszy] = useState({ x: 50, y: 100 });
-  const [czyNajechanoPrzycisk, setCzyNajechanoPrzycisk] = useState(false);
+  // Stan do animacji przycisku CTA
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 100 });
 
-  // przelicza pozycję kursora względem granic przycisku na procenty
-  const oblicza_pozycje_myszy = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const wymiary = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - wymiary.left) / wymiary.width) * 100;
-    const y = ((e.clientY - wymiary.top) / wymiary.height) * 100;
-    setPozycjaMyszy({ x, y });
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePosition({ x, y });
   };
 
-  // sprawdza wszystkie pola formularza przed wysyłką
   const waliduje_formularz = () => {
     const nowe_bledy: Record<string, string> = {};
 
@@ -68,8 +65,6 @@ export default function BriefSection() {
     return Object.keys(nowe_bledy).length === 0;
   };
 
-  // wysyła dane do istniejącego endpointu /api/contact,
-  // zachowując strukturę pól, jakiej oczekuje backend
   const wysyla_wiadomosc = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!waliduje_formularz()) return;
@@ -116,98 +111,73 @@ export default function BriefSection() {
   };
 
   return (
-    <section id="BriefHomePage" className="relative w-full bg-black py-[80px] overflow-hidden">
+    <section id="BriefHomePage" className="relative w-full bg-white py-[80px] border-t border-zinc-200 overflow-hidden">
       <div className="w-full max-w-[1640px] mx-auto px-[24px]">
 
-        <div className="relative w-full bg-[#0d0d0d] rounded-[32px] overflow-hidden">
+        {/* Całość zamknięta w jednej czystej karcie z cieniem */}
+        <div className="">
 
-          {/* Gradientowe paski w tle, ta sama idea co w sekcji Websites,
-              tylko przyciemniona i bardzo subtelna - zastępują starą obwódkę */}
-          <div className="absolute inset-0 z-0 flex pointer-events-none">
-            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, rgba(0,87,255,0.16) 0%, transparent 55%)' }} />
-            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, rgba(0,87,255,0.11) 0%, transparent 55%)' }} />
-            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, rgba(0,87,255,0.07) 0%, transparent 55%)' }} />
-            <div className="flex-1" style={{ background: 'linear-gradient(to bottom, rgba(0,87,255,0.03) 0%, transparent 55%)' }} />
-          </div>
+          {/* items-start sprawia, że kolumny nie rozciągają się do równej wysokości */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-20 items-start">
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center">
-
-            {/* ── LEWO: formularz, wyśrodkowany w pionie względem kolumny ── */}
-            <div className="flex-1 w-full px-[32px] py-[64px] lg:px-[64px] lg:py-[80px]">
-
+            {/* ── LEWO: formularz ─────────────────────────── */}
+            <div>
               {wyslano ? (
-                <div className="max-w-[560px] mx-auto text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-8 h-8 text-green-400" />
+                <div className="max-w-[480px] text-center py-12">
+                  <div className="w-16 h-16 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Dziękujemy!</h3>
-                  <p className="text-white/60 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-zinc-950 mb-3">Dziękujemy!</h3>
+                  <p className="text-zinc-500 leading-relaxed">
                     Wiadomość została wysłana. Odezwiemy się na podany adres email tak szybko, jak to możliwe.
                   </p>
                 </div>
               ) : (
-                <div className="max-w-[560px] mx-auto">
-                  <div className="mb-10 text-left">
-                    <h2 className="text-[32px] lg:text-[38px] font-bold text-white leading-[1.1] tracking-tight mb-[16px]">
+                <div className="w-full">
+                  <div className="mb-10">
+                    <h2 className="text-[32px] lg:text-[40px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-[16px]">
                       Napisz do nas
                     </h2>
-                    <p className="text-[16px] text-white/60 leading-relaxed">
+                    <p className="text-[16px] text-zinc-500 leading-relaxed max-w-[500px]">
                       Zostaw wiadomość, a odezwiemy się najszybciej jak to możliwe.
                     </p>
                   </div>
 
-                  <form onSubmit={wysyla_wiadomosc} className="space-y-5">
+                  <form onSubmit={wysyla_wiadomosc} className="space-y-6">
 
                     <div>
-                      <EtykietaPola wymagane>
-                        <span className="inline-flex items-center gap-1.5">
-                          <User className="w-3.5 h-3.5" /> Imię i nazwisko
-                        </span>
-                      </EtykietaPola>
-                      {bledy.imieNazwisko && <p className="text-red-400 text-xs mb-1">{bledy.imieNazwisko}</p>}
+                      <EtykietaPola wymagane>Imię i nazwisko</EtykietaPola>
                       <PoleTekstowe
                         value={imieNazwisko}
                         onChange={(e) => setImieNazwisko(e.target.value)}
                         placeholder="Jan Kowalski"
                       />
+                      {bledy.imieNazwisko && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.imieNazwisko}</p>}
                     </div>
 
                     <div>
-                      <EtykietaPola wymagane>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Mail className="w-3.5 h-3.5" /> Email
-                        </span>
-                      </EtykietaPola>
-                      {bledy.email && <p className="text-red-400 text-xs mb-1">{bledy.email}</p>}
+                      <EtykietaPola wymagane>Email</EtykietaPola>
                       <PoleTekstowe
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="jan@example.com"
                       />
+                      {bledy.email && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.email}</p>}
                     </div>
 
                     <div>
-                      <EtykietaPola wymagane>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Tag className="w-3.5 h-3.5" /> Tytuł
-                        </span>
-                      </EtykietaPola>
-                      {bledy.tytul && <p className="text-red-400 text-xs mb-1">{bledy.tytul}</p>}
+                      <EtykietaPola wymagane>Tytuł</EtykietaPola>
                       <PoleTekstowe
                         value={tytul}
                         onChange={(e) => setTytul(e.target.value)}
                         placeholder="np. Wycena strony internetowej"
                       />
+                      {bledy.tytul && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tytul}</p>}
                     </div>
 
                     <div>
-                      <EtykietaPola wymagane>
-                        <span className="inline-flex items-center gap-1.5">
-                          <MessageSquare className="w-3.5 h-3.5" /> Treść wiadomości
-                        </span>
-                      </EtykietaPola>
-                      {bledy.tresc && <p className="text-red-400 text-xs mb-1">{bledy.tresc}</p>}
+                      <EtykietaPola wymagane>Treść wiadomości</EtykietaPola>
                       <textarea
                         value={tresc}
                         onChange={(e) => setTresc(e.target.value)}
@@ -216,34 +186,34 @@ export default function BriefSection() {
                           pole.style.height = 'auto';
                           pole.style.height = pole.scrollHeight + 'px';
                         }}
-                        placeholder="Opisuje się, w czym można pomóc..."
-                        className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/10 transition-colors resize-none overflow-hidden"
+                        placeholder="Opisz, w czym możemy Ci pomóc..."
+                        className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-4 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300 resize-none overflow-hidden"
                         style={{ minHeight: '8rem' }}
                       />
+                      {bledy.tresc && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tresc}</p>}
                     </div>
 
-                    {/* Przycisk submit - biała wersja efektu z gradientem podążającym za myszką */}
-                    <div className="pt-2">
+                    <div className="pt-4">
                       <button
                         type="submit"
                         disabled={wysylanie}
-                        onMouseMove={oblicza_pozycje_myszy}
-                        onMouseEnter={() => setCzyNajechanoPrzycisk(true)}
-                        onMouseLeave={() => setCzyNajechanoPrzycisk(false)}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full h-12 px-8 text-sm font-semibold text-zinc-900 relative overflow-hidden transition-all duration-300 active:scale-95 group disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.25)]"
+                        onMouseMove={handleMouseMove}
+                        onMouseEnter={() => setIsButtonHovered(true)}
+                        onMouseLeave={() => setIsButtonHovered(false)}
+                        className="w-full sm:w-auto inline-flex items-center justify-center rounded-full h-[48px] px-8 text-[15px] font-semibold text-white relative overflow-hidden transition-all duration-300 active:scale-95 disabled:opacity-50 group shadow-[0_4px_20px_rgba(0,87,255,0.25)] hover:shadow-[0_8px_30px_rgba(0,87,255,0.4)]"
                         style={{
-                          background: `radial-gradient(circle at ${czyNajechanoPrzycisk ? pozycjaMyszy.x : 50}% ${czyNajechanoPrzycisk ? pozycjaMyszy.y : 100}%, #ffffff, #f2f2f2 40%, #e2e2e2 80%, #cfcfcf)`,
+                          background: wysylanie ? '#1a75ff' : `radial-gradient(circle at ${isButtonHovered ? mousePosition.x : 50}% ${isButtonHovered ? mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
                         }}
                       >
                         {wysylanie ? (
                           <>
-                            <div className="w-4 h-4 border-2 border-zinc-900/30 border-t-zinc-900 rounded-full animate-spin" />
+                            <div className="w-4 h-4 mr-2 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             Wysyłanie...
                           </>
                         ) : (
                           <>
                             Wyślij wiadomość
-                            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                            <Send className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                           </>
                         )}
                       </button>
@@ -254,63 +224,70 @@ export default function BriefSection() {
               )}
             </div>
 
-            {/* ── PRAWO: dane kontaktowe, wyśrodkowane w pionie razem z formularzem ── */}
-            <div className="w-full lg:w-[380px] flex-shrink-0 px-[32px] pb-[64px] lg:px-[48px] lg:py-[80px] lg:border-l lg:border-white/10">
-              <p className="text-xs uppercase tracking-[0.18em] font-semibold text-blue-400 mb-5">Dane kontaktowe</p>
+            {/* ── PRAWO: jasna karta kontaktowa (wersja premium, minimalistyczna) ── */}
+<div className="w-full bg-[#e8f6c3] border border-zinc-200/80 rounded-[24px] p-8 sm:p-10">
 
-              <div className="space-y-5 text-sm">
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 mt-0.5 text-white/35 shrink-0" />
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Email</div>
-                    <a href="mailto:kontakt@whiteslope.studio" className="text-white hover:text-blue-300 transition-colors font-medium">
-                      kontakt@whiteslope.studio
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 mt-0.5 text-white/35 shrink-0" />
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Telefon</div>
-                    <a href="tel:+48662581368" className="block text-white hover:text-blue-300 transition-colors font-medium">
-                      +48 662 581 368
-                    </a>
-                    <a href="tel:+48731721760" className="block text-white hover:text-blue-300 transition-colors font-medium">
-                      +48 731 721 760
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 text-white/35 shrink-0" />
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Lokalizacja</div>
-                    <div className="text-white font-medium">Białystok, Polska</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 mt-0.5 text-white/35 shrink-0" />
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Godziny pracy</div>
-                    <div className="text-white font-medium">Pon – Pt: 9:00 – 17:00</div>
-                  </div>
-                </div>
-              </div>
+  {/* Nagłówek spójny z lewą stroną (zamiast niebieskiego, małego tekstu) */}
+  <h3 className="text-[20px] lg:text-[22px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-8">
+    Dane kontaktowe
+  </h3>
 
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <p className="text-xs text-white/45 mb-3">
-                  <span className="font-semibold text-white/70">Pilny projekt?</span>{' '}
-                  Zadzwoń bezpośrednio i omówimy szczegóły.
-                </p>
-                <a
-                  href="tel:+48662581368"
-                  className="w-full inline-flex items-center justify-center rounded-full h-11 px-6 text-sm font-semibold text-white transition-all duration-300 hover:shadow-[0_6px_20px_rgba(25,133,255,0.45)] active:scale-95 shadow-[0_4px_16px_rgba(25,133,255,0.25)]"
-                  style={{ background: '#1985ff' }}
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Zadzwoń teraz
-                </a>
-              </div>
-            </div>
+  <div className="space-y-8">
+    
+    {/* Email */}
+    <div className="flex items-start gap-4 group">
+      <div className="mt-1 shrink-0">
+        <Mail className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+      </div>
+      <div>
+        <div className="text-black  text-[13px] font-medium mb-1">Email</div>
+        <a href="mailto:kontakt@whiteslope.studio" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px]">
+          kontakt@whiteslope.studio
+        </a>
+      </div>
+    </div>
+
+    {/* Telefon */}
+    <div className="flex items-start gap-4 group">
+      <div className="mt-1 shrink-0">
+        <Phone className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+      </div>
+      <div>
+        <div className="text-black text-[13px] font-medium mb-1">Telefon</div>
+        <a href="tel:+48662581368" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px] mb-1">
+          +48 662 581 368
+        </a>
+        <a href="tel:+48731721760" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px]">
+          +48 731 721 760
+        </a>
+      </div>
+    </div>
+
+    {/* Lokalizacja */}
+    <div className="flex items-start gap-4 group">
+      <div className="mt-1 shrink-0">
+        <MapPin className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+      </div>
+      <div>
+        <div className="text-black text-[13px] font-medium mb-1">Lokalizacja</div>
+        <div className="text-zinc-950 font-medium text-[16px]">Białystok, Polska</div>
+      </div>
+    </div>
+
+    {/* Godziny pracy */}
+    <div className="flex items-start gap-4 group">
+      <div className="mt-1 shrink-0">
+        <Clock className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+      </div>
+      <div>
+        <div className="text-black text-[13px] font-medium mb-1">Godziny pracy</div>
+        <div className="text-zinc-950 font-medium text-[16px]">Pon – Pt: 9:00 – 17:00</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
           </div>
         </div>

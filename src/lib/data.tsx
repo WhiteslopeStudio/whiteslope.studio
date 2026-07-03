@@ -2398,7 +2398,7 @@ export const FAQ_DATA = [
     id: "1",
     question: "Ile czasu trwa realizacja projektu?",
     answer:
-      "Czas realizacji zależy od złożoności projektu. Prosty landing page może być gotowy w 1-2 tygodnie, podczas gdy bardziej rozbudowana strona biznesowa lub portal może zająć od 4 do 6 tygodni.",
+      "Czas realizacji zależy od złożoności projektu. Prosty landing page może być gotowy w 1-2 tygodnie, podczas gdy bardziej rozbudowana strona biznesowa lub portal może zająć od 4 do 6 tygodni lub więcej czasu.",
   },
   {
     id: "2",
@@ -2410,25 +2410,25 @@ export const FAQ_DATA = [
     id: "3",
     question: "Czy mogę samodzielnie edytować treści?",
     answer:
-      "Oczywiście! W pakietach biznesowych i premium oferujemy system zarządzania treścią (CMS), który pozwala na łatwą edycję tekstów, obrazów i innych elementów strony bez konieczności posiadania wiedzy technicznej.",
+      "Mamy możliwość tworzenia stron w systemie CMS (Hostinger), który pozwala na łatwą edycję treści. Jeśli wolisz, możemy też stworzyć stronę w kodzie, ale wtedy edycja treści będzie wymagała naszej pomocy lub przystosowania strony do możliwości edycji.",
   },
   {
     id: "4",
     question: "Czy zapewniacie wsparcie po uruchomieniu?",
     answer:
-      "Oczywiście! Po uruchomieniu strony zapewniamy bezpłatne wsparcie techniczne, pomoc w obsłudze oraz aktualizacje bezpieczeństwa. Oferujemy także pakiety rozszerzonego wsparcia.",
+      "Po uruchumieniu strony oferujemy odpłatne wsparcie techniczne i aktualizacje. Zapewniamy szkolenie z obłsługi strony, a także możliwość dalszej współpracy w zakresie rozwoju i utrzymania strony.",
   },
   {
     id: "5",
     question: "Ile kosztuje hosting i domena?",
     answer:
-      "W większości przypadków koszt domeny i hostingu to około 200–300 zł rocznie. Jeśli strona jest napisana w kodzie (bez systemu WordPress), to tak naprawdę jedynym stałym kosztem jest sama domena. Pomożemy wybrać odpowiedni pakiet, założyć konto i dopilnujemy, żeby wszystko działało sprawnie. W razie potrzeby doradzimy też, gdyby strona wymagała dodatkowych opcji — wszystko zawsze ustalamy z wyprzedzeniem, żeby było jasno i bez niespodzianek.",
+      "W większości przypadków koszt domeny i hostingu to około 500-1500 zł rocznie. Jeśli strona jest napisana w kodzie, to tak naprawdę jedynym stałym kosztem jest sama domena. Pomożemy wybrać odpowiedni pakiet, założyć konto i dopilnujemy, żeby wszystko działało sprawnie. W razie potrzeby doradzimy też, gdyby strona wymagała dodatkowych opcji — wszystko zawsze ustalamy z wyprzedzeniem, żeby było jasno i bez niespodzianek.",
   },
   {
     id: "6",
     question: "Czy strona będzie zoptymalizowana pod SEO?",
     answer:
-      "Tak! Wszystkie nasze strony są budowane z myślą o SEO. Używamy najnowszych technologii, dbamy o szybkość ładowania, optymalizujemy meta tagi i strukturę danych dla lepszej widoczności w Google.",
+      "Wszystkie nasze strony są budowane z myślą o standardowym SEO. Używamy najnowszych technologii, dbamy o szybkość ładowania, optymalizujemy meta tagi i strukturę danych dla lepszej widoczności w Google.",
   },
 ];
 

@@ -123,7 +123,7 @@ export default function AutomationShowcase() {
   
   {/* Środek przycisku */}
   <Link
-    href="/marketing"
+    href="/pricing/ai-integration"
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
     Wybieram

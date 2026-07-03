@@ -39,7 +39,7 @@ export default function HeroSection() {
 
   return (
     // Zostawiłem dokładnie Twoje klasy - zaokrąglona sekcja, która wygląda jak "zawieszona"
-    <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[70svh] min-h-[550px] md:h-[70svh] md:min-h-[400px] overflow-hidden overflow-x-hidden">
+    <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[70svh] min-h-[1000px] md:h-[70svh] md:min-h-[800px] overflow-hidden overflow-x-hidden">
       
       {/* --- WIDEO W TLE --- */}
       <div className="absolute inset-0 z-0">
