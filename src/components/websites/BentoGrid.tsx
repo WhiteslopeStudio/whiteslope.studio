@@ -76,7 +76,7 @@ export default function BentoGrid() {
           <BentoCard
             title="Strony internetowe"
             description="Nowoczesne strony firmowe i sprzedażowe z naciskiem na konwersję, szybkość oraz mocne pierwsze wrażenie."
-            href="/pricing/website"
+            href=""
             image="/_resources/stronyInternetowe/WieslawskiStudio.webp"
             className="md:col-span-6"
             ctaLabel="Sprawdź"
@@ -85,7 +85,7 @@ export default function BentoGrid() {
           <BentoCard
             title="Aplikacje SaaS"
             description="Wysoki potencjał dla produktów, paneli i systemów, które pokazują zaawansowane możliwości zespołu."
-            href="/pricing/ai-integration"
+            href=""
             image="/_resources/stronyInternetowe/Easylesson.webp"
             className="md:col-span-6"
             ctaLabel="Sprawdź"
@@ -94,7 +94,7 @@ export default function BentoGrid() {
           <BentoCard
             title="Pozycjonowanie (SEO)"
             description="Techniczne SEO, struktura treści i optymalizacja pod lepszą widoczność w Google."
-            href="/pricing/optimization"
+            href=""
             image="/_resources/seo-2025.webp"
             className="md:col-span-4"
             ctaLabel="Sprawdź"
@@ -103,7 +103,7 @@ export default function BentoGrid() {
           <BentoCard
             title="Dedykowane systemy webowe"
             description="Automatyzacje, panele administracyjne i rozwiązania szyte pod procesy Twojej firmy."
-            href="/pricing/ai-integration"
+            href=""
             image="/_resources/Automations/Automation8nWorkflow.webp"
             className="md:col-span-4"
             ctaLabel="Sprawdź"
@@ -112,7 +112,7 @@ export default function BentoGrid() {
           <BentoCard
             title="Poprawki istniejących stron"
             description="Audyty, przyspieszanie i ratowanie projektów, które wymagają uporządkowania lub odświeżenia."
-            href="/pricing/website"
+            href=""
             image="/_resources/page-speed.webp"
             className="md:col-span-4"
             ctaLabel="Sprawdź"

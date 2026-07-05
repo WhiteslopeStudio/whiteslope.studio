@@ -42,7 +42,7 @@ function AccordionItem({ title, isOpen, onClick, children }: AccordionItemProps)
 }
 
 export default function ProcessSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Domyślnie otwarta pierwsza zakładka
+  const [openIndex, setOpenIndex] = useState<number | null>(null); // Domyślnie otwarta pierwsza zakładka
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

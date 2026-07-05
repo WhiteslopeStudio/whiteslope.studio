@@ -2907,40 +2907,50 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     id: "1",
     title: "EasyLesson - platforma SaaS do nauki online",
     image: "/_resources/stronyInternetowe/Easylesson.webp",
+    
     category: "Aplikacja Webowa",
-    rowType: "web", // <--- DODANE
+    rowType: "web",
     href: "https://easylesson.app",
-    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwym i efektywnym nauce przez interaktywne materiały i personalizowane podejście.",
+    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwej i efektywnej nauce przez interaktywne materiały i personalizowane podejście.",
+    clientName: "Easylesson",
+    clientLogo: "/_resources/reviews/easylesson.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
+    servicesListed: "Projektowanie UX/UI, Aplikacja Webowa, Wdrożenie SaaS, Interaktywna tablica",
   },
   {
     id: "2",
     title: "Damian Bogdanowicz - profesjonalne usługi kręcenia krótkich filmów reklamowych",
     image: "/_resources/stronyInternetowe/DamianBogdanowicz.webp",
-    category: "Strona portfolio dla fotografa i filmowca",
-    rowType: "web", // <--- DODANE
+    category: "Strona portfolio",
+    rowType: "web",
     href: "https://damian-bogdanowicz-site.vercel.app/",
     description: "Nowoczesna strona dla profesjonalnego studia filmowego. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
+    clientName: "Damian Bogdanowicz",
+    clientLogo: "/_resources/reviews/damianBogdanowicz.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
+    servicesListed: "Strona WWW, Design Premium, Optymalizacja ładowania",
   },
   {
     id: "3",
     title: "Wiesławski Studio - profesjonalne studio muzyczne",
     image: "/_resources/stronyInternetowe/WieslawskiStudio.webp",
     category: "Strona biznesowa",
-    rowType: "web", // <--- DODANE
+    rowType: "web",
     href: "https://www.wieslawski.studio/",
     description: "Nowoczesna strona dla profesjonalnego studia muzycznego. Już po 24 godzinach od uruchomienia pojawiły się pierwsze zapytania od klientów. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
+    clientName: "Wiesławski Studio",
+    clientLogo: "/_resources/reviews/slawekWieslawski.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
+    servicesListed: "Strona wizytówka, UX/UI Design, Integracja formularzy",
   },
   {
     id: "4",
     title: "Patryk Kulesza - korepetycje matematyka, angielski i programowanie",
     image: "/_resources/stronyInternetowe/PatrykKulesza.webp",
     category: "Strona usługowa",
-    rowType: "web", // <--- DODANE
+    rowType: "web",
     href: "https://korepetycje-eight.vercel.app",
     description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
+    clientName: "Patryk Kulesza",
+    servicesListed: "Landing Page, SEO, Personal Branding",
   },
-
-
   {
     id: "5",
     title: "Chatbot AI dla Easylesson.app - integracja z Gemini",
@@ -2949,15 +2959,21 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     rowType: "ai",
     href: "https://easylesson.app/",
     description: "Integracja Chatbota AI z platformą edukacyjną Easylesson.app. Chatbot wspiera użytkowników w nawigacji po platformie, odpowiada na pytania dotyczące kursów i materiałów edukacyjnych, a także automatyzuje procesy związane z rejestracją i obsługą klienta.",
+    clientName: "Easylesson",
+    clientLogo: "/_resources/reviews/slawekWieslawski.webp",
+    servicesListed: "Wdrożenie Chatbota, Integracja API Gemini, Automatyzacja obsługi",
   },
-
-  {id: "6",
+  {
+    id: "6",
     title: "Film promocyjny dla Wiesławski Studio",
     image: "/_resources/optymalizacja/wieslawski-studio-film-promocyjny.webp",
     category: "Film promocyjny",
     rowType: "marketing",
     href: "https://wieslawski.studio/",
-    description: "Projekt polegał na zaprojektowniu voucherów świąteczncyh i stworzeniu filmu 3D promocyjnego dla Wiesławski Studio, który miał na celu zwiększenie przyciągnięcie nowych klientów. Film został zoptymalizowany pod kątem publikacji w mediach społecznościowych oraz na stronie internetowej studia.",
+    description: "Projekt polegał na zaprojektowaniu voucherów świątecznych i stworzeniu filmu 3D promocyjnego dla Wiesławski Studio, który miał na celu przyciągnięcie nowych klientów. Film został zoptymalizowany pod kątem publikacji w mediach społecznościowych oraz na stronie internetowej studia.",
+    clientName: "Wiesławski Studio",
+    clientLogo: "/_resources/reviews/slawekWieslawski.webp",
+    servicesListed: "Montaż Wideo, Animacja 3D, Projekt graficzny (vouchery), Optymalizacja Social Media",
   }
 ];
 
@@ -3003,35 +3019,20 @@ export const PROCESS_STEPS: ProcessStep[] = [
 export const MAIN_SERVICES: MainService[] = [
   {
     id: "website",
+    category: "Web Development",
     title: "Strona internetowa",
     subtitle: "Profesjonalna prezencja online",
     price: "od 1500 zł",
     picture: "_resources/usluga-strony.webp",
-    gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_ (1).webp", "/_resources/stronyInternetowe/www.easylesson.app_ (2).webp"],
-    description:
-      "Nowoczesne, responsywne strony internetowe zaprojektowane z myślą o Twoich klientach. Od prostych wizytówek po zaawansowane portale biznesowe.",
+    gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp"],
+    description: "Nowoczesne, responsywne strony internetowe zaprojektowane z myślą o Twoich klientach. Od prostych wizytówek po zaawansowane portale biznesowe.",
+    featuresTitle: "W ramach wdrożenia gwarantujemy:", // DEDYKOWANY NAGŁÓWEK
     features: [
-      {
-        title: "Responsywny design",
-        description: "Twoja strona będzie doskonale wyglądać na każdym urządzeniu - od smartfonów po duże monitory."
-      },
-      {
-        title: "Optymalizacja SEO",
-        description: "Zadbamy o wysokie pozycje w Google dzięki nowoczesnym technikom pozycjonowania."
-      },
-
-      {
-        title: "Certyfikat SSL i bezpieczeństwo",
-        description: "Bezpieczeństwo danych Twoich klientów i wyższe pozycje w wynikach wyszukiwania."
-      },
-      {
-        title: "Next.js / WordPress / Buildery",
-        description: "Używamy najnowszych technologii zapewniających szybkość i stabilność."
-      },
-      {
-        title: "Wsparcie techniczne",
-        description: "Pełne wsparcie po uruchomieniu strony, pomoc i regularne aktualizacje."
-      },
+      { title: "Responsywny design", description: "Twoja strona będzie doskonale wyglądać na każdym urządzeniu." },
+      { title: "Optymalizacja SEO", description: "Zadbamy o wysokie pozycje w Google." },
+      { title: "Certyfikat SSL i bezpieczeństwo", description: "Bezpieczeństwo danych i wyższe pozycje." },
+      { title: "Next.js / WordPress / Buildery", description: "Używamy najnowszych technologii zapewniających szybkość i stabilność." },
+      { title: "Wsparcie techniczne", description: "Pełne wsparcie po uruchomieniu strony." },
     ],
     ctaText: "Wybierz pakiet",
     animationDirection: "left",
@@ -3039,251 +3040,124 @@ export const MAIN_SERVICES: MainService[] = [
   },
   {
     id: "optimization",
+    category: "Web Development",
     title: "Modernizacja strony",
     subtitle: "Ulepsz istniejącą stronę",
     price: "od 800 zł",
     picture: "_resources/usluga-modernizacja.webp",
-    gallery: ["/_resources/optymalizacja/cyberfolks.pl_audyt-strony_.webp", "/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp"],
-    description:
-      "Masz już stronę, ale nie działa jak powinna? Oferujemy kompleksową optymalizację, migrację na nowoczesne technologie oraz poprawę SEO.",
+    gallery: ["/_resources/optymalizacja/cyberfolks.pl_audyt-strony_.webp"],
+    description: "Masz już stronę, ale nie działa jak powinna? Oferujemy kompleksową optymalizację i migrację.",
+    featuresTitle: "Podczas modernizacji skupiamy się na:", // DEDYKOWANY NAGŁÓWEK
     features: [
-      {
-        title: "Migracja Strony",
-        description: "Bezpieczne przeniesienie na nowoczesne technologie bez utraty pozycji SEO i danych."
-      },
-      {
-        title: "Optymalizacja",
-        description: "Drastyczna poprawa szybkości ładowania - nawet 3x szybciej niż przed modernizacją."
-      },
-      {
-        title: "Pozycja w Google",
-        description: "Kompleksowa optymalizacja SEO dla lepszej widoczności w wynikach wyszukiwania."
-      },
-      {
-        title: "Responsywność mobile, tablet, desktop",
-        description: "Twoja strona będzie idealnie działać na wszystkich urządzeniach i rozdzielczościach."
-      },
-      {
-        title: "Audyt techniczny i raport",
-        description: "Szczegółowa analiza problemów i raport z wykonanych usprawnień."
-      },
-    ],
-    ctaText: "Wybierz pakiet",
-    animationDirection: "right",
-  },
-  {
-    id: "ai-integration",
-    title: "Integracja AI",
-    subtitle: "Chatboty, automatyzacja procesów i generatory treści",
-    price: "od 1000 zł",
-    picture: "_resources/usluga-ai.webp",
-    gallery: ["/_resources/integracjaAI/ai1.webp",
-       "/_resources/integracjaAI/ai2.webp"],
-    description:
-      "Wdrażamy rozwiązania AI dopasowane do Twoich potrzeb. Zaoszczędź czas, zwiększ efektywność i zadowolenie klientów dzięki inteligentnym narzędziom AI.",
-    features: [
-      {
-        title: "Chatboty AI dla obsługi klienta",
-        description: "Inteligentne chatboty obsługujące klientów przez całą dobę w Twoim stylu komunikacji."
-      },
-     
-      {
-        title: "Generowanie obrazów i wideo z tekstu",
-        description: "Tworzenie unikalnych grafik i materiałów wideo na podstawie opisów tekstowych."
-      },
-      
-      {
-        title: "Inteligentne przetwarzanie i analiza tekstu",
-        description: "Automatyczna analiza treści, tłumaczenia, streszczenia i kategoryzacja tekstów."
-      },
-      {
-        title: "Pełna integracja z Twoją stroną/aplikacją",
-        description: "Wdrożenie AI w istniejącą infrastrukturę bez zakłócania działania."
-      },
-    ],
-    ctaText: "Wdróż AI w swojej firmie",
-    animationDirection: "left",
-  },
-  {
-    id: "graphics",
-    title: "Grafika",
-    subtitle: "Profesjonalna identyfikacja wizualna",
-    price: "od 700 zł",
-    picture: "_resources/usluga-grafika.webp",
-    gallery: ["/_resources/grafika/wieslawski studio logo biale.webp",
-      "/_resources/grafika/tunelock logo 2.webp",
-      "/_resources/grafika/tok italia logo 5.webp",
-      "/_resources/grafika/mati records logo2.webp",
-      "/_resources/grafika/VOUCHER3D.webp",
-      "/_resources/grafika/make drums come true reklama4.webp",
-       "/_resources/grafika/make drums come true reklama6.webp",
-        "/_resources/grafika/make drums come true reklama5.webp"],
-    description:
-      "Potrzebujesz grafik, logo czy kompleksowej identyfikacji wizualnej? Nasz zespół graficzny stworzy materiały, które wyróżnią Twoją markę.",
-    features: [
-      {
-        title: "Projektowanie logo",
-        description: "Unikalne logo odzwierciedlające charakter Twojej marki z pełnymi prawami autorskimi."
-      },
-      {
-        title: "Grafiki na social media",
-        description: "Spójne materiały wizualne dla wszystkich platform społecznościowych w różnych formatach."
-      },
-      {
-        title: "Banery reklamowe i materiały promocyjne",
-        description: "Efektowne banery do kampanii reklamowych i materiały promocyjne zwiększające konwersję."
-      },
-      {
-        title: "Ikony i ilustracje",
-        description: "Niestandardowe ikony i ilustracje doskonale dopasowane do stylu Twojej marki."
-      },
-     
-      {
-        title: "Grafiki 2D i modele 3D",
-        description: "Zaawansowane grafiki płaskie i trójwymiarowe modele dla nowoczesnej prezentacji."
-      },
+      { title: "Migracja Strony", description: "Bezpieczne przeniesienie bez utraty pozycji SEO." },
+      { title: "Optymalizacja", description: "Drastyczna poprawa szybkości ładowania." },
+      { title: "Pozycja w Google", description: "Kompleksowa optymalizacja SEO." },
     ],
     ctaText: "Wybierz pakiet",
     animationDirection: "right",
   },
   {
     id: "individual",
-    title: "Indywidualny Plan",
-    subtitle: "Konsultacja, projekt i długofalowa współpraca",
-    price: "Bezpłatna konsultacja / wg wyceny",
+    category: "Web Development",
+    title: "Dedykowane Systemy",
+    subtitle: "Aplikacje SaaS, portale i panele B2B",
+    price: "Wycena indywidualna",
     picture: "_resources/usluga-indywidualna.webp",
-        gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp", "/_resources/stronyInternetowe/korepetycje-eight.vercel.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_.webp", "/_resources/stronyInternetowe/www.easylesson.app_ (1).webp", "/_resources/stronyInternetowe/www.easylesson.app_ (2).webp"],
-
-    description:
-      "Zaczynamy od bezpłatnej konsultacji i szczegółowej wyceny, a następnie realizujemy dedykowane rozwiązanie dopasowane do Twojego biznesu.",
+    gallery: ["/_resources/stronyInternetowe/www.wieslawski.studio_.webp"],
+    description: "Realizujemy dedykowane rozwiązania webowe dopasowane idealnie do Twojego biznesu.",
+    featuresTitle: "Podczas realizacji skupiamy się na:",
     features: [
-      {
-        title: "Darmowa konsultacja",
-        description: "Rozmowa o celach, wymaganiach i możliwych kierunkach realizacji bez zobowiązań."
-      },
-      {
-        title: "Szczegółowa wycena",
-        description: "Otrzymujesz jasny plan prac, rekomendacje technologiczne i zakres dopasowany do budżetu."
-      },
-      {
-        title: "Współpraca długoterminowa",
-        description: "Możliwość stałej opieki technologicznej, regularnych optymalizacji i wsparcia priorytetowego."
-      },
+      { title: "Darmowa konsultacja", description: "Rozmowa o celach i możliwych kierunkach." },
+      { title: "Szczegółowa wycena", description: "Jasny plan prac i rekomendacje technologiczne." },
     ],
     ctaText: "Umów konsultację",
     animationDirection: "left",
   },
   {
+    id: "ai-integration",
+    category: "Automatyzacja & AI",
+    title: "Integracja AI",
+    subtitle: "Chatboty, automatyzacja i generatory treści",
+    price: "od 1000 zł",
+    picture: "_resources/usluga-ai.webp",
+    gallery: ["/_resources/integracjaAI/ai1.webp", "/_resources/integracjaAI/ai2.webp"],
+    description: "Wdrażamy rozwiązania AI dopasowane do Twoich potrzeb. Zaoszczędź czas i zwiększ efektywność.",
+    featuresTitle: "Podczas integracji skupiamy się na:",
+    features: [
+      { title: "Chatboty AI", description: "Inteligentne chatboty obsługujące klientów przez całą dobę." },
+      { title: "Pełna integracja", description: "Wdrożenie AI w istniejącą infrastrukturę." },
+    ],
+    ctaText: "Wdróż AI",
+    animationDirection: "left",
+    badge: { text: "WAŻNE", color: "yellow" }
+  },
+  {
+    id: "video-marketing",
+    category: "Marketing & Wideo",
+    title: "Video Marketing",
+    subtitle: "Profesjonalne filmy promocyjne",
+    price: "Wycena indywidualna",
+    picture: "_resources/usluga-video-marketing.webp",
+    gallery: null,
+    description: "Tworzymy rolki social media, filmy promocyjne — od koncepcji po gotowe materiały do publikacji.",
+    featuresTitle: "Podczas realizacji skupiamy się na:",
+    
+    features: [
+      { title: "Rolki i UGC", description: "Krótkie formy na Reels, TikTok i Shorts." },
+      { title: "Montaż i udźwiękowienie", description: "Dynamiczny montaż z dopracowanym audio." },
+    ],
+    ctaText: "Umów nagranie",
+    animationDirection: "left",
+    highlighted: true,
+  },
+  {
+    id: "graphics",
+    category: "Marketing & Wideo",
+    title: "Grafika i Branding",
+    subtitle: "Profesjonalna identyfikacja wizualna",
+    price: "od 700 zł",
+    picture: "_resources/usluga-grafika.webp",
+    gallery: ["/_resources/grafika/wieslawski studio logo biale.webp"],
+    featuresTitle: "Podczas realizacji skupiamy się na:",
+    description: "Potrzebujesz logo czy kompleksowej identyfikacji? Stworzymy materiały, które wyróżnią Twoją markę.",
+    features: [
+      { title: "Projektowanie logo", description: "Unikalne logo z prawami autorskimi." },
+    ],
+    ctaText: "Wybierz pakiet",
+    animationDirection: "right",
+  },
+  {
     id: "email-marketing",
-    title: "Integracja Email Marketing",
+    category: "Marketing & Wideo",
+    title: "Email Marketing",
     subtitle: "MailerLite & Automatyzacja",
     price: "od 800 zł",
     picture: "_resources/usluga-integracja-email-marketing.webp",
-    gallery: ["/_resources/emailMarketing/emailMarketing1.webp", "/_resources/emailMarketing/emailMarketing2.webp", "/_resources/emailMarketing/emailMarketing3.webp"],
-    description:
-      "Profesjonalna integracja z MailerLite, automatyczne newslettery i kampanie email marketingowe dla zwiększenia konwersji.",
+    gallery: ["/_resources/emailMarketing/emailMarketing1.webp"],
+    description: "Profesjonalna integracja, newslettery i automatyzacje dla zwiększenia konwersji.",
+    featuresTitle: "Podczas realizacji skupiamy się na:",
     features: [
-      {
-        title: "Integracja z MailerLite",
-        description: "Pełna integracja z profesjonalną platformą email marketingu z automatyzacjami."
-      },
-      {
-        title: "Automatyczne newslettery",
-        description: "Automatyczne wysyłanie newsletterów zgodnie z harmonogramem bez Twojej interwencji."
-      },
-      {
-        title: "Segmentacja kontaktów",
-        description: "Inteligentne dzielenie kontaktów na grupy dla lepszego targetowania wiadomości."
-      },
-
-      {
-        title: "Responsywne szablony email",
-        description: "Piękne szablony e-maili idealnie wyświetlające się na wszystkich urządzeniach."
-      },
+      { title: "Integracja", description: "Połączenie z platformami typu MailerLite." },
     ],
     ctaText: "Rozpocznij kampanię",
     animationDirection: "right",
-    highlighted: false,
   },
   {
-  id: "video-marketing",
-  title: "Video Marketing",
-  subtitle: "Profesjonalne filmy promocyjne",
-  price: "wycena indywidualna",
-  picture: "_resources/usluga-video-marketing.webp",
-  gallery: null,
-  description:
-    "Tworzymy rolki social media, filmy promocyjne — od koncepcji po gotowe materiały do publikacji.",
-  features: [
-    {
-      title: "Rolki social media i UGC",
-      description: "Tworzymy krótkie formy (Reels, TikTok, Shorts) oraz naturalny content UGC dopasowany do platformy."
-    },
-    {
-      title: "Filmy firmowe i reklamowe",
-      description: "Realizujemy materiały promocyjne (także około 120 sekund), które budują zaufanie i wspierają sprzedaż."
-    },
-    {
-      title: "Scenariusz i koncepcja kreatywna",
-      description: "Przygotowujemy koncepcję, storyboard i układ ujęć dopasowany do celu filmu oraz grupy docelowej."
-    },
-    {
-      title: "Nagrania dopasowanym sprzętem",
-      description: "Nagrania realizujemy iPhone / Lumix S5 II / opcjonalnie kamerą kinową przy większej produkcji."
-    },
-    {
-      title: "Montaż i udźwiękowienie",
-      description: "Dynamiczny montaż z dopracowanym audio, napisami i animacjami graficznymi pod publikację."
-    },
-    {
-      title: "Optymalizacja pod platformy",
-      description: "Dostosowujemy formaty pod stronę, YouTube i social media, z bezpiecznym kadrowaniem (safe zones)."
-    },
-  ],
-  ctaText: "Umów nagranie",
-  animationDirection: "left",
-  highlighted: true,
-  },
-  {    
     id: "audio-editing",
+    category: "Marketing & Wideo",
     title: "Obróbka Audio",
-    subtitle: "Profesjonalna obróbka dźwięku",
+    subtitle: "Do shortów i podcastów",
     price: "od 100 zł",
     picture: "_resources/usluga-audio-editing.webp",
     gallery: null,
-    description:
-      "Oferujemy obróbkę audio do shortów, reklam i dłuższych materiałów z pełnym przygotowaniem plików do publikacji.",
+    description: "Oferujemy obróbkę audio z pełnym przygotowaniem plików do publikacji.",
+    featuresTitle: "Podczas realizacji skupiamy się na:",
     features: [
-      {
-        title: "Obróbka audio do shortów",
-        description: "Profesjonalne czyszczenie i poprawa dźwięku w formatach do 60 sekund (Reels, TikTok, Shorts)."
-      },
-      {
-        title: "Obróbka do reklam i dłuższych materiałów",
-        description: "Wyrównanie dynamiki, poprawa czytelności głosu i przygotowanie pod YouTube oraz kampanie reklamowe."
-      },
-      {
-        title: "Lektor AI + pełna obróbka",
-        description: "Generowanie głosu AI z dopasowaniem stylu, intonacji i finalnym masteringiem materiału."
-      },
-      {
-        title: "Redukcja szumów i artefaktów",
-        description: "Usuwanie pogłosu, kliknięć, trzasków i innych zakłóceń z nagrania."
-      },
-      {
-        title: "Wyrównanie głośności i barwy",
-        description: "Spójny poziom głośności i lepsza prezencja głosu na różnych urządzeniach."
-      },
-      {
-        title: "Eksport pod platformy",
-        description: "Finalne pliki przygotowane pod publikację na YouTube, social media i platformy reklamowe."
-      },
+      { title: "Redukcja szumów", description: "Usuwanie pogłosu i zakłóceń z nagrania." },
     ],
     ctaText: "Zamów edycję",
     animationDirection: "right",
-    highlighted: false,
   },
-  
 ];
 
 // =========================

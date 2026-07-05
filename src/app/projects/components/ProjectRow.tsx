@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 import { PROJECT_EXAMPLES } from '@/lib/data';
 import { ProjectExample } from '@/lib/types';
 import { useDragScroll } from '@/utils/hooks';
-import ProjectModal from './ProjectModal'; // Ten plik stworzymy za chwilę!
+import ProjectModal from './ProjectModal'; 
 
 interface ProjectRowProps {
   title: string;
@@ -15,6 +15,10 @@ interface ProjectRowProps {
 
 export default function ProjectRow({ title, subtitle, category }: ProjectRowProps) {
   const [selectedProject, setSelectedProject] = useState<ProjectExample | null>(null);
+  
+  // Refy do śledzenia pozycji myszki, żeby odróżnić kliknięcie od przeciągania
+  const clickStartX = useRef(0);
+  const clickStartY = useRef(0);
 
   // Hook do przesuwania myszką (Drag to scroll)
   const {
@@ -30,7 +34,7 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
     (p) => p.rowType === category
   );
 
-  // ZAMIAST UKRYWAĆ - WYŚWIETLAMY BŁĄD NA EKRANIE:
+  // BŁĄD NA EKRANIE JEŚLI BRAK PROJEKTÓW:
   if (rowProjects.length === 0) {
     return (
       <div className="text-white p-10 text-center border-2 border-red-500 m-10 rounded-xl">
@@ -41,15 +45,16 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
     );
   }
 
-  // Jeśli brak projektów w danej kategorii, nie renderujemy pustego rzędu
-  if (rowProjects.length === 0) return null;
-
-  // Obsługa strzałek "Netflixowych"
+  // Obsługa strzałek - przewija o szerokość karty
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const { clientWidth } = scrollContainerRef.current;
-      const scrollAmount = direction === 'left' ? -clientWidth * 0.7 : clientWidth * 0.7;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const cardWidth = window.innerWidth < 768 ? 340 : 474; 
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
+      
+      scrollContainerRef.current.scrollBy({ 
+        left: scrollAmount, 
+        behavior: 'smooth' 
+      });
     }
   };
 
@@ -57,7 +62,7 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
     <div className="w-full max-w-[1640px] mx-auto px-6 relative group/row">
       
       {/* Nagłówek rzędu */}
-      <div className="mb-4">
+      <div className="mb-6">
         <h2 className="text-[20px] md:text-[24px] font-bold text-zinc-50 tracking-tight">
           {title}
         </h2>
@@ -69,11 +74,11 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
       {/* Kontener z projektami i strzałkami */}
       <div className="relative">
         
-        {/* Lewa Strzałka (Pojawia się na hover całego rzędu) */}
-        <div className="absolute left-0 top-0 bottom-0 z-20 w-[40px] md:w-[60px]  from-zinc-950 via-zinc-950/80 to-transparent flex items-center justify-start opacity-0 group-hover/row:opacity-100 transition-opacity duration-300 pointer-events-none">
+        {/* Lewa Strzałka */}
+        <div className="absolute left-0 top-0 bottom-0 z-20 w-[40px] md:w-[60px] from-zinc-950 via-zinc-950/80 to-transparent flex items-center justify-start pointer-events-none pb-[80px]">
           <button
             onClick={() => scroll('left')}
-            className="w-[36px] h-[36px] rounded-full bg-zinc-900/80 border border-zinc-700/50 text-white flex items-center justify-center hover:bg-zinc-800 hover:scale-110 transition-all pointer-events-auto ml-2 backdrop-blur-sm"
+            className="w-[36px] h-[36px] rounded-full bg-white border border-zinc-200 text-black flex items-center justify-center hover:bg-zinc-100 hover:scale-110 transition-all pointer-events-auto ml-2 shadow-xl"
             aria-label="Przewiń w lewo"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -87,39 +92,51 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
-          className={`flex gap-4 md:gap-6 overflow-x-auto py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth snap-x snap-mandatory ${
+          className={`gap-6 flex overflow-x-auto py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${
             isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
           }`}
         >
           {rowProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => !isDragging && setSelectedProject(project)}
-              className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[400px] aspect-video rounded-xl overflow-hidden bg-zinc-900 snap-center group/card transition-transform duration-300 hover:scale-[1.03] hover:z-10 shadow-lg hover:shadow-2xl"
+              // 1. Zapisujemy pozycję w momencie wciśnięcia myszki
+              onMouseDown={(e) => {
+                clickStartX.current = e.clientX;
+                clickStartY.current = e.clientY;
+              }}
+              // 2. Przy kliknięciu sprawdzamy, czy dystans nie był za duży
+              onClick={(e) => {
+                const deltaX = Math.abs(e.clientX - clickStartX.current);
+                const deltaY = Math.abs(e.clientY - clickStartY.current);
+                
+                // Jeśli myszka przesunęła się o więcej niż 6 pikseli, to był "drag", a nie "klik" -> przerywamy
+                if (deltaX > 6 || deltaY > 6) return;
+                
+                setSelectedProject(project);
+              }}
+              className=" relative flex-shrink-0 w-[320px] sm:w-[360px] md:w-[450px] flex flex-col group/card transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
             >
-              {/* Zdjęcie projektu */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110 opacity-80 group-hover/card:opacity-100"
-                draggable={false}
-              />
               
-              {/* Gradient nakładki */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-80 group-hover/card:opacity-90 transition-opacity duration-300" />
+              {/* Sekcja Obrazka */}
+              <div className="w-full aspect-video overflow-hidden bg-zinc-900 mb-4 shadow-lg group-hover/card:shadow-2xl transition-all duration-300 border border-white/5 rounded-[16px]">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  draggable={false}
+                />
+              </div>
 
-              {/* Teksty pokazujące się na hover */}
-              <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-end">
-                <div className="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-white font-bold text-[18px] md:text-[22px] leading-tight mb-2 drop-shadow-md">
-                    {project.title}
-                  </h3>
-                  
-                  {/* Przycisk akcji wewnątrz karty */}
-                  <div className="flex items-center gap-2 text-blue-400 font-medium text-[13px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 delay-100">
-                    <span>Zobacz Case Study</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
+              {/* Sekcja Tekstowa POD obrazkiem */}
+              <div className="flex flex-col px-1">
+                <h3 className="text-white font-bold text-[18px] md:text-[20px] leading-tight mb-2 transition-colors duration-300 group-hover/card:text-white">
+                  {project.title}
+                </h3>
+                
+                {/* Przycisk akcji pod tytułem */}
+                <div className="flex items-center gap-1.5 text-[#B8DAFF] font-medium text-[14px] mt-1 opacity-80 group-hover/card:opacity-100 transition-opacity duration-300">
+                  <span><u>Zobacz Case Study</u></span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/card:translate-x-1 group-hover/card:-translate-y-1" />
                 </div>
               </div>
 
@@ -128,10 +145,10 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
         </div>
 
         {/* Prawa Strzałka */}
-        <div className="absolute right-0 top-0 bottom-0 z-20 w-[40px] md:w-[60px]  from-zinc-950 via-zinc-950/80 to-transparent flex items-center justify-end opacity-0 group-hover/row:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute right-0 top-0 bottom-0 z-20 w-[40px] md:w-[60px] from-zinc-950 via-zinc-950/80 to-transparent flex items-center justify-end pointer-events-none pb-[80px]">
           <button
             onClick={() => scroll('right')}
-            className="w-[36px] h-[36px] rounded-full bg-zinc-900/80 border border-zinc-700/50 text-white flex items-center justify-center hover:bg-zinc-800 hover:scale-110 transition-all pointer-events-auto mr-2 backdrop-blur-sm"
+            className="w-[36px] h-[36px] rounded-full bg-white border border-zinc-200 text-black flex items-center justify-center hover:bg-zinc-100 hover:scale-110 transition-all pointer-events-auto mr-2 shadow-xl"
             aria-label="Przewiń w prawo"
           >
             <ChevronRight className="w-5 h-5" />
@@ -141,7 +158,6 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
       </div>
 
       {/* --- MODAL (POP-UP) --- */}
-      {/* Jeśli projekt jest kliknięty (wybrany), renderujemy Modal. */}
       {selectedProject && (
         <ProjectModal
           project={selectedProject}

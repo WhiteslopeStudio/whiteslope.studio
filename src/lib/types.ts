@@ -20,8 +20,10 @@ export interface ProjectExample {
   category: string;
   href?: string;
   description: string;
-  // Dodajemy to pole:
   rowType?: 'web' | 'ai' | 'marketing'; 
+  clientName?: string;     // Tekstowa nazwa klienta (opcjonalnie)
+  clientLogo?: string;     // Ścieżka do logo klienta (opcjonalnie)
+  servicesListed?: string; // Usługi po przecinku
 }
 
 export interface ProcessStep {
@@ -60,14 +62,17 @@ export interface ServiceFeature {
 
 export interface MainService {
   id: string;
+  category: "Web Development" | "Automatyzacja & AI" | "Marketing & Wideo";
   title: string;
   subtitle: string;
   price: string;
   picture: string;
-  gallery: string[] | null; 
+  gallery: string[] | null;
   description: string;
-  features: ServiceFeature[];
+  featuresTitle?: string; // NOWE POLE
+  features: { title: string; description: string }[];
   ctaText: string;
-  animationDirection: 'left' | 'right';
+  animationDirection: "left" | "right";
   highlighted?: boolean;
+  badge?: { text: string; color: "blue" | "yellow" };
 }

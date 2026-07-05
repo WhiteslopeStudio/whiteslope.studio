@@ -4,10 +4,11 @@ import React from 'react';
 
 // Dodana flaga invertColor: true dla Patryka
 const PARTNER_LOGOS = [
-  { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false },
   { name: 'Wiesławski Studio', url: '/_resources/grafika/wieslawski studio logo biale.webp', invertColor: false },
-  { name: 'Patryk Kulesza', url: '/_resources/logo-PatrykKulesza.webp', invertColor: true },
+  { name: 'Easylesson', url: '/_resources/grafika/LogoEasylessonWhite.webp', invertColor: false },
   { name: 'Damian Bogdanowicz', url: '/_resources/logos/damianLogo.webp', invertColor: false },
+  { name: 'Patryk Kulesza', url: '/_resources/logo-PatrykKulesza.webp', invertColor: true },
+  { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false },
 ];
 
 export default function LogoTicker() {

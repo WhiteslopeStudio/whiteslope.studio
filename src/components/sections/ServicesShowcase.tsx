@@ -72,7 +72,7 @@ export default function AutomationShowcase() {
             </div>
 
             <h2 className="text-[36px] lg:text-[42px] font-bold text-zinc-950 leading-[1.05] tracking-tight mb-[24px]">
-              2. Automatyzacja procesów<br />i ekosystemy AI
+              2. Automatyzacja procesów<br />i aktywacja AI w Twojej firmie
             </h2>
 
             <p className="text-[16px] text-zinc-600 leading-relaxed font-normal mb-[40px] max-w-[480px]">
@@ -98,25 +98,27 @@ export default function AutomationShowcase() {
   {/* UNIKALNE STYLE DLA WERSJI LAWENDOWEJ */}
   <style>{`
     @keyframes rotateLavenderButton {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
     
     .spinner-element-lavender {
       position: absolute;
-      width: 300%;
-      height: 300%;
-      top: -100%;
-      left: -100%;
+      top: 50%;
+      left: 50%;
+      width: 250%; /* Dopasuj, jeśli przycisk jest bardzo szeroki */
+      aspect-ratio: 1; /* Wymusza kształt kwadratu, żeby gradient nie falował */
       /* Lawendowy przejrzysty przechodzi w pełny lawendowy fiolet (#b794f4) */
       background: conic-gradient(from 0deg, rgba(183, 148, 244, 0) 30%, #a947ff 100%);
-      transform-origin: center;
+      transform: translate(-50%, -50%); /* Centrowanie na start */
     }
 
     .group:hover .spinner-element-lavender {
       animation: rotateLavenderButton 1.2s linear infinite;
     }
   `}</style>
+
+  
 
   {/* Tylko i wyłącznie lawendowa obwódka */}
   <span className="absolute spinner-element-lavender opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -126,7 +128,7 @@ export default function AutomationShowcase() {
     href="/pricing/ai-integration"
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
-    Wybieram
+    Zobacz więcej
     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
   </Link>
 

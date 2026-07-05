@@ -22,7 +22,7 @@ const gothicA1 = Geist({
 // Konfiguracja Geist (zastępuje Unbounded)
 const geistSans = Geist({
   subsets: ["latin"],
-  weight: ["900"], // Tylko najgrubsza waga
+  weight: ["700"], // Tylko najgrubsza waga
   variable: "--font-geist", // Ta zmienna zastąpi --font-unbounded
 });
 

@@ -24,7 +24,7 @@ export default function WebsitesShowcase() {
   const imageY = useTransform(scrollYProgress, [0, 0.5, 1], ["0px", "0px", "50px"]);
 
   return (
-    <section id="websites" className="relative w-full bg-white py-[80px] overflow-hidden ">
+    <section id="websites" className="relative w-full bg-white pb-[80px] pt-[70px] overflow-hidden ">
       <div className="w-full max-w-[1640px] mx-auto px-[24px]">
         
         <div 
@@ -124,7 +124,7 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
     href="/website"
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
-    Wybieram
+    Zobacz więcej
     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
   </Link>
 
@@ -138,7 +138,7 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
               <img 
                 src="/_resources/stronyInternetowe/ShowWebsites.webp"
                 alt="Przykłady stron internetowych Whiteslope"
-                className="w-full h-full object-contain object-bottom drop-shadow-[0_24px_40px_rgba(0,87,255,0.08)] transition-transform duration-1000 group-hover:scale-[1.01] origin-bottom"
+                className="w-full h-full object-contain object-bottom drop-shadow-[0_24px_40px_rgba(0,87,255,0.08)] transition-transform duration-800 group-hover:scale-[1.01] origin-bottom"
               />
             </motion.div>
           </div>

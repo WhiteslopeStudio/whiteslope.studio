@@ -89,6 +89,20 @@ export default function HeroSection() {
           filter: 'brightness(0.42) saturate(0.92)',
         }}
       />
+
+      {/* LOGO W PRAWYM GÓRNYM ROGU (Trzymające się kontenera 1640px) */}
+      <div className="absolute top-0 left-0 right-0 w-full z-20 pointer-events-none">
+        <div className="mx-auto w-full max-w-[1640px] px-6 md:px-12 pt-6 md:pt-10 flex justify-end ">
+          <AnimatedBlock delay={100}>
+            <img 
+              src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV.webp" 
+              alt="Whiteslope Studio Web Development" 
+              className="h-[32px] md:h-[39px] w-auto opacity-90 "
+            />
+          </AnimatedBlock>
+        </div>
+      </div>
+
       <div
         className="absolute inset-0 md:hidden"
         style={{

@@ -82,9 +82,8 @@ export default function ProjectsHero() {
 
           {/* Nagłówek H1 */}
           <AnimatedBlock delay={120}>
-            <h1 className="text-[50px] font-[700] leading-[0.85] text-left text-white tracking-tight md:text-[60px]">
-              Nasze <br />
-              Realizacje
+            <h1 className="text-[45px] font-[700] leading-[0.85] text-left text-white tracking-tight md:text-[60px]">
+              Nasze realizacje
             </h1>
           </AnimatedBlock>
 
@@ -101,7 +100,7 @@ export default function ProjectsHero() {
               
               {/* Główny przycisk: Scrolluje do projektów */}
               <Link
-                href="#projekty" // Możemy dodać ID #projekty nad karuzelami w page.tsx
+                href="/contact" // Możemy dodać ID #projekty nad karuzelami w page.tsx
                 onMouseMove={mainButton.handleMouseMove}
                 onMouseEnter={() => {
                   setIsMainHovered(true);
@@ -116,21 +115,11 @@ export default function ProjectsHero() {
                   background: `radial-gradient(circle at ${isMainHovered ? mainButton.mousePosition.x : 50}% ${isMainHovered ? mainButton.mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
                 }}
               >
-                Przeglądaj projekty
-                <ArrowDown className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-y-1" />
+                Zacznij współracę 
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-  1" />
               </Link>
 
-              {/* Drugi przycisk: Do darmowej wyceny */}
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center h-[46px] px-4 text-[14px] md:text-[15px] font-medium text-white/70 hover:text-white transition-colors duration-300 group"
-              >
-                <span className="relative pb-0.5">
-                  Darmowa wycena
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/20 transition-all duration-300 group-hover:bg-white"></span>
-                </span>
-                <ArrowRight className="w-4 h-4 ml-2 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" />
-              </Link>
+              
 
             </div>
           </AnimatedBlock>

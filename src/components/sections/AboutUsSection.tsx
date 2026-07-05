@@ -95,7 +95,7 @@ export default function AboutUsSection() {
         <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h2 className="text-[40px] font-bold text-zinc-950 leading-[1.05] tracking-tight">
-              O nas
+              Zróbmy razem coś świetnego!
             </h2>
           </div>
 

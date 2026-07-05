@@ -166,19 +166,31 @@ export const Header = () => {
                 <nav className="flex items-center gap-2 flex-1 justify-end">
                   <div className="flex items-center gap-1">
 
-                    {/* START */}
                     <motion.button
                       onClick={() => router.push("/")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/"
-                          ? "text-white bg-white/5"
+                          ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
-                      Start
+                      Strona główna
                     </motion.button>
-                    
+
+                    {/* REALIZACJE */}
+                    <motion.button
+                      onClick={() => router.push("/projects")}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                        pathname === "/projects"
+                          ? "text-white "
+                          : "text-[#d4d4d4] hover:text-white"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Realizacje
+                    </motion.button>
+
                     {/* OFERTA — trigger mega menu */}
                     <div
                       style={{ position: 'relative' }}
@@ -198,46 +210,48 @@ export const Header = () => {
                       />
                       <motion.button
                         onClick={() => router.push('/pricing')}
-                        className={`relative flex items-center px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                        className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 ${
                           isOnServicePage
-                            ? 'text-white bg-white/5'
+                            ? 'text-white'
                             : 'text-[#d4d4d4] hover:text-white'
                         }`}
-                        style={{ zIndex: 2 }}
                         whileHover={{ scale: 1.05 }}
                       >
                         <span>Oferta</span>
-                        <motion.div
-                          animate={{ rotate: isOffersDropdownOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
-                        >
-                          <ChevronDown className="w-4 h-4 ml-2" />
-                        </motion.div>
+                        
+                        {/* Natychmiastowa zmiana rotacji (bez transition), oś idealnie na środku */}
+                        <ChevronDown 
+                          className={`w-4 h-4 ml-1 origin-center ${isOffersDropdownOpen ? 'rotate-180' : 'rotate-0'}`} 
+                        />
                       </motion.button>
                     </div>
 
-
-                    {/* REALIZACJE */}
+                    {/* CENNIK */}
                     <motion.button
-                      onClick={() => router.push("/projects")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                        pathname === "/projects"
-                          ? "text-white bg-white/5"
+                      onClick={() => router.push("/pricing")}
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                        pathname === "/pricing"
+                          ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}
                     >
-                      Realizacje
+                      Cennik
                     </motion.button>
+                    
+                    
+
 
                     
 
-                    {/* BLOG */}
+                    
+
+                    {/* aktualności */}
                     <motion.button
                       onClick={() => router.push("/blog")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/blog"
-                          ? "text-white bg-white/5"
+                          ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}
@@ -245,25 +259,16 @@ export const Header = () => {
                       Aktualności
                     </motion.button>
 
-                    {/* CENNIK */}
-                    <motion.button
-                      onClick={() => router.push("/pricing")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
-                        pathname === "/pricing"
-                          ? "text-white bg-white/5"
-                          : "text-[#d4d4d4] hover:text-white"
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      Cennik
-                    </motion.button>
+                    
 
-                    {/* CENNIK */}
+                    
+
+                    {/* kontakt */}
                     <motion.button
                       onClick={() => router.push("/contact")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
+                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/contact"
-                          ? "text-white bg-white/5"
+                          ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
                       whileHover={{ scale: 1.05 }}

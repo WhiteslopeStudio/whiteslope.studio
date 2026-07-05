@@ -23,6 +23,7 @@ import ServicesIntro from '@/components/sections/ServicesIntro';
 import CaseStudies from '@/components/sections/CaseStudies';
 import BriefSection from '@/components/sections/BriefSection';
 import ServicesDevider from '@/components/sections/ServicesDivider';
+import Reviews from '@/components/sections/Reviews';
 
 
 import ServicesShowcase from '@/components/sections/ServicesShowcase';
@@ -128,7 +129,8 @@ export default function HomePage() {
 
 
           <LogoTicker />
-          <ServicesDevider />
+          {/* <ServicesDevider /> */}
+          <Reviews />
 
           <ServicesIntro />
           {/* 🌐 WEBSITES & SAAS SHOWCASE */}

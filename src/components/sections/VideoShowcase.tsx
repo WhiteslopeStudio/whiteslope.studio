@@ -80,18 +80,18 @@ export default function VideoShowcase() {
   {/* UNIKALNE STYLE DLA WERSJI ŻÓŁTEJ */}
   <style>{`
     @keyframes rotateYellowButton {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
     
     .spinner-element-yellow {
       position: absolute;
-      width: 300%;
-      height: 300%;
-      top: -100%;
-      left: -100%;
+      top: 50%;
+      left: 50%;
+      width: 250%; /* lub więcej, jeśli przycisk jest ekstremalnie długi */
+      aspect-ratio: 1; /* Wymusza idealny kwadrat - gradient nie będzie się zniekształcał */
       background: conic-gradient(from 0deg, rgba(255, 208, 0, 0) 30%, #ffd000 100%);
-      transform-origin: center;
+      transform: translate(-50%, -50%); /* Startowa pozycja centrująca */
     }
 
     .group:hover .spinner-element-yellow {
@@ -106,7 +106,7 @@ export default function VideoShowcase() {
     href="/video-marketing"
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
-    Wybieram
+    Zobacz więcej
     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
   </Link>
 
