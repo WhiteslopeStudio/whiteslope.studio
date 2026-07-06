@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -12,6 +13,12 @@ import { SearchEngineProvider } from '@/components/SearchEngineProvider';
 
 // Na ten (dodając Unbounded):
 import { Gothic_A1, Geist } from "next/font/google";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"], // latin-ext jest kluczowe dla ą, ć, ę, ł, ń, ó, ś, ź, ż
+  weight: ["300", "400", "500", "600", "700", "800"], // Pobieramy potrzebne grubości
+  variable: "--font-jakarta", // Tworzymy nową zmienną CSS
+});
 
 const gothicA1 = Geist({
   subsets: ["latin"],
@@ -155,14 +162,15 @@ export default function RootLayout({
         <link rel="alternate" type="application/json" href="/api/whiteslope-info" title="Whiteslope AI Integration API" />
         <link rel="plugin" href="/.well-known/ai-plugin.json" />
         </head>
-        <body  className={`${gothicA1.variable} ${geistSans.variable} antialiased`}>          <Header />
+        <body className={`${jakarta.variable} antialiased`}>
+          <Header />
         
-        {children}
-        <SearchEngineProvider />
-        <CookieBanner />
-        <Chatbot />
-        <Footer />
-      </body>
+          {children}
+          <SearchEngineProvider />
+          <CookieBanner />
+          <Chatbot />
+          <Footer />
+        </body>
     </html>
   );
 }

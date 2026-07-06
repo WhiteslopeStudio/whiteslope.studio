@@ -33,25 +33,54 @@ function AnimatedBlock({
   );
 }
 
+
+
+
 export default function HeroSection() {
   const mainButton = useInteractiveButton();
   const [isMainHovered, setIsMainHovered] = useState(false);
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY);
+    };
+
+    // Dodajemy listener (passive: true poprawia wydajność scrollowania)
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Sprzątamy po odmontowaniu komponentu
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     // Zostawiłem dokładnie Twoje klasy - zaokrąglona sekcja, która wygląda jak "zawieszona"
     <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[70svh] min-h-[1000px] md:h-[70svh] md:min-h-[800px] overflow-hidden overflow-x-hidden">
       
       {/* --- WIDEO W TLE --- */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          /* scale-[1.15] ucina brzegi wideo, w tym znak wodny */
-          className="absolute inset-0 min-w-1640px object-cover scale-[2.4] m-auto"
-          src="/animationHero/HeroShowReel.mp4"
-        />
+      {/* 1. Pełna szerokość tła, flex ustawia zawartość na samym środku */}
+      <div className="absolute inset-0 z-0 flex justify-center pointer-events-none">
+        
+        {/* 2. KONTENER WŁAŚCIWY: max 1640px. To on ma overflow-hidden, więc nic z niego nie wyleje się na boki! */}
+        <div className="relative w-full h-full max-w-[1700px] overflow-hidden">
+          
+          {/* 3. PARALLAX WRAPPER */}
+          <div 
+            className="absolute inset-0 w-full h-full will-change-transform"
+            style={{ transform: `translateY(${offsetY * -0.2}px)` }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              /* Wideo wypełnia 1640px, a scale-[2.4] powiększa je, ukrywając znaki wodne. Reszta ucięta przez overflow-hidden rodzica */
+              className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
+              src="/animationHero/HeroShowReel.mp4"
+            />
+          </div>
+
+        </div>
       </div>
 
       {/* --- TWOJE ORYGINALNE GRADIENTY CIENIUJĄCE --- */}

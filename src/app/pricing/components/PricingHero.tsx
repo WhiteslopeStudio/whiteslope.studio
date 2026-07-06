@@ -44,7 +44,7 @@ export function PricingHero() {
         <div className="w-full lg:w-1/2 flex flex-col items-start justify-center text-left py-8 lg:py-0">
           
           <h1 className="text-[40px] md:text-[45px] font-bold text-zinc-950 leading-[1.05] tracking-tight mb-[24px] max-w-[800px]">
-            Czy jesteś gotowy na jakościowe projekty w dobrej cenie?
+            Ponieważ każdy powinien pozwolić sobie na profesjonalne rozwiązania!
           </h1>
           
           <p className="text-[18px] md:text-[20px] text-zinc-600 max-w-[800px] leading-relaxed font-normal mb-[40px]">
@@ -64,7 +64,7 @@ export function PricingHero() {
                   <Link
                     key={category}
                     href={`#${targetId}`}
-                    className="inline-flex items-center justify-center px-[24px] py-[10px] rounded-full border border-black/10 bg-zinc-100 text-[14px] font-semibold text-black hover:border-zinc-300 hover:bg-zinc-200 hover:text-black transition-all duration-300 shadow-sm active:scale-95"
+                    className="inline-flex items-center justify-center px-[24px] py-[10px] rounded-full border border-black/10 bg-white text-[14px] font-semibold text-black hover:border-zinc-300 hover:bg-zinc-100 hover:text-black transition-all duration-300 shadow-sm active:scale-95"
                   >
                     {category}
                   </Link>
@@ -75,50 +75,48 @@ export function PricingHero() {
         </div>
 
         {/* ========================================= */}
-        {/* PRAWA STRONA (Jaśniejsza z ujednoliconą paletą #2a3014) */}
+        {/* PRAWA STRONA (Czysta, przezroczysta z cieniem pod wyszukiwarką) */}
         {/* ========================================= */}
-        {/* ZMIANA: Jasne tło #f4facc */}
-        <div className="max-w-2xl lg:w-1/2 bg-[#f4facc] rounded-[24px] p-[32px] md:p-[48px] flex flex-col gap-[32px] shadow-sm border border-[#e0eb9d]">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center">
            
-           <div className="flex flex-col gap-[20px]">
+           <div className="flex flex-col gap-[24px] max-w-2xl">
              
-             {/* ZMIANA: Lupe przenieśliśmy do dolnej linii za pomocą flexowego spana */}
-             <h3 className="text-[28px] md:text-[32px] font-bold text-[#2a3014] leading-[1.1] tracking-tight">
-               Znajdź szybciej swoją usługę:
-               
+             {/* Nagłówek bez flexowego spana, bo lupe wyrzucamy/zostawiamy w inputie */}
+             <h3 className="text-[28px] md:text-[34px] font-bold text-zinc-900 leading-[1.1] tracking-tight">
+               Znajdź swoją usługę szybciej:
              </h3>
              
-             {/* POLE WYSZUKIWANIA */}
+             {/* POLE WYSZUKIWANIA (Z mocniejszym akcentem) */}
              <div className="relative w-full z-50">
-                <Search className="absolute left-[20px] top-1/2 -translate-y-1/2 w-[20px] h-[20px] text-[#2a3014]/40" />
+                <Search className="absolute left-[24px] top-1/2 -translate-y-1/2 w-[22px] h-[22px] text-zinc-400" />
                 <input 
                   type="text" 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Wpisz wyszukiwaną usługę..."
-                  // ZMIANA: Teksty dopasowane do oliwkowej palety
-                  className="w-full h-[60px] bg-white/90 rounded-full pl-[52px] pr-[24px] text-[16px] font-medium text-[#2a3014] placeholder:text-[#2a3014]/40 border border-white/50 focus:border-[#c5db4e] focus:bg-white focus:ring-4 focus:ring-white/60 outline-none transition-all duration-300 shadow-sm"
+                  // ZMIANA: Usunięto oliwkowe akcenty. Dodano mocny cień i grubsze pole.
+                  className="w-full h-[72px] bg-white rounded-full pl-[60px] pr-[24px] text-[18px] font-medium text-zinc-900 placeholder:text-zinc-400 border border-zinc-200 focus:border-zinc-400 focus:ring-4 focus:ring-zinc-100 outline-none transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 />
 
                 {/* ROZWIJANA LISTA */}
                 {searchTerm !== '' && (
-                  <div className="absolute top-full left-0 w-full mt-2 bg-white border border-[#e0eb9d] rounded-[16px] shadow-xl overflow-hidden flex flex-col py-[8px]">
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-full bg-white border border-zinc-200 rounded-[20px] shadow-2xl overflow-hidden flex flex-col py-[8px]">
                     {filteredServices.length > 0 ? (
                       filteredServices.map((service) => (
                         <Link 
                           key={service.id} 
                           href={`/pricing/${service.id}`}
-                          className="flex items-center justify-between px-[20px] py-[12px] hover:bg-[#fbfdf0] transition-colors"
+                          className="flex items-center justify-between px-[24px] py-[16px] hover:bg-zinc-50 transition-colors border-b border-zinc-100 last:border-b-0"
                         >
-                          <span className="text-[15px] font-bold text-[#2a3014]">{service.title}</span>
-                          <div className="flex items-center gap-[12px]">
-                            <span className="text-[14px] text-[#2a3014]/60 font-medium">{service.price}</span>
-                            <ArrowRight className="w-[16px] h-[16px] text-[#2a3014]/30" />
+                          <span className="text-[16px] font-bold text-zinc-900">{service.title}</span>
+                          <div className="flex items-center gap-[16px]">
+                            <span className="text-[15px] text-zinc-500 font-medium">{service.price}</span>
+                            <ArrowRight className="w-[18px] h-[18px] text-zinc-300" />
                           </div>
                         </Link>
                       ))
                     ) : (
-                      <div className="px-[20px] py-[16px] text-[14px] text-[#2a3014]/50 text-center">
+                      <div className="px-[24px] py-[20px] text-[15px] text-zinc-500 text-center">
                         Brak wyników wyszukiwania.
                       </div>
                     )}

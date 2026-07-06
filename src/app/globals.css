@@ -27,7 +27,7 @@
 @layer base {
   /* Dodaj h1 i h2 tutaj */
   h1, h2, .font-heading {
-    font-family: var(--font-geist) !important;
+    font-family: var(--font-jakarta) !important;
     font-weight: 900 !important;
     letter-spacing: -0.05em;
     line-height: 1.1;
@@ -138,12 +138,16 @@ html {
 }
 
 @layer base {
-  body {
-    font-family: var(--font-gothic), sans-serif;
+  /* 1. Wymuszamy Plus Jakarta Sans na WSZYSTKICH standardowych tekstach */
+  html, body, p, span, a, li, ul, ol, div, button, input, textarea, label, strong, em {
+    font-family: var(--font-jakarta), sans-serif;
   }
-  h1, h2, h3 {
-    font-family: var(--font-geist); /* Geist dla nagłówków */
-    font-weight: 700 !important;
+
+  /* 2. Nagłówki mają wyższy priorytet (dzięki !important) i swoją specyficzną grubość */
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-jakarta), sans-serif !important;
+    font-weight: 800 !important;
     letter-spacing: -0.05em;
+    line-height: 1.1;
   }
 }
