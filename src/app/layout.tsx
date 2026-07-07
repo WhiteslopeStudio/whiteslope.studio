@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
-import { Plus_Jakarta_Sans } from "next/font/google";
+// Zmiana na Inter
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -9,52 +9,19 @@ import { jsonLd, siteNavigationJsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
-// Zmień ten import:
 
-// Na ten (dodając Unbounded):
-import { Gothic_A1, Geist } from "next/font/google";
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"], // latin-ext jest kluczowe dla ą, ć, ę, ł, ń, ó, ś, ź, ż
-  weight: ["300", "400", "500", "600", "700", "800"], // Pobieramy potrzebne grubości
-  variable: "--font-jakarta", // Tworzymy nową zmienną CSS
+// Konfiguracja Inter
+const inter = Inter({
+  subsets: ["latin", "latin-ext"], // Ważne dla polskich znaków
+  weight: ["300", "400", "500", "600", "700", "800", "900"], 
+  variable: "--font-inter", // Nowa zmienna CSS
 });
-
-const gothicA1 = Geist({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-geist",
-});
-
-// Konfiguracja Geist (zastępuje Unbounded)
-const geistSans = Geist({
-  subsets: ["latin"],
-  weight: ["700"], // Tylko najgrubsza waga
-  variable: "--font-geist", // Ta zmienna zastąpi --font-unbounded
-});
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.whiteslope.studio'),
-  
-  // ← SKUPIONY TITLE (digitalizacja firm regionalnych)
   title: "Strony Internetowe dla Firm | WhiteSlope Studio | Digitalizacja Biznesu",
-  
-  // ← SKUPIONY DESCRIPTION (digitalizacja firm regionalnych)
   description: "⭐⭐⭐⭐⭐ Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie firm w Podlaskiem. WhiteSlope Studio - osobiste podejście, szybka realizacja, hosting gratis. Digitalizacja biznesu od 3500 zł.",
-  
-  // ← SKUPIONE KEYWORDS (firmy regionalne + digitalizacja)
   keywords: "strony internetowe dla firm, digitalizacja biznesu białystok, strony firmowe podlaskie, modernizacja stron internetowych, asystenci AI obsługa klienta, profesjonalne strony biznes, identyfikacja marki online, hosting gratis",
-  
   authors: [{ name: "Whiteslope Studio" }],
   creator: "Whiteslope Studio",
   publisher: "Whiteslope Studio",
@@ -69,8 +36,6 @@ export const metadata: Metadata = {
       'pl-PL': '/',
     },
   },
-  
-  // ← SKUPIONY OPEN GRAPH
   openGraph: {
     title: "Strony Internetowe dla Firm | WhiteSlope Studio",
     description: "Digitalizujemy firmy w Podlaskiem. Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie biznesu. Osobiste podejście, hosting gratis.",
@@ -87,8 +52,6 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
-  
-  // ← SKUPIONY TWITTER
   twitter: {
     card: "summary_large_image",
     title: "Digitalizacja Firm Podlaskie | WhiteSlope Studio",
@@ -96,7 +59,6 @@ export const metadata: Metadata = {
     creator: "@whiteslope",
     images: ["https://www.whiteslope.studio/og-image.jpg"],
   },
-  
   robots: {
     index: true,
     follow: true,
@@ -122,9 +84,6 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         {/* JSON-LD - Główny schema */}
         <script
           type="application/ld+json"
@@ -136,8 +95,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
         />
-        
-        {/* FAQ Schema removed to fix duplicate FAQPage issue - FAQ content is now in FaqSection component */}
 
         {/* Google Analytics - wszystkie tagi */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9WSGHNN17"></script>
@@ -161,17 +118,17 @@ export default function RootLayout({
         <meta name="ai-integration" content="true" />
         <link rel="alternate" type="application/json" href="/api/whiteslope-info" title="Whiteslope AI Integration API" />
         <link rel="plugin" href="/.well-known/ai-plugin.json" />
-        </head>
-        <body className={`${jakarta.variable} antialiased`}>
-          <Header />
-        
-          {children}
-          <SearchEngineProvider />
-          <CookieBanner />
-          <Chatbot />
-          <Footer />
-        </body>
+      </head>
+      
+      {/* Tutaj aplikujemy zmienną Inter na całe body */}
+      <body className={`${inter.variable} antialiased`}>
+        <Header />
+        {children}
+        <SearchEngineProvider />
+        <CookieBanner />
+        <Chatbot />
+        <Footer />
+      </body>
     </html>
   );
 }
-

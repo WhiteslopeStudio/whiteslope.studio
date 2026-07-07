@@ -168,7 +168,7 @@ export const Header = () => {
 
                     <motion.button
                       onClick={() => router.push("/")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
@@ -181,7 +181,7 @@ export const Header = () => {
                     {/* REALIZACJE */}
                     <motion.button
                       onClick={() => router.push("/projects")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/projects"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
@@ -210,7 +210,7 @@ export const Header = () => {
                       />
                       <motion.button
                         onClick={() => router.push('/pricing')}
-                        className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 ${
+                        className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 ${
                           isOnServicePage
                             ? 'text-white'
                             : 'text-[#d4d4d4] hover:text-white'
@@ -229,7 +229,7 @@ export const Header = () => {
                     {/* CENNIK */}
                     <motion.button
                       onClick={() => router.push("/pricing")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/pricing"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
@@ -249,7 +249,7 @@ export const Header = () => {
                     {/* aktualności */}
                     <motion.button
                       onClick={() => router.push("/blog")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/blog"
                           ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
@@ -266,7 +266,7 @@ export const Header = () => {
                     {/* kontakt */}
                     <motion.button
                       onClick={() => router.push("/contact")}
-                      className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
                         pathname === "/contact"
                           ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
