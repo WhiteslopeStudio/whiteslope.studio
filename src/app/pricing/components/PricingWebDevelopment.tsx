@@ -149,7 +149,7 @@ export function PricingWebDevelopment() {
 
                 {/* 3. Prawdziwy, niezależny przycisk Kontakt (z-20), Niebieski */}
                 <Link
-                  href="/contact"
+                  href="/pricing/website"
                   className="relative z-20 px-6 py-2.5 rounded-full bg-blue-500 text-white text-[14px] font-medium hover:bg-blue-600 transition-colors duration-300"
                 >
                   Sprawdź
