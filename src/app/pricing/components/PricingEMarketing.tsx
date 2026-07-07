@@ -74,7 +74,7 @@ export function PricingEMarketing() {
       <div className="container mx-auto max-w-[1200px]">
         
         <h2 className="text-3xl font-bold mb-12 text-center text-zinc-950">
-          Cennik Marketing & Wideo
+          Cennik - Marketing & Wideo
         </h2>
 
         <div className="flex flex-col gap-4">
@@ -126,9 +126,9 @@ export function PricingEMarketing() {
                 {/* Przycisk Sprawdź */}
                 <Link
                   href="/pricing/video-marketing"
-                  className="relative z-20 px-6 py-2.5 rounded-full bg-zinc-800 text-white text-[14px] font-medium hover:bg-zinc-900 transition-colors duration-300"
+                  className="relative z-20 px-6 py-2.5 rounded-full bg-blue-500 text-white text-[14px] font-medium hover:bg-blue-600 transition-colors duration-300"
                 >
-                  Sprwdź
+                  Sprawdź
                 </Link>
 
                 {/* Przycisk Kontakt */}
