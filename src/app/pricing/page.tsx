@@ -9,6 +9,8 @@ import { PricingTable } from '@/app/pricing/components/PricingTable';
 import { PricingFaq } from '@/app/pricing/components/PricingFaq';
 import { PricingCta } from '@/app/pricing/components/PricingCta';
 
+import TrustOverlay from '@/components/ui/TrustOverlay';
+
 export default function CennikPage() {
   return (
     // Zmiana na jasny motyw zgodnie z Twoim stylem
@@ -22,6 +24,8 @@ export default function CennikPage() {
       <PricingContact />
 
       <PricingFaq />
+
+      <TrustOverlay />
       
 
       {/* <PricingTable />

@@ -42,7 +42,7 @@ export function PricingHero() {
         {/* LEWA STRONA (z-20 żeby była NAD zdjęciem) */}
         {/* ========================================= */}
         <div className="w-full lg:w-[60%] flex flex-col items-start justify-center text-left py-8 lg:py-0 relative z-20">
-          <p className="text-[18px] md:text-[20px] text-zinc-600 font-medium mb-[32px]">
+          <p className="text-[18px] md:text-[24px] text-zinc-900 font-medium mb-[32px]">
             <u>Cennik usług</u>
           </p>
 

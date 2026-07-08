@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useAdvancedInView, useMobileDetection } from '@/utils/hooks';
 import { MAIN_SERVICES, getServicePackages } from '@/lib/data';
+import TrustOverlay from '@/components/ui/TrustOverlay';
 
 // ==========================================
 // 📝 TYPES & TAB CONFIGURATION
@@ -1951,7 +1952,12 @@ function ContactContent() {
           </motion.div>
         )}
       </AnimatePresence>
+
+
+      <TrustOverlay />
     </div>
+
+    
   );
 }
 

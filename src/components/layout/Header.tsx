@@ -154,7 +154,7 @@ export const Header = () => {
                   onMouseLeave={() => setIsLogoHovered(false)}
                 >
                   <img
-                    src="/_resources/logoWhiteSlope.webp"
+                    src="/_resources/logoWhiteSlopeBlue.webp"
                     alt="WhiteSlope Studio"
                     className="h-5 w-auto object-contain relative z-10 transition-all duration-300 group-hover:brightness-125"
                   />

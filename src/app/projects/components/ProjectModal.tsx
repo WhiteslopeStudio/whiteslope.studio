@@ -1,19 +1,108 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowUpRight } from 'lucide-react';
+import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { ProjectExample } from '@/lib/types';
 
 interface ProjectModalProps {
-  project: ProjectExample;
+  projects: ProjectExample[]; // Przyjmujemy całą listę projektów
+  initialIndex: number;       // Indeks projektu, w który kliknął użytkownik
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+// Konfiguracja wjazdów i wyjazdów na scrolla
+const slideVariants = {
+  enter: (direction: number) => ({
+    y: direction > 0 ? "30%" : "-30%", // Jeśli scroll w dół, nowe wjeżdża z dołu
+    opacity: 0,
+  }),
+  center: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    y: direction > 0 ? "-30%" : "30%", // Jeśli scroll w dół, stare odlatuje do góry
+    opacity: 0,
+  }),
+};
+
+export default function ProjectModal({ projects, initialIndex, isOpen, onClose }: ProjectModalProps) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [direction, setDirection] = useState(1); 
   
-  // Blokowanie scrollowania strony
+  // ZMIANA: Używamy useRef zamiast useState. 
+  // Dzięki temu blokada działa NATYCHMIAST i nie gubi Twojego pierwszego scrolla.
+  const isAnimatingRef = React.useRef(false);
+
+  // Synchronizacja po otwarciu Modala
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
+
+  // Detekcja scrolla rolką myszy / touchpadem (Hyper-czuły tryb YT Shorts + Looping)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Jeśli animacja trwa, natychmiast ubijamy każdy kolejny ruch kółkiem myszy
+      if (isAnimatingRef.current) {
+        e.preventDefault();
+        return;
+      }
+      
+      if (!projects || projects.length === 0) return;
+
+      // Inteligentne przewijanie: sprawdzamy, czy użytkownik czyta tekst na prawym panelu
+      const target = e.target as HTMLElement;
+      const scrollableDiv = target.closest('.text-scroll-container');
+      
+      if (scrollableDiv) {
+        const isAtTop = scrollableDiv.scrollTop === 0;
+        const isAtBottom = Math.abs(scrollableDiv.scrollHeight - scrollableDiv.clientHeight - scrollableDiv.scrollTop) <= 2;
+
+        // Pozwalamy na natywny scroll, jeśli tekst ma jeszcze miejsce do przewinięcia
+        if (e.deltaY < 0 && !isAtTop) return; 
+        if (e.deltaY > 0 && !isAtBottom) return; 
+      }
+
+      // --- MEGA CZUŁY SCROLL ---
+      // Reagujemy na JAKIKOLWIEK ruch rolką (deltaY > 0)
+      if (Math.abs(e.deltaY) > 0) {
+        e.preventDefault(); // Blokujemy natywny, "gumowy" scroll przeglądarki
+        
+        // ZAKŁADAMY BLOKADĘ NATYCHMIAST
+        isAnimatingRef.current = true;
+
+        if (e.deltaY > 0) {
+          // Scroll w dół - następny (z zapętleniem na początek)
+          setDirection(1);
+          setCurrentIndex((prev) => (prev + 1) % projects.length);
+        } else {
+          // Scroll w górę - poprzedni (z zapętleniem na koniec)
+          setDirection(-1);
+          setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+        }
+
+        // Ściągamy blokadę po dokładnie 600ms (czas trwania animacji)
+        setTimeout(() => {
+          isAnimatingRef.current = false;
+        }, 600);
+      }
+    };
+
+    // Podpinamy event z passive: false, żeby móc natychmiastowo blokować scroll
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isOpen, projects?.length]); // Usunięto zbędne zależności, które resetowały event!
+
+  // Blokowanie scrolla strony pod spodem
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -25,7 +114,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     };
   }, [isOpen]);
 
-  // Zamykanie przez Escape
+  // Esc do zamykania
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -34,48 +123,58 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Przekształcenie usług (string po przecinku) w tablicę
-  const servicesArray = project.servicesListed 
-    ? project.servicesListed.split(',').map(s => s.trim()) 
+  // Bezpieczne pobranie aktualnego projektu
+  const currentProject = projects?.[currentIndex] || projects?.[0];
+
+  // Przekształcenie usług
+  const servicesArray = currentProject?.servicesListed 
+    ? currentProject.servicesListed.split(',').map(s => s.trim()) 
     : ['Tworzenie stron WWW', 'Projektowanie UX/UI', 'Optymalizacja'];
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-[5vh]">
-          
-          {/* Ciemne Tło (Overlay) z rozmyciem */}
+        <motion.div
+          key="modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-[2.5vh] bg-black/80 backdrop-blur-sm cursor-pointer"
+          onClick={onClose}
+        >
+          {/* Główne okno Modala - Wjazd głównego pudła */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer"
-            onClick={onClose}
-          />
-
-          {/* Główne okno Modala - Wracamy do miękkich zaokrągleń */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: 15 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-[90vw] max-w-full h-[90vh] bg-white flex flex-col lg:flex-row overflow-hidden z-10 shadow-2xl rounded-[24px]"
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, y: "100vh" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "100vh" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} // Płynna krzywa wjazdu
+            className="relative w-[95vw] max-w-full h-[95vh] bg-white flex flex-col lg:flex-row overflow-hidden shadow-2xl rounded-[16px] cursor-default"
           >
             
-            {/* LEWA STRONA - ZDJĘCIE (55%) */}
-            <div className="hidden lg:block lg:w-[55%] h-full bg-[#e5e5e5] relative">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover object-center"
-              />
+            {/* LEWA STRONA - ZDJĘCIA (70%) */}
+            <div className="hidden lg:block lg:w-[70%] h-full bg-zinc-100 relative border-r border-zinc-200 overflow-hidden">
+              <AnimatePresence custom={direction} initial={false}>
+                <motion.img
+                  key={`img-${currentProject.id}`}
+                  src={currentProject.image}
+                  alt={currentProject.title}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+              </AnimatePresence>
             </div>
 
-            {/* PRAWA STRONA - TREŚĆ (45%) */}
-            <div className="w-full lg:w-[45%] h-full flex flex-col relative bg-white overflow-hidden">
+            {/* PRAWA STRONA - TREŚĆ (30%) */}
+            <div className="w-full lg:w-[30%] h-full flex flex-col bg-white relative overflow-hidden">
               
-              {/* --- TŁO: Firmowe pasy gradientowe (Subtelne szkło w tle) --- */}
+              {/* TŁO: Firmowe pasy (Zawsze statyczne na spodzie) */}
               <div className="absolute inset-0 z-0 w-full flex opacity-60 pointer-events-none">
                 <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #c5d6ff 0%, #ffffff 80%)' }} />
                 <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #c8dbff 0%, #ffffff 40%)' }} />
@@ -87,116 +186,132 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 <div className="flex-1" style={{ background: 'linear-gradient(to bottom, #d0f4e6 0%, #ffffff 80%)' }} />
               </div>
 
-              {/* Obszar przewijany (z-10 żeby był nad pasami) */}
-              <div className="relative z-10 flex-1 overflow-y-auto px-[32px] py-[40px] md:px-[64px] md:py-[56px] [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-zinc-300 [&::-webkit-scrollbar-thumb]:rounded-full">
+              {/* STATYCZNY TOP BAR: Licznik + Zamknij (Nie animuje się przy scrollu) */}
+              <div className="absolute top-[32px] left-[32px] right-[32px] z-50 flex items-center justify-between pointer-events-none">
                 
-                {/* --- HEADER --- */}
-                <div className="flex items-center justify-between mb-[64px]">
-                  <div className="flex items-center gap-2 text-[16px] md:text-[18px] font-[500] text-black">
-                    {project.clientLogo ? (
+                {/* Licznik projektów */}
+                <div className="text-[12px] font-bold text-zinc-500 bg-white/70 backdrop-blur-md px-[12px] py-[6px] rounded-full border border-zinc-200/50 shadow-sm">
+                  {currentIndex + 1} / {projects.length}
+                </div>
+
+                <button
+                  onClick={onClose}
+                  className="pointer-events-auto cursor-pointer flex items-center gap-2 bg-white/80 backdrop-blur-md hover:bg-zinc-200 text-zinc-900 px-[16px] py-[8px] rounded-full transition-colors duration-200 shadow-sm border border-zinc-200/50"
+                  aria-label="Zamknij"
+                >
+                  <span className="text-[13px] font-[600]">Zamknij</span>
+                  <X className="w-[16px] h-[16px]" strokeWidth={2.5} />
+                </button>
+              </div>
+
+              {/* ZMIENIAJĄCA SIĘ TREŚĆ (Animowana) */}
+              <AnimatePresence custom={direction} initial={false}>
+                <motion.div
+                  key={`content-${currentProject.id}`}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  // Absolute i scrollowanie, klasa text-scroll-container jest kluczowa do inteligentnego scrolla
+                  className="absolute inset-0 z-10 text-scroll-container overflow-y-auto flex flex-col pt-[100px] px-[32px] pb-[40px] [&::-webkit-scrollbar]:w-[6px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-zinc-300 hover:[&::-webkit-scrollbar-thumb]:bg-zinc-400"
+                >
+                  
+                  {/* HEADER PROJEKTU */}
+                  <div className="flex items-center gap-2 text-[14px] font-[500] text-zinc-600 mb-[40px]">
+                    {currentProject.clientLogo ? (
                       <img 
-                        src={project.clientLogo} 
-                        alt={project.clientName || 'Logo klienta'} 
-                        className="h-[64px] object-contain rounded-full" 
+                        src={currentProject.clientLogo} 
+                        alt={currentProject.clientName || 'Logo klienta'} 
+                        className="h-[32px] object-contain rounded-full bg-white/50 backdrop-blur-sm" 
                       />
                     ) : (
-                      project.clientName && (
-                        <span>{project.clientName}</span>
+                      currentProject.clientName && (
+                        <span>{currentProject.clientName}</span>
                       )
                     )}
                     <span className="font-[600] text-zinc-900">
-                      {project.clientName ? ' — ' : ''} {project.category}
+                      {currentProject.clientName ? ' — ' : ''} {currentProject.category}
                     </span>
                   </div>
 
-                  {/* Zaokrąglony przycisk zamykania z animacją skali */}
-                  <button
-                    onClick={onClose}
-                    className="hover:cursor-pointer flex items-center gap-2 bg-zinc-800 hover:bg-zinc-900 text-white px-[20px] py-[10px] rounded-full border border-zinc-200 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 group"
-                    aria-label="Zamknij"
-                  >
-                    <span className="text-[14px] font-[600]">Zamknij</span>
-                    <X className="w-[18px] h-[18px] text-white transition-transform duration-300 group-hover:rotate-90" strokeWidth={2} />
-                  </button>
-                </div>
-
-                {/* --- NAGŁÓWEK GŁÓWNY --- */}
-                <h2 className="text-[36px] md:text-[46px] text-black leading-[1.05] tracking-tight mb-[64px] max-w-[90%] font-[500]">
-                  {project.title}
-                </h2>
-
-                {/* --- KOLUMNY: USŁUGI i OVERVIEW --- */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-[48px] lg:gap-[40px] mb-[64px]">
-                  
-                  {/* Lewa kolumna: Usługi */}
-                  <div>
-                    <h3 className="text-[18px] font-[600] text-black mb-[24px]">
-                      Zrealizowane usługi —
-                    </h3>
-                    <ul className="flex flex-col gap-[16px]">
-                      {servicesArray.map((service, index) => (
-                        <li key={index} className="text-[17px] md:text-[18px] text-zinc-800 font-[400] flex items-start gap-3 leading-tight">
-                          
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="20" height="20" viewBox="0 0 24 24"
-                            className="text-[#50D100] shrink-0 mt-[3px]"
-                          >
-                            <path 
-                              fill="currentColor" 
-                              fillRule="evenodd" 
-                              d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10M9.97 8.47a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06L12.44 12L9.97 9.53a.75.75 0 0 1 0-1.06" 
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          
-                          {service}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* TYTUŁ I PRZYCISK */}
+                  <div className="mb-[48px]">
+                    <h2 className="text-[32px] md:text-[38px] text-zinc-950 leading-[1.1] tracking-tight font-bold mb-[24px]">
+                      {currentProject.title}
+                    </h2>
+                    
+                    {currentProject.href && (
+                      <a 
+                        href={currentProject.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-[20px] py-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[14px] font-semibold rounded-full transition-colors shadow-md"
+                      >
+                        Zobacz podgląd
+                        <ExternalLink className="w-[16px] h-[16px]" strokeWidth={2.5} />
+                      </a>
+                    )}
                   </div>
 
-                  {/* Prawa kolumna: Overview */}
-                  <div>
-                    <h3 className="text-[18px] font-[600] text-black mb-[24px]">
-                      Podsumowanie projektu —
-                    </h3>
-                    <div className="text-[17px] md:text-[18px] text-zinc-800 font-[400] leading-[1.6] space-y-[24px]">
-                      <p>{project.description}</p>
+                  {/* ZREALIZOWANE USŁUGI */}
+                  <div className="flex flex-col gap-[40px] mb-[48px]">
+                    <div>
+                      <h3 className="text-[16px] font-bold text-zinc-950 mb-[16px]">
+                        Zrealizowane usługi
+                      </h3>
+                      <ul className="flex flex-col gap-[12px]">
+                        {servicesArray.map((service, index) => (
+                          <li key={index} className="text-[15px] text-zinc-800 font-medium flex items-start gap-3 leading-tight">
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              width="18" height="18" viewBox="0 0 24 24"
+                              className="text-zinc-900 shrink-0 mt-[1px]"
+                            >
+                              <path fill="currentColor" fillRule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10M9.97 8.47a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06L12.44 12L9.97 9.53a.75.75 0 0 1 0-1.06" clipRule="evenodd"/>
+                            </svg>
+                            {service}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* PODSUMOWANIE */}
+                    <div>
+                      <h3 className="text-[16px] font-bold text-zinc-950 mb-[16px]">
+                        Podsumowanie projektu
+                      </h3>
+                      <div className="text-[15px] text-zinc-700 font-normal leading-[1.6]">
+                        <p>{currentProject.description}</p>
+                      </div>
                     </div>
                   </div>
-                  
-                </div>
 
-                {/* --- SEKCJA CTA NA DOLE (Miękka, z animacjami) --- */}
-                <div className="mt-[40px] bg-zinc-950 rounded-[20px] p-[32px] md:p-[48px] flex flex-col xl:flex-row xl:items-center justify-between gap-[32px] w-full relative overflow-hidden shadow-xl">
-                  
-                  {/* Subtelny glow gradientu z pasów w rogu CTA */}
-                  <div className="absolute top-0 right-0 w-[50%] h-full opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle at 100% 0%, #c5d6ff, transparent 70%)' }} />
+                  {/* CTA */}
+                  <div className="mt-auto bg-zinc-950 rounded-[16px] p-[24px] flex flex-col gap-[20px] relative overflow-hidden">
+                    <h4 className="relative z-10 text-[18px] font-semibold text-white tracking-tight leading-[1.3] m-0">
+                      Chcesz uzyskać podobne rezultaty w swoim biznesie?
+                    </h4>
+                    <a
+                      href="#kontakt"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onClose();
+                        document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="relative z-10 w-fit inline-flex items-center justify-center bg-white text-black px-[24px] py-[12px] rounded-full text-[14px] font-bold transition-transform hover:scale-105 active:scale-95 group"
+                    >
+                      Porozmawiajmy
+                      <ArrowUpRight className="w-[18px] h-[18px] ml-[6px] stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </a>
+                  </div>
 
-                  <h4 className="relative z-10 text-[20px] md:text-[24px] font-[500] text-white tracking-tight leading-[1.3] m-0 max-w-[350px]">
-                    Chcesz uzyskać podobne rezultaty w swoim biznesie?
-                  </h4>
-                  
-                  <a
-                    href="#kontakt"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onClose();
-                      document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="relative z-10 shrink-0 inline-flex items-center justify-center bg-white text-black px-[32px] py-[16px] rounded-full text-[16px] font-[600] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] active:scale-95 group"
-                  >
-                    Porozmawiajmy
-                    <ArrowUpRight className="w-[20px] h-[20px] ml-[8px] stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </a>
-                </div>
-
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
-
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

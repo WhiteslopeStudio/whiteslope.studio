@@ -14,7 +14,9 @@ interface ProjectRowProps {
 }
 
 export default function ProjectRow({ title, subtitle, category }: ProjectRowProps) {
-  const [selectedProject, setSelectedProject] = useState<ProjectExample | null>(null);
+  // ZMIANA 1: Trzymamy w stanie INDEKS klikniętego projektu (liczbę), a nie cały obiekt.
+  // Jeśli jest null - modal jest zamknięty.
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   
   // Refy do śledzenia pozycji myszki, żeby odróżnić kliknięcie od przeciągania
   const clickStartX = useRef(0);
@@ -96,15 +98,14 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
             isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'
           }`}
         >
-          {rowProjects.map((project) => (
+          {/* ZMIANA 2: Dodajemy `index` do metody map, żeby wiedzieć, w który element klikamy */}
+          {rowProjects.map((project, index) => (
             <div
               key={project.id}
-              // 1. Zapisujemy pozycję w momencie wciśnięcia myszki
               onMouseDown={(e) => {
                 clickStartX.current = e.clientX;
                 clickStartY.current = e.clientY;
               }}
-              // 2. Przy kliknięciu sprawdzamy, czy dystans nie był za duży
               onClick={(e) => {
                 const deltaX = Math.abs(e.clientX - clickStartX.current);
                 const deltaY = Math.abs(e.clientY - clickStartY.current);
@@ -112,7 +113,8 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
                 // Jeśli myszka przesunęła się o więcej niż 6 pikseli, to był "drag", a nie "klik" -> przerywamy
                 if (deltaX > 6 || deltaY > 6) return;
                 
-                setSelectedProject(project);
+                // ZMIANA 3: Ustawiamy numer klikniętego projektu
+                setSelectedIndex(index);
               }}
               className=" relative flex-shrink-0 w-[320px] sm:w-[360px] md:w-[450px] flex flex-col group/card transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
             >
@@ -157,14 +159,14 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
 
       </div>
 
-      {/* --- MODAL (POP-UP) --- */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          isOpen={!!selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+      {/* ZMIANA 4: Zawsze renderujemy Modal i sterujemy nim za pomocą zmiennych. 
+          Dzięki temu Framer Motion może płynnie animować zamykanie (exit). */}
+      <ProjectModal 
+        projects={rowProjects} 
+        initialIndex={selectedIndex !== null ? selectedIndex : 0} 
+        isOpen={selectedIndex !== null} 
+        onClose={() => setSelectedIndex(null)} 
+      />
 
     </div>
   );

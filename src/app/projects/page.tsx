@@ -392,6 +392,7 @@ import ProjectRow from './components/ProjectRow';
 import ProjectsFAQ from './components/ProjectsFAQ';
 import ProjectsContact from './components/ProjectsContact';
 import TrustOverlay from '@/components/ui/TrustOverlay';
+import { PROJECT_EXAMPLES } from '@/lib/data';
 
 // ==========================================
 // METADATA (SEO)
@@ -425,7 +426,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-zinc-950 text-zinc-50 pb-[80px]">
       
       {/* 1. HERO SECTION (Z wideo w tle) */}
-      <ProjectsHero />
+      <ProjectsHero activeProject={PROJECT_EXAMPLES[0]} />
 
       {/* 2. NETFLIX ROWS (Karuzele z projektami) */}
       <div className="flex flex-col gap-[60px] md:gap-[100px] mt-[40px] md:mt-[80px]">

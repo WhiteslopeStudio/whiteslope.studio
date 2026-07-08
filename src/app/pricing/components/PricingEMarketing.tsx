@@ -147,18 +147,18 @@ export function PricingEMarketing() {
         {/* ======================================= */}
         {/* SEKCJA: Szczegóły wyceny projektów */}
         {/* ======================================= */}
-        <div className="mt-12 bg-[#faf5ff] rounded-[32px] p-8 md:p-10 flex flex-col md:flex-row gap-8 md:gap-12 items-start border border-[#f3e8ff] shadow-sm">
+        <div className="mt-12 bg-[#e3f1ff] rounded-[32px] p-8 md:p-10 flex flex-col md:flex-row gap-8 md:gap-12 items-start border border-[#b8dcff] shadow-sm">
           
           {/* Lewa strona - Tytuł */}
           <div className="w-full md:w-1/3 shrink-0">
-            <h3 className="text-[22px] font-bold text-purple-950 mb-3 flex items-center gap-3 leading-tight">
+            <h3 className="text-[22px] font-bold text-blue-900 mb-3 flex items-center gap-3 leading-tight">
               <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
               </svg>
               Jak wyceniamy projekty?
             </h3>
-            <p className="text-[14px] text-purple-950/80 font-medium leading-relaxed">
-              Materiały wideo i projekty graficzne wymagają indywidualnego podejścia. Zadbaj o szczegóły, aby otrzymać precyzyjną ofertę.
+            <p className="text-[14px] text-blue-950/80 font-medium leading-relaxed">
+              Materiały wideo i projekty graficzne wymagają indywidualnego podejścia. Pisząc do nas, dostarcz jak najwięcej informacji na temat swoich potrzeb i oczekiwań.
             </p>
           </div>
 
@@ -167,21 +167,21 @@ export function PricingEMarketing() {
             <ul className="flex flex-col gap-6">
               
               <li className="flex items-start gap-4">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-purple-900 shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-blue-900 shrink-0"></div>
                 <div>
-                  <span className="font-bold text-purple-950 text-[16px]">Podaj jak najwięcej szczegółów</span>
-                  <p className="text-[14px] text-purple-950/80 mt-1 leading-relaxed">
+                  <span className="font-bold text-blue-900 text-[16px]">Podaj jak najwięcej szczegółów</span>
+                  <p className="text-[14px] text-blue-950/80 mt-1 leading-relaxed">
                     Opisz dokładnie swoje oczekiwania, planowaną długość materiału wideo, liczbę potrzebnych formatów lub format wyjściowy dźwięku. Im więcej wiemy na starcie, tym dokładniejszy harmonogram przygotujemy.
                   </p>
                 </div>
               </li>
 
               <li className="flex items-start gap-4">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-purple-900 shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-blue-900 shrink-0"></div>
                 <div>
-                  <span className="font-bold text-purple-950 text-[16px]">Szybka informacja zwrotna</span>
-                  <p className="text-[14px] text-purple-950/80 mt-1 leading-relaxed">
-                    Po otrzymaniu zgłoszenia przez formularz lub e-mail, analizujemy przesłane wytyczne i wracamy do Ciebie z gotową wyceną projektu oraz proponowanym terminem realizacji.
+                  <span className="font-bold text-blue-900 text-[16px]">Szybka informacja zwrotna</span>
+                  <p className="text-[14px] text-blue-950/80 mt-1 leading-relaxed">
+                    Po otrzymaniu zgłoszenia przez formularz lub e-mail, analizujemy przesłane wytyczne i wracamy do Ciebie z gotową wyceną projektu.
                   </p>
                 </div>
               </li>

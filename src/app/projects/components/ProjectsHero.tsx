@@ -1,131 +1,181 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { ArrowRight, ArrowDown } from 'lucide-react';
-import { useInteractiveButton } from '@/utils/hooks';
+import { ArrowDown, ExternalLink } from 'lucide-react';
+import { ProjectExample } from '@/lib/types';
+import { AnimatePresence, motion } from 'framer-motion';
+import { PROJECT_EXAMPLES } from '@/lib/data';
+import ProjectModal from './ProjectModal';
 
-function AnimatedBlock({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return (
-    <div
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        filter: isVisible ? 'blur(0px)' : 'blur(10px)',
-        transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
-    >
-      {children}
-    </div>
-  );
+interface ProjectsHeroProps {
+  activeProject?: ProjectExample & { year?: string }; 
 }
 
-export default function ProjectsHero() {
-  const mainButton = useInteractiveButton();
-  const [isMainHovered, setIsMainHovered] = useState(false);
+export default function ProjectsHero({ activeProject }: ProjectsHeroProps) {
+  const [currentProject, setCurrentProject] = useState<ProjectExample & { year?: string } | null>(null);
+
+    // 1. Stan otwarcia modala
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 2. Szukamy, na którym projekcie z całej tablicy aktualnie stoi Hero
+  // (zakładam, że Twój aktualny stan projektu nazywa się 'currentProject')
+  const currentProjectIndex = PROJECT_EXAMPLES.findIndex(p => p.id === currentProject?.id);
+  const initialModalIndex = currentProjectIndex !== -1 ? currentProjectIndex : 0;
+
+
+  useEffect(() => {
+    if (activeProject) {
+      setCurrentProject(activeProject);
+    }
+  }, [activeProject]);
+
+  if (!currentProject) return null;
+
+  // Przekształcenie usług
+  const servicesArray = currentProject.servicesListed 
+    ? currentProject.servicesListed.split(',').map(s => s.trim()) 
+    : ['Tworzenie stron WWW', 'Projektowanie UX/UI'];
+
+  // Rok wykonania
+  const projectYear = currentProject.year || '2025';
 
   return (
-    // Lekko zmniejszone minimalne wysokości, aby karuzele projektów szybciej pojawiły się w zasięgu wzroku
-    <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[25svh] min-h-[500px]  md:min-h-[600px] overflow-hidden overflow-x-hidden">
+    // Zmiana na w-full, żeby rozciągnąć sekcję na cały ekran
+    <section className="relative mx-auto mb-10 md:mb-16 bg-[#0a0a0a] rounded-b-xl md:rounded-b-[32px] h-[75vh] min-h-[550px] max-h-[800px] w-full overflow-hidden group/hero shadow-2xl transition-all duration-500">
       
-      {/* --- WIDEO W TLE --- */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 min-w-[1640px] object-cover scale-[2.4] m-auto opacity-30"
-          src="/animationHero/HeroShowReel.mp4"
-
-        />
+      {/* --- KINOWE TŁO --- */}
+      <div className="absolute inset-0 z-0 bg-zinc-950">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentProject.id}
+            src={currentProject.image}
+            alt={currentProject.title}
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 0.45, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          />
+        </AnimatePresence>
       </div>
 
-      {/* --- GRADIENTY CIENIUJĄCE --- */}
-      <div
-        className="absolute inset-0 md:hidden z-0"
+      {/* --- GRADIENTY (Cienie dla tekstu) --- */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.9) 100%)',
+          background: 'linear-gradient(90deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.5) 25%, rgba(10,10,10,0.4) 60%, rgba(10,10,10,0) 100%)',
         }}
       />
-      
-      <div
-        className="absolute inset-0 hidden md:block z-0 pointer-events-none"
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(370deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.2) 48%, rgba(0,0,0,0.14) 66%, rgba(0,0,0,0.02) 84%)',
-        }}
-      />
-      <div
-        className="absolute inset-0 hidden md:block z-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.24) 55%, rgba(0,0,0,0.95) 100%)',
+          background: 'linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.4) 60%, rgba(10,10,10,1) 100%)',
         }}
       />
 
-      {/* --- ZAWARTOŚĆ --- */}
-      <div className="relative z-10 h-full w-full max-w-[1640px] mx-auto px-6 md:px-12 pb-6 md:pb-12 flex flex-col justify-end items-start text-left">
+      {/* --- INTERFEJS I ZAWARTOŚĆ --- */}
+      <div className="relative z-20 h-full max-w-[1640px] flex flex-col justify-center items-center px-8 md:px-16 lg:px-24 ">
+        
+        
 
-        <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[800px]">
-
-          {/* Nagłówek H1 */}
-          <AnimatedBlock delay={120}>
-            <h1 className="text-[45px] font-[700] leading-[0.85] text-left text-white tracking-tight md:text-[60px]">
-              Nasze realizacje
-            </h1>
-          </AnimatedBlock>
-
-          {/* Paragraf */}
-          <AnimatedBlock delay={240}>
-            <p className="text-[16px] text-blue-50/90 max-w-[570px] -my-1 leading-relaxed">
-              Odkryj wybrane projekty, nad którymi pracowaliśmy. Tworzymy strony nastawione na konwersję, wdrażamy automatyzacje oszczędzające czas i prowadzimy skuteczny e-marketing.
-            </p>
-          </AnimatedBlock>
-
-          {/* Przyciski CTA */}
-          <AnimatedBlock delay={520}>
-            <div className="mt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-center w-full">
-              
-              {/* Główny przycisk: Scrolluje do projektów */}
-              <Link
-                href="/contact" // Możemy dodać ID #projekty nad karuzelami w page.tsx
-                onMouseMove={mainButton.handleMouseMove}
-                onMouseEnter={() => {
-                  setIsMainHovered(true);
-                  if (mainButton.handleMouseEnter) mainButton.handleMouseEnter();
-                }}  
-                onMouseLeave={() => {
-                  setIsMainHovered(false);
-                  if (mainButton.handleMouseLeave) mainButton.handleMouseLeave();
-                }}
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full h-[46px] px-6 text-[14px] md:text-[15px] font-semibold text-white relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(0,87,255,0.25)] hover:shadow-[0_8px_30px_rgba(0,87,255,0.4)]"
-                style={{
-                  background: `radial-gradient(circle at ${isMainHovered ? mainButton.mousePosition.x : 50}% ${isMainHovered ? mainButton.mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
-                }}
-              >
-                Zacznij współracę 
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-  1" />
-              </Link>
-
-              
-
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentProject.id}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col text-left"
+          >
+            {/* Typ projektu na górze */}
+            <div className="text-[16px] font-semibold text-blue-400 mb-2">
+              {currentProject.category}
             </div>
-          </AnimatedBlock>
 
-        </div>
+            {/* Główny Tytuł (zmniejszony do ~45px, ciaśniejszy) */}
+            <h1 className="text-[38px] md:text-[45px] font-bold leading-[1.1] text-white tracking-tight max-w-[600px] mb-4">
+              {currentProject.title}
+            </h1>
+
+            {/* Rok produkcji i Klient pod tytułem po lewej stronie */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="bg-zinc-800/80 backdrop-blur-md px-3 py-1 rounded-full text-zinc-300 text-[14px] border border-zinc-700/50">
+                {projectYear}
+              </span>
+              {currentProject.clientName && (
+                <span className="text-zinc-400 text-[14px] font-medium">
+                  {currentProject.clientName}
+                </span>
+              )}
+            </div>
+
+            {/* Opis */}
+            <p className="text-[15px] md:text-[16px] text-zinc-100 max-w-[600px] leading-relaxed mb-8 font-normal">
+              {currentProject.description}
+            </p>
+
+            {/* Usługi (Miękkie, zaokrąglone tagi, brak uppercase) */}
+            <div className="mb-10">
+              <span className="text-[14px] font-semibold text-zinc-400 block mb-3">
+                Zrealizowane usługi:
+              </span>
+              <div className="flex flex-wrap gap-2 max-w-[800px]">
+                {servicesArray.map((service, idx) => (
+                  <span 
+                    key={idx}
+                    className="text-[13px] md:text-[14px] font-medium text-zinc-200 bg-zinc-900/60 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* PRZYCISKI AKCJI (Firmowe kolory, mocne zaokrąglenia i Glassmorphism) */}
+            <div className="flex flex-wrap gap-4 items-center w-full">
+              
+              {/* Przycisk 1: Podgląd Projektu (Główny, Niebieski) */}
+              {currentProject.href && (
+                <a
+                  href={currentProject.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer inline-flex items-center justify-center bg-blue-600/80 backdrop-blur-md border border-blue-400/30 hover:bg-blue-600/90 hover:border-blue-400/50 text-white px-8 h-[48px] rounded-full text-[15px] font-semibold transition-all duration-300 active:scale-95 shadow-[0_4px_20px_rgba(37,99,235,0.3)] gap-2 group"
+                >
+                  Podgląd projektu
+                  <ExternalLink className="w-4 h-4 text-blue-200 transition-colors group-hover:text-white" />
+                </a>
+              )}
+
+              {/* Przycisk 2: Zobacz Case Study (Przewija do karuzeli, Ciemny/Szkło) */}
+              <button
+                onClick={() => setIsModalOpen(true)} // <-- To otwiera modal
+                className="cursor-pointer inline-flex items-center justify-center bg-zinc-800/50 backdrop-blur-md hover:bg-zinc-700/60 border border-white/10 hover:border-white/20 text-white px-7 h-[48px] rounded-full text-[15px] font-semibold transition-all duration-300 active:scale-95 shadow-lg"
+              >
+                Zobacz Case Study
+              </button>
+              
+            </div>
+
+          </motion.div>
+        </AnimatePresence>
+
       </div>
+
+      {/* --- INFORMACJA O SCROLLOWANIU NA DOLE --- */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white opacity-100 pointer-events-none z-20">
+        <span className="text-[12px] font-medium text-zinc-100">Więcej projektów poniżej</span>
+        <ArrowDown className="w-4 h-4" />
+      </div>
+
+      {/* MODAL PODPIĘTY POD HERO (Wklej na samym dole przed </section>) */}
+      <ProjectModal 
+        projects={PROJECT_EXAMPLES}
+        initialIndex={initialModalIndex}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
     </section>
   );
 }
