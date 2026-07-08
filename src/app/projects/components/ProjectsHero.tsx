@@ -87,8 +87,7 @@ export default function ProjectsHero({ activeProject }: ProjectsHeroProps) {
       
 
       {/* --- INTERFEJS I ZAWARTOŚĆ --- */}
-      <div className="relative z-20 h-full max-w-[1640px] flex flex-col justify-center items-center px-8 md:px-16 lg:px-24 ">
-        
+<div className="relative z-20 h-full max-w-[1640px] mx-auto flex flex-col justify-center items-start px-8 min-w-0">        
         
 
         <AnimatePresence mode="wait">
@@ -106,7 +105,7 @@ export default function ProjectsHero({ activeProject }: ProjectsHeroProps) {
             </div> */}
 
             {/* LOGO PROJEKTU (Netflix Title Treatment) lub Tytuł Awaryjny */}
-            <div className="mb-6 min-h-[50px] flex items-end">
+            <div className="mb-6 min-h-[50px] flex items-start justify-start">
               {currentProject.logoUrl ? (
                 <img 
                   src={currentProject.logoUrl} 
@@ -135,7 +134,7 @@ export default function ProjectsHero({ activeProject }: ProjectsHeroProps) {
             </div>
 
             {/* Opis */}
-            <p className="text-[24px] md:text-[38px] text-zinc-100 max-w-[800px] leading-relaxed mb-8 font-semibold tracking-tight leading-tight">
+            <p className="text-[24px] md:text-[38px] text-zinc-100 max-w-[800px] leading-relaxed mb-8 font-semibold tracking-tight leading-tight break-words">
               {currentProject.marketingDescription || currentProject.description}
             </p>
 
