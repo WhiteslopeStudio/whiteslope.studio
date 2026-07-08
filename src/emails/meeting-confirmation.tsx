@@ -79,9 +79,11 @@ export const MeetingConfirmation = ({
           <Section style={footer}>
             <Text style={footerHeading}>Zespół WhiteSlope</Text>
             <Text style={footerText}>
-              📧 kontakt@whiteslope.studio
+              kontakt@whiteslope.studio<br/>
+            
               <br />
-              📞 +48 731 721 760
+              +48 731 721 760 - Mateusz Malewski<br/>
+            +48 662 581 368 - Patryk Kulesza
             </Text>
             <Text style={footerSubtext}>
               Białystok, Polska

@@ -269,14 +269,16 @@ export async function POST(request: NextRequest) {
         <li>Omówimy szczegóły i odpowiemy na pytania</li>
       </ol>
       
-      <p><strong>Pilne?</strong> Napisz na <a href="mailto:kontakt@whiteslope.studio">kontakt@whiteslope.studio</a> lub zadzwoń: <strong>+48 731 721 760</strong></p>
+      <p><strong>Pilne?</strong> Napisz na <a href="mailto:kontakt@whiteslope.studio">kontakt@whiteslope.studio</a> lub zadzwoń: <strong>+48 731 721 760 - Mateusz Malewski<br/ > +48 662 581 368 - Patryk Kulesza  </strong></p>
       
       <hr/>
       <p style="color: #666; font-size: 14px;">
         Pozdrawiamy,<br/>
         Zespół WhiteSlope<br/>
-        📧 kontakt@whiteslope.studio<br/>
-        📞 +48 731 721 760
+        kontakt@whiteslope.studio<br/>
+        +48 731 721 760 - Mateusz Malewski
+        +48 662 581 368 - Patryk Kulesza
+
       </p>
     `;
 

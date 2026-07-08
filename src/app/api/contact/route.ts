@@ -261,8 +261,9 @@ export async function POST(request: Request) {
           <p style="color: #666; font-size: 14px;">
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
-            📧 kontakt@whiteslope.studio<br/>
-            📞 +48 731 721 760
+            kontakt@whiteslope.studio<br/>
+            +48 731 721 760 - Mateusz Malewski<br/>
+            +48 662 581 368 - Patryk Kulesza
           </p>
         `;
         break;
@@ -281,7 +282,6 @@ export async function POST(request: Request) {
           <hr/>
           <h3>Pytanie:</h3>
           <p><strong>Temat:</strong> ${sanitizeString(sanitizedData.subject)}</p>
-          <p><strong>Priorytet:</strong> ${sanitizedData.priority === 'high' ? '🔴 Wysoki' : sanitizedData.priority === 'medium' ? '🟡 Średni' : '🟢 Niski'}</p>
           <p><strong>Treść:</strong></p>
           <p>${sanitizeString(sanitizedData.message)}</p>
         `;
@@ -292,15 +292,15 @@ export async function POST(request: Request) {
           <p><strong>Otrzymaliśmy:</strong></p>
           <ul>
             <li>Temat: ${sanitizeString(sanitizedData.subject)}</li>
-            <li>Priorytet: ${sanitizedData.priority === 'high' ? '🔴 Wysoki' : sanitizedData.priority === 'medium' ? '🟡 Średni' : '🟢 Niski'}</li>
           </ul>
           <p>Odpowiemy na Twoje pytanie w ciągu <strong>${priorityText}</strong>.</p>
           <hr/>
           <p style="color: #666; font-size: 14px;">
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
-            📧 kontakt@whiteslope.studio<br/>
-            📞 +48 731 721 760
+            kontakt@whiteslope.studio<br/>
+            +48 731 721 760 - Mateusz Malewski<br/>
+            +48 662 581 368 - Patryk Kulesza
           </p>
         `;
         break;
@@ -360,8 +360,9 @@ export async function POST(request: Request) {
           <p style="color: #666; font-size: 14px;">
             Pozdrawiamy,<br/>
             Zespół WhiteSlope<br/>
-            📧 kontakt@whiteslope.studio<br/>
-            📞 +48 731 721 760
+            kontakt@whiteslope.studio<br/>
+            +48 731 721 760 - Mateusz Malewski<br/>
+            +48 662 581 368 - Patryk Kulesza
           </p>
         `;
         break;
