@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { ProjectExample } from '@/lib/types';
+import Link from 'next/link';
 
 interface ProjectModalProps {
   projects: ProjectExample[]; // Przyjmujemy całą listę projektów
@@ -261,7 +262,8 @@ export default function ProjectModal({ projects, initialIndex, isOpen, onClose }
                       <h3 className="text-[16px] font-bold text-zinc-950 mb-[16px]">
                         Zrealizowane usługi
                       </h3>
-                      <ul className="flex flex-col gap-[12px]">
+                      {/* ZMIANA: flex i flex-col zamienione na grid i grid-cols-2. Dodane gap-x i gap-y dla idealnych odstępów. */}
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-[20px] gap-y-[12px]">
                         {servicesArray.map((service, index) => (
                           <li key={index} className="text-[15px] text-zinc-800 font-medium flex items-start gap-3 leading-tight">
                             <svg 
@@ -282,30 +284,35 @@ export default function ProjectModal({ projects, initialIndex, isOpen, onClose }
                       <h3 className="text-[16px] font-bold text-zinc-950 mb-[16px]">
                         Podsumowanie projektu
                       </h3>
-                      <div className="text-[15px] text-zinc-700 font-normal leading-[1.6]">
-                        <p>{currentProject.description}</p>
+                      <div className="whitespace-pre-line text-[18px] text-zinc-700 font-normal leading-[1.6]">
+                        <p 
+                          dangerouslySetInnerHTML={{ 
+                            // Zamienia **tekst** na <strong>tekst</strong> i dodaje mu ciemniejszy kolor, żeby lepiej wyglądał
+                            __html: currentProject.description.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-zinc-950">$1</strong>') 
+                          }} 
+                        />
                       </div>
                     </div>
                   </div>
 
                   {/* CTA */}
-                  <div className="mt-auto bg-zinc-950 rounded-[16px] p-[24px] flex flex-col gap-[20px] relative overflow-hidden">
+                  {/* DODAŁEM: shrink-0 (zapobiega zgniataniu) oraz usunąłem mt-auto na rzecz mt-[40px] i dodania margin-top auto przez pusty div poniżej */}
+                  <div className="mt-auto shrink-0 bg-zinc-950 rounded-[16px] p-[24px] flex flex-col gap-[20px] relative overflow-hidden">
                     <h4 className="relative z-10 text-[18px] font-semibold text-white tracking-tight leading-[1.3] m-0">
                       Chcesz uzyskać podobne rezultaty w swoim biznesie?
                     </h4>
-                    <a
-                      href="#kontakt"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onClose();
-                        document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
+                    <Link
+                      href="/contact"
+                      onClick={() => onClose()}
                       className="relative z-10 w-fit inline-flex items-center justify-center bg-white text-black px-[24px] py-[12px] rounded-full text-[14px] font-bold transition-transform hover:scale-105 active:scale-95 group"
                     >
                       Porozmawiajmy
                       <ArrowUpRight className="w-[18px] h-[18px] ml-[6px] stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </a>
+                    </Link>
                   </div>
+                  
+                  {/* PUSTY DIV WYMUSZAJĄCY ODSTĘP NA DOLE - Gwarantuje, że scroll nigdy nie utnie CTA */}
+                  <div className="h-[40px] shrink-0 w-full pointer-events-none"></div>
 
                 </motion.div>
               </AnimatePresence>

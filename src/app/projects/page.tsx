@@ -454,6 +454,8 @@ export default function ProjectsPage() {
 
       </div>
 
+      <ProjectsContact/>
+
       {/* 3. SEKCJA FAQ */}
       {/* <div className="mt-[100px] md:mt-[160px]">
         <ProjectsFAQ />

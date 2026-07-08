@@ -20,10 +20,12 @@ export interface ProjectExample {
   category: string;
   href?: string;
   description: string;
-  rowType?: 'web' | 'ai' | 'marketing'; 
-  clientName?: string;     // Tekstowa nazwa klienta (opcjonalnie)
-  clientLogo?: string;     // Ścieżka do logo klienta (opcjonalnie)
-  servicesListed?: string; // Usługi po przecinku
+  rowType?: 'web';
+  clientName?: string;    
+  clientLogo?: string;    
+  servicesListed?: string;
+  logoUrl?: string; // <-- NOWE POLE NA LOGO ZAMIAST TYTUŁU
+  marketingDescription?: string; // <-- NOWE POLE NA DŁUŻSZY OPIS MARKETINGOWY
 }
 
 export interface ProcessStep {

@@ -36,15 +36,9 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
     (p) => p.rowType === category
   );
 
-  // BŁĄD NA EKRANIE JEŚLI BRAK PROJEKTÓW:
+  // Jeśli w danej kategorii nie ma żadnych projektów, całkowicie ukrywamy ten rząd
   if (rowProjects.length === 0) {
-    return (
-      <div className="text-white p-10 text-center border-2 border-red-500 m-10 rounded-xl">
-        <h2>❌ Błąd filtru dla rzędu: {title}</h2>
-        <p>Szukam projektów z rowType: "{category}"</p>
-        <p>Znalazłem: 0</p>
-      </div>
-    );
+    return null;
   }
 
   // Obsługa strzałek - przewija o szerokość karty

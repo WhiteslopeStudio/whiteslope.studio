@@ -2905,28 +2905,29 @@ export const CONTACT_SERVICES = [
 export const PROJECT_EXAMPLES: ProjectExample[] = [
   {
     id: "1",
-    title: "EasyLesson - platforma SaaS do nauki online",
+    title: "EasyLesson - produkt SaaS",
     image: "/_resources/stronyInternetowe/Easylesson.webp",
-    
-    category: "Aplikacja Webowa",
+    marketingDescription: "Stowrzyliśmy platformę SaaS premium, która dorównuje zagranicznym konkurentom. ",
+
+    category: "Produkt SaaS",
     rowType: "web",
     href: "https://easylesson.app",
-    description: "Platforma edukacyjna do nauki online. Zaprojektowana z myślą o łatwej i efektywnej nauce przez interaktywne materiały i personalizowane podejście.",
-    clientName: "Easylesson",
+    description: "**Wyzwanie biznesowe:** Rynek platform edukacyjnych jest nasycony, dlatego EasyLesson postanowiło uderzyć w konkretną niszę – dedykowaną tablicę interaktywną dla korepetytorów. Naszym zadaniem było zaprogramowanie innowacyjnych funkcji, których brakuje u gigantów, i opakowanie ich w **nowoczesny, przejrzysty interfejs (UX/UI)**. Użytkownik widzi tylko to, czego realnie potrzebuje i za co płaci.\n\n**Technologia i dedykowane rozwiązania:** Zamiast opierać się wyłącznie na drogich, zewnętrznych licencjach, kluczowe moduły napisaliśmy od zera. Wzięliśmy odpowiedzialność za pełny cykl życia produktu (backend i frontend), wykorzystując potężny stack: **React, Next.js, Supabase, Vercel i Render**. Skomplikowane integracje API oraz nasz autorski kod pozwoliły zrealizować unikalną wizję klienta w ułamku budżetów typowych dla wielkich korporacji IT.\n\n**Błyskawiczna egzekucja MVP:** W biznesie technologicznym czas to pieniądz. Dostarczyliśmy w pełni działającą i przetestowaną wersję **MVP w zaledwie 6 miesięcy**, dbając o pełną dokumentację i przejrzystość postępów prac. Wdrożenie to jednak dopiero początek – platforma jest przez nas stale wspierana i rozwijana w ramach długofalowej współpracy.\n\n**Skalowalność bez przepalania budżetu:** Architektura SaaS-a została zaprojektowana tak, aby początkowe koszty utrzymania infrastruktury były znikome. To pozwala na bezpieczną walidację pomysłu na rynku. Udowodniliśmy, że można zbudować potężny, dedykowany produkt wyceniany rynkowo na setki tysięcy złotych, za ułamek tej ceny – zachowując przy tym najwyższą wydajność i gotowość na przyjęcie tysięcy użytkowników.",    
+    clientName: "Easylesson.app",
     clientLogo: "/_resources/reviews/easylesson.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
-    servicesListed: "Projektowanie UX/UI, Aplikacja Webowa, Wdrożenie SaaS, Interaktywna tablica",
+    servicesListed: "Projektowanie systemu SaaS, UX/UI Design, Integracja API, Optymalizacja wydajności, Wdrożenie MVP, Własny kod, Projekt logo, Stałe wsparcie i rozwój",
+    logoUrl: "/_resources/grafika/LogoEasyLessonWhite.webp",
   },
   {
     id: "2",
-    title: "Damian Bogdanowicz - profesjonalne usługi kręcenia krótkich filmów reklamowych",
+    title: "Damian Bogdanowicz - profesjonalne filmy reklamowe i teledyski",
     image: "/_resources/stronyInternetowe/DamianBogdanowicz.webp",
     category: "Strona portfolio",
     rowType: "web",
     href: "https://damian-bogdanowicz-site.vercel.app/",
-    description: "Nowoczesna strona dla profesjonalnego studia filmowego. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
-    clientName: "Damian Bogdanowicz",
+description: "**Bezkompromisowa optymalizacja wideo:** Portfolio filmowca musi wyglądać perfekcyjnie, ale ciężkie pliki to zabójstwo dla serwera. Rozwiązaliśmy to, wdrażając nowoczesną kompresję webową oraz przenosząc hosting wideo do **zewnętrznego bucketu Cloudflare**. Docelowo strona oprze się na jednym, potężnym showreelu, co gwarantuje płynność i odciąża główny serwer.\n\n**Wizerunek Premium i płynny UX:** Zrezygnowaliśmy z klasycznych, przeładowujących się podstron. Całość działa niesamowicie płynnie – kolejne sekcje i realizacje wyjeżdżają w formie **animowanych modali**. Taka architektura natychmiast pozycjonuje usługi klienta w segmencie High-End.\n\n**Konwersja na pierwszym planie:** Uprościliśmy nawigację do absolutnego minimum. Poboczne zakładki schowaliśmy w menu (hamburger), pozostawiając na głównym widoku wyłącznie **wyeksponowany przycisk Kontakt**. Zamiast błądzić po stronie, potencjalny klient od razu trafia na najkrótszą ścieżkę do nawiązania współpracy.",    clientName: "Damian Bogdanowicz",
     clientLogo: "/_resources/reviews/damianBogdanowicz.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
-    servicesListed: "Strona WWW, Design Premium, Optymalizacja ładowania",
+    servicesListed: "Strona WWW, Design Premium, Optymalizacja ładowania, Projekt logo",
   },
   {
     id: "3",
@@ -2935,10 +2936,9 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     category: "Strona biznesowa",
     rowType: "web",
     href: "https://www.wieslawski.studio/",
-    description: "Nowoczesna strona dla profesjonalnego studia muzycznego. Już po 24 godzinach od uruchomienia pojawiły się pierwsze zapytania od klientów. Strona wyróżnia się eleganckim designem, szybkim ładowaniem i intuicyjną nawigacją, która skutecznie przekonuje odwiedzających do kontaktu.",
-    clientName: "Wiesławski Studio",
+description: "**Nowoczesny branding i przejrzysta struktura:** Dla ikony branży muzycznej, Wiesławski Studio, zaprojektowaliśmy nowoczesną identyfikację wizualną oraz unikalne logo wpisujące się w światowe trendy. Architektura strony stawia na czytelność – z poziomu minimalistycznej strony głównej użytkownik ma bezpośredni dostęp do 3 kluczowych usług, z których każda posiada dedykowaną podstronę.\n\n**Automatyzacja marketingu i generowanie leadów:** To projekt nastawiony na budowanie lojalnej społeczności i sprzedaż. Zintegrowaliśmy portfolio audio w formie playlisty Spotify, a każda podstrona otrzymała **dedykowany lead magnet**. Całość została połączona z systemem email marketingu zaprogramowanym pod **4 niezależne grupy odbiorców**, co pozwala na precyzyjne i zautomatyzowane docieranie do artystów.\n\n**Sklep cyfrowy i rynek globalny:** Platforma została kompleksowo przygotowana pod e-commerce – system pozwala na błyskawiczne uruchomienie sprzedaży paczek sampli czy okolicznościowych voucherów prezentowych. Co więcej, wdrożenie pełnej **anglojęzycznej wersji językowej** oraz prowadzenie tematycznego bloga otwiera studio na pozyskiwanie wymagających klientów z całego świata.\n\n**Pełna niezależność zarządzania treścią:** Całość zrealizowaliśmy w elastycznym środowisku CMS na Hostingerze. Dzięki temu połączyliśmy zaawansowane funkcje biznesowe z prostotą obsługi – właściciel studia może samodzielnie, bez pomocy programisty i dodatkowych kosztów, błyskawicznie edytować każdą treść, dodawać wpisy blogowe czy zarządzać ofertą.",    clientName: "Wiesławski Studio",
     clientLogo: "/_resources/reviews/slawekWieslawski.webp", // <-- Tutaj możesz wstawić ścieżkę do logo
-    servicesListed: "Strona wizytówka, UX/UI Design, Integracja formularzy",
+    servicesListed: "Strona WWW, UX/UI Design, Integracja formularzy, Email marketing, Optymalizacja SEO, Projekt logo, Wsparcie techniczne, Sklep online",
   },
   {
     id: "4",
@@ -2947,34 +2947,10 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     category: "Strona usługowa",
     rowType: "web",
     href: "https://korepetycje-eight.vercel.app",
-    description: "Platforma edukacyjna dla korepetytora matematyki, angielskiego i programowania. Po zaledwie 3 dniach od uruchomienia klient otrzymał bardzo korzystną ofertę pracy. Strona zwiększyła widoczność online i profesjonalny wizerunek, przekładając się na realne możliwości zawodowe.",
-    clientName: "Patryk Kulesza",
-    servicesListed: "Landing Page, SEO, Personal Branding",
+description: "**Ucieczka z portali ogłoszeniowych:** Korepetytorzy tracą mnóstwo czasu na walkę cenową w popularnych serwisach. Zamiast tego stworzyliśmy w pełni responsywny, dedykowany Landing Page. Przemyślany **Personal Branding** wyciągnął usługi Patryka (matematyka, angielski, IT) na poziom ekspercki, pozwalając na budowanie własnej, niezależnej marki edukacyjnej.\n\n**Chatbot AI jako wirtualna recepcja 24/7:** Największą bolączką nauczycieli jest ciągłe odpowiadanie na te same pytania o cennik i wolne terminy. Wdrożyliśmy inteligentnego bota, który automatycznie odpowiada na pytania, zbiera dane kontaktowe (lub udostępnia numer do Patryka) i powiadamia go o nowym, zdecydowanym uczniu. Zero ręcznego umawiania – pełna automatyzacja kalendarza.\n\n**Platforma szkoleniowa i generowanie leadów:** Zbudowaliśmy wciągające środowisko do nauki z wbudowaną platformą kursową. Udostępnianie darmowych kursów przygotowujących do **matury i egzaminu ósmoklasisty** oraz interaktywne moduły do rozwiązywania zadań działają jak potężny magnes. Uczniowie sprawdzają wiedzę, ufają ekspertowi, a następnie chętniej wykupują płatne sesje 1 na 1.\n\n**Błyskawiczny zwrot z inwestycji (ROI):** Strona drastycznie podniosła wizerunek nauczyciela w sieci. Nowoczesny design i innowacyjne podejście (AI) sprawiły, że już **3 dni po starcie projektu** klient otrzymał niezwykle lukratywną, oficjalną propozycję pracy. To ostateczny dowód na to, że własna strona z automatyzacją to inwestycja, która otwiera drzwi do kariery i uwalnia czas.",    clientName: "Patryk Kulesza",
+    servicesListed: "Landing Page, SEO, Personal Branding, Chatbot AI, Platforma szkoleniowa",
   },
-  {
-    id: "5",
-    title: "Chatbot AI dla Easylesson.app - integracja z Gemini",
-    image: "/_resources/easylesson.webp",
-    category: "Automatyzacja & AI",
-    rowType: "ai",
-    href: "https://easylesson.app/",
-    description: "Integracja Chatbota AI z platformą edukacyjną Easylesson.app. Chatbot wspiera użytkowników w nawigacji po platformie, odpowiada na pytania dotyczące kursów i materiałów edukacyjnych, a także automatyzuje procesy związane z rejestracją i obsługą klienta.",
-    clientName: "Easylesson",
-    clientLogo: "/_resources/reviews/slawekWieslawski.webp",
-    servicesListed: "Wdrożenie Chatbota, Integracja API Gemini, Automatyzacja obsługi",
-  },
-  {
-    id: "6",
-    title: "Film promocyjny dla Wiesławski Studio",
-    image: "/_resources/optymalizacja/wieslawski-studio-film-promocyjny.webp",
-    category: "Film promocyjny",
-    rowType: "marketing",
-    href: "https://wieslawski.studio/",
-    description: "Projekt polegał na zaprojektowaniu voucherów świątecznych i stworzeniu filmu 3D promocyjnego dla Wiesławski Studio, który miał na celu przyciągnięcie nowych klientów. Film został zoptymalizowany pod kątem publikacji w mediach społecznościowych oraz na stronie internetowej studia.",
-    clientName: "Wiesławski Studio",
-    clientLogo: "/_resources/reviews/slawekWieslawski.webp",
-    servicesListed: "Montaż Wideo, Animacja 3D, Projekt graficzny (vouchery), Optymalizacja Social Media",
-  }
+  
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [

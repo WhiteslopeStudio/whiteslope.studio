@@ -75,23 +75,15 @@ export default function PricingContact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          formType: 'quick',
+          // Oszukujemy backend, że to formularz typu "question"
+          formType: 'question', 
           formData: {
             name: imieNazwisko,
-            email,
-            phone: '',
-            company: '',
-            projectType: '',
-            budget: '',
-            timeline: 'Nie określono',
-            description: tresc,
-            requirements: [],
-            inspirations: '',
-            hasExistingSite: false,
-            currentSiteUrl: '',
-            preferredContact: 'email',
-            contactHours: '',
+            email: email,
+            phone: '', // Pusty string idealnie przejdzie przez Twoją walidację telefonu
             subject: tytul,
+            message: tresc,
+            priority: 'medium', // Wymagane przez validateQuestionData
           },
         }),
       });

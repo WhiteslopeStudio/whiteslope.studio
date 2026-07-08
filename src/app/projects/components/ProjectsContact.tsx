@@ -7,8 +7,9 @@ import { CheckCircle, ArrowRight, Mail, Phone, MapPin, Clock, Send } from 'lucid
 
 function EtykietaPola({ children, wymagane }: { children: React.ReactNode; wymagane?: boolean }) {
   return (
-    <label className="block text-[14px] font-semibold text-zinc-950 mb-2 ml-1">
-      {children} {wymagane && <span className="text-blue-600">*</span>}
+    // Zmieniono text-zinc-950 na text-zinc-300 dla trybu ciemnego
+    <label className="block text-[14px] font-semibold text-zinc-300 mb-2 ml-1">
+      {children} {wymagane && <span className="text-blue-500">*</span>}
     </label>
   );
 }
@@ -17,7 +18,8 @@ function PoleTekstowe({ ...wlasciwosci }: React.InputHTMLAttributes<HTMLInputEle
   return (
     <input
       {...wlasciwosci}
-      className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-3.5 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300"
+      // Zastosowano te same ciemne klasy co w textarea
+      className="w-full bg-zinc-900/50 hover:bg-zinc-800 border-b-2 border-zinc-700 px-4 py-3.5 text-[15px] text-white placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-800 transition-all duration-300"
     />
   );
 }
@@ -75,23 +77,15 @@ export default function ProjectsContact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          formType: 'quick',
+          // Oszukujemy backend, że to formularz typu "question"
+          formType: 'question', 
           formData: {
             name: imieNazwisko,
-            email,
-            phone: '',
-            company: '',
-            projectType: '',
-            budget: '',
-            timeline: 'Nie określono',
-            description: tresc,
-            requirements: [],
-            inspirations: '',
-            hasExistingSite: false,
-            currentSiteUrl: '',
-            preferredContact: 'email',
-            contactHours: '',
+            email: email,
+            phone: '', // Pusty string idealnie przejdzie przez Twoją walidację telefonu
             subject: tytul,
+            message: tresc,
+            priority: 'medium', // Wymagane przez validateQuestionData
           },
         }),
       });
@@ -111,7 +105,7 @@ export default function ProjectsContact() {
   };
 
   return (
-    <section id="BriefHomePage" className="relative w-full bg-white py-[80px] border-t border-zinc-200 overflow-hidden">
+    <section id="BriefHomePage" className="relative w-full bg-zinc-950 py-[80px] overflow-hidden">
       <div className="w-full max-w-[1640px] mx-auto px-[24px]">
 
         {/* Całość zamknięta w jednej czystej karcie z cieniem */}
@@ -127,18 +121,18 @@ export default function ProjectsContact() {
                   <div className="w-16 h-16 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mx-auto mb-6">
                     <CheckCircle className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-zinc-950 mb-3">Dziękujemy!</h3>
-                  <p className="text-zinc-500 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-white mb-3">Dziękujemy!</h3>
+                  <p className="text-zinc-200 leading-relaxed">
                     Wiadomość została wysłana. Odezwiemy się na podany adres email tak szybko, jak to możliwe.
                   </p>
                 </div>
               ) : (
                 <div className="w-full">
                   <div className="mb-10">
-                    <h2 className="text-[32px] lg:text-[40px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-[16px]">
+                    <h2 className="text-[32px] lg:text-[40px] font-bold text-white leading-[1.1] tracking-tight mb-[16px]">
                       Napisz do nas
                     </h2>
-                    <p className="text-[16px] text-zinc-500 leading-relaxed max-w-[500px]">
+                    <p className="text-[16px] text-zinc-300 leading-relaxed max-w-[500px]">
                       Zostaw wiadomość, a odezwiemy się najszybciej jak to możliwe.
                     </p>
                   </div>
@@ -172,6 +166,7 @@ export default function ProjectsContact() {
                         value={tytul}
                         onChange={(e) => setTytul(e.target.value)}
                         placeholder="np. Wycena strony internetowej"
+                        className="bg-zinc-200 hover:bg-zinc-300"
                       />
                       {bledy.tytul && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tytul}</p>}
                     </div>
@@ -187,7 +182,7 @@ export default function ProjectsContact() {
                           pole.style.height = pole.scrollHeight + 'px';
                         }}
                         placeholder="Opisz, w czym możemy Ci pomóc..."
-                        className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-4 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300 resize-none overflow-hidden"
+                        className="w-full bg-zinc-900/50 hover:bg-zinc-800 border-b-2 border-zinc-700 px-4 py-4 text-[15px] text-white placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-800 transition-all duration-300 resize-none overflow-hidden"
                         style={{ minHeight: '8rem' }}
                       />
                       {bledy.tresc && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tresc}</p>}
@@ -225,10 +220,10 @@ export default function ProjectsContact() {
             </div>
 
             {/* ── PRAWO: jasna karta kontaktowa (wersja premium, minimalistyczna) ── */}
-<div className="w-full bg-[#e8f6c3] border border-zinc-200/80 rounded-[24px] p-8 sm:p-10">
+<div className="w-full bg-zinc-900/70 border border-zinc-800 rounded-[24px] p-8 sm:p-10">
 
   {/* Nagłówek spójny z lewą stroną (zamiast niebieskiego, małego tekstu) */}
-  <h3 className="text-[20px] lg:text-[22px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-8">
+  <h3 className="text-[20px] lg:text-[22px] font-bold text-zinc-300 leading-[1.1] tracking-tight mb-8">
     Dane kontaktowe
   </h3>
 
@@ -237,11 +232,11 @@ export default function ProjectsContact() {
     {/* Email */}
     <div className="flex items-start gap-4 group">
       <div className="mt-1 shrink-0">
-        <Mail className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+        <Mail className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
       </div>
       <div>
-        <div className="text-black  text-[13px] font-medium mb-1">Email</div>
-        <a href="mailto:kontakt@whiteslope.studio" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px]">
+        <div className="text-zinc-400 text-[13px] font-medium mb-1">Email</div>
+        <a href="mailto:kontakt@whiteslope.studio" className="block text-zinc-400 hover:text-zinc-300 transition-opacity font-medium text-[16px]">
           kontakt@whiteslope.studio
         </a>
       </div>
@@ -250,14 +245,14 @@ export default function ProjectsContact() {
     {/* Telefon */}
     <div className="flex items-start gap-4 group">
       <div className="mt-1 shrink-0">
-        <Phone className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+        <Phone className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
       </div>
       <div>
-        <div className="text-black text-[13px] font-medium mb-1">Telefon</div>
-        <a href="tel:+48662581368" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px] mb-1">
+        <div className="text-zinc-400 text-[13px] font-medium mb-1">Telefon</div>
+        <a href="tel:+48662581368" className="block text-zinc-400 hover:text-zinc-300 transition-opacity font-medium text-[16px] mb-1">
           +48 662 581 368
         </a>
-        <a href="tel:+48731721760" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[16px]">
+        <a href="tel:+48731721760" className="block text-zinc-400 hover:text-zinc-300 transition-opacity font-medium text-[16px]">
           +48 731 721 760
         </a>
       </div>
@@ -266,22 +261,22 @@ export default function ProjectsContact() {
     {/* Lokalizacja */}
     <div className="flex items-start gap-4 group">
       <div className="mt-1 shrink-0">
-        <MapPin className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+        <MapPin className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
       </div>
       <div>
-        <div className="text-black text-[13px] font-medium mb-1">Lokalizacja</div>
-        <div className="text-zinc-950 font-medium text-[16px]">Białystok, Polska</div>
+        <div className="text-zinc-400 text-[13px] font-medium mb-1">Lokalizacja</div>
+        <div className="text-zinc-400 font-medium text-[16px] hover:text-zinc-300 transition-colors duration-300">Białystok, Polska</div>
       </div>
     </div>
 
     {/* Godziny pracy */}
     <div className="flex items-start gap-4 group">
       <div className="mt-1 shrink-0">
-        <Clock className="w-5 h-5 text-zinc-900 group-hover:text-zinc-950 transition-colors duration-300" strokeWidth={1.5} />
+        <Clock className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
       </div>
       <div>
-        <div className="text-black text-[13px] font-medium mb-1">Godziny pracy</div>
-        <div className="text-zinc-950 font-medium text-[16px]">Pon – Pt: 9:00 – 17:00</div>
+        <div className="text-zinc-400 text-[13px] font-medium mb-1">Godziny pracy</div>
+        <div className="text-zinc-400 font-medium text-[16px] hover:text-zinc-300 transition-colors duration-300">Pon – Pt: 9:00 – 17:00</div>
       </div>
     </div>
 
