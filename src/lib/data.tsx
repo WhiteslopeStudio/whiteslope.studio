@@ -2907,7 +2907,7 @@ export const PROJECT_EXAMPLES: ProjectExample[] = [
     id: "1",
     title: "EasyLesson - produkt SaaS",
     image: "/_resources/stronyInternetowe/Easylesson.webp",
-    marketingDescription: "Stowrzyliśmy platformę SaaS premium, która dorównuje zagranicznym konkurentom. ",
+    marketingDescription: "Stworzyliśmy platformę SaaS premium, która dorównuje zagranicznym konkurentom. ",
 
     category: "Produkt SaaS",
     rowType: "web",
