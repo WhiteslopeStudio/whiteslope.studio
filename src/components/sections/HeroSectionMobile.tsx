@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function HeroSectionMobile() {
   return (
-    <section className="relative w-full mx-auto pt-[160px] pb-[70px] px-5 bg-white overflow-hidden flex flex-col items-center">
+    <section className="relative w-full bg-white overflow-hidden flex flex-col items-center">
       
       {/* Animacja przenikania logotypów */}
       <style>{`
@@ -30,28 +30,34 @@ export default function HeroSectionMobile() {
         .animate-logo-yellow { animation: fadeYellow 9s ease-in-out infinite; }
       `}</style>
 
-      {/* --- TŁO: Twoje charakterystyczne gradientowe paski (Light Mode) --- */}
+      {/* --- TŁO: Twoje charakterystyczne gradientowe paski --- */}
       <div className="absolute inset-0 z-0 flex pointer-events-none opacity-80 overflow-hidden">
-        {/* ... (tutaj zostaw bez zmian kody swoich pasków) ... */}
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 100%)' }} />
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 85%)' }} />
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 70%)' }} />
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 55%)' }} />
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 40%)' }} />
+        <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 25%)' }} />
+        <div className="flex-1" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.6) 0%, transparent 10%)' }} />
       </div>
 
-      <div className="relative z-10 w-full max-w-[500px] flex flex-col items-center text-center">
-
+      {/* ========================================================= */}
+      {/* CZEŚĆ 1: EKRAN POWITALNY (Równo 100% wysokości telefonu)   */}
+      {/* ========================================================= */}
+      <div className="relative z-10 w-full max-w-[500px] min-h-[100svh] px-5 pt-[80px] pb-10 flex flex-col items-center justify-center text-center">
+        
         {/* --- ROTUJĄCE LOGOTYPY --- */}
-        <div className="relative mb-6 h-9 sm:h-10 w-full max-w-[240px] flex items-center justify-center pointer-events-none mt-2">
-          {/* Logo 1: Niebieskie (Webdev) */}
+        <div className="absolute top-[20svh] left-1/2 -translate-x-1/2 h-9 sm:h-10 w-full max-w-[240px] flex items-center justify-center pointer-events-none">
           <img 
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp" 
             alt="Whiteslope Web Development" 
             className="absolute inset-0 w-full h-full object-contain animate-logo-blue"
           />
-          {/* Logo 2: Fioletowe (Automatyzacje) */}
           <img 
             src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp" 
             alt="Whiteslope Automation & AI" 
             className="absolute inset-0 w-full h-full object-contain animate-logo-purple"
           />
-          {/* Logo 3: Żółte (Marketing) */}
           <img 
             src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp" 
             alt="Whiteslope Marketing" 
@@ -60,20 +66,18 @@ export default function HeroSectionMobile() {
         </div>
 
         {/* --- NAGŁÓWEK --- */}
-        <h1 className="mt-5 mb-10 text-[34px] !font-[200] leading-[1.1] text-zinc-900 tracking-tight">
-          Zwiększaj zyski  <br/> dzięki dedykowanej <br/>
-          <span className="bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text text-transparent ">
-             technologii
+        <h1 className="mb-10 text-[34px] font-[200] leading-[1.1] text-zinc-900 tracking-tight">
+          Zwiększaj zyski <br/> dzięki dedykowanej <br/>
+          <span className="bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text text-transparent font-[700]">
+              technologii
           </span>
         </h1>
 
         {/* --- PRZYCISKI --- */}
-        {/* Dodano items-center, żeby w-fit wyśrodkowało przyciski */}
-        <div className="flex flex-col items-center gap-3 w-full mb-12 px-2">
-          
+        <div className="flex flex-col items-center gap-3 w-full">
           <Link
             href="/contact"
-            className="w-fit px-8 bg-gradient-to-tr from-blue-600 to-blue-400 hover:from-blue-600 hover:to-blue-400 text-white font-bold rounded-full h-[52px] flex items-center justify-center transition-all shadow-[0_8px_20px_rgba(59,144,255,0.25)] text-[15px] active:scale-95 group"
+            className="w-fit px-8 bg-gradient-to-tr from-blue-600 to-blue-400 hover:from-blue-600 hover:to-blue-400 text-white font-bold rounded-full h-[52px] flex items-center justify-center transition-all shadow-[0_8px_20px_rgba(59,144,255,0.25)] text-[15px] active:scale-95 group mb-2"
           >
             Rozpocznij współpracę
             <ArrowRight className="w-[18px] h-[18px] ml-2 transition-transform duration-300 group-hover:translate-x-1" />
@@ -81,26 +85,29 @@ export default function HeroSectionMobile() {
           
           <Link
             href="/projects"
-            /* Zmieniono na w-fit, px-8 i usunięto niebieski cień dla spójności z szarym tłem */
-            className="w-fit px-8 bg-gradient-to-tr from-zinc-200 to-blue-100 hover:from-blue-300 hover:to-blue-200 text-zinc-700 font-bold rounded-full h-[52px] flex items-center justify-center transition-colors shadow-sm text-[15px] active:scale-95 group my-2 shadow-[0_8px_20px_rgba(59,144,255,0.25)]"
+            className="w-fit px-8 bg-gradient-to-tr from-zinc-200 to-blue-100 hover:from-blue-300 hover:to-blue-200 text-zinc-700 font-bold rounded-full h-[52px] flex items-center justify-center transition-colors shadow-sm text-[15px] active:scale-95 group shadow-[0_8px_20px_rgba(59,144,255,0.25)]"
           >
-            {/* Usunąłem podkreślenie border-b, bo w szarym przycisku typu 'pill' wygląda to nienaturalnie */}
-            <span className="relative  group-hover:text-blue-500 transition-colors">
+            <span className="relative group-hover:text-blue-500 transition-colors">
               Zobacz nasze realizacje
             </span>
             <ArrowRight className="w-[16px] h-[16px] ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-500" />
           </Link>
-
         </div>
+      </div>
 
+
+      {/* ========================================================= */}
+      {/* CZEŚĆ 2: WIDEO I KORZYŚCI (Widoczne dopiero po scrollu)    */}
+      {/* ========================================================= */}
+      <div className="relative z-10 w-full max-w-[500px] px-5 pb-[70px] flex flex-col items-center">
+        
         {/* --- WIDEO --- */}
-        <div className="w-full aspect-[16/15] rounded-[24px] overflow-hidden shadow-xl relative mb-10 border border-zinc-100 bg-zinc-100">
+        <div className="w-full aspect-[16/15] rounded-[24px] overflow-hidden shadow-xl relative mb-10 border border-zinc-100 bg-zinc-100 mt-4">
           <video
             autoPlay
             loop
             muted
             playsInline
-            /* Zoom scale-[1.2] i przesunięcie obcinają ewentualny znak wodny na krawędziach */
             className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
             src="/animationHero/HeroShowReel.mp4"
           />
