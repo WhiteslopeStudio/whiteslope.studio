@@ -293,7 +293,7 @@ export async function POST(request: Request) {
           <ul>
             <li>Temat: ${sanitizeString(sanitizedData.subject)}</li>
           </ul>
-          <p>Odpowiemy na Twoje pytanie w ciągu <strong>${priorityText}</strong>.</p>
+          
           <hr/>
           <p style="color: #666; font-size: 14px;">
             Pozdrawiamy,<br/>
