@@ -120,13 +120,11 @@ Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong
         </div>
 
         {/* --- NEWSLETTER BANER (Kompaktowy) --- */}
-        <div className="relative overflow-hidden rounded-[24px] bg-white border border-black/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] mt-4">
+        {/* <div className="relative overflow-hidden rounded-[24px] bg-white border border-black/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[260px]">
             
-            {/* Lewa strona: Tekst i Formularz (Zmniejszone paddingi i marginesy) */}
             <div className="p-6 md:p-8 lg:pl-10 flex flex-col justify-center">
               
-              {/* Social Media */}
               <div className="flex items-center gap-3 mb-4">
                 <a href="https://www.instagram.com/whiteslopestudio/reels/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#E1306C] transition-colors">
                   <Instagram className="h-5 w-5" />
@@ -165,7 +163,6 @@ Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong
                   </button>
                 </div>
                 
-                {/* Zgoda (Checkbox) */}
                 <div className="mt-3 flex items-start gap-2.5">
                   <input 
                     type="checkbox" 
@@ -180,7 +177,6 @@ Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong
               </form>
             </div>
 
-            {/* Prawa strona: Zdjęcie iPhone'a (50% szerokości kontenera) */}
             <div className="relative hidden lg:block bg-zinc-50 border-l border-black/5 overflow-hidden">
               <img 
                 src="/_resources/free-section-iphone.webp"
@@ -190,7 +186,7 @@ Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong
             </div>
 
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>

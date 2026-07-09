@@ -7,35 +7,43 @@ import { useCallback, useState, useEffect } from 'react';
 
 import HeroSection from '@/components/sections/HeroSection';
 import LogoTicker from '../components/sections/LogoTicker';
+
 import AboutUsSection from '@/components/sections/AboutUsSection';
+import AboutUsSectionMobile from '@/components/sections/AboutUsMobile';
+
 import WebsitesShowcase from '@/components/sections/WebsitesShowcase';
-import { ProblemSolutionSection } from '@/components/sections/ProblemSolutionSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { ProcessSection } from '@/components/sections/ProcessSection';
+import WebsitesShowcaseMobile from '@/components/sections/WebsitesShowcaseMobile';
+
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
-import { PricingSection } from '@/components/sections/PricingSection';
+
 import { FAQSection } from '@/components/sections/FaqSection';
-import { BlogSection } from '@/components/sections/BlogSection';
-import ExperienceSection from '@/components/sections/ExperienceSection';
+import { FAQSectionMobile } from '@/components/sections/FaqSectionMobile';
+
 import HeroSectionMobile from '@/components/sections/HeroSectionMobile';
-import KnowledgeBaseSection from '@/components/sections/KnowledgeBaseSection';
+
 import ServicesIntro from '@/components/sections/ServicesIntro';
-import CaseStudies from '@/components/sections/CaseStudies';
+
 import BriefSection from '@/components/sections/BriefSection';
-import ServicesDevider from '@/components/sections/ServicesDivider';
+import BriefSectionMobile from '@/components/sections/BriefSectionMobile';
+
 import Reviews from '@/components/sections/Reviews';
+import ReviewsMobile from '@/components/sections/ReviewsMobile';
+
 
 
 import ServicesShowcase from '@/components/sections/ServicesShowcase';
+import ServicesShowcaseMobile from '@/components/sections/ServicesShowcaseMobile';
 
-import AiShowcase from '@/components/sections/AiShowcase';
+
 import VideoShowcase from '@/components/sections/VideoShowcase';
-import PortfolioSectionDesktop from '@/components/sections/PortfolioSectionDesktop';
+import VideoShowcaseMobile from '@/components/sections/VideoShowcaseMobile';
+
 
 // 🎯 IMPORT PINNED SECTION (zaawansowany wrapper)
-import PinnedAnimationSection from '@/components/layout/PinnedAnimationSection';
+
 import TrustOverlay from '@/components/ui/TrustOverlay';
-import BriefPage from './brief/page';
+
+import ServicesIntroMobile from '@/components/sections/ServiceIntroMobile';
 
 export default function HomePage() {
   // Stan sprawdzający, czy komponent jest już zamontowany w przeglądarce (rozwiązuje błąd Hydracji)
@@ -130,57 +138,31 @@ export default function HomePage() {
 
           <LogoTicker />
           {/* <ServicesDevider /> */}
-          <Reviews />
-
-          <ServicesIntro />
+          {isMobile ? <ReviewsMobile /> : <Reviews />}
+          
+          {isMobile ? <ServicesIntroMobile /> : <ServicesIntro />}
+          
           {/* 🌐 WEBSITES & SAAS SHOWCASE */}
-          <WebsitesShowcase />
+          {isMobile ? <WebsitesShowcaseMobile /> : <WebsitesShowcase />}
+
           {/* 🛠️ SERVICES SHOWCASE */}
-          <ServicesShowcase />
+          {isMobile ? <ServicesShowcaseMobile /> : <ServicesShowcase />}
           {/* 🤖 AI INTEGRATION SHOWCASE */}
           {/* <AiShowcase /> */}
           {/* 🎬 VIDEO & MARKETING SHOWCASE */}
-          <VideoShowcase />
+          {isMobile ? <VideoShowcaseMobile /> : <VideoShowcase />}
+         
 
           {/* <CaseStudies /> */}
 
-          <AboutUsSection />
+          {isMobile ? <AboutUsSectionMobile /> : <AboutUsSection />}
           {/* <KnowledgeBaseSection /> */}
 
-          <BriefSection />
+          {isMobile ? <BriefSectionMobile /> : <BriefSection />}
           
-
-          
-
-          
-
-          
-
-          
-
-          {/* 📱 PORTFOLIO MOBILE */}
-          {isMobile && <PortfolioSection />}
-
-          {/* ⚠️ PROBLEM-ROZWIĄZANIE */}
-          {/* <ProblemSolutionSection /> */}
-
-          {/* 💬 TESTIMONIALS */}
-          {/* <TestimonialsSection /> */}
-
-          {/* 🔄 PROCESS SECTION */}
-          {/* <ProcessSection /> */}
-
-          {/* 🎯 EXPERIENCE */}
-          {/* <ExperienceSection /> */}
-
-          {/* 💰 PRICING */}
-          {/* <PricingSection /> */}
-
-          {/* 📝 BLOG
-          <BlogSection /> */}
-
           {/* ❓ FAQ */}
-          <FAQSection />
+          {isMobile ? <FAQSectionMobile /> : <FAQSection />}
+          
 
           <TrustOverlay />
         </>

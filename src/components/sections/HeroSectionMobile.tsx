@@ -1,267 +1,144 @@
 'use client';
 
-import { useState } from 'react';
-import { ArrowRight, Check, Code, FileText, LayoutGrid, Linkedin, Palette, Search, Smartphone } from 'lucide-react';
-import { linkedinProfiles } from '@/lib/linkedinData';
-import { MainService } from '@/lib/types';
-import { MAIN_SERVICES } from '@/lib/data';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useApprovalCarousel } from '@/utils/hooks';
+import { ArrowRight } from 'lucide-react';
 
-
-interface LinkedInProfile {
-  name: string;
-  link: string;
-  image: string;
-}
-
-interface HeroSectionMobileProps {
-  cityOverride?: string;
-}
-
-const HeroSectionMobile = ({ cityOverride }: HeroSectionMobileProps = {}) => {
-  const [hoveredAvatar, setHoveredAvatar] = useState<number | null>(null);
-  const router = useRouter();
-  
-  const proofItems = [
-    'Bezpłatna konsultacja',
-    'Integracja z chatbotem AI',
-    'Szkolenie z obsługi strony',
-  ];
-  const activeProofIndex = useApprovalCarousel(proofItems.length, 3000);
-
-  // Funkcja dla pozycji avatarów
-  const getAvatarPosition = (index: number, total: number) => {
-    if (hoveredAvatar === null) {
-      return {
-        x: (index - (total - 1) / 2) * 30,
-        scale: 1,
-        zIndex: total - index,
-      };
-    }
-    
-    if (hoveredAvatar === index) {
-      return {
-        x: 0,
-        scale: 1.2,
-        zIndex: total,
-      };
-    }
-    
-    if (index < hoveredAvatar) {
-      return {
-        x: -60 * (hoveredAvatar - index),
-        scale: 0.9,
-        zIndex: total - index,
-      };
-    } else {
-      return {
-        x: 60 * (index - hoveredAvatar),
-        scale: 0.9,
-        zIndex: total - index,
-      };
-    }
-  };
-
-  // Funkcja do obsługi kliknięcia w usługę
-  const handleServiceClick = (serviceId: string) => {
-    router.push(`/pricing/${serviceId}`);
-  };
-
+export default function HeroSectionMobile() {
   return (
-    <section className="w-full relative overflow-hidden bg-black pt-30">
-      {/* Avatary LinkedIn na górze z dużym paddingiem */}
-      <div className="flex justify-center items-center relative mb-6 pt-10" style={{ width: '240px', height: '80px', margin: '0 auto' }}>
-        {linkedinProfiles.map((person: LinkedInProfile, index: number) => {
-          const position = getAvatarPosition(index, linkedinProfiles.length);
-          return (
-            <div
-              key={index}
-              className="absolute transition-all duration-500 ease-out"
-              style={{
-                transform: `translateX(${position.x}px) scale(${position.scale})`,
-                zIndex: position.zIndex,
-              }}
-              onMouseEnter={() => setHoveredAvatar(index)}
-              onMouseLeave={() => setHoveredAvatar(null)}
-            >
-              <a
-                href={person.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block relative group"
-              >
-                <img
-                  src={person.image}
-                  alt={person.name}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover transition-all duration-300 border-2 border-gray-600 group-hover:border-[#fd9f91] group-hover:shadow-lg"
-                />
-              </a>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Główny nagłówek - większy na mobile */}
-      <div className="text-center mb-6 px-4 mt-4">
-        <h1
-          className="text-3xl sm:text-3xl md:text-3xl font-semibold text-white leading-tight"
-          style={{ letterSpacing: '-0.02em', textShadow: '0 0 20px rgba(255,255,255,0.1)' }}
-        >
-          {cityOverride ? (
-            <>
-              Strony internetowe {cityOverride} {" "}
-              <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                od 1500 zł
-              </span>
-            </>
-          ) : (
-            <>
-              Zyskaj więcej klientów dzięki profesjonalnej {" "}
-              <span className="font-semibold bg-gradient-to-r from-orange-300 to-pink-400 bg-clip-text text-transparent">
-                stronie internetowej!
-              </span>
-            </>
-          )}
-        </h1>
-      </div>
-
-      {/* Tekst pod nagłówkiem */}
-      <div className="text-center max-w-2xl mx-auto text-gray-300 text-base leading-relaxed mb-6 px-4">
-        Twoja strona to więcej niż wizytówka - to narzędzie sprzedaży działające bez przerwy. Sprawdź, jak możemy uczynić ją Twoim najlepszym sprzedawcą.
-      </div>
-
-      {/* Ulepszony przycisk CTA z gradientem */}
-      <div className="mb-6 px-4">
-        <Link href="/contact" className="block w-27/32 mx-auto">
-          <button className="w-full h-16 rounded-full bg-gradient-to-r from-[#fd9f91] via-[#ff6b6b] to-[#fd9f91] text-black font-medium text-lg transition-all duration-300 hover:shadow-2xl active:scale-95 relative p-0.5 group">
-            <div className="relative bg-black rounded-full h-full w-full overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#fd9f91] to-[#ff6b6b] rounded-full transform transition-transform duration-700 group-hover:scale-110"></div>
-                <span className="relative z-10  text-black rounded-full h-full w-full flex items-center justify-center gap-2 transition-all duration-300 group-hover:bg-transparent group-hover:text-black">
-                Bezpłatna konsultacja
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-            </div>
-            </button>
-        </Link>
-      </div>
-
-      {/* Karuzela proofów - spójna animacja: nowy wchodzi z prawej, stary wychodzi w lewo */}
-      <div className="flex items-center justify-center relative h-10 mb-6">
-        {proofItems.map((text, index) => {
-          const isActive = activeProofIndex === index;
-          const isPrevious = index === (activeProofIndex - 1 + proofItems.length) % proofItems.length;
-          return (
-            <div
-              key={index}
-              className={`flex items-center gap-2 absolute transition-all duration-500 ease-in-out ${
-                isActive
-                  ? 'opacity-100 translate-x-0'
-                  : isPrevious
-                  ? 'opacity-0 -translate-x-full' // Stary wychodzi w lewo
-                  : 'opacity-0 translate-x-full' // Nowy wchodzi z prawej
-              }`}
-            >
-              <div className="relative">
-                <div className="w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center">
-                  <Check className="w-2 h-2 text-white" strokeWidth={4} />
-                </div>
-              </div>
-              <span className="text-sm font-medium text-gray-300">{text}</span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Sekcja usług na dole - BEZ czarnego odstępu na końcu */}
-      <div
-        className="w-full py-4 bg-[#0C0C0C] border-t border-gray-800/50 backdrop-blur-sm"
+    <section className="relative w-full mx-auto pt-[160px] pb-[70px] px-5 bg-white overflow-hidden flex flex-col items-center">
+      
+      {/* Animacja przenikania logotypów */}
+      <style>{`
+        @keyframes fadeBlue {
+          0%, 25% { opacity: 1; }
+          33%, 91% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        @keyframes fadePurple {
+          0%, 25% { opacity: 0; }
+          33%, 58% { opacity: 1; }
+          66%, 100% { opacity: 0; }
+        }
+        @keyframes fadeYellow {
+          0%, 58% { opacity: 0; }
+          66%, 91% { opacity: 1; }
+          100% { opacity: 0; }
+        }
         
-      >
-        <div className="container mx-auto px-1">
-          {/* MOBILE - karuzela usług */}
-          <div 
-            className="flex gap-3 overflow-x-auto pb-2"
-            style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              WebkitOverflowScrolling: 'touch',
-            }}
-          >
-            {MAIN_SERVICES.map((service: MainService) => {
-              const IconComponent = {
-                'website': LayoutGrid,
-                'optimization': Search,
-                'ai-integration': Code,
-                'graphics': Palette,
-                'individual': FileText,
-                'email-marketing': Smartphone,
-              }[service.id] || LayoutGrid;
-              return (
-                <button
-                  key={service.id}
-                  onClick={() => handleServiceClick(service.id)}
-                  className="flex-shrink-0 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-gray-500 active:scale-95"
-                  style={{
-                    width: '90px',
-                    height: '100px',
-                    background: '#28282aff',
-                    border: '1px solid #262626',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                  }}
-                >
-                  <div 
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      background: '#34363aff',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#e0e0e0ff',
-                    }}
-                  >
-                    <IconComponent className="w-4 h-4" />
-                  </div>
-                  <span 
-                    className="text-center leading-tight text-[12px]"
-                    style={{ 
-                      fontFamily: 'inherit',
-                      color: '#e0e0e0ff',
-                      padding: '0 4px',
-                    }}
-                  >
-                    {service.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+        .animate-logo-blue { animation: fadeBlue 9s ease-in-out infinite; }
+        .animate-logo-purple { animation: fadePurple 9s ease-in-out infinite; }
+        .animate-logo-yellow { animation: fadeYellow 9s ease-in-out infinite; }
+      `}</style>
 
-          {/* Kreska i link - TERAZ SEKCJA KOŃCZY SIĘ RAZEM Z NAPISEM "WSZYSTKIE USŁUGI" */}
-          <div className="mt-2">
-            <div className="w-full h-px bg-white/20 mb-2" />
-            <div className="flex justify-center">
-              <Link 
-                href="/pricing"
-                className="group flex items-center gap-2 hover:text-[#fd9f91] transition-colors duration-300 text-sm font-medium text-gray-500"
-              >
-                <span>Wszystkie usługi</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
+      {/* --- TŁO: Twoje charakterystyczne gradientowe paski (Light Mode) --- */}
+      <div className="absolute inset-0 z-0 flex pointer-events-none opacity-80 overflow-hidden">
+        {/* ... (tutaj zostaw bez zmian kody swoich pasków) ... */}
+      </div>
+
+      <div className="relative z-10 w-full max-w-[500px] flex flex-col items-center text-center">
+
+        {/* --- ROTUJĄCE LOGOTYPY --- */}
+        <div className="relative mb-6 h-9 sm:h-10 w-full max-w-[240px] flex items-center justify-center pointer-events-none mt-2">
+          {/* Logo 1: Niebieskie (Webdev) */}
+          <img 
+            src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp" 
+            alt="Whiteslope Web Development" 
+            className="absolute inset-0 w-full h-full object-contain animate-logo-blue"
+          />
+          {/* Logo 2: Fioletowe (Automatyzacje) */}
+          <img 
+            src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp" 
+            alt="Whiteslope Automation & AI" 
+            className="absolute inset-0 w-full h-full object-contain animate-logo-purple"
+          />
+          {/* Logo 3: Żółte (Marketing) */}
+          <img 
+            src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp" 
+            alt="Whiteslope Marketing" 
+            className="absolute inset-0 w-full h-full object-contain animate-logo-yellow"
+          />
         </div>
+
+        {/* --- NAGŁÓWEK --- */}
+        <h1 className="mt-5 mb-10 text-[38px] !font-[200] leading-[1.1] text-zinc-900 tracking-tight">
+          Zwiększaj zyski  <br/> dzięki dedykowanej <br/>
+          <span className="bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text text-transparent ">
+             technologii
+          </span>
+        </h1>
+
+        {/* --- PRZYCISKI --- */}
+        {/* Dodano items-center, żeby w-fit wyśrodkowało przyciski */}
+        <div className="flex flex-col items-center gap-3 w-full mb-12 px-2">
+          
+          <Link
+            href="/contact"
+            className="w-fit px-8 bg-gradient-to-tr from-blue-600 to-blue-400 hover:from-blue-600 hover:to-blue-400 text-white font-bold rounded-full h-[52px] flex items-center justify-center transition-all shadow-[0_8px_20px_rgba(59,144,255,0.25)] text-[15px] active:scale-95 group"
+          >
+            Rozpocznij współpracę
+            <ArrowRight className="w-[18px] h-[18px] ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+          
+          <Link
+            href="/projects"
+            /* Zmieniono na w-fit, px-8 i usunięto niebieski cień dla spójności z szarym tłem */
+            className="w-fit px-8 bg-gradient-to-tr from-zinc-200 to-blue-100 hover:from-blue-300 hover:to-blue-200 text-zinc-700 font-bold rounded-full h-[52px] flex items-center justify-center transition-colors shadow-sm text-[15px] active:scale-95 group my-2 shadow-[0_8px_20px_rgba(59,144,255,0.25)]"
+          >
+            {/* Usunąłem podkreślenie border-b, bo w szarym przycisku typu 'pill' wygląda to nienaturalnie */}
+            <span className="relative  group-hover:text-blue-500 transition-colors">
+              Zobacz nasze realizacje
+            </span>
+            <ArrowRight className="w-[16px] h-[16px] ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-500" />
+          </Link>
+
+        </div>
+
+        {/* --- WIDEO --- */}
+        <div className="w-full aspect-[16/15] rounded-[24px] overflow-hidden shadow-xl relative mb-10 border border-zinc-100 bg-zinc-100">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            /* Zoom scale-[1.2] i przesunięcie obcinają ewentualny znak wodny na krawędziach */
+            className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
+            src="/animationHero/HeroShowReel.mp4"
+          />
+          <div className="absolute inset-0 shadow-[inset_0_0_24px_rgba(0,0,0,0.1)] pointer-events-none rounded-[24px]" />
+        </div>
+
+        {/* --- LISTA KORZYŚCI --- */}
+        <ul className="flex flex-col gap-6 w-full text-zinc-800 text-left px-3">
+          <li className="flex items-start gap-4">
+            <svg className="w-[32px] h-[32px] text-blue-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M237,19H19c-8.2,0-14.9,6.7-14.9,14.9v188.3c0,8.2,6.7,14.9,14.9,14.9h218c8.2,0,14.9-6.7,14.9-14.9V33.9 C251.9,25.7,245.2,19,237,19z M199.8,28.9c5.4,0,9.9,4.5,9.9,9.9c0,5.5-4.5,9.9-9.9,9.9s-9.9-4.5-9.9-9.9S194.4,28.9,199.8,28.9z M172.6,28.9c5.4,0,9.9,4.5,9.9,9.9c0,5.5-4.5,9.9-9.9,9.9s-9.9-4.5-9.9-9.9S167.1,28.9,172.6,28.9z M237,223.9H19V58.6h218V223.9z M227.1,48.7c-5.4,0-9.9-4.5-9.9-9.9s4.5-9.9,9.9-9.9s9.9,4.5,9.9,9.9C237,44.3,232.5,48.7,227.1,48.7z M96,74h76.1v14.4H96V74z M126,106.9h96.3v14.3H126V106.9z M126,135.5h96.3v14.3H126V135.5z M126,164.5h96.3v14.3H126V164.5z M32.6,193.1h189.8v14.3H32.6 V193.1z M32.6,106.9h67.8v70.7H32.6V106.9z"></path>
+            </svg>
+            <span className="text-[18px] leading-relaxed">
+              <strong className="text-zinc-950 font-bold">Strony WWW i systemy webowe</strong>, które generują zlecenia.
+            </span>
+          </li>
+
+          <li className="flex items-start gap-4">
+            <svg className="w-[32px] h-[32px] text-blue-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 13.293V3h-8V1H8v2H3v4h1V4h4v2h5V4h7v9.293L17.707 11l-.707.707 3.5 3.5 3.5-3.5-.707-.707zM12 5H9V2h3zm8 15h-3v-2h-5v2H4v-9.293L6.293 13 7 12.293l-3.5-3.5-3.5 3.5.707.707L3 10.707V21h9v2h5v-2h4v-4h-1zm-4 2h-3v-3h3z"></path>
+            </svg>
+            <span className="text-[18px] leading-relaxed">
+              <strong className="text-zinc-950 font-bold">Automatyzacje i AI</strong>, które wyręczają Cię z powtarzalnej pracy.
+            </span>
+          </li>
+
+          <li className="flex items-start gap-4">
+            <svg className="text-blue-500 w-[32px] h-[32px] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M2,19c0-3.9,3.1-7,7-7c2.5,0,4.8,1.3,6.1,3.5l1.7-1c-1-1.7-2.5-3-4.2-3.7C14.1,9.7,15,7.9,15,6c0-3.3-2.7-6-6-6S3,2.7,3,6 c0,1.9,0.9,3.7,2.4,4.8C2.2,12.2,0,15.3,0,19v5h12v-2H2V19z M5,6c0-2.2,1.8-4,4-4s4,1.8,4,4s-1.8,4-4,4S5,8.2,5,6z"></path>
+              <path d="M24.1,15.8l-7.6,7.6l-4.7-4.7l1.4-1.4l3.3,3.3l6.2-6.2L24.1,15.8z"></path>
+            </svg>
+            <span className="text-[18px] leading-relaxed">
+              <strong className="text-zinc-950 font-bold">Wizerunek eksperta</strong>, dzięki któremu możesz śmiało podnosić stawki.
+            </span>
+          </li>
+        </ul>
+
       </div>
     </section>
   );
-};
-
-export default HeroSectionMobile;
+}

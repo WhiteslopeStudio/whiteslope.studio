@@ -1977,7 +1977,7 @@
 //   );
 // }
 
-import ContactHero from './components/ContactHero';
+import ResponsiveContactHero from './components/ResponsiveContactHero';
 import ContactForm from './components/ContactForm';
 import TrustOverlay from '@/components/ui/TrustOverlay';
 
@@ -1989,9 +1989,10 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white relative overflow-hidden">
-      <ContactHero />
+      <ResponsiveContactHero />
       <ContactForm />
       <TrustOverlay />
     </main>
   );
 }
+

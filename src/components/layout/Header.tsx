@@ -6,6 +6,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   Instagram,
   Facebook,
   Youtube,
@@ -17,7 +18,13 @@ import { useMobileDetection } from '@/utils/hooks';
 import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
 
 
+
 export const Header = () => {
+  const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
+  const toggleMenu = (key: string) => {
+  setExpandedMenus(prev => ({ ...prev, [key]: !prev[key] }));
+};
+const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOffersDropdownOpen, setIsOffersDropdownOpen] = useState(false);
@@ -706,142 +713,236 @@ export const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[100] flex"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/90 backdrop-blur-lg"
-              onClick={() => setIsMenuOpen(false)}
-            />
-
+            {/* Tło na cały ekran - Menu z pełną szerokością */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute right-0 top-0 h-full w-80 bg-[#171717]/95 backdrop-blur-lg border-l border-[#404040] shadow-2xl overflow-y-auto"
+              className="absolute inset-0 h-full w-full bg-white shadow-2xl overflow-y-auto flex flex-col"
             >
-              <div className="flex flex-col min-h-full pt-24 pb-8 px-6">
-                <div className="flex-1 space-y-2 pt-15">
-                  <motion.button
-                    onClick={() => { setIsMenuOpen(false); router.push("/"); }}
-                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === "/" ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    Start
-                  </motion.button>
+              {/* Pasek górny z napisem Menu i przyciskiem zamykania */}
+              <div className="flex justify-between items-center px-6 py-5 border-b border-zinc-100 shrink-0">
+                <span className="text-[18px] font-bold text-zinc-950 tracking-tight">
+                  Menu
+                </span>
+                <button 
+                  onClick={() => setIsMenuOpen(false)} 
+                  className="p-1 text-zinc-500 hover:text-zinc-950 transition-colors"
+                >
+                  <X className="w-7 h-7" strokeWidth={1.5} />
+                </button>
+              </div>
 
-                  <motion.button
-                    onClick={() => { setIsMenuOpen(false); router.push("/projects"); }}
-                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === "/projects" ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.05 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    Realizacje
-                  </motion.button>
+              {/* GŁÓWNA LISTA */}
+              <div className="flex flex-col px-0 py-2">
+                
+                {/* 1. Strona główna */}
+                <button
+                  onClick={() => { setIsMenuOpen(false); setLastClickedItem('Strona główna'); router.push("/"); }}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname === "/" ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Strona główna
+                </button>
 
-                  <motion.div
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626]"
-                  >
-                    Oferta
-                  </motion.div>
+                {/* 2. Realizacje */}
+                <button
+                  onClick={() => { setIsMenuOpen(false); setLastClickedItem('Realizacje'); router.push("/projects"); }}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname === "/projects" ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Realizacje
+                </button>
 
-                  {MAIN_SERVICES.map((service: { label: string; href: string }, index: number) => (
-                    <motion.button
-                      key={`${service.href}-mobile`}
-                      onClick={() => { setIsMenuOpen(false); router.push(service.href); }}
-                      className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === service.href ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.25 + index * 0.05 }}
-                      whileHover={{ x: 10 }}
+                {/* 3. OFERTA (Rozwijana) */}
+                <button
+                  onClick={() => toggleMenu('oferta')}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname.startsWith('/pricing/website') || pathname.startsWith('/saas') || pathname.startsWith('/fixes') || pathname.startsWith('/erp') || pathname.startsWith('/seo') || pathname.startsWith('/pricing/ai-integration') || pathname.startsWith('/pricing/video-marketing') ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Oferta
+                  <ChevronRight className={`w-5 h-5 text-zinc-400 transition-transform duration-300 ${expandedMenus['oferta'] ? 'rotate-90' : ''}`} />
+                </button>
+
+                {/* WNĘTRZE OFERTY */}
+                <AnimatePresence>
+                  {expandedMenus['oferta'] && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden bg-zinc-50/50"
                     >
-                      {service.label}
-                    </motion.button>
-                  ))}
+                      
+                      {/* 3.1 Web development */}
+                      <button
+                        onClick={() => toggleMenu('webdev')}
+                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
+                      >
+                        Web development
+                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['webdev'] ? 'rotate-90' : ''}`} />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {expandedMenus['webdev'] && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-zinc-100/50"
+                          >
+                            {[
+                              { label: 'Strony internetowe', href: '/pricing/website' },
+                              { label: 'Aplikacje SaaS', href: '/pricing/website' },
+                              { label: 'Poprawki istniejących stron', href: '/pricing/website' },
+                              { label: 'Systemy do zarządzania firmą ERP', href: '/pricing/website' },
+                              { label: 'Pozycjonowanie SEO', href: '/pricing/website' },
+                            ].map((item, index, array) => {
+                              // Logika unikania wielokrotnego podświetlenia na tym samym URL
+                              const isMatchedPath = pathname === item.href;
+                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
+                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
 
-                  <div className="h-4" />
+                              return (
+                                <button 
+                                  key={item.label} 
+                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
+                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
+                                >
+                                  {item.label}
+                                </button>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
-                  <motion.div
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.3 }}
-                    className="text-[#737373] text-xs uppercase tracking-wide px-4 py-2 border-b border-[#262626]"
-                  >
-                    Inne
-                  </motion.div>
+                      {/* 3.2 Automatyzacja & AI */}
+                      <button
+                        onClick={() => toggleMenu('ai')}
+                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
+                      >
+                        Automatyzacja & AI
+                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['ai'] ? 'rotate-90' : ''}`} />
+                      </button>
 
-                  <motion.button
-                    onClick={() => { setIsMenuOpen(false); router.push("/blog"); }}
-                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === "/blog" ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.35 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    Blog
-                  </motion.button>
+                      <AnimatePresence>
+                        {expandedMenus['ai'] && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-zinc-100/50"
+                          >
+                            {[
+                              { label: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration' },
+                              { label: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration' },
+                              { label: 'Chatbot AI - asystent ds. Rezerwacji spotkań', href: '/pricing/ai-integration' },
+                              { label: 'Obieg dokumentów i danych', href: '/pricing/ai-integration' },
+                              { label: 'Zarządzanie leadami', href: '/pricing/ai-integration' },
+                              { label: 'Integracje Systemów (API)', href: '/pricing/ai-integration' },
+                            ].map((item, index, array) => {
+                              const isMatchedPath = pathname === item.href;
+                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
+                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
 
-                  <motion.button
-                    onClick={() => { setIsMenuOpen(false); router.push("/pricing"); }}
-                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === "/pricing" ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.4 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    Cennik
-                  </motion.button>
+                              return (
+                                <button 
+                                  key={item.label} 
+                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
+                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
+                                >
+                                  {item.label}
+                                </button>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
-                  <motion.button
-                    onClick={() => { setIsMenuOpen(false); router.push("/contact"); }}
-                    className={`block w-full text-left px-4 py-3 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${pathname === "/contact" ? "bg-white/10 text-white" : "text-[#d4d4d4] hover:text-white"}`}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: 0.45 }}
-                    whileHover={{ x: 10 }}
-                  >
-                    Kontakt
-                  </motion.button>
+                      {/* 3.3 Marketing & Video */}
+                      <button
+                        onClick={() => toggleMenu('marketing')}
+                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
+                      >
+                        Marketing & Video
+                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['marketing'] ? 'rotate-90' : ''}`} />
+                      </button>
+
+                      <AnimatePresence>
+                        {expandedMenus['marketing'] && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-zinc-100/50"
+                          >
+                            {[
+                              { label: 'Email marketing', href: '/pricing/video-marketing' },
+                              { label: 'Video Marketing', href: '/pricing/video-marketing' },
+                              { label: 'Grafika 2D i 3D', href: '/pricing/video-marketing' },
+                              { label: 'Produkcja treści UGC', href: '/pricing/video-marketing' },
+                              { label: 'Obróbka i postprodukcja dźwięku', href: '/pricing/video-marketing' },
+                            ].map((item, index, array) => {
+                              const isMatchedPath = pathname === item.href;
+                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
+                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
+
+                              return (
+                                <button 
+                                  key={item.label} 
+                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
+                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
+                                >
+                                  {item.label}
+                                </button>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* 4. Cennik */}
+                <button
+                  onClick={() => { setIsMenuOpen(false); setLastClickedItem('Cennik'); router.push("/pricing"); }}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname === "/pricing" ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Cennik
+                </button>
+
+                {/* 5. Aktualności */}
+                <button
+                  onClick={() => { setIsMenuOpen(false); setLastClickedItem('Aktualności'); router.push("/blog"); }}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname === "/blog" ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Aktualności
+                </button>
+
+                {/* 6. Kontakt */}
+                <button
+                  onClick={() => { setIsMenuOpen(false); setLastClickedItem('Kontakt'); router.push("/contact"); }}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname === "/contact" ? "text-[#0057ff]" : "text-zinc-950"}`}
+                >
+                  Kontakt
+                </button>
+
+                {/* Ikonki społecznościowe */}
+                <div className="flex justify-center gap-5 pt-8 pb-4">
+                  <a href="https://www.youtube.com/@WhiteslopeStudio" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                    <Youtube className="w-5 h-5 text-zinc-700" />
+                  </a>
+                  <a href="https://www.instagram.com/whiteslopestudio/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                    <Instagram className="w-5 h-5 text-zinc-700" />
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                    <Facebook className="w-5 h-5 text-zinc-700" />
+                  </a>
                 </div>
 
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
-                  className="border-t border-[#404040] pt-6 space-y-4"
-                >
-                  <div className="text-center text-[#737373] text-sm">Skontaktuj się z nami</div>
-                  <div className="text-center">
-                    <a href={`mailto:${APP_CONFIG.email}`} className="text-white hover:text-[#d4d4d4] transition-colors text-sm hover:cursor-pointer">
-                      {APP_CONFIG.email}
-                    </a>
-                  </div>
-                  <div className="text-center">
-                    <a href={`tel:${APP_CONFIG.phone}`} className="text-white hover:text-[#d4d4d4] transition-colors text-sm hover:cursor-pointer">
-                      {APP_CONFIG.phone}
-                    </a>
-                  </div>
-
-                  <div className="flex justify-center gap-4 pt-2">
-                    <a href="https://www.instagram.com/whiteslopestudio/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer">
-                      <Instagram className="w-5 h-5 text-white" />
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:cursor-pointer">
-                      <Facebook className="w-5 h-5 text-white" />
-                    </a>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </motion.div>

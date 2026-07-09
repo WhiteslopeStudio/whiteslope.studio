@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import Footer from '@/components/layout/Footer'; 
+import FooterMobile from '@/components/layout/FooterMobile';
 import { CookieBanner } from "@/components/sections/cookieBanner";
 import { jsonLd, siteNavigationJsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
@@ -128,6 +129,7 @@ export default function RootLayout({
         <CookieBanner />
         <Chatbot />
         <Footer />
+        <FooterMobile />
       </body>
     </html>
   );

@@ -54,7 +54,7 @@ html {
   /* 2. Nagłówki mają wyższy priorytet i specyficzną grubość */
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-inter), sans-serif !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     letter-spacing: -0.05em;
     line-height: 1.1;
   }
