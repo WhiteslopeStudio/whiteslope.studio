@@ -114,7 +114,7 @@ export function PricingAutomationAI() {
               
               {/* 2. Niewidzialny link na cały wiersz (kieruje do opisu usługi) */}
               <Link 
-                href="/pricing/ai-integration" 
+                href="/pricing/ai-integration/chatbot" 
                 className="absolute inset-0 z-0 rounded-[32px]" 
                 aria-label={`Przejdź do ${service.title}`}
               />
@@ -150,7 +150,7 @@ export function PricingAutomationAI() {
 
                 {/* 3. Prawdziwy, niezależny przycisk Kontakt (dajemy z-20 żeby był wyżej niż ukryty link) */}
                 <Link
-                  href="/pricing/ai-integration"
+                  href="/pricing/ai-integration/chatbot"
                   className="relative z-20 px-6 py-2.5 rounded-full bg-blue-500 text-white text-[14px] font-medium hover:bg-blue-600 transition-colors duration-300"
                 >
                   Sprawdź 

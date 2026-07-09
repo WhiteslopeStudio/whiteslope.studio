@@ -29,7 +29,7 @@ const portfolioData: PortfolioItem[] = [
     title: 'Asystenci AI do obsługi twoich klientów',
     description: 'Oferujemy asystentów AI, którzy zwiększają efektywność komunikacji w Twojej firmie.',
     logo: '',
-    href: '/pricing/ai-integration',
+    href: '/pricing/ai-integration/chatbot',
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const portfolioData: PortfolioItem[] = [
     title: 'Chatboty poprawiające user experience',
     description: 'Oferujemy chatboty, które poprawiają interakcję użytkowników z Twoją firmą.',
     logo: '',
-    href: '/pricing/ai-integration',
+    href: '/pricing/ai-integration/chatbot',
   },
   {
     id: 5,

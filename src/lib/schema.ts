@@ -136,7 +136,7 @@ export const siteNavigationJsonLd = {
       '@type': 'ListItem',
       position: 6,
       name: 'Chatboty AI',
-      url: 'https://whiteslope.studio/pricing/ai-integration'
+      url: 'https://whiteslope.studio//pricing/ai-integration/chatbot'
     }
   ]
 };

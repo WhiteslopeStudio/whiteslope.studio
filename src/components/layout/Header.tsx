@@ -758,7 +758,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 {/* 3. OFERTA (Rozwijana) */}
                 <button
                   onClick={() => toggleMenu('oferta')}
-                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname.startsWith('/pricing/website') || pathname.startsWith('/saas') || pathname.startsWith('/fixes') || pathname.startsWith('/erp') || pathname.startsWith('/seo') || pathname.startsWith('/pricing/ai-integration') || pathname.startsWith('/pricing/video-marketing') ? "text-[#0057ff]" : "text-zinc-950"}`}
+                  className={`flex items-center justify-between w-full text-left px-6 py-4 border-b border-zinc-100 bg-white font-medium active:bg-zinc-50 transition-colors ${pathname.startsWith('/pricing/website') || pathname.startsWith('/saas') || pathname.startsWith('/fixes') || pathname.startsWith('/erp') || pathname.startsWith('/seo') || pathname.startsWith('/pricing/ai-integration/chatbot') || pathname.startsWith('/pricing/video-marketing') ? "text-[#0057ff]" : "text-zinc-950"}`}
                 >
                   Oferta
                   <ChevronRight className={`w-5 h-5 text-zinc-400 transition-transform duration-300 ${expandedMenus['oferta'] ? 'rotate-90' : ''}`} />
@@ -835,12 +835,12 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                             className="overflow-hidden bg-zinc-100/50"
                           >
                             {[
-                              { label: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration' },
-                              { label: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration' },
-                              { label: 'Chatbot AI - asystent ds. Rezerwacji spotkań', href: '/pricing/ai-integration' },
-                              { label: 'Obieg dokumentów i danych', href: '/pricing/ai-integration' },
-                              { label: 'Zarządzanie leadami', href: '/pricing/ai-integration' },
-                              { label: 'Integracje Systemów (API)', href: '/pricing/ai-integration' },
+                              { label: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration/chatbot' },
+                              { label: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration/chatbot' },
+                              { label: 'Chatbot AI - asystent ds. Rezerwacji spotkań', href: '/pricing/ai-integration/chatbot' },
+                              { label: 'Obieg dokumentów i danych', href: '/pricing/ai-integration/chatbot' },
+                              { label: 'Zarządzanie leadami', href: '/pricing/ai-integration/chatbot' },
+                              { label: 'Integracje Systemów (API)', href: '/pricing/ai-integration/chatbot' },
                             ].map((item, index, array) => {
                               const isMatchedPath = pathname === item.href;
                               const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);

@@ -336,7 +336,7 @@ export default function ProcessSection() {
                   Przy okazji pomożemy w:
                 </h4>
                 <div className="mt-4 space-y-2">
-                  <Link href="/pricing/ai-integration" className="block rounded-xl bg-zinc-200 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors border border-black/5">
+                  <Link href="/pricing/ai-integration/chatbot" className="block rounded-xl bg-zinc-200 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors border border-black/5">
                     Integracjach AI
                   </Link>
                   <Link href="/pricing/graphics" className="block rounded-xl bg-zinc-200 px-4 py-2.5 text-zinc-900 hover:border-blue-300 hover:text-blue-700 transition-colors border border-black/5">

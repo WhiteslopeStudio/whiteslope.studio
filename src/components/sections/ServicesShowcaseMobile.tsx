@@ -21,7 +21,7 @@ export default function AutomationShowcaseMobile() {
         <div className="relative group w-full bg-zinc-50 rounded-[28px] border border-zinc-200 overflow-hidden flex flex-col shadow-sm">
           
           {/* Niewidoczny link pokrywający całą kartę (Z-index 30) */}
-          <Link href="/pricing/ai-integration" className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń automatyzację" />
+          <Link href="/pricing/ai-integration/chatbot" className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń automatyzację" />
 
           {/* --- TŁO KARTY --- */}
           <div className="absolute top-0 left-0 right-0 h-[300px] z-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 100%)' }} />
@@ -94,7 +94,7 @@ export default function AutomationShowcaseMobile() {
               <span className="absolute spinner-element-lavender opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               
               <Link
-                href="/pricing/ai-integration"
+                href="/pricing/ai-integration/chatbot"
                 className="relative z-10 inline-flex h-[48px] w-full items-center justify-center rounded-full bg-black px-6 text-[15px] font-semibold text-white"
               >
                 Zobacz więcej

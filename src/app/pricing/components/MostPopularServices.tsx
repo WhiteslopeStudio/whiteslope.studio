@@ -310,7 +310,7 @@ export function MostPopularServices() {
               {/* Właściwy niebieski przycisk - na hover lekko ciemnieje */}
               {/* Wypukły przycisk - na hover ciemnieje (deep blue) */}
               <Link
-                href="/pricing/ai-integration"
+                href="/pricing/ai-integration/chatbot"
                 className="relative z-10 flex h-[52px] w-full items-center justify-center rounded-full text-[15px] font-semibold text-white bg-gradient-to-br from-blue-500 to-blue-600 shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),inset_0_-2px_4px_rgba(0,0,0,0.15),0_4px_15px_rgba(59,130,246,0.3)] transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-700 group-hover:shadow-[inset_0_1px_2px_rgba(255,255,255,0.3),inset_0_-2px_4px_rgba(0,0,0,0.3),0_8px_20px_rgba(30,64,175,0.5)]"
               >
                 Zobacz więcej

@@ -73,7 +73,7 @@ export default function HeroSection() {
       />
 
       {/* DESKTOP LAYOUT - lg and above */}
-      <div className="hidden lg:flex h-[88vh] overflow-hidden items-center relative">
+      <div className="hidden lg:flex h-[88vh] overflow-hidden items-center relative max-w-[1640px] mx-auto px-6 md:px-12">
         {/* Left Content */}
         <div className="w-[55%] px-12 pl-36 z-10">
           <motion.h1

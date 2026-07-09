@@ -21,7 +21,7 @@ export default function ServicesDivider() {
           </Link>
 
           {/* Kwadrat 2 */}
-          <Link href="/pricing/ai-integration" className="flex-1 py-[12px] px-[16px] flex items-center justify-center group hover:bg-zinc-100 transition-colors duration-300 cursor-pointer">
+          <Link href="/pricing/ai-integration/chatbot" className="flex-1 py-[12px] px-[16px] flex items-center justify-center group hover:bg-zinc-100 transition-colors duration-300 cursor-pointer">
             <span className="text-black text-[11px] md:text-[14px] font-bold tracking-[0.15em] uppercase group-hover:text-black transition-colors duration-300">
               Automatyzacja & wdrażanie AI
             </span>

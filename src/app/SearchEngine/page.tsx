@@ -37,7 +37,7 @@ const SEARCH_DATA = {
   services: [
     { label: 'Strona internetowa', href: '/pricing/website', icon: Code },
     { label: 'Optymalizacja', href: '/pricing/optimization', icon: Sparkles },
-    { label: 'Integracja AI', href: '/pricing/ai-integration', icon: Bot },
+    { label: 'Integracja AI', href: '/pricing/ai-integration/chatbot', icon: Bot },
     { label: 'Grafika', href: '/pricing/graphics', icon: Palette },
     { label: 'Projekt indywidualny', href: '/pricing/individual', icon: Lightbulb },
     { label: 'Email marketing', href: '/pricing/email-marketing', icon: Mail }

@@ -85,7 +85,7 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       {
         label: 'Chat Pomoc Techniczna 24/7',
         desc: 'Odpowiedzi na bazie danych o firmie',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         icon: HeadphonesIcon,
         badge: 'Trend',
         badgeColor: 'bg-[#2350C2] text-white border-blue-200',
@@ -93,13 +93,13 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       {
         label: 'Chatboty E-commerce',
         desc: 'Automatyczny doradca w sklepie',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         icon: ShoppingBag,
       },
       {
         label: 'Chatboty Rezerwacje',
         desc: 'Umawianie spotkań w kalendarzu',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         icon: CalendarDays,
         
         badgeColor: 'bg-emerald-100 text-emerald-700 border-emerald-200',
@@ -114,19 +114,19 @@ export const MEGA_MENU: MegaMenuColumnDef[] = [
       
       {
         label: 'Obieg Dokumentów',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         desc: 'n8n i wyciąganie danych',
         icon: FileText,
       },
       {
         label: 'Zarządzanie Leadami',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         desc: 'Ścieżki sprzedażowe i powiadomienia',
         icon: Zap,
       },
       {
         label: 'Integracje Systemów (API)',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         desc: 'Łączymy narzędzia',
         icon: Workflow,
       },
@@ -194,14 +194,14 @@ export const KATEGORIE_MEGA_MENU = [
   {
     id: 'automatyzacja',
     title: 'Automatyzacja & AI',
-    href: '/pricing/ai-integration',
+    href: '/pricing/ai-integration/chatbot',
     items: [
-      { label: 'Chat Pomoc Techniczna 24/7', desc: 'Odpowiedzi na bazie danych o firmie', badge: 'Trend', badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200', href: '/pricing/ai-integration' },
-      { label: 'Chatboty E-commerce', desc: 'Automatyczny doradca w sklepie', href: '/pricing/ai-integration' },
-      { label: 'Chatboty Rezerwacje', desc: 'Umawianie spotkań w kalendarzu', href: '/pricing/ai-integration' },
-      { label: 'Obieg Dokumentów', desc: 'n8n i wyciąganie danych', href: '/pricing/ai-integration' },
-      { label: 'Zarządzanie Leadami', desc: 'Ścieżki sprzedażowe i powiadomienia', href: '/pricing/ai-integration' },
-      { label: 'Integracje Systemów (API)', desc: 'Łączymy narzędzia', href: '/pricing/ai-integration' },
+      { label: 'Chat Pomoc Techniczna 24/7', desc: 'Odpowiedzi na bazie danych o firmie', badge: 'Trend', badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200', href: '/pricing/ai-integration/chatbot' },
+      { label: 'Chatboty E-commerce', desc: 'Automatyczny doradca w sklepie', href: '/pricing/ai-integration/chatbot' },
+      { label: 'Chatboty Rezerwacje', desc: 'Umawianie spotkań w kalendarzu', href: '/pricing/ai-integration/chatbot' },
+      { label: 'Obieg Dokumentów', desc: 'n8n i wyciąganie danych', href: '/pricing/ai-integration/chatbot' },
+      { label: 'Zarządzanie Leadami', desc: 'Ścieżki sprzedażowe i powiadomienia', href: '/pricing/ai-integration/chatbot' },
+      { label: 'Integracje Systemów (API)', desc: 'Łączymy narzędzia', href: '/pricing/ai-integration/chatbot' },
     ],
   },
   {
@@ -240,7 +240,7 @@ export const HOMEPAGE_MENU_ITEMS = [
 export const MAIN_SERVICES = [
   { label: 'Strona internetowa', href: '/pricing/website' },
   { label: 'Optymalizacja', href: '/pricing/optimization' },
-  { label: 'Integracja AI', href: '/pricing/ai-integration' },
+  { label: 'Integracja AI', href: '/pricing/ai-integration/chatbot' },
   { label: 'Grafika', href: '/pricing/graphics' },
   { label: 'Projekt indywidualny', href: '/pricing/individual' },
   { label: 'Email marketing', href: '/pricing/email-marketing' },

@@ -256,7 +256,7 @@ export default function MostPopularServicesMobile() {
             <div className="relative w-full mt-6 overflow-hidden rounded-full p-[2px] group bg-white shadow-sm">
               <span className="absolute inset-[-1000%] opacity-100 animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,#7d06b8_50%,transparent_100%)] transition-opacity duration-300" />
               <Link
-                href="/pricing/ai-integration"
+                href="/pricing/ai-integration/chatbot"
                 className="relative z-10 flex h-[50px] w-full items-center justify-center rounded-full text-[15px] font-semibold text-white bg-gradient-to-br from-blue-500 to-blue-600 shadow-md active:scale-95 transition-all duration-300"
               >
                 Zobacz więcej

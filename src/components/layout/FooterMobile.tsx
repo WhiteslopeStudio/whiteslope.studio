@@ -35,12 +35,12 @@ export default function FooterMobile() {
   ];
 
   const uslugiAI = [
-    { name: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration' },
-    { name: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration' },
-    { name: 'Chatbot AI - asystent ds. rezerwacji spotkań', href: '/pricing/ai-integration' },
-    { name: 'Obieg dokumentów i danych', href: '/pricing/ai-integration' },
-    { name: 'Zarządzanie leadami', href: '/pricing/ai-integration' },
-    { name: 'Integracje Systemów (API)', href: '/pricing/ai-integration' }
+    { name: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Chatbot AI - asystent ds. rezerwacji spotkań', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Obieg dokumentów i danych', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Zarządzanie leadami', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Integracje Systemów (API)', href: '/pricing/ai-integration/chatbot' }
   ];
 
   const uslugiMarketing = [

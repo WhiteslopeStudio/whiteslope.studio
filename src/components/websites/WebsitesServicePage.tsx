@@ -59,8 +59,8 @@ export default function WebsitesServicePage() {
 
   const SERVICES_MENU = [
     { name: 'Strony internetowe', href: '/pricing/strony-internetowe' },
-    { name: 'Integracje AI', href: '/pricing/ai-integration' },
-    { name: 'Automatyzacje procesów', href: '/pricing/ai-integration' },
+    { name: 'Integracje AI', href: '/pricing/ai-integration/chatbot' },
+    { name: 'Automatyzacje procesów', href: '/pricing/ai-integration/chatbot' },
     { name: 'Marketing', href: '/pricing/video-marketing' },
   ];
 

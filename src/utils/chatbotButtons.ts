@@ -162,7 +162,7 @@ export function generateSmartButtons(
   const buttonDefinitions: Record<string, ChatButton> = {
     'ai-integration': {
       text: '🤖 Integracje AI',
-      href: '/pricing/ai-integration',
+      href: '/pricing/ai-integration/chatbot',
       variant: 'primary'
     },
     'website': {
@@ -237,7 +237,7 @@ export function generateSmartButtons(
       },
       {
         text: '🤖 Integracje AI',
-        href: '/pricing/ai-integration',
+        href: '/pricing/ai-integration/chatbot',
         variant: 'secondary'
       },
       {
