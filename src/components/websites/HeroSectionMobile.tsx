@@ -48,7 +48,7 @@ export default function HeroSectionMobile() {
       <div className="relative z-20 w-full px-6 pb-10 flex flex-col gap-5">
         
         {/* Zmniejszony i zoptymalizowany nagłówek */}
-        <h1 className="text-[34px] font-bold leading-[1.05] text-left text-white tracking-tight">
+        <h1 className="text-[28px] font-bold leading-[1.05] text-left text-white tracking-tight">
           Projektujemy strony internetowe, systemy B2B i produkty SaaS
         </h1>
 

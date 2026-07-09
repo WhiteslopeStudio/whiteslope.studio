@@ -75,7 +75,7 @@ export default function ContactForm() {
 
         {/* --- NAGŁÓWEK NA ŚRODKU (Ponad kontenerami) --- */}
         <div className="text-left items-start w-full  mb-10">
-          <h2 className="text-[45px]  font-black text-zinc-950 leading-[1.05] tracking-tight text-left mt-5 md:ml-9 ">
+          <h2 className="text-[24px] md:text-[45px]  font-black text-zinc-950 leading-[1.05] tracking-tight text-left mt-5 md:ml-9 ">
             Porozmawiajmy <br /> o Twoim projekcie
           </h2>
 
@@ -140,7 +140,8 @@ export default function ContactForm() {
                         : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200 hover:text-zinc-800'
                     }`}
                   >
-                    <Mail className="w-4 h-4" /> Wiadomość E-mail
+                    <Mail className="w-4 h-4" /> 
+                    <p className="text-[9px] sm:text-[14px]">Wiadomość E-mail</p>
                   </button>
                   <button
                     type="button"
@@ -151,7 +152,7 @@ export default function ContactForm() {
                         : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200 hover:text-zinc-800'
                     }`}
                   >
-                    <Phone className="w-4 h-4" /> Rozmowa tel.
+                    <Phone className="w-4 h-4" /> <p className="text-[9px] sm:text-[14px]">Rozmowa tel.</p>
                   </button>
                 </div>
               </div>

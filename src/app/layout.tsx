@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// Zmiana na Inter
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -10,12 +9,14 @@ import { jsonLd, siteNavigationJsonLd } from "@/lib/schema";
 import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
+import ScrollToTop from "@/utils/ScrollToTop"; // <-- IMPORT TWOJEGO KOMPONENTU
 
 // Konfiguracja Inter
 const inter = Inter({
-  subsets: ["latin", "latin-ext"], // Ważne dla polskich znaków
-  weight: ["300", "400", "500", "600", "700", "800", "900"], 
-  variable: "--font-inter", // Nowa zmienna CSS
+  subsets: ["latin", "latin-ext"], 
+  // DODANA WAGA "200"
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"], 
+  variable: "--font-inter", 
 });
 
 export const metadata: Metadata = {
@@ -123,6 +124,7 @@ export default function RootLayout({
       
       {/* Tutaj aplikujemy zmienną Inter na całe body */}
       <body className={`${inter.variable} antialiased`}>
+        <ScrollToTop /> {/* <-- DODANE NA SAMYM GÓRZE BODY */}
         <Header />
         {children}
         <SearchEngineProvider />
