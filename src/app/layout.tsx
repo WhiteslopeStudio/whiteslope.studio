@@ -10,6 +10,7 @@ import Chatbot from "@/components/ui/Chatbot";
 import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
 import ScrollToTop from "@/utils/ScrollToTop"; // <-- IMPORT TWOJEGO KOMPONENTU
+import FastContact from "@/components/ui/FastContact";
 
 // Konfiguracja Inter
 const inter = Inter({
@@ -130,6 +131,7 @@ export default function RootLayout({
         <SearchEngineProvider />
         <CookieBanner />
         <Chatbot />
+        <FastContact />
         <Footer />
         <FooterMobile />
       </body>

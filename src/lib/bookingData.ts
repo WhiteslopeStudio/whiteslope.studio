@@ -36,33 +36,35 @@ export function getAvailableHours(expertId: ExpertId, date: Date): string[] {
     return [];
   }
 
+  const timeSlots = [
+    '09:00', '09:30', '10:00', '10:30', 
+    '11:00', '11:30', '12:00', '12:30', 
+    '13:00', '13:30', '14:00', '14:30', 
+    '15:00', '15:30', '16:00', '16:30', 
+    '17:00'
+  ];
+
   if (expertId === 'patryk') {
     switch (dayOfWeek) {
-      case 1: return ['15:00', '16:00', '17:00']; // Poniedziałek
-      case 2: return ['15:00', '16:00', '17:00']; // Wtorek
-      case 3: return ['15:00', '16:00', '17:00']; // Środa
-      case 4: return ['15:00', '16:00', '17:00']; // Czwartek
-      case 5: return ['15:00', '16:00', '17:00']; // Piątek
-      default: return [];
+      case 1: case 2: case 3: case 4: case 5: 
+        return timeSlots; // Poniedziałek - Piątek
+      default: 
+        return [];
     }
   } else if (expertId === 'bartek') {
     switch (dayOfWeek) {
-      case 1: return ['15:00', '16:00', '17:00']; // Poniedziałek
-      case 2: return ['15:00', '16:00', '17:00']; // Wtorek
-      case 3: return ['15:00', '16:00', '17:00']; // Środa
-      case 4: return ['15:00', '16:00', '17:00']; // Czwartek
-      case 5: return ['15:00', '16:00', '17:00']; // Piątek
-      default: return [];
+      case 1: case 2: case 3: case 4: case 5: 
+        return timeSlots; // Poniedziałek - Piątek
+      default: 
+        return [];
     }
   } else { 
     // To jesteś Ty (Mateusz)
     switch (dayOfWeek) {
-      case 1: return ['10:00', '11:00', '15:00', '16:00', '17:00']; // Poniedziałek
-      case 2: return ['10:00', '11:00', '15:00', '16:00', '17:00']; // Wtorek
-      case 3: return ['10:00', '11:00', '15:00', '16:00', '17:00']; // Środa
-      case 4: return ['10:00', '11:00', '15:00', '16:00', '17:00']; // Czwartek
-      case 5: return ['10:00', '11:00', '15:00', '16:00', '17:00']; // Piątek
-      default: return [];
+      case 1: case 2: case 3: case 4: case 5: 
+        return timeSlots; // Poniedziałek - Piątek
+      default: 
+        return [];
     }
   }
 }

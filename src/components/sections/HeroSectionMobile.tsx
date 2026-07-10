@@ -5,23 +5,23 @@ import { ArrowRight } from 'lucide-react';
 
 export default function HeroSectionMobile() {
   return (
-    <section className="relative w-full bg-white overflow-hidden flex flex-col items-center">
+    <section className="relative w-full bg-white overflow-hidden flex flex-col items-center ">
       
       {/* Animacja przenikania logotypów */}
       <style>{`
         @keyframes fadeBlue {
-          0%, 25% { opacity: 1; }
+          0%, 25% { opacity: 0.5; }
           33%, 91% { opacity: 0; }
-          100% { opacity: 1; }
+          100% { opacity: 0.5; }
         }
         @keyframes fadePurple {
           0%, 25% { opacity: 0; }
-          33%, 58% { opacity: 1; }
+          33%, 58% { opacity: 0.5; }
           66%, 100% { opacity: 0; }
         }
         @keyframes fadeYellow {
           0%, 58% { opacity: 0; }
-          66%, 91% { opacity: 1; }
+          66%, 91% { opacity: 0.5; }
           100% { opacity: 0; }
         }
         
@@ -66,10 +66,10 @@ export default function HeroSectionMobile() {
         </div>
 
         {/* --- NAGŁÓWEK --- */}
-        <h1 className="mb-10 text-[34px] font-[200] leading-[1.1] text-zinc-900 tracking-tight">
-          Zwiększaj zyski <br/> dzięki dedykowanej <br/>
+        <h1 className="mb-10 text-[29px] font-[200] leading-[1.1] text-zinc-900 tracking-tight">
+          Twój biznesowy pomysł.<br />
           <span className="bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text text-transparent font-[700]">
-              technologii
+              Nasz kod i wdrożenie.
           </span>
         </h1>
 

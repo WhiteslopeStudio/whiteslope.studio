@@ -216,7 +216,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                         }}
                       />
                       <motion.button
-                        onClick={() => router.push('/pricing')}
+                        
                         className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 ${
                           isOnServicePage
                             ? 'text-white'

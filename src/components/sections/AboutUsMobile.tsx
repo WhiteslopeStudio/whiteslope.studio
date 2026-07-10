@@ -91,32 +91,14 @@ export default function AboutUsMobile() {
           
           {/* Odtwarzacz YT - zostaje interaktywny klik, by nie obciążać startu */}
           <div className="flex flex-col w-full">
-            <div className="relative w-full aspect-video rounded-[20px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-sm group">
-              {!isVideoPlaying ? (
-                <>
-                  <img 
-                    src="https://img.youtube.com/vi/_4TJyWuqkUk/maxresdefault.jpg" 
-                    alt="Whiteslope Studio Video" 
-                    className="absolute inset-0 w-full h-full object-cover opacity-90"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                    <button 
-                      onClick={() => setIsVideoPlaying(true)}
-                      className="w-14 h-14 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform"
-                    >
-                      <Play className="w-5 h-5 text-blue-600 translate-x-0.5" fill="currentColor" />
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/_4TJyWuqkUk?autoplay=1&rel=0"
-                  title="Whiteslope Corporate Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
+            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-[0_30px_60px_rgba(0,0,0,0.06)]">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/_4TJyWuqkUk?rel=0"
+                title="Whiteslope Corporate Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
 
             {/* Premium Meta Row - dopasowane marginesy */}

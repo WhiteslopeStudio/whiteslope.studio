@@ -114,12 +114,12 @@ export default function HeroSection() {
         <div className="flex flex-col xl:flex-row justify-between items-end w-full gap-8 xl:gap-4">
 
           {/* --- LEWA KOLUMNA (H1, Przyciski, Zbijacze obiekcji) --- */}
-          <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[800px]">
+          <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[900px]">
 
             {/* Nagłówek H1 - KOMPLETNIE NIERUSZONY CSS */}
             <div>
-              <h1 className="text-[50px] font-[600] leading-[0.85] text-left text-white tracking-tight md:text-[60px] ">
-                Zwiększaj zyski dzięki<br/> dedykowanej technologii.
+              <h1 className="text-[50px] font-[700] leading-[0.85] text-left text-white tracking-tight md:text-[60px] ">
+                Twój biznesowy pomysł.<br/> Nasz kod i wdrożenie.
               </h1>
             </div>
 
@@ -139,9 +139,9 @@ export default function HeroSection() {
                     setIsMainHovered(false);
                     if (mainButton.handleMouseLeave) mainButton.handleMouseLeave();
                   }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full h-[46px] px-6 text-[14px] md:text-[15px] font-[600] text-white relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(0,87,255,0.25)] hover:shadow-[0_8px_30px_rgba(0,87,255,0.4)]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full h-[46px] px-10 text-[14px] md:text-[15px] font-[600] text-white relative overflow-hidden transition-all duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(0,87,255,0.25)] hover:shadow-[0_8px_30px_rgba(0,87,255,0.4)]"
                   style={{
-                    background: `radial-gradient(circle at ${isMainHovered ? mainButton.mousePosition.x : 50}% ${isMainHovered ? mainButton.mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
+                    background: `radial-gradient(circle at ${isMainHovered ? mainButton.mousePosition.x : 50}% ${isMainHovered ? mainButton.mousePosition.y : 100}%, #0066ff, #0057ff 40%, #004df2 80%, #0047df)`,
                     scale: isMainHovered ? 1.05 : 1,
                   }}
                 >

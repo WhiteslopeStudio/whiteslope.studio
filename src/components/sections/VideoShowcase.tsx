@@ -25,7 +25,7 @@ export default function VideoShowcase() {
   const videoY = useTransform(scrollYProgress, [0, 0.5, 1], ["0px", "0px", "50px"]);
 
   return (
-    <section className="relative w-full bg-white pb-[80px] overflow-hidden ">
+    <section className="relative w-full bg-white pb-[120px] overflow-hidden ">
       <div className="w-full max-w-[1640px] mx-auto px-[24px]">
         
         {/* --- GŁÓWNA KARTA BENTO (DARK MODE) --- */}

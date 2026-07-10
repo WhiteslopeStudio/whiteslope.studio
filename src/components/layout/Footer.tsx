@@ -112,15 +112,7 @@ export default function Footer() {
               style={{ filter: 'brightness(0) invert(1)' }}
             />
 
-            {/* Grupa z gwiazdkami wyrównana do lewej */}
-            <div className="flex flex-col items-center gap-1">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                ))}
-              </div>
-              <span className="text-white font-bold text-[18px] tracking-tight mt-1 text-right">5.0</span>
-            </div>
+           
             
           </div>
 
@@ -269,28 +261,53 @@ export default function Footer() {
 
         </div>
 
+        
         {/* --- LOKALIZACJE --- */}
-        <div className="flex flex-col border-t border-white/10 pt-8 pb-10">
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-5xl mx-auto">
-            <span className="text-[13px] text-zinc-500 w-full text-center mb-1">Obsługujemy miasta:</span>
-            {cities.map((city) => (
-              <span key={city} className="text-[13px] text-zinc-500 hover:text-zinc-300 transition-colors cursor-default">
-                {city}
-              </span>
-            ))}
+        <div className="flex flex-col border-t border-white/10 pt-8 pb-30 max-w-[1840px] ">
+          <div className="flex flex-wrap justify-left gap-x-4 gap-y-2  mx-auto">
+            <span className="text-[13px] text-zinc-500 text-left mb-1">
+              Obsługujemy miasta:
+            </span>
+            {cities.map((city) => {
+              // Niezawodne usuwanie polskich znaków i tworzenie sluga
+              const citySlug = city
+                .toLowerCase()
+                .replace(/ą/g, 'a')
+                .replace(/ć/g, 'c')
+                .replace(/ę/g, 'e')
+                .replace(/ł/g, 'l')
+                .replace(/ń/g, 'n')
+                .replace(/ó/g, 'o')
+                .replace(/ś/g, 's')
+                .replace(/ź/g, 'z')
+                .replace(/ż/g, 'z')
+                .replace(/[^a-z0-9-]/g, '-') // Usuwa wszystkie inne znaki specjalne
+                .replace(/-+/g, '-')         // Zamienia wiele myślników na jeden
+                .replace(/^-|-$/g, '');      // Usuwa myślniki z początku i końca
+
+              return (
+                <Link 
+                  key={city} 
+                  href={`/${citySlug}`} 
+                  className="text-[13px] text-zinc-500 hover:text-zinc-300 transition-colors"
+                >
+                  {city}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
 
       {/* --- GIGANTYCZNY NAPIS I COPYRIGHT (Pełna szerokość) --- */}
-      <div className="w-full relative">
+      <div className="max-w-[1640px] mx-auto relative">
         <div className="absolute top-[-30px] left-0 w-full px-6 flex justify-between text-[13px] text-zinc-500 z-20">
           <span>© {currentYear} {APP_CONFIG.name}. Wszystkie prawa zastrzeżone.</span>
           <Link href="/privacy&cookies/privacyPolicy" className="hover:text-zinc-300 transition-colors">Polityka prywatności</Link>
         </div>
 
-        <div className="w-full overflow-hidden pointer-events-none select-none flex justify-center">
-          <h1 className="text-[19vw] font-black text-white/10 leading-[0.70] tracking-tighter text-center m-0 p-0 transform translate-y-[8%]">
+        <div className="w-full overflow-hidden pointer-events-none select-none flex justify-center max-w-[1640px] mx-auto">
+          <h1 className="text-[10vw] font-black text-white/2 leading-[0.70] tracking-tighter text-center m-0 p-0 transform translate-y-[8%]">
             WHITESLOPE
           </h1>
         </div>

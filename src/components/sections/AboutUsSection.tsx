@@ -94,7 +94,7 @@ export default function AboutUsSection() {
         {/* --- NAGŁÓWEK SEKCJI --- */}
         <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h2 className="text-[40px] font-bold text-zinc-950 leading-[1.05] tracking-tight">
+            <h2 className="text-[40px] font-bold text-zinc-950 leading-[1.05] tracking-tight -translate-y-4 ">
               Zróbmy razem coś świetnego!
             </h2>
           </div>
@@ -142,32 +142,14 @@ export default function AboutUsSection() {
           
           {/* LEWA STRONA: Odtwarzacz YT */}
           <div className="w-full lg:w-[60%] flex flex-col ">
-            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-[0_30px_60px_rgba(0,0,0,0.06)] group">
-              {!isVideoPlaying ? (
-                <>
-                  <img 
-                    src="https://img.youtube.com/vi/_4TJyWuqkUk/maxresdefault.jpg" 
-                    alt="Whiteslope Studio Video" 
-                    className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-102"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                    <button 
-                      onClick={() => setIsVideoPlaying(true)}
-                      className="w-16 h-16 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl hover:scale-105 transition-transform duration-300"
-                    >
-                      <Play className="w-5 h-5 text-blue-600 translate-x-0.5" fill="currentColor" />
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/_4TJyWuqkUk?autoplay=1&rel=0"
-                  title="Whiteslope Corporate Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
+            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-[0_30px_60px_rgba(0,0,0,0.06)]">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/_4TJyWuqkUk?rel=0"
+                title="Whiteslope Corporate Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
 
             {/* Premium Meta Row */}

@@ -259,27 +259,27 @@ export default function AssistantDemo({ onClose, onThemeChange }: { onClose: () 
                 {/* MENU GŁÓWNE */}
                 {(step === 'main_menu' || step === 'follow_up') && (
                   <>
-                    <button onClick={() => onSend('Rezerwacja wizyty', 'booking')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><CalendarIcon className="w-[16px] h-[16px]" /> Rezerwacja</button>
-                    <button onClick={() => onSend('Zapytaj o ofertę', 'offer')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><Sparkles className="w-[16px] h-[16px]" /> Oferta</button>
-                    <button onClick={() => onSend('Najczęstsze pytania', 'faq')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><HelpCircle className="w-[16px] h-[16px]" /> Pytania</button>
-                    <button onClick={() => onSend('Kontakt z firmą', 'contact')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><PhoneCall className="w-[16px] h-[16px]" /> Kontakt</button>
+                    <button onClick={() => onSend('Rezerwacja wizyty', 'booking')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:text-black hover:border-purple-300 hover:bg-zinc-400 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><CalendarIcon className="w-[16px] h-[16px]" /> Rezerwacja</button>
+                    <button onClick={() => onSend('Zapytaj o ofertę', 'offer')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:text-black hover:border-purple-300 hover:bg-zinc-400 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><Sparkles className="w-[16px] h-[16px]" /> Oferta</button>
+                    <button onClick={() => onSend('Najczęstsze pytania', 'faq')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:text-black hover:border-purple-300 hover:bg-zinc-400 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><HelpCircle className="w-[16px] h-[16px]" /> Pytania</button>
+                    <button onClick={() => onSend('Kontakt z firmą', 'contact')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:text-black hover:border-purple-300 hover:bg-zinc-400 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><PhoneCall className="w-[16px] h-[16px]" /> Kontakt</button>
                   </>
                 )}
 
                 {/* TAK / NIE */}
                 {step === 'want_to_ask' && (
                   <>
-                    <button onClick={() => onSend('Tak, chcę zapytać', 'yes')} className="px-[20px] py-[10px] bg-white border border-green-200 text-green-700 hover:bg-green-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><Check className="w-[16px] h-[16px]" /> Tak, chcę napisać</button>
-                    <button onClick={() => onSend('Nie, dziękuję', 'no')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><X className="w-[16px] h-[16px]" /> Nie, dziękuję</button>
+                    <button onClick={() => onSend('Tak, chcę zapytać', 'yes')} className="px-[20px] py-[10px] bg-zinc-300 border border-green-200 text-green-700 hover:bg-green-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><Check className="w-[16px] h-[16px]" /> Tak, chcę napisać</button>
+                    <button onClick={() => onSend('Nie, dziękuję', 'no')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:bg-zinc-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm flex items-center gap-[6px]"><X className="w-[16px] h-[16px]" /> Nie, dziękuję</button>
                   </>
                 )}
 
                 {/* ZAINTERESOWANIE */}
                 {step === 'offer_interest' && (
                   <>
-                    <button onClick={() => onSend('Strony WWW')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm">Strony WWW</button>
+                    <button onClick={() => onSend('Strony WWW')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm">Strony WWW</button>
                     <button onClick={() => onSend('Wdrożenia AI')} className="px-[20px] py-[10px] bg-purple-50 border border-purple-200 text-purple-700 hover:bg-purple-100 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm">Wdrożenia AI</button>
-                    <button onClick={() => onSend('Marketing')} className="px-[20px] py-[10px] bg-white border border-zinc-200 text-zinc-700 hover:border-purple-300 hover:bg-purple-50 rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm">Marketing</button>
+                    <button onClick={() => onSend('Marketing')} className="px-[20px] py-[10px] bg-zinc-300 border border-zinc-200 text-zinc-700 hover:border-purple-300 hover:bg-purple-5０ rounded-full transition-all text-[13px] font-semibold cursor-pointer shadow-sm">Marketing</button>
                   </>
                 )}
 
