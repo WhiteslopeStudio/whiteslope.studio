@@ -27,8 +27,7 @@ export default function QuickContact() {
       {/* ========================================== */}
       {/* TRIGGER BUTTON (zamknięty widget) */}
       {/* ========================================== */}
-      <div className="fixed bottom-3 right-[80px] md:bottom-8 md:right-[112px] z-30 flex items-end pointer-events-none">
-        <button
+<div className="fixed bottom-3 left-1/2 -translate-x-1/2 md:left-auto md:right-[100px] md:translate-x-0 md:bottom-8 z-50 flex items-end pointer-events-none">            <button
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer pointer-events-auto group relative overflow-hidden flex items-center gap-3 h-[48px] md:h-[52px] pl-1.5 pr-5 md:pr-6 bg-[#161616]  border-[#ccff00] group-hover:border-[#ccff00] rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(204,255,0,0.25)]"
           aria-label="Szybki kontakt Whiteslope"
@@ -82,9 +81,9 @@ export default function QuickContact() {
             </div>
 
             {/* Tekst i strzałka */}
-            <span className="text-[14px] md:text-[15px] font-medium text-white group-hover:text-black tracking-tight transition-colors duration-300">
-              Dane kontaktowe
-            </span>
+            <span className="text-[14px] md:text-[15px] font-medium text-white group-hover:text-black tracking-tight transition-colors duration-300 whitespace-nowrap">
+  Szybki kontakt
+</span>
           </div>
         </button>
       </div>

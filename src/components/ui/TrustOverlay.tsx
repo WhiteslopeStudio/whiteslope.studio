@@ -35,7 +35,7 @@ const DEFAULT_REVIEWS: TrustReview[] = [
   {
     name: 'Damian Bogdanowicz',
     company: 'Filmy i fotografia',
-    headline: 'Strona robi efekt WOW!',
+    headline: 'Strona robi efekt!',
     text: 'Zupełnie inna jakość. Strona jest estetyczna. Jestem pod wrażeniem!',
     rating: 5,
     link: 'https://damian-bogdanowicz-site.vercel.app/',
