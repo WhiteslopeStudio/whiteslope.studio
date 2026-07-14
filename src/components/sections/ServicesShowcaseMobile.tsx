@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Check, ArrowRight } from "lucide-react";
 
 const SERVICES = [
@@ -28,18 +29,22 @@ export default function AutomationShowcaseMobile() {
           <div className="absolute top-[-5%] right-[-10%] w-[80%] h-[200px] rounded-full bg-purple-500/15 blur-[60px] pointer-events-none z-0" />
           
           {/* --- LOGO --- */}
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp"
-            className="absolute top-5 right-5 h-[20px] object-contain z-20 pointer-events-none"
+            width={916}
+            height={215}
+            className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Automation & AI"
           />
 
           {/* --- GÓRA: ZDJĘCIE CHATBOTA --- */}
           <div className="relative w-full h-[240px] pt-12 px-4 flex items-end justify-center z-10 pointer-events-none">
-            <img 
+            <Image 
               src="/_resources/Automations/chatbotPicture.png"
               alt="Interaktywne demo chatbota AI"
-              className="w-full h-full object-contain object-bottom drop-shadow-[0_12px_24px_rgba(147,51,234,0.08)]"
+              fill
+              sizes="100vw"
+              className="object-contain object-bottom drop-shadow-[0_12px_24px_rgba(147,51,234,0.08)]"
             />
           </div>
 
