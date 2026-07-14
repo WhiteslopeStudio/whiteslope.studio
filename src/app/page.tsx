@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // 🚫 ANIMACJA INTRO - WYŁĄCZONA (odkomentuj jak chcesz wrócić)
 // import IntroAnimation from '@/components/layout/IntroAnimation';
@@ -49,112 +49,63 @@ export default function HomePage() {
   // ✅ OD RAZU POKAZUJEMY TREŚĆ (bez animacji intro)
   const [introCompleted] = useState(true);
 
-  // 🚫 STARA LOGIKA ANIMACJI - ZACHOWANA (jako komentarz wg prośby)
-  /*
-  const [showIntro, setShowIntro] = useState(false);
+  // ✅ FAZA 2b (14.07.2026): pierwsza wersja (pelny CSS dual-render dla wszystkich
+  // 8 sekcji) poprawila LCP (6.5s -> 4.9s) ale pogorszyla FCP (1.1s -> 3.3s) i TBT,
+  // bo caly DOM (w tym dwa rownolegle <video> w Hero) podwoil sie i musial sie
+  // zhydrowac. Zawezono fix: TYLKO Hero (+ LogoTicker) renderuje sie natychmiast
+  // przez CSS - to jedyna rzecz ktora wplywa na LCP/FCP (jest w pierwszym widoku).
+  // Reszta sekcji (ponizej fold, nie wplywa na LCP) wraca do starego wzorca:
+  // JS-owy przelacznik isMobile + lokalny "mounted" gate, ktory NIE blokuje juz
+  // calej strony - tylko to co i tak jest niewidoczne przy pierwszym malowaniu.
+  const [belowFoldMounted, setBelowFoldMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (isMobile) {
-      setIntroCompleted(true);
-      return;
-    }
+    setBelowFoldMounted(true);
+    setIsMobile(window.innerWidth < 768);
 
-    const animationData = localStorage.getItem('hero-animation-data');
-
-    if (animationData) {
-      try {
-        const { seen, timestamp } = JSON.parse(animationData);
-        const timeoutDuration = 30 * 60 * 1000;
-
-        if (Date.now() - timestamp > timeoutDuration) {
-          localStorage.removeItem('hero-animation-data');
-          setShowIntro(true);
-        } else {
-          setIntroCompleted(true);
-        }
-      } catch (error) {
-        setShowIntro(true);
-      }
-    } else {
-      setShowIntro(true);
-    }
-  }, [isMobile]);
-
-  const handleIntroComplete = useCallback(() => {
-    setShowIntro(false);
-    setIntroCompleted(true);
-    localStorage.setItem(
-      'hero-animation-data',
-      JSON.stringify({
-        seen: true,
-        timestamp: Date.now(),
-      })
-    );
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-  */
 
-  // ✅ FAZA 2 (14.07.2026): przełącznik desktop/mobile przeniesiony z JS (isMobile
-  // ustawiany po zamontowaniu w useEffect, blokujący render pustym <main> do tego
-  // czasu) na czyste CSS (Tailwind "hidden md:block" / "block md:hidden"). Obie
-  // wersje trafiają do wygenerowanego HTML od razu (SSR) - to przeglądarka przez
-  // CSS decyduje którą pokazać, więc treść jest widoczna natychmiast zamiast
-  // czekać na hydrację. To był realny hamulec na FCP/LCP na mobile (potwierdzone
-  // testem: usunięcie samego wideo z Hero nic nie zmieniło w LCP, bo cała reszta
-  // sekcji - w tym karuzela logo i nagłówek - była zamknięta za tą samą blokadą).
   return (
     <main className="min-h-screen bg-black">
       {/* 🚫 ANIMACJA INTRO - WYŁĄCZONA */}
-      {/* {showIntro && !isMobile && (
-        <IntroAnimation onComplete={handleIntroComplete} />
-      )}
-      */}
 
       {/* ✅ TREŚĆ GŁÓWNA */}
       {introCompleted && (
         <>
-          {/* 🚀 HERO SECTION */}
+          {/* 🚀 HERO SECTION - zawsze natychmiast (SSR + CSS), to jedyna sekcja
+              ktora wplywa na FCP/LCP bo jest w pierwszym widoku ekranu */}
           <div className="block md:hidden"><HeroSectionMobile /></div>
           <div className="hidden md:block"><HeroSection /></div>
 
-          {/* 🎬 PORTFOLIO DESKTOP */}
-          {/* {!isMobile && <PortfolioSectionDesktop />} */}
-
-
           <LogoTicker />
-          {/* <ServicesDevider /> */}
-          <div className="block md:hidden"><ReviewsMobile /></div>
-          <div className="hidden md:block"><Reviews /></div>
 
-          <div className="block md:hidden"><ServicesIntroMobile /></div>
-          <div className="hidden md:block"><ServicesIntro /></div>
+          {/* Sekcje ponizej fold - nie wplywaja na LCP, moga poczekac na mount */}
+          {belowFoldMounted && (
+            <>
+              {isMobile ? <ReviewsMobile /> : <Reviews />}
 
-          {/* 🌐 WEBSITES & SAAS SHOWCASE */}
-          <div className="block md:hidden"><WebsitesShowcaseMobile /></div>
-          <div className="hidden md:block"><WebsitesShowcase /></div>
+              {isMobile ? <ServicesIntroMobile /> : <ServicesIntro />}
 
-          {/* 🛠️ SERVICES SHOWCASE */}
-          <div className="block md:hidden"><ServicesShowcaseMobile /></div>
-          <div className="hidden md:block"><ServicesShowcase /></div>
-          {/* 🤖 AI INTEGRATION SHOWCASE */}
-          {/* <AiShowcase /> */}
-          {/* 🎬 VIDEO & MARKETING SHOWCASE */}
-          <div className="block md:hidden"><VideoShowcaseMobile /></div>
-          <div className="hidden md:block"><VideoShowcase /></div>
+              {/* 🌐 WEBSITES & SAAS SHOWCASE */}
+              {isMobile ? <WebsitesShowcaseMobile /> : <WebsitesShowcase />}
 
+              {/* 🛠️ SERVICES SHOWCASE */}
+              {isMobile ? <ServicesShowcaseMobile /> : <ServicesShowcase />}
+              {/* 🎬 VIDEO & MARKETING SHOWCASE */}
+              {isMobile ? <VideoShowcaseMobile /> : <VideoShowcase />}
 
-          {/* <CaseStudies /> */}
+              {isMobile ? <AboutUsSectionMobile /> : <AboutUsSection />}
 
-          <div className="block md:hidden"><AboutUsSectionMobile /></div>
-          <div className="hidden md:block"><AboutUsSection /></div>
-          {/* <KnowledgeBaseSection /> */}
+              {isMobile ? <BriefSectionMobile /> : <BriefSection />}
 
-          <div className="block md:hidden"><BriefSectionMobile /></div>
-          <div className="hidden md:block"><BriefSection /></div>
-
-          {/* ❓ FAQ */}
-          <div className="block md:hidden"><FAQSectionMobile /></div>
-          <div className="hidden md:block"><FAQSection /></div>
-
+              {/* ❓ FAQ */}
+              {isMobile ? <FAQSectionMobile /> : <FAQSection />}
+            </>
+          )}
 
           <TrustOverlay />
         </>
