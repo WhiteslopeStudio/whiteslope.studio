@@ -144,13 +144,35 @@ export default function AboutUsSection() {
           {/* LEWA STRONA: Odtwarzacz YT */}
           <div className="w-full lg:w-[60%] flex flex-col ">
             <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-[0_30px_60px_rgba(0,0,0,0.06)]">
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/_4TJyWuqkUk?rel=0"
-                title="Whiteslope Corporate Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              {isVideoPlaying ? (
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/_4TJyWuqkUk?rel=0&autoplay=1"
+                  title="Whiteslope Corporate Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setIsVideoPlaying(true)}
+                  aria-label="Odtwórz wideo: Whiteslope Corporate Video"
+                  className="group absolute inset-0 w-full h-full cursor-pointer"
+                >
+                  <Image
+                    src="https://img.youtube.com/vi/_4TJyWuqkUk/maxresdefault.jpg"
+                    alt="Miniatura wideo Whiteslope Corporate Video"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-colors shadow-lg">
+                      <Play className="w-6 h-6 text-zinc-950 fill-zinc-950 ml-1" />
+                    </div>
+                  </div>
+                </button>
+              )}
             </div>
 
             {/* Premium Meta Row */}
