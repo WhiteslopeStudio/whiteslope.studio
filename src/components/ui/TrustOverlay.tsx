@@ -77,7 +77,7 @@ function Stars({ rating, className = '', size = 'h-4 w-4' }: { rating: number; c
   const gradientBaseId = useId();
 
   return (
-    <div className={`flex items-center gap-0.5 ${className}`} aria-label={`${rating} z 5 gwiazdek`}>
+    <div className={`flex items-center gap-0.5 ${className}`} role="img" aria-label={`${rating} z 5 gwiazdek`}>
       {Array.from({ length: 5 }).map((_, index) => (
         <svg
           key={index}
