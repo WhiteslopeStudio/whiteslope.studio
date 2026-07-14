@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ArrowRight, Play, Instagram, Facebook, Youtube } from 'lucide-react';
 
 import world from '@svg-maps/world'; 
@@ -155,11 +156,13 @@ export default function AboutUsSection() {
             {/* Premium Meta Row */}
             <div className="mt-5 flex items-center justify-between border border-zinc-200 pb-5 bg-white/70 backdrop-blur-sm  p-3 rounded-[24px] shadow-[0_4px_12px_rgba(0,0,0,0.04)]">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-full overflow-hidden bg-zinc-100 border border-zinc-200/80 flex-shrink-0">
-                  <img 
+                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-zinc-100 border border-zinc-200/80 flex-shrink-0">
+                  <Image 
                     src="/_resources/whiteslope studio literka sygnet.png" 
                     alt="Whiteslope Studio" 
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
                   />
                 </div>
                 <div>
@@ -236,8 +239,8 @@ export default function AboutUsSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 rounded-[20px] ">
             {teamProfiles.map((profile) => (
               <div key={profile.name} className="flex flex-col p-6 rounded-[20px] bg-white border border-zinc-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] border-zinc-200 transition-all duration-300 group">
-                <div className="w-14 h-14 rounded-full overflow-hidden mb-4 border border-zinc-200 flex-shrink-0">
-                  <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mb-4 border border-zinc-200 flex-shrink-0">
+                  <Image src={profile.image} alt={profile.name} fill sizes="56px" className="object-cover" />
                 </div>
                 
                 <div className="flex-1">
