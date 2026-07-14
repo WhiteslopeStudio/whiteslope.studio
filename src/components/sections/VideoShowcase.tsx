@@ -131,7 +131,8 @@ export default function VideoShowcase() {
                 autoPlay 
                 muted 
                 loop 
-                playsInline 
+                playsInline
+                aria-hidden="true" 
               />
             </motion.div>
 
