@@ -116,6 +116,8 @@ export default function HeroSectionMobile() {
             muted
             playsInline
             aria-hidden="true"
+            preload="auto"
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
             src="/animationHero/HeroShowReel.mp4"
           />

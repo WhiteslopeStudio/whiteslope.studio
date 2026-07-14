@@ -76,6 +76,8 @@ export default function HeroSection() {
               playsInline
               aria-hidden="true"
               poster="/animationHero/HeroShowReel-poster.jpg"
+              preload="auto"
+              fetchPriority="high"
               /* Wideo wypełnia 1640px, a scale-[2.4] powiększa je, ukrywając znaki wodne. Reszta ucięta przez overflow-hidden rodzica */
               className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
               src="/animationHero/HeroShowReel.mp4"
