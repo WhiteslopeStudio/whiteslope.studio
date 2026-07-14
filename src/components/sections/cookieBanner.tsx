@@ -103,6 +103,7 @@ export const CookieBanner = () => {
               </div>
               <button
                 onClick={closeBanner}
+                aria-label="Zamknij informację o cookies"
                 className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4 text-black" />
