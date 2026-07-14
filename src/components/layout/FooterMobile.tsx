@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Mail,
   Phone,
@@ -16,6 +17,7 @@ import Link from "next/link";
 
 export default function FooterMobile() {
   const currentYear = new Date().getFullYear();
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   // Tablica miast
   const cities = [
@@ -145,16 +147,27 @@ export default function FooterMobile() {
                 <MapPin className="w-4 h-4 text-zinc-500" /> Białystok, Działamy zdalnie
             </div>
             
-            <div className="w-full rounded-[16px] overflow-hidden border border-white/10 h-[120px]">
-              <iframe
-                src="https://www.google.com/maps?q=Bia%C5%82ystok,Polska&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: 'grayscale(1) invert(0.92) contrast(0.9)' }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Whiteslope Studio - lokalizacja Białystok"
-              />
+            <div className="w-full rounded-[16px] overflow-hidden border border-white/10 h-[120px] bg-white/5">
+              {mapLoaded ? (
+                <iframe
+                  src="https://www.google.com/maps?q=Bia%C5%82ystok,Polska&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'grayscale(1) invert(0.92) contrast(0.9)' }}
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Whiteslope Studio - lokalizacja Białystok"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setMapLoaded(true)}
+                  aria-label="Pokaż mapę - lokalizacja Whiteslope Studio w Białymstoku"
+                  className="w-full h-full flex flex-col items-center justify-center gap-2 text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
+                >
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-[12px] font-medium">Pokaż mapę</span>
+                </button>
+              )}
             </div>
          </div>
       </div>
