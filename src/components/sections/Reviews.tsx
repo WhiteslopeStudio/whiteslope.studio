@@ -2,6 +2,7 @@
 
 import { Star, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const REVIEWS = [
   {
@@ -116,9 +117,11 @@ export default function ReviewsSection() {
               <div>
                 {/* Awatar i dane */}
                 <div className="flex items-center gap-4 mb-4">
-                  <img
+                  <Image
                     src={review.avatarUrl}
                     alt={review.name}
+                    width={48}
+                    height={48}
                     className="w-[48px] h-[48px] rounded-full object-cover border border-[#D1D5DB]"
                   />
                   <div className="flex flex-col">
