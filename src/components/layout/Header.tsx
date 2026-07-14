@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
@@ -160,9 +161,12 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                   onMouseEnter={() => setIsLogoHovered(true)}
                   onMouseLeave={() => setIsLogoHovered(false)}
                 >
-                  <img
+                  <Image
                     src="/_resources/logoWhiteSlopeBlue.webp"
                     alt="WhiteSlope Studio"
+                    width={916}
+                    height={117}
+                    priority
                     className="h-5 w-auto object-contain relative z-10 transition-all duration-300 group-hover:brightness-125"
                   />
                 </motion.div>
@@ -563,15 +567,18 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                     <div style={{ position: 'relative', padding: '24px 32px' }}>
 
                       {!aktywnaKategoriaMenu && (
-                        <img
+                        <Image
                           src="/_resources/logoWhiteSlope.webp"
                           alt=""
+                          width={916}
+                          height={117}
                           style={{
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
                             transform: 'translate(-50%, -50%)',
                             width: '600px',
+                            height: 'auto',
                             filter: 'invert(1)',
                             opacity: 0.1,
                             pointerEvents: 'none',
@@ -663,9 +670,11 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       justifyContent: 'space-between',
                     }}
                   >
-                    <img
+                    <Image
                       src="/_resources/whiteslope studio literka sygnet2.png"
                       alt="Whiteslope Studio"
+                      width={500}
+                      height={500}
                       style={{
                         height: '30px',
                         width: 'auto',
