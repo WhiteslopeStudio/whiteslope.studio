@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Check, ArrowRight } from "lucide-react";
 
 const SERVICES = [
@@ -29,18 +30,22 @@ export default function VideoShowcaseMobile() {
 
           {/* --- LOGO --- */}
           {/* Zmienione na czarną wersję dopasowaną do jasnego tła */}
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp"
-            className="absolute top-5 right-5 h-[20px] object-contain z-20 pointer-events-none"
+            width={916}
+            height={215}
+            className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Video Marketing"
           />
 
           {/* --- GÓRA: ZDJĘCIE --- */}
           <div className="relative w-full h-[240px] z-10 pointer-events-none">
-            <img 
+            <Image 
               src="/_resources/videoMarketing/VideoMarketingPicture.webp"
               alt="Marketing i Wideo Whiteslope"
-              className="w-full h-full object-cover object-center"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
             />
             {/* Płynny gradient od dołu, który wtapia zdjęcie w jasne tło karty */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-50 to-transparent z-10" />
