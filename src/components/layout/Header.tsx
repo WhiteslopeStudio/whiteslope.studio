@@ -316,6 +316,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                         href="https://www.instagram.com/whiteslopestudio/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Whiteslope Studio na Instagramie"
                         className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
                       >
                         <Instagram className="w-4 h-4 text-white" />
@@ -324,6 +325,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                         href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Whiteslope Studio na Facebooku"
                         className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
                       >
                         <Facebook className="w-4 h-4 text-white" />
@@ -332,6 +334,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                         href="https://www.youtube.com/@WhiteslopeStudio"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Whiteslope Studio na YouTube"
                         className="p-2 rounded-full transition-all duration-300 hover:scale-110 hover:cursor-pointer"
                       >
                         <Youtube className="w-4 h-4 text-white" />
@@ -942,13 +945,13 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
 
                 {/* Ikonki społecznościowe */}
                 <div className="flex justify-center gap-5 pt-8 pb-4">
-                  <a href="https://www.youtube.com/@WhiteslopeStudio" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                  <a href="https://www.youtube.com/@WhiteslopeStudio" target="_blank" rel="noopener noreferrer" aria-label="Whiteslope Studio na YouTube" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
                     <Youtube className="w-5 h-5 text-zinc-700" />
                   </a>
-                  <a href="https://www.instagram.com/whiteslopestudio/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                  <a href="https://www.instagram.com/whiteslopestudio/" target="_blank" rel="noopener noreferrer" aria-label="Whiteslope Studio na Instagramie" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
                     <Instagram className="w-5 h-5 text-zinc-700" />
                   </a>
-                  <a href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+                  <a href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL" target="_blank" rel="noopener noreferrer" aria-label="Whiteslope Studio na Facebooku" className="p-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 transition-all duration-300 active:scale-95">
                     <Facebook className="w-5 h-5 text-zinc-700" />
                   </a>
                 </div>

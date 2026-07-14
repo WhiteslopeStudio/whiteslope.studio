@@ -322,9 +322,10 @@ export default function AssistantDemo({ onClose, onThemeChange }: { onClose: () 
               className="flex-1 bg-transparent px-[20px] py-[10px] outline-none text-zinc-900 placeholder:text-zinc-400 text-[15px] font-medium disabled:cursor-not-allowed"
               autoFocus={isInputAllowed}
             />
-            <button 
+            <button
               onClick={() => onSend(inputValue)}
               disabled={!inputValue.trim() || !isInputAllowed}
+              aria-label="Wyślij wiadomość"
               className={`w-[40px] h-[40px] rounded-full flex items-center justify-center transition-all ${
                 isInputAllowed && inputValue.trim() ? 'bg-purple-600 text-white hover:bg-purple-700 shadow-md cursor-pointer' : 'bg-zinc-100 text-zinc-300 cursor-not-allowed'
               }`}
