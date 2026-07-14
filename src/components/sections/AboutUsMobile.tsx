@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ArrowRight, Play, Instagram, Facebook, Youtube } from 'lucide-react';
 
 const teamProfiles = [
@@ -104,11 +105,13 @@ export default function AboutUsMobile() {
             {/* Premium Meta Row - dopasowane marginesy */}
             <div className="mt-4 flex items-center justify-between border border-zinc-200 bg-zinc-50 p-3 rounded-[16px] shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden bg-white border border-zinc-200 flex-shrink-0">
-                  <img 
+                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white border border-zinc-200 flex-shrink-0">
+                  <Image 
                     src="/_resources/whiteslope studio literka sygnet.png" 
                     alt="Whiteslope Studio" 
-                    className="w-full h-full object-cover p-1"
+                    fill
+                    sizes="40px"
+                    className="object-cover p-1"
                   />
                 </div>
                 <div>
@@ -149,8 +152,8 @@ export default function AboutUsMobile() {
             {teamProfiles.map((profile) => (
               <div key={profile.name} className="flex flex-col p-5 rounded-[20px] bg-white border border-zinc-200 shadow-sm">
                 <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-zinc-200 flex-shrink-0">
-                    <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border border-zinc-200 flex-shrink-0">
+                    <Image src={profile.image} alt={profile.name} fill sizes="48px" className="object-cover" />
                   </div>
                   <h4 className="text-[16px] font-bold text-zinc-950 tracking-tight">{profile.name}</h4>
                 </div>
