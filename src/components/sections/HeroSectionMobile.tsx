@@ -110,7 +110,20 @@ export default function HeroSectionMobile() {
         
         {/* --- WIDEO --- */}
         <div className="w-full aspect-[16/15] rounded-[24px] overflow-hidden shadow-xl relative mb-10 border border-zinc-100 bg-zinc-100 mt-4">
-          <video
+          {/* TEST DIAGNOSTYCZNY (14.07.2026): wideo tymczasowo zakomentowane, zeby
+              sprawdzic czy to ono trzyma LCP na mobile w miejscu (~6.5s). Zamiast
+              niego statyczny poster - jak wroci wideo, po prostu odkomentuj blok
+              nizej i usun ten <Image>. */}
+          <Image
+            src="/animationHero/HeroShowReel-poster.jpg"
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            sizes="500px"
+            className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
+          />
+          {/* <video
             autoPlay
             loop
             muted
@@ -121,7 +134,7 @@ export default function HeroSectionMobile() {
             fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
             src="/animationHero/HeroShowReel.mp4"
-          />
+          /> */}
           <div className="absolute inset-0 shadow-[inset_0_0_24px_rgba(0,0,0,0.1)] pointer-events-none rounded-[24px]" />
         </div>
 
