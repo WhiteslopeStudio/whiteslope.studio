@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Check, ArrowRight } from "lucide-react";
 
@@ -64,9 +65,11 @@ export default function AutomationShowcase() {
             
             {/* LOGO: Umieszczone naturalnie nad H2 */}
             <div className="w-full flex justify-start mb-[32px] lg:mb-[40px]">
-               <img 
+               <Image 
                 src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp"
-                className="h-[30px] lg:h-[40px] object-contain pointer-events-none"
+                width={916}
+                height={215}
+                className="h-[30px] lg:h-[40px] w-auto object-contain pointer-events-none"
                 alt="Whiteslope Studio Automation & AI"
               />
             </div>
