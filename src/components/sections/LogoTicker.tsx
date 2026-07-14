@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 // Dodana flaga invertColor: true dla Patryka
 const PARTNER_LOGOS = [
-  { name: 'Wiesławski Studio', url: '/_resources/grafika/wieslawski studio logo biale.webp', invertColor: false },
-  { name: 'Easylesson', url: '/_resources/grafika/LogoEasyLessonWhite.webp', invertColor: false },
-  { name: 'Damian Bogdanowicz', url: '/_resources/logos/damianLogo.webp', invertColor: false },
-  { name: 'Patryk Kulesza', url: '/_resources/logo-PatrykKulesza.webp', invertColor: true },
-  { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false },
+  { name: 'Wiesławski Studio', url: '/_resources/grafika/wieslawski studio logo biale.webp', invertColor: false, w: 1280, h: 213 },
+  { name: 'Easylesson', url: '/_resources/grafika/LogoEasyLessonWhite.webp', invertColor: false, w: 256, h: 58 },
+  { name: 'Damian Bogdanowicz', url: '/_resources/logos/damianLogo.webp', invertColor: false, w: 700, h: 1000 },
+  { name: 'Patryk Kulesza', url: '/_resources/logo-PatrykKulesza.webp', invertColor: true, w: 1442, h: 494 },
+  { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false, w: 3000, h: 3000 },
 ];
 
 export default function LogoTicker() {
@@ -44,9 +45,11 @@ export default function LogoTicker() {
         <div className="flex animate-marquee items-center w-max">
           {logos.map((logo, index) => (
             <div key={index} className="flex-shrink-0 px-8 md:px-16 flex items-center justify-center">
-              <img
+              <Image
                 src={logo.url}
                 alt={`Logo ${logo.name}`}
+                width={logo.w}
+                height={logo.h}
                 // Jeśli logo.invertColor jest true, dodajemy klasę 'invert', która robi z czarnego biały
                 className={`max-h-[35px] md:max-h-[45px] w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 ${
                   logo.invertColor ? 'invert' : ''
