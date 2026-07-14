@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Check, ArrowRight } from "lucide-react";
@@ -24,6 +24,24 @@ export default function VideoShowcase() {
   });
 
   const videoY = useTransform(scrollYProgress, [0, 0.5, 1], ["0px", "0px", "50px"]);
+
+  // Wideo (39MB) ladujemy dopiero, gdy sekcja zbliza sie do widoku - nie od razu przy starcie strony
+  const [videoInView, setVideoInView] = useState(false);
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVideoInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="relative w-full bg-white pb-[120px] overflow-hidden ">
@@ -125,15 +143,18 @@ export default function VideoShowcase() {
               style={{ y: videoY }} 
               className="absolute inset-x-0 top-[-7.5%] h-[115%] w-full origin-bottom"
             >
-              <video 
-                src="/_resources/videoMarketing/WieslawskiStudioFilm.mp4" 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.01]" 
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                aria-hidden="true" 
-              />
+              {videoInView && (
+                <video
+                  src="/_resources/videoMarketing/WieslawskiStudioFilm.mp4"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.01]"
+                  preload="none"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden="true"
+                />
+              )}
             </motion.div>
 
             {/* 
