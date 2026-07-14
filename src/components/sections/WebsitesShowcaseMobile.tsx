@@ -34,6 +34,7 @@ export default function WebsitesShowcaseMobile() {
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp"
             width={916}
             height={117}
+            sizes="160px"
             className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Web Development"
           />

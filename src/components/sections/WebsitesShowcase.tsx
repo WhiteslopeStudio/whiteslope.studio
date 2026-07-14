@@ -66,6 +66,7 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp"
             width={916}
             height={117}
+            sizes="320px"
             className="absolute top-[40px] right-[32px] lg:top-[50px] lg:right-[64px] h-[30px] lg:h-[40px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Web Development"
           />

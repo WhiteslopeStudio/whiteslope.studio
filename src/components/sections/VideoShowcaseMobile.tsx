@@ -34,6 +34,7 @@ export default function VideoShowcaseMobile() {
             src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp"
             width={916}
             height={215}
+            sizes="90px"
             className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Video Marketing"
           />

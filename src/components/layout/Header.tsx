@@ -167,6 +167,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                     width={916}
                     height={117}
                     priority
+                    sizes="160px"
                     className="h-5 w-auto object-contain relative z-10 transition-all duration-300 group-hover:brightness-125"
                   />
                 </motion.div>
@@ -576,6 +577,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                           alt=""
                           width={916}
                           height={117}
+                          sizes="600px"
                           style={{
                             position: 'absolute',
                             top: '50%',

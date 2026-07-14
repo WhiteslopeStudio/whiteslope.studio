@@ -69,6 +69,7 @@ export default function AutomationShowcase() {
                 src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp"
                 width={916}
                 height={215}
+                sizes="180px"
                 className="h-[30px] lg:h-[40px] w-auto object-contain pointer-events-none"
                 alt="Whiteslope Studio Automation & AI"
               />

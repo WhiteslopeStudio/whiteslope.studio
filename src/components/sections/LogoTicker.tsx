@@ -50,6 +50,7 @@ export default function LogoTicker() {
                 alt={`Logo ${logo.name}`}
                 width={logo.w}
                 height={logo.h}
+                sizes={`${Math.ceil((logo.w / logo.h) * 45)}px`}
                 // Jeśli logo.invertColor jest true, dodajemy klasę 'invert', która robi z czarnego biały
                 className={`max-h-[35px] md:max-h-[45px] w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 ${
                   logo.invertColor ? 'invert' : ''
