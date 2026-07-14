@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function HeroSectionMobile() {
@@ -48,20 +49,26 @@ export default function HeroSectionMobile() {
         
         {/* --- ROTUJĄCE LOGOTYPY --- */}
         <div className="absolute top-[20svh] left-1/2 -translate-x-1/2 h-9 sm:h-10 w-full max-w-[240px] flex items-center justify-center pointer-events-none">
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp" 
             alt="Whiteslope Web Development" 
-            className="absolute inset-0 w-full h-full object-contain animate-logo-blue"
+            fill
+            sizes="240px"
+            className="object-contain animate-logo-blue"
           />
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp" 
             alt="Whiteslope Automation & AI" 
-            className="absolute inset-0 w-full h-full object-contain animate-logo-purple"
+            fill
+            sizes="240px"
+            className="object-contain animate-logo-purple"
           />
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp" 
             alt="Whiteslope Marketing" 
-            className="absolute inset-0 w-full h-full object-contain animate-logo-yellow"
+            fill
+            sizes="240px"
+            className="object-contain animate-logo-yellow"
           />
         </div>
 
