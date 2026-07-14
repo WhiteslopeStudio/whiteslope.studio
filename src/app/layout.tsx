@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import Footer from '@/components/layout/Footer'; 
@@ -99,9 +100,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
         />
 
-        {/* Google Analytics - wszystkie tagi */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9WSGHNN17"></script>
-        <script
+        {/* Google Analytics - wszystkie tagi, odroczone do momentu bezczynnosci przegladarki (lazyOnload), zeby nie obciazac startu strony */}
+        <Script
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=G-W9WSGHNN17"
+        />
+        <Script
+          id="gtag-init"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
