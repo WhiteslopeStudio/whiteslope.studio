@@ -278,7 +278,7 @@ export default function Footer() {
         {/* --- LOKALIZACJE --- */}
         <div className="flex flex-col border-t border-white/10 pt-8 pb-30 max-w-[1840px] ">
           <div className="flex flex-wrap justify-left gap-x-4 gap-y-2  mx-auto">
-            <span className="text-[13px] text-zinc-500 text-left mb-1">
+            <span className="text-[13px] text-zinc-400 text-left mb-1">
               Obsługujemy miasta:
             </span>
             {cities.map((city) => {
@@ -302,7 +302,7 @@ export default function Footer() {
                 <Link 
                   key={city} 
                   href={`/${citySlug}`} 
-                  className="text-[13px] text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="text-[13px] text-zinc-400 hover:text-zinc-300 transition-colors"
                 >
                   {city}
                 </Link>
@@ -314,7 +314,7 @@ export default function Footer() {
 
       {/* --- GIGANTYCZNY NAPIS I COPYRIGHT (Pełna szerokość) --- */}
       <div className="max-w-[1640px] mx-auto relative">
-        <div className="absolute top-[-30px] left-0 w-full px-6 flex justify-between text-[13px] text-zinc-500 z-20">
+        <div className="absolute top-[-30px] left-0 w-full px-6 flex justify-between text-[13px] text-zinc-400 z-20">
           <span>© {currentYear} {APP_CONFIG.name}. Wszystkie prawa zastrzeżone.</span>
           <Link href="/privacy&cookies/privacyPolicy" className="hover:text-zinc-300 transition-colors">Polityka prywatności</Link>
         </div>

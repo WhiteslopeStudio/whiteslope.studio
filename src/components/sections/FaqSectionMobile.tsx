@@ -79,7 +79,7 @@ export const FAQSectionMobile = () => {
 
           {/* Dolne CTA - Zmienione na mobilny układ w kolumnie i pełną szerokość przycisku */}
           <div className="mt-10 pt-8 border-t border-zinc-200/80 flex flex-col items-start w-full">
-            <p className="text-[14px] text-zinc-500 mb-4 font-medium leading-[1.4]">
+            <p className="text-[14px] text-zinc-600 mb-4 font-medium leading-[1.4]">
               Nie znalazłeś odpowiedzi na swoje pytanie?
             </p>
             <a

@@ -112,7 +112,7 @@ export const CookieBanner = () => {
 
             {/* Treść */}
             <div className="px-5 pb-5">
-              <p className="text-xs text-gray-600 leading-relaxed mb-3">
+              <p className="text-xs text-gray-700 leading-relaxed mb-3">
                 Używamy cookies do analizy ruchu (Google Analytics) i zapamiętywania preferencji.
               </p>
 
@@ -122,7 +122,7 @@ export const CookieBanner = () => {
                   href="/privacy&cookies/privacyPolicy" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-black underline transition-colors cursor-pointer"
+                  className="text-gray-600 hover:text-black underline transition-colors cursor-pointer"
                 >
                   Polityka prywatności
                 </a>
@@ -131,7 +131,7 @@ export const CookieBanner = () => {
                   href="/privacy&cookies/cookiesPolicy" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-black underline transition-colors cursor-pointer"
+                  className="text-gray-600 hover:text-black underline transition-colors cursor-pointer"
                 >
                   Polityka cookies
                 </a>

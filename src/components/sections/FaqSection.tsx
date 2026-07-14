@@ -85,7 +85,7 @@ export const FAQSection = () => {
 
             {/* Dolne CTA */}
             <div className="mt-auto pt-[40px] flex flex-col items-start">
-              <p className="text-[14px] md:text-[15px] text-zinc-500 mb-[16px] font-medium leading-[1.4]">
+              <p className="text-[14px] md:text-[15px] text-zinc-600 mb-[16px] font-medium leading-[1.4]">
                 Nie znalazłeś odpowiedzi na swoje pytanie?
               </p>
               <a

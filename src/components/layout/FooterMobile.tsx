@@ -283,7 +283,7 @@ export default function FooterMobile() {
               ))}
         </div>
         
-        <div className="text-[13px] text-zinc-500 text-center flex flex-col gap-3">
+        <div className="text-[13px] text-zinc-400 text-center flex flex-col gap-3">
            <Link href="/privacy&cookies/privacyPolicy" className="underline underline-offset-4 active:text-white transition-colors">Polityka prywatności</Link>
           <span>© {currentYear} {APP_CONFIG.name}.<br/> Wszystkie prawa zastrzeżone.</span>
         </div>
