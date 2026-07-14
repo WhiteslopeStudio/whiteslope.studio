@@ -53,21 +53,21 @@ export default function HeroSectionMobile() {
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp" 
             alt="Whiteslope Web Development" 
             fill
-            sizes="240px"
+            sizes="280px"
             className="object-contain animate-logo-blue"
           />
           <Image 
             src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp" 
             alt="Whiteslope Automation & AI" 
             fill
-            sizes="240px"
+            sizes="280px"
             className="object-contain animate-logo-purple"
           />
           <Image 
             src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp" 
             alt="Whiteslope Marketing" 
             fill
-            sizes="240px"
+            sizes="280px"
             className="object-contain animate-logo-yellow"
           />
         </div>
