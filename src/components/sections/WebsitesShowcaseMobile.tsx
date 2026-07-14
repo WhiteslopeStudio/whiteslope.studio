@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Check, ArrowRight } from "lucide-react";
 
 const SERVICES = [
@@ -29,19 +30,23 @@ export default function WebsitesShowcaseMobile() {
           
           {/* --- LOGO --- */}
           {/* Zostaje w prawym górnym rogu, nad zdjęciem */}
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp"
-            className="absolute top-5 right-5 h-[20px] object-contain z-20 pointer-events-none"
+            width={916}
+            height={117}
+            className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Web Development"
           />
 
           {/* --- GÓRA: ZDJĘCIE --- */}
           {/* Osobny kontener na zdjęcie, wyrównany do dołu tego kontenera */}
           <div className="relative w-full h-[240px] pt-12 px-4 flex items-end justify-center z-10 pointer-events-none">
-            <img 
+            <Image 
               src="/_resources/stronyInternetowe/ShowWebsites.webp"
               alt="Przykłady stron internetowych Whiteslope"
-              className="w-full h-full object-contain object-bottom drop-shadow-[0_12px_24px_rgba(0,87,255,0.08)]"
+              fill
+              sizes="100vw"
+              className="object-contain object-bottom drop-shadow-[0_12px_24px_rgba(0,87,255,0.08)]"
             />
           </div>
 
