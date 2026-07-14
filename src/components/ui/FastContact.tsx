@@ -104,6 +104,7 @@ export default function QuickContact() {
           <div className="bg-zinc-50 border-b border-zinc-200 p-5 md:p-6 relative">
             <button 
               onClick={() => setIsOpen(false)}
+              aria-label="Zamknij szybki kontakt"
               className="absolute top-4 right-4 p-2 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-full text-zinc-500 hover:text-zinc-900 transition-all duration-200 hover:scale-105 cursor-pointer"
             >
               <X className="w-4 h-4" />
