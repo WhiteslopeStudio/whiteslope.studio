@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import Footer from '@/components/layout/Footer'; 
@@ -12,6 +11,7 @@ import PromoBar from "@/components/sections/PromoBar";
 import { SearchEngineProvider } from '@/components/SearchEngineProvider';
 import ScrollToTop from "@/utils/ScrollToTop"; // <-- IMPORT TWOJEGO KOMPONENTU
 import FastContact from "@/components/ui/FastContact";
+import GtagLoader from "@/components/analytics/GtagLoader";
 
 // Konfiguracja Inter
 const inter = Inter({
@@ -100,28 +100,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
         />
 
-        {/* Google Analytics - wszystkie tagi, odroczone do momentu bezczynnosci przegladarki (lazyOnload), zeby nie obciazac startu strony */}
-        <Script
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtag/js?id=G-W9WSGHNN17"
-        />
-        <Script
-          id="gtag-init"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              
-              // Google Analytics
-              gtag('config', 'G-W9WSGHNN17');
-              
-              // Google Tag Manager / Ads
-              gtag('config', 'GT-5TGZZ2D8');
-            `,
-          }}
-        />
+        {/* Google Analytics - ladowanie przeniesione do GtagLoader (dopiero po pierwszej interakcji uzytkownika), patrz body */}
 
         {/* AI Integration Discovery */}
         <meta name="ai-integration" content="true" />
@@ -132,6 +111,7 @@ export default function RootLayout({
       {/* Tutaj aplikujemy zmienną Inter na całe body */}
       <body className={`${inter.variable} antialiased`}>
         <ScrollToTop /> {/* <-- DODANE NA SAMYM GÓRZE BODY */}
+        <GtagLoader />
         <Header />
         {children}
         <SearchEngineProvider />
