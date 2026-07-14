@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Check, ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -61,9 +62,11 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
           <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[70%] rounded-full bg-blue-500/10 blur-[100px] pointer-events-none z-0 transition-opacity duration-500 group-hover:opacity-100 opacity-70" />
           <div className="absolute bottom-[-10%] right-[15%] w-[40%] h-[40%] rounded-full bg-blue-400/15 blur-[80px] pointer-events-none z-0" />
           {/* --- LOGO: Idealnie wyrównane z pierwszą linią H2 --- */}
-          <img 
+          <Image 
             src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV_czarny.webp"
-            className="absolute top-[40px] right-[32px] lg:top-[50px] lg:right-[64px] h-[30px] lg:h-[40px] object-contain z-20 pointer-events-none"
+            width={916}
+            height={117}
+            className="absolute top-[40px] right-[32px] lg:top-[50px] lg:right-[64px] h-[30px] lg:h-[40px] w-auto object-contain z-20 pointer-events-none"
             alt="Whiteslope Studio Web Development"
           />
 
@@ -134,11 +137,13 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
 
           {/* --- PRAWO: Zdjęcie --- */}
           <div className="absolute bottom-0 right-0 w-[95%] lg:w-[65%] h-[320px] lg:h-[85%] z-10 flex items-end justify-end px-[16px] lg:px-[40px] pointer-events-none">
-            <motion.div style={{ y: imageY }} className="w-full h-full flex items-end justify-end origin-bottom">
-              <img 
+            <motion.div style={{ y: imageY }} className="relative w-full h-full flex items-end justify-end origin-bottom">
+              <Image 
                 src="/_resources/stronyInternetowe/ShowWebsites.webp"
                 alt="Przykłady stron internetowych Whiteslope"
-                className="w-full h-full object-contain object-bottom drop-shadow-[0_24px_40px_rgba(0,87,255,0.08)] transition-transform duration-800 group-hover:scale-[1.01] origin-bottom"
+                fill
+                sizes="(max-width: 1024px) 95vw, 65vw"
+                className="object-contain object-bottom drop-shadow-[0_24px_40px_rgba(0,87,255,0.08)] transition-transform duration-800 group-hover:scale-[1.01] origin-bottom"
               />
             </motion.div>
           </div>
