@@ -2,6 +2,7 @@
 
 import { Star, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const REVIEWS = [
   {
@@ -76,9 +77,11 @@ export default function ReviewsMobile() {
               <div>
                 {/* Awatar i dane - kompaktowe */}
                 <div className="flex items-center gap-3 mb-3">
-                  <img
+                  <Image
                     src={review.avatarUrl}
                     alt={review.name}
+                    width={40}
+                    height={40}
                     className="w-[40px] h-[40px] rounded-full object-cover border border-zinc-200"
                   />
                   <div className="flex flex-col">
