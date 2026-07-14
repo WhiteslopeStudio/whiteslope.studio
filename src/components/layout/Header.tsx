@@ -346,6 +346,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 <motion.button
                   className="p-2 rounded-full bg-[#262626] text-[#d4d4d4] hover:text-white hover:cursor-pointer"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
