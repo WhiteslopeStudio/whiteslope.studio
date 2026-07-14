@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import "./shadcn-tailwind.css";
 
 .hero-video {
   width: 100%;
@@ -60,4 +60,4 @@ html {
   }
 }
 
-/* TUTAJ ZOSTAW SWOJE ZMIENNE KOLORYSTYCZNE :root oraz .dark (oklch) */
+/* TUTAJ ZOSTAW SWOJE ZMIENNE KOLORYSTYCZNE :root oraz .dark (oklch) 
