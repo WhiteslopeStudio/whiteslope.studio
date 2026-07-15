@@ -55,6 +55,14 @@ To była najbardziej ryzykowna i najbardziej pouczająca zmiana w całej optymal
 - Zasada praktyczna: **CSS dual-render tylko dla tego, co użytkownik widzi bez scrollowania. JS-switch wszędzie indziej.**
 - **Pułapka nr 2 (złapana 15.07.2026):** jeśli sekcja z CSS dual-render zawiera media z `src` ustawionym na sztywno w JSX (np. `<video src="...">`), obie wersje (widoczna i ukryta przez CSS) i tak mogą próbować pobrać ten sam plik równolegle — CSS `hidden`/`display:none` nie gwarantuje że przeglądarka nie zainicjuje pobierania. Objaw: wynik PSI "skacze" między dobrym a złym na identycznym kodzie (zależnie czy podwójny fetch akurat wystrzelił). Fix: nie dawaj `src` na sztywno w JSX dla ciężkich mediów w dual-rendered sekcjach — ustawiaj go dopiero w `useEffect` po sprawdzeniu `window.matchMedia`, czy ta konkretna wersja jest faktycznie widoczna. Wzorzec gotowy w `HeroSection.tsx`/`HeroSectionMobile.tsx`.
 
+## 4b. Zanim optymalizujesz pod LCP — sprawdź, co NAPRAWDĘ jest elementem LCP
+
+Duża część tej optymalizacji poszła w złym kierunku przez kilka rund, bo zakładaliśmy (na podstawie audytu **desktopowego**), że elementem LCP na mobile jest wideo w Hero. W rzeczywistości, gdy w końcu rozwinęliśmy sekcję "Zestawienie LCP" w PageSpeed Insights dla testu **mobilnego**, okazało się że to zwykły nagłówek `<h1>` tekstowy. Cała optymalizacja wideo (poster, fetchPriority, deduplikacja) była dobrą praktyką samą w sobie, ale nie adresowała realnego wąskiego gardła.
+
+**Zasada:** zanim zaczniesz optymalizować pod LCP, zawsze rozwiń sekcję "Zestawienie LCP" (i najlepiej też "Wykrywanie żądań LCP") w PSI **dla trybu, który akurat naprawiasz** (mobile ≠ desktop, to różne elementy!) i sprawdź który dokładnie element jest kandydatem. Bez tego łatwo zoptymalizować coś, co wygląda na oczywistego winowajcę (duże wideo w tle), a naprawdę problemem jest coś dużo prostszego — jak font tekstu.
+
+Font `Inter` w `layout.tsx` powinien mieć jawne `display: "swap"` — bez tego przeglądarka może chować tekst do czasu pobrania fontu (FOIT), co objawia się jako "opóźnienie renderowania" na dowolnym elemencie tekstowym w audycie LCP, nie tylko w Hero.
+
 ## 5. Dostępność (Accessibility)
 
 - Każdy przycisk/link zawierający tylko ikonę (bez widocznego tekstu) musi mieć `aria-label` opisujący jego działanie po polsku, np. `aria-label="Zamknij menu"`.
