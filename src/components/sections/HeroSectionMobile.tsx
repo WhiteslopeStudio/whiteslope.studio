@@ -3,8 +3,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function HeroSectionMobile() {
+  // FAZA 2c: ten komponent i HeroSection (desktop) sa oba w DOM naraz (CSS
+  // decyduje ktory jest widoczny), wiec nie mozemy dac <video src=...> na
+  // sztywno - oba probowalyby ladowac to samo 1.3MB wideo rownolegle. src
+  // wstawiamy dopiero gdy matchMedia potwierdzi ze TA wersja (mobile,
+  // max-width 767px) jest faktycznie widoczna.
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setVideoSrc(mq.matches ? '/animationHero/HeroShowReel.mp4' : undefined);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
   return (
     <section className="relative w-full bg-white overflow-hidden flex flex-col items-center ">
       
@@ -120,7 +136,7 @@ export default function HeroSectionMobile() {
             preload="auto"
             fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover scale-[1.2] origin-center -translate-y-2 pointer-events-none"
-            src="/animationHero/HeroShowReel.mp4"
+            src={videoSrc}
           />
           <div className="absolute inset-0 shadow-[inset_0_0_24px_rgba(0,0,0,0.1)] pointer-events-none rounded-[24px]" />
         </div>

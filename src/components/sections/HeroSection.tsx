@@ -40,6 +40,12 @@ export default function HeroSection() {
   const mainButton = useInteractiveButton();
   const [isMainHovered, setIsMainHovered] = useState(false);
   const [offsetY, setOffsetY] = useState(0);
+  // FAZA 2c: ten komponent i HeroSectionMobile sa oba w DOM naraz (CSS decyduje
+  // ktory jest widoczny), wiec nie mozemy dac <video src=...> na sztywno - oba
+  // probowalyby ladowac to samo 1.3MB wideo rownolegle. src wstawiamy dopiero
+  // gdy matchMedia potwierdzi ze TA wersja (desktop, min-width 768px) jest
+  // faktycznie widoczna.
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +57,14 @@ export default function HeroSection() {
     
     // Sprzątamy po odmontowaniu komponentu
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setVideoSrc(mq.matches ? '/animationHero/HeroShowReel.mp4' : undefined);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   return (
@@ -80,7 +94,7 @@ export default function HeroSection() {
               fetchPriority="high"
               /* Wideo wypełnia 1640px, a scale-[2.4] powiększa je, ukrywając znaki wodne. Reszta ucięta przez overflow-hidden rodzica */
               className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
-              src="/animationHero/HeroShowReel.mp4"
+              src={videoSrc}
             />
           </div>
 
