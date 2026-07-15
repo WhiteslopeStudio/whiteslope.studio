@@ -19,6 +19,11 @@ const inter = Inter({
   // DODANA WAGA "200"
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"], 
   variable: "--font-inter", 
+  // display: swap - tekst pokazuje sie od razu fontem zastepczym (system-ui),
+  // podmiana na Inter jak sie doladuje. Bez tego audyt PSI pokazal ~1.3s
+  // "opoznienia renderowania" na naglowku h1 w Hero (rzeczywisty element LCP
+  // na mobile, nie wideo jak wczesniej zakladano).
+  display: "swap",
 });
 
 export const metadata: Metadata = {
