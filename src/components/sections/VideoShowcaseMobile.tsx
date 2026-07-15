@@ -21,7 +21,7 @@ export default function VideoShowcaseMobile() {
         <div className="relative group w-full bg-zinc-50 rounded-[28px] border border-zinc-200 overflow-hidden flex flex-col shadow-sm">
           
           {/* Niewidoczny link pokrywający całą kartę (Z-index 30) */}
-          <Link href="/pricing/video-marketing" className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń wideo marketing" />
+          <Link href="/pricing/video-marketing" prefetch={false} className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń wideo marketing" />
           
           {/* --- TŁO KARTY (JASNE) --- */}
           {/* Delikatny, jasnożółty gradient na górze karty */}
@@ -108,6 +108,7 @@ export default function VideoShowcaseMobile() {
               
               <Link
                 href="/video-marketing"
+                prefetch={false}
                 className="relative z-10 inline-flex h-[48px] w-full items-center justify-center rounded-full bg-black px-6 text-[15px] font-semibold text-white"
               >
                 Zobacz więcej

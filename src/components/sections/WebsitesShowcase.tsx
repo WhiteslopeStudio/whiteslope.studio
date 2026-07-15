@@ -32,7 +32,7 @@ export default function WebsitesShowcase() {
           ref={containerRef}
 className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-200 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-zinc-300 cursor-pointer min-h-[550px] lg:min-h-[600px] flex items-center"        >
           
-          <Link href="/pricing/website" className="absolute inset-0 z-30 rounded-[32px]" aria-label="Wyceń projekt" />
+          <Link href="/pricing/website" prefetch={false} className="absolute inset-0 z-30 rounded-[32px]" aria-label="Wyceń projekt" />
 
           {/* --- TŁO: 4 pionowe pasy (po 1/8 szerokości) w lewej połowie --- */}
           <div className="absolute inset-0 z-0 flex pointer-events-none w-1/2">
@@ -126,6 +126,7 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
   {/* Środek przycisku */}
   <Link
     href="/website"
+    prefetch={false}
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
     Zobacz więcej

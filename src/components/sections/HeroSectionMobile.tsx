@@ -100,6 +100,7 @@ export default function HeroSectionMobile() {
         <div className="flex flex-col items-center gap-3 w-full">
           <Link
             href="/contact"
+            prefetch={false}
             className="w-fit px-8 bg-gradient-to-tr from-blue-600 to-blue-400 hover:from-blue-600 hover:to-blue-400 text-white font-bold rounded-full h-[52px] flex items-center justify-center transition-all shadow-[0_8px_20px_rgba(59,144,255,0.25)] text-[15px] active:scale-95 group mb-2"
           >
             Rozpocznij współpracę
@@ -108,6 +109,7 @@ export default function HeroSectionMobile() {
           
           <Link
             href="/projects"
+            prefetch={false}
             className="w-fit px-8 bg-gradient-to-tr from-zinc-200 to-blue-100 hover:from-blue-300 hover:to-blue-200 text-zinc-700 font-bold rounded-full h-[52px] flex items-center justify-center transition-colors shadow-sm text-[15px] active:scale-95 group shadow-[0_8px_20px_rgba(59,144,255,0.25)]"
           >
             <span className="relative group-hover:text-blue-500 transition-colors">

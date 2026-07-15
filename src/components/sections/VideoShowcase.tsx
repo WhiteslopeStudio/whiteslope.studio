@@ -54,7 +54,7 @@ export default function VideoShowcase() {
           className="relative group w-full bg-[#161616] rounded-[32px] border border-zinc-800 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] hover:border-zinc-700 cursor-pointer flex flex-col lg:flex-row"
         >
           
-          <Link href="/pricing/video-marketing" className="absolute inset-0 z-30" aria-label="Wyceń wideo marketing" />
+          <Link href="/pricing/video-marketing" prefetch={false} className="absolute inset-0 z-30" aria-label="Wyceń wideo marketing" />
 
           
 
@@ -126,6 +126,7 @@ export default function VideoShowcase() {
   
   <Link
     href="/video-marketing"
+    prefetch={false}
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >
     Zobacz więcej

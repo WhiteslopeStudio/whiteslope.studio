@@ -21,7 +21,7 @@ export default function WebsitesShowcaseMobile() {
         {/* Zmieniony układ na standardowy flex-col bez wymuszonych minimalnych wysokości na rzecz naturalnego układania się elementów */}
         <div className="relative group w-full bg-zinc-50 rounded-[28px] border border-zinc-200 overflow-hidden flex flex-col shadow-sm">
           
-          <Link href="/pricing/website" className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń projekt" />
+          <Link href="/pricing/website" prefetch={false} className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń projekt" />
 
           {/* --- TŁO KARTY --- */}
           {/* Subtelny gradient pokrywający głównie górną część (za zdjęciem) */}
@@ -103,6 +103,7 @@ export default function WebsitesShowcaseMobile() {
               
               <Link
                 href="/website"
+                prefetch={false}
                 className="relative z-10 inline-flex h-[48px] w-full items-center justify-center rounded-full bg-black px-6 text-[15px] font-semibold text-white"
               >
                 Zobacz więcej

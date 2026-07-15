@@ -148,6 +148,7 @@ export default function HeroSection() {
                 {/* Główny przycisk */}
                 <Link
                   href="/contact"
+                  prefetch={false}
                   onMouseMove={mainButton.handleMouseMove}
                   onMouseEnter={() => {
                     setIsMainHovered(true);
@@ -170,6 +171,7 @@ export default function HeroSection() {
                 {/* Drugi przycisk */}
                 <Link
                   href="/projects"
+                  prefetch={false}
                   className="w-full sm:w-auto inline-flex items-center justify-center h-[46px] px-4 text-[14px] md:text-[15px] font-[500] text-white/100 hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative pb-0.5">
