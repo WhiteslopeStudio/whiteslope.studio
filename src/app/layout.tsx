@@ -117,11 +117,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <ScrollToTop /> {/* <-- DODANE NA SAMYM GÓRZE BODY */}
         <GtagLoader />
-        {/* TYMCZASOWO WYLACZONE - diagnostyka layout thrashing (measure/offsetLeft
-           w petli RAF, ~3.6s watku glownego). Test: czy po usunieciu Header
-           Scripting drastycznie spada. Przywrocic po potwierdzeniu/odrzuceniu
-           hipotezy. Checkpoint: tag checkpoint-przed-test-header. */}
-        {/* <Header /> */}
+        <Header />
         {children}
         <SearchEngineProvider />
         <CookieBanner />
