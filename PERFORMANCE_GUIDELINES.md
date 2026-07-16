@@ -85,9 +85,27 @@ Font `Inter` w `layout.tsx` powinien mieć jawne `display: "swap"` — bez tego 
 
 ---
 
+## 8. framer-motion (i inne biblioteki animacji) w komponentach zawsze zamontowanych — najdroższe miejsce w całej stronie
+
+Odkryte 16.07.2026 przez bezpośredni profiling w Chrome DevTools (Performance panel), nie przez sam audyt PSI — PSI nigdy nie nazwało tego wprost, tylko generycznie flagowało "Unikaj długich zadań w wątku głównym".
+
+- **Zasada:** koszt biblioteki animacji (framer-motion, gsap, itd.) w komponencie, który montuje się WARUNKOWO (np. po kliknięciu, po scrollu) jest nieistotny dla LCP/FCP — nie zdąży wystąpić zanim strona się domaluje. Ten sam koszt w komponencie zamontowanym ZAWSZE i NATYCHMIAST (np. `Header`/`Footer` w `layout.tsx`, montowane na każdej stronie) bezpośrednio konkuruje z pierwszym malowaniem.
+- **Test diagnostyczny, który to potwierdził:** tymczasowe zakomentowanie całego `<Header />` w `layout.tsx` (z checkpointem/tagiem gita jako zabezpieczeniem) i porównanie realnego czasu wątku głównego w Chrome Performance panel — spadek z 4589,9ms do 240,6ms (95%) na `whiteslope.studio (1st party)`. To najszybszy sposób na potwierdzenie/odrzucenie hipotezy "ten komponent jest winny" — szybszy niż czytanie kodu i zgadywanie.
+- **Pułapka #1 — `height: "auto"` w animacji framer-motion.** `animate={{ height: "auto" }}` zmusza bibliotekę do mierzenia realnej wysokości elementu (wymuszony synchroniczny layout) na każdej klatce animacji. Objaw w Chrome Performance: powtarzający się łańcuch `measure → Layout` wewnątrz `Animation frame fired`. Fix bez zmiany wyglądu: zamiast `height: 0 → "auto"` użyj `maxHeight: 0 → <konkretna liczba w px, dobrana pod realną treść>` — te same wartości są z góry znane, więc framer-motion nie musi niczego mierzyć.
+- **Pułapka #2 — `whileHover`/`whileTap` na elementach, które są zawsze widoczne** (np. przyciski nawigacji w Headerze). Jeśli efekt to tylko prosty `scale()`, czysty CSS (`hover:scale-105 active:scale-95` w Tailwind) daje identyczny efekt wizualny bez potrzeby rejestrowania gesture-handlerów frameworka animacji na starcie strony. Zostaw `framer-motion`/`AnimatePresence` tam gdzie faktycznie potrzebne jest enter/exit (np. animacja ikony hamburger↔X, wjazd/wyjazd panelu menu) — to kosztuje tylko gdy faktycznie się dzieje (po kliknięciu), nie przy starcie.
+- **Ważne zastrzeżenie:** ten sam wzorzec (`height: "auto"`) w komponencie montowanym WARUNKOWO (np. akordeon w mega-menu, otwierany dopiero po kliknięciu) NIE wpływa na LCP mimo że jest tym samym "złym" kodem — naprawiliśmy go bo to dobra praktyka i poprawia TBT/responsywność przy realnej interakcji, ale to nie on odpowiadał za wolny LCP. Lekcja: zanim naprawisz coś bo "wygląda podejrzanie", sprawdź czy to w ogóle montuje się w ścieżce krytycznej pierwszego malowania.
+- **Narzędzie, które to odkryło:** `productionBrowserSourceMaps: true` w `next.config.ts` (włączone na stałe) + Chrome DevTools Performance panel, zakładka **Bottom-up**, posortowana po "Self time" — bez source maps duże własne chunki JS pokazują się jako zminifikowane hashe bez nazwy funkcji/komponentu i nie da się ustalić co konkretnie zjada czas.
+
+## 9. PSI mobile — kiedy przestać gonić wynik
+
+Wynik Wydajności na mobile w PSI potrafi być **bimodalny**, nie tylko "szumiący" — np. seria przebiegów na identycznym, niezmienionym kodzie dająca konsekwentnie albo ~92-93 (LCP ~3,2s) albo ~75-76 (LCP ~6,2s), bez wartości pomiędzy. To wygląda na realną zmienność infrastruktury testowej Google (Slow 4G + emulacja CPU są bardzo wrażliwe na obciążenie serwerów w danym momencie), nie na coś w kodzie — zwłaszcza gdy da się to wykluczyć (sprawdzone: brak duplikatu projektu na Vercelu, świeży deploy, brak cache'owania w samym PSI).
+
+**Zasada:** nie oceniaj zmiany po jednym wyniku PSI na mobile. Patrz na **TBT (Total Blocking Time) z kilku przebiegów** jako najbardziej wiarygodny wskaźnik postępu w kwestiach JS/wątku głównego — jest dużo stabilniejszy niż złożony wynik 0-100 czy nawet samo LCP. Jeśli TBT jest konsekwentnie niskie w każdym przebiegu, a tylko LCP/wynik końcowy skacze — problem najpewniej nie leży już w Twoim kodzie.
+
+---
+
 ## Otwarte tematy (świadomie nieruszone, niski priorytet przy obecnym wyniku)
 
 - **Kontrast znaku wodnego "WHITESLOPE"** w stopce (`text-white/2`/`/5`) — świadomie bardzo blady jako element designu, trzyma Accessibility na 96 zamiast 100. Decyzja projektowa, nie techniczna.
 - **Nagłówki bezpieczeństwa** (CSP, HSTS, COOP, X-Frame-Options, Trusted Types) — nie wpływają na wynik PSI (Best Practices już 100/100 bez nich), ale to realna luka bezpieczeństwa, wartościowa do zrobienia niezależnie od wyniku audytu.
-- **Source maps produkcyjne** (`productionBrowserSourceMaps: true`) — czysto ułatwienie debugowania, zero wpływu na wynik.
 - **Code-splitting bibliotek animacji** (punkt 6 wyżej) — ~54 KiB nieużywanego JS, nie krytyczne przy obecnym wyniku.
