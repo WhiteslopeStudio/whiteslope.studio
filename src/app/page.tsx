@@ -42,6 +42,7 @@ import VideoShowcaseMobile from '@/components/sections/VideoShowcaseMobile';
 // 🎯 IMPORT PINNED SECTION (zaawansowany wrapper)
 
 import TrustOverlay from '@/components/ui/TrustOverlay';
+import LazyMount from '@/components/ui/LazyMount';
 
 import ServicesIntroMobile from '@/components/sections/ServiceIntroMobile';
 
@@ -54,9 +55,6 @@ export default function HomePage() {
   // bo caly DOM (w tym dwa rownolegle <video> w Hero) podwoil sie i musial sie
   // zhydrowac. Zawezono fix: TYLKO Hero (+ LogoTicker) renderuje sie natychmiast
   // przez CSS - to jedyna rzecz ktora wplywa na LCP/FCP (jest w pierwszym widoku).
-  // Reszta sekcji (ponizej fold, nie wplywa na LCP) wraca do starego wzorca:
-  // JS-owy przelacznik isMobile + lokalny "mounted" gate, ktory NIE blokuje juz
-  // calej strony - tylko to co i tak jest niewidoczne przy pierwszym malowaniu.
   const [belowFoldMounted, setBelowFoldMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -83,27 +81,33 @@ export default function HomePage() {
 
           <LogoTicker />
 
-          {/* Sekcje ponizej fold - nie wplywaja na LCP, moga poczekac na mount */}
+          {/* ✅ FAZA 3 (16.07.2026): sekcje ponizej fold nie wplywaja na LCP, ale
+              montowanie ich WSZYSTKICH naraz zaraz po hydracji odpalalo caly ich
+              JS (gsap/locomotive-scroll/framer-motion w kazdej sekcji) jedna salwa
+              - realny trace Performance pokazal 4,6s scriptingu blokujacego watek
+              glowny. Kazda sekcja montuje sie teraz osobno przez LazyMount
+              (IntersectionObserver, rootMargin 800px) dopiero gdy realnie zbliza
+              sie do widoku - rozklada koszt JS w czasie zamiast odpalac go naraz. */}
           {belowFoldMounted && (
             <>
-              {isMobile ? <ReviewsMobile /> : <Reviews />}
+              <LazyMount>{isMobile ? <ReviewsMobile /> : <Reviews />}</LazyMount>
 
-              {isMobile ? <ServicesIntroMobile /> : <ServicesIntro />}
+              <LazyMount>{isMobile ? <ServicesIntroMobile /> : <ServicesIntro />}</LazyMount>
 
               {/* 🌐 WEBSITES & SAAS SHOWCASE */}
-              {isMobile ? <WebsitesShowcaseMobile /> : <WebsitesShowcase />}
+              <LazyMount>{isMobile ? <WebsitesShowcaseMobile /> : <WebsitesShowcase />}</LazyMount>
 
               {/* 🛠️ SERVICES SHOWCASE */}
-              {isMobile ? <ServicesShowcaseMobile /> : <ServicesShowcase />}
+              <LazyMount>{isMobile ? <ServicesShowcaseMobile /> : <ServicesShowcase />}</LazyMount>
               {/* 🎬 VIDEO & MARKETING SHOWCASE */}
-              {isMobile ? <VideoShowcaseMobile /> : <VideoShowcase />}
+              <LazyMount>{isMobile ? <VideoShowcaseMobile /> : <VideoShowcase />}</LazyMount>
 
-              {isMobile ? <AboutUsSectionMobile /> : <AboutUsSection />}
+              <LazyMount>{isMobile ? <AboutUsSectionMobile /> : <AboutUsSection />}</LazyMount>
 
-              {isMobile ? <BriefSectionMobile /> : <BriefSection />}
+              <LazyMount>{isMobile ? <BriefSectionMobile /> : <BriefSection />}</LazyMount>
 
               {/* ❓ FAQ */}
-              {isMobile ? <FAQSectionMobile /> : <FAQSection />}
+              <LazyMount>{isMobile ? <FAQSectionMobile /> : <FAQSection />}</LazyMount>
             </>
           )}
 
