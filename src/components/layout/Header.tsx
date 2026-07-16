@@ -178,30 +178,28 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 <nav className="flex items-center gap-2 flex-1 justify-end">
                   <div className="flex items-center gap-1">
 
-                    <motion.button
+                    <button
                       onClick={() => router.push("/")}
-                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:scale-105 ${
                         pathname === "/"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       Strona główna
-                    </motion.button>
+                    </button>
 
                     {/* REALIZACJE */}
-                    <motion.button
+                    <button
                       onClick={() => router.push("/projects")}
-                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:scale-105 ${
                         pathname === "/projects"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       Realizacje
-                    </motion.button>
+                    </button>
 
                     {/* OFERTA — trigger mega menu */}
                     <div
@@ -220,14 +218,12 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                           zIndex: 1,
                         }}
                       />
-                      <motion.button
-                        
-                        className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 ${
+                      <button
+                        className={`inline-flex items-center relative z-10 px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:decoration-1 hover:scale-105 ${
                           isOnServicePage
                             ? 'text-white'
                             : 'text-[#d4d4d4] hover:text-white'
                         }`}
-                        whileHover={{ scale: 1.05 }}
                       >
                         <span>Oferta</span>
                         
@@ -235,21 +231,20 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                         <ChevronDown 
                           className={`w-4 h-4 ml-1 origin-center ${isOffersDropdownOpen ? 'rotate-180' : 'rotate-0'}`} 
                         />
-                      </motion.button>
+                      </button>
                     </div>
 
                     {/* CENNIK */}
-                    <motion.button
+                    <button
                       onClick={() => router.push("/pricing")}
-                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:scale-105 ${
                         pathname === "/pricing"
                           ? "text-white "
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       Cennik
-                    </motion.button>
+                    </button>
                     
                     
 
@@ -259,34 +254,32 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                     
 
                     {/* aktualności */}
-                    <motion.button
+                    <button
                       onClick={() => router.push("/blog")}
-                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:scale-105 ${
                         pathname === "/blog"
                           ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       Aktualności
-                    </motion.button>
+                    </button>
 
                     
 
                     
 
                     {/* kontakt */}
-                    <motion.button
+                    <button
                       onClick={() => router.push("/contact")}
-                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4  ${
+                      className={`px-4 py-2 rounded-full font-base transition-all duration-300 hover:cursor-pointer hover:underline hover:underline-offset-4 hover:scale-105 ${
                         pathname === "/contact"
                           ? "text-white"
                           : "text-[#d4d4d4] hover:text-white"
                       }`}
-                      whileHover={{ scale: 1.05 }}
                     >
                       Kontakt
-                    </motion.button>
+                    </button>
                   
                   </div>
 
@@ -294,11 +287,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
 
                   {/* PRAWA STRONA */}
                   <div className="flex items-center gap-2">
-                    <motion.button
+                    <button
                       onClick={open}
-                      className="flex items-center gap-2 px-4 py-3 rounded-full bg-zinc-200 border border-zinc-900 text-gray-300 hover:text-white hover:bg-zinc-200 transition-all duration-300 hover:cursor-pointer whitespace-nowrap"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-2 px-4 py-3 rounded-full bg-zinc-200 border border-zinc-900 text-gray-300 hover:text-white hover:bg-zinc-200 transition-all duration-300 hover:cursor-pointer whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <Search className="w-4 h-4 flex-shrink-0 text-black" />
                       <span className="text-sm font-medium text-black">Znajdź na Whiteslope</span>
@@ -308,7 +299,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white text-black/70 border border-white/20 rounded flex-shrink-0">
                         <span className="text-xs">Ctrl</span>K
                       </kbd>
-                    </motion.button>
+                    </button>
 
                     
 
@@ -347,12 +338,10 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
 
               {/* Mobile Menu Button */}
               {isMobile && (
-                <motion.button
-                  className="p-2 rounded-full bg-[#262626] text-[#d4d4d4] hover:text-white hover:cursor-pointer"
+                <button
+                  className="p-2 rounded-full bg-[#262626] text-[#d4d4d4] hover:text-white hover:cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <AnimatePresence mode="wait">
                     {isMenuOpen ? (
@@ -377,7 +366,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.button>
+                </button>
               )}
             </div>
           </div>
