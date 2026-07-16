@@ -780,12 +780,16 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 </button>
 
                 {/* WNĘTRZE OFERTY */}
+                {/* Zmiana height:"auto" -> maxHeight: liczba - framer-motion animujac do "auto"
+                    musi na kazdej klatce mierzyc realna wysokosc (wymuszony synchroniczny layout),
+                    co pokazal profiler jako realny koszt watku glownego. maxHeight z gory znanej
+                    wartosci nie wymaga mierzenia - ten sam efekt wizualny, bez kosztu pomiaru. */}
                 <AnimatePresence>
                   {expandedMenus['oferta'] && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ maxHeight: 0, opacity: 0 }}
+                      animate={{ maxHeight: 1400, opacity: 1 }}
+                      exit={{ maxHeight: 0, opacity: 0 }}
                       className="overflow-hidden bg-zinc-50/50"
                     >
                       
@@ -801,9 +805,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       <AnimatePresence>
                         {expandedMenus['webdev'] && (
                           <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
+                            initial={{ maxHeight: 0, opacity: 0 }}
+                            animate={{ maxHeight: 320, opacity: 1 }}
+                            exit={{ maxHeight: 0, opacity: 0 }}
                             className="overflow-hidden bg-zinc-100/50"
                           >
                             {[
@@ -844,9 +848,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       <AnimatePresence>
                         {expandedMenus['ai'] && (
                           <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
+                            initial={{ maxHeight: 0, opacity: 0 }}
+                            animate={{ maxHeight: 380, opacity: 1 }}
+                            exit={{ maxHeight: 0, opacity: 0 }}
                             className="overflow-hidden bg-zinc-100/50"
                           >
                             {[
@@ -887,9 +891,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                       <AnimatePresence>
                         {expandedMenus['marketing'] && (
                           <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
+                            initial={{ maxHeight: 0, opacity: 0 }}
+                            animate={{ maxHeight: 320, opacity: 1 }}
+                            exit={{ maxHeight: 0, opacity: 0 }}
                             className="overflow-hidden bg-zinc-100/50"
                           >
                             {[
