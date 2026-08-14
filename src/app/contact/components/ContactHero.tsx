@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, Video, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import BookingModal from './BookingModal';
 
 export default function ContactHero() {
@@ -14,21 +14,8 @@ export default function ContactHero() {
   };
 
   return (
-    <section className="relative w-full flex items-center pt-[120px] pb-[80px] min-h-[800px] overflow-hidden max-w-[1640px] mx-auto">
-      
-      {/* --- TŁO: Obrazek przesunięty w prawo --- */}
-      <div className="absolute inset-0 z-0 flex items-center justify-end opacity-100 pointer-events-none">
-        <img 
-          src="/_resources/contactPage/HeroBG.webp" 
-          alt="Połączenie" 
-          className="w-full max-w-[1640px] h-auto object-cover translate-x-[200px]"
-          style={{
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 60%, transparent 100%)',
-            maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)'
-          }}
-        />
-      </div>
-      
+    <section className="relative w-full flex items-center pt-[90px] pb-[40px] overflow-hidden max-w-[1640px] mx-auto">
+
       {/* --- TŁO: Twoje niebieskie paski --- */}
       <div className="absolute inset-0 z-0 flex pointer-events-none opacity-80 overflow-hidden">
         <div className="flex-1 border-r border-blue-500/10" style={{ background: 'linear-gradient(to bottom, rgba(59, 144, 255, 0.2) 0%, transparent 100%)' }} />
@@ -41,61 +28,48 @@ export default function ContactHero() {
       </div>
 
       {/* --- GŁÓWNA ZAWARTOŚĆ --- */}
-      <div className="container mx-auto max-w-[1640px]relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-12 lg:gap-8 mx-10"> 
+      <div className="w-full max-w-[1640px] mx-auto relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-12 lg:gap-8 px-8 md:px-16 lg:px-25">
         {/* Kontener trzymający całość po lewej stronie */}
-        <div className="w-full max-w-2xl flex flex-col items-start">
-          
-          <h1 
-            className="mt-20 text-[50px] md:text-[70px] leading-[0.95] text-zinc-950 tracking-tighter weight-extrabold"
-           
-          >
-            Zawsze <br />w kontakcie!
-          </h1>
-          
-          {/* Oczojebny limonkowy badge */}
-          <div className="inline-flex items-center whitespace-nowrap bg-[#D4FF00] text-zinc-950 font-bold px-4 py-1.5 rounded-lg -rotate-[3deg] shadow-lg mt-3 mb-12 border border-black/10 origin-left transform-gpu">
-            <span>*Ale nie w tym elektrycznym...</span>
-            <img 
-              src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f602.svg" 
-              alt="Śmiejąca się buźka" 
-              className="w-5 h-5 drop-shadow-sm ml-1.5 shrink-0" 
-            />
-          </div>
+        <div className="w-full flex flex-col items-start">
 
-          <h3 className="text-xl md:text-2xl font-bold text-zinc-900 mb-6 leading-snug">
+          <h1 className="w-full text-center text-3xl md:text-5xl font-bold text-zinc-950 m-8">
+            Kontakt
+          </h1>
+
+          <h3 className="w-full text-[24px] md:text-[30px] font-black text-zinc-950 leading-[1.05] tracking-tight text-center mb-8">
             Umów się na 30 minut darmowej konsultacji.<br/>
             Wybierz eksperta:
           </h3>
 
-          {/* LISTA EKSPERTÓW (Cienkie, podłużne buttony) */}
-          <div className="flex flex-col gap-4 w-full">
-            
+          {/* LISTA EKSPERTÓW (Cienkie, podłużne buttony - 3 w jednym rzędzie) */}
+          <div className="grid grid-cols-3 gap-4 w-full">
+
             {/* Przycisk 1: Patryk */}
-            <button 
+            <button
               onClick={() => openModal('patryk')}
-              className="group w-full max-w-[550px] bg-gradient-to-r from-[#18181b] to-[#27272a] hover:from-[#27272a] hover:to-[#3f3f46] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
+              className="group w-full max-w-[550px] bg-[#18191B] hover:bg-[#25262a] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
             >
               {/* Avatar */}
               <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-zinc-600 shrink-0">
                 <img src="/_resources/team/patryk.webp" alt="Patryk Kulesza" className="w-full h-full object-cover" />
               </div>
-              
+
               {/* Imię i rola */}
               <div className="ml-4 flex-1">
                 <h4 className="text-white text-[15px] font-bold leading-tight">Patryk Kulesza</h4>
-                <p className="text-zinc-400 text-[13px]">Full-stack Developer</p>
+                <p className="text-zinc-300 text-[13px]">Full-stack Developer</p>
               </div>
 
               {/* Informacje: 30 min + Meet */}
               <div className="flex flex-col items-end mr-5 shrink-0">
-                <span className="text-zinc-300 text-[12px] font-semibold">30 min</span>
+                <span className="text-zinc-100 text-[12px] font-semibold">30 min</span>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                    <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png" 
-                    alt="Google Meet" 
-                    className="w-4 h-4 shrink-0 object-contain" 
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png"
+                    alt="Google Meet"
+                    className="w-4 h-4 shrink-0 object-contain"
                     />
-                  <span className="text-zinc-400 text-[12px]">Google Meet</span>
+                  <span className="text-zinc-300 text-[12px]">Google Meet</span>
                 </div>
               </div>
 
@@ -106,31 +80,31 @@ export default function ContactHero() {
             </button>
 
             {/* Przycisk 2: Mateusz */}
-            <button 
+            <button
               onClick={() => openModal('mateusz')}
-              className="group w-full max-w-[550px] bg-gradient-to-r from-[#18181b] to-[#27272a] hover:from-[#27272a] hover:to-[#3f3f46] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
+              className="group w-full max-w-[550px] bg-[#18191B] hover:bg-[#25262a] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
             >
               {/* Avatar */}
               <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-zinc-600 shrink-0">
                 <img src="/_resources/team/mateusz.webp" alt="Mateusz Malewski" className="w-full h-full object-cover" />
               </div>
-              
+
               {/* Imię i rola */}
               <div className="ml-4 flex-1">
                 <h4 className="text-white text-[15px] font-bold leading-tight">Mateusz Malewski</h4>
-                <p className="text-zinc-400 text-[13px]">Website Designer</p>
+                <p className="text-zinc-300 text-[13px]">Website Designer</p>
               </div>
 
               {/* Informacje: 30 min + Meet */}
               <div className="flex flex-col items-end mr-5 shrink-0">
-                <span className="text-zinc-300 text-[12px] font-semibold">30 min</span>
+                <span className="text-zinc-100 text-[12px] font-semibold">30 min</span>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png" 
-                    alt="Google Meet" 
-                    className="w-4 h-4 shrink-0 object-contain" 
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png"
+                    alt="Google Meet"
+                    className="w-4 h-4 shrink-0 object-contain"
                     />
-                  <span className="text-zinc-400 text-[12px]">Google Meet</span>
+                  <span className="text-zinc-300 text-[12px]">Google Meet</span>
                 </div>
               </div>
 
@@ -142,31 +116,31 @@ export default function ContactHero() {
 
 
             {/* Przycisk 3: Bartek */}
-            <button 
+            <button
               onClick={() => openModal('bartek')}
-              className="group w-full max-w-[550px] bg-gradient-to-r from-[#18181b] to-[#27272a] hover:from-[#27272a] hover:to-[#3f3f46] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
+              className="group w-full max-w-[550px] bg-[#18191B] hover:bg-[#25262a] border border-zinc-700 rounded-full p-2 pr-4 flex items-center transition-all duration-300 hover:scale-[1.02] shadow-xl text-left hover:cursor-pointer"
             >
               {/* Avatar */}
               <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-zinc-600 shrink-0">
                 <img src="/_resources/team/bartek.webp" alt="Bartek Koźluk" className="w-full h-full object-cover" />
               </div>
-              
+
               {/* Imię i rola */}
               <div className="ml-4 flex-1">
                 <h4 className="text-white text-[15px] font-bold leading-tight">Bartek Koźluk</h4>
-                <p className="text-zinc-400 text-[13px]">Lider Techniczny</p>
+                <p className="text-zinc-300 text-[13px]">Lider Techniczny</p>
               </div>
 
               {/* Informacje: 30 min + Meet */}
               <div className="flex flex-col items-end mr-5 shrink-0">
-                <span className="text-zinc-300 text-[12px] font-semibold">30 min</span>
+                <span className="text-zinc-100 text-[12px] font-semibold">30 min</span>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                    <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png" 
-                    alt="Google Meet" 
-                    className="w-4 h-4 shrink-0 object-contain" 
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Google_Meet_icon_%282020%29.svg/330px-Google_Meet_icon_%282020%29.svg.png"
+                    alt="Google Meet"
+                    className="w-4 h-4 shrink-0 object-contain"
                     />
-                  <span className="text-zinc-400 text-[12px]">Google Meet</span>
+                  <span className="text-zinc-300 text-[12px]">Google Meet</span>
                 </div>
               </div>
 

@@ -74,7 +74,10 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Próg przejścia z przezroczystego/rozmytego headera (w hero) na pełny,
+      // czarny pasek - dopiero po przewinięciu ok. 75% wysokości ekranu,
+      // żeby header był transparentny/rozmyty przez większość hero.
+      setIsScrolled(window.scrollY > window.innerHeight * 0.75);
 
       if (!isHomepage) return;
 
@@ -146,12 +149,36 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
       <div ref={offersDropdownRef}>
         <motion.header
           className={`fixed top-0 left-0 right-0 z-[50] transition-all duration-300 ${
-            isScrolled
+            isMobile && !isScrolled
+              ? "bg-transparent border-b border-transparent"
+              : isScrolled
               ? "bg-black/87 backdrop-blur-xl border-b border-white/10 shadow-lg"
               : "bg-black/87 backdrop-blur-xl border-b border-white/5"
           }`}
         >
-          <div className="container mx-auto px-6 py-4">
+          {/* Na mobile, dopóki nie przewinięto strony (jesteśmy w hero), zamiast
+              pełnego czarnego paska dajemy tylko rozmycie, które gaśnie w dół -
+              żeby wideo w tle hero było widoczne pod headerem. */}
+          {isMobile && !isScrolled && (
+            <>
+              <div
+                className="absolute inset-0 z-0 pointer-events-none"
+                style={{
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  maskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+                }}
+              />
+              {/* Dodatkowe przyciemnienie gradientowe od góry - dla czytelności tekstu na jasnym wideo */}
+              <div
+                className="absolute inset-0 z-0 pointer-events-none"
+                style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 60%, transparent 100%)' }}
+              />
+            </>
+          )}
+
+          <div className="relative z-10 container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {/* Logo */}
@@ -288,22 +315,21 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                   {/* PRAWA STRONA */}
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={open}
-                      className="flex items-center gap-2 px-4 py-3 rounded-full bg-zinc-200 border border-zinc-900 text-gray-300 hover:text-white hover:bg-zinc-200 transition-all duration-300 hover:cursor-pointer whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]"
+                      onClick={() => router.push("/contact")}
+                      className="flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-200 border border-zinc-900 text-black hover:bg-white transition-all duration-300 hover:cursor-pointer whitespace-nowrap hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      <Search className="w-4 h-4 flex-shrink-0 text-black" />
-                      <span className="text-sm font-medium text-black">Znajdź na Whiteslope</span>
-                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white text-black/70 border border-white/20 rounded flex-shrink-0">
-                        <span className="text-xs">⌘</span>K
-                      </kbd>
-                      <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-white text-black/70 border border-white/20 rounded flex-shrink-0">
-                        <span className="text-xs">Ctrl</span>K
-                      </kbd>
+                      <span className="text-sm font-semibold text-black">Wyceń projekt</span>
+                      <ChevronRight className="w-4 h-4 flex-shrink-0 text-black" />
                     </button>
 
-                    
-
                     <div className="flex items-center gap-2">
+                      <button
+                        onClick={open}
+                        aria-label="Szukaj na Whiteslope"
+                        className="p-2 rounded-full bg-zinc-700/50 hover:bg-zinc-600/60 transition-all duration-300 hover:scale-110 hover:cursor-pointer"
+                      >
+                        <Search className="w-4 h-4 text-white" />
+                      </button>
                       <a
                         href="https://www.instagram.com/whiteslopestudio/"
                         target="_blank"

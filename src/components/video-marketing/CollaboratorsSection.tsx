@@ -18,13 +18,14 @@ const collaborators = [
     initial: null,
     link: 'https://www.instagram.com/mateusz.malewski.10/',
   },
-  {
-    id: 'julia',
-    name: 'Julia',
-    image: null,
-    initial: 'J',
-    link: '#', // Możesz tu dodać link Julii w przyszłości
-  },
+  
+  // {
+  //   id: 'magda',
+  //   name: 'Magda',
+  //   image: '/_resources/videoMarketing/magda/MAGDA_PERSON.webp',
+  //   initial: 'M',
+  //   link: 'https://www.instagram.com/magdajzkv/',
+  // },
 ];
 
 export default function CollaboratorsSection() {
@@ -62,8 +63,7 @@ export default function CollaboratorsSection() {
           >
             Nasz Dział VIDEO {"- "}
           </span>
-          Mamy w teamie osoby od profesjonalnych realizacji filmowych, montażu rolek i twórców UGC.
-          Kompleksowa obsługa i pełne dostosowanie do Twoich potrzeb.
+          Kręcimy, montujemy i tworzymy content UGC. Poznaj ekipę, z którą to robimy
         </p>
 
         {/* Avatary jako linki */}

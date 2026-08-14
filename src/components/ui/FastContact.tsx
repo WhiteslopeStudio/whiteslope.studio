@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { X, Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useMobileDetection } from '@/utils/hooks';
 
 /**
  * Premium Quick Contact Component
@@ -10,6 +12,30 @@ import Link from 'next/link';
  */
 export default function QuickContact() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isMobile = useMobileDetection();
+  const isHomepage = pathname === '/';
+
+  // Na mobile, na stronie głównej, chowamy przycisk dopóki jesteśmy w hero
+  // (pierwszy ekran) - hero jest zaprojektowane bez odstępu na przycisk na
+  // dole, więc żeby się nie nakładały, przycisk pojawia się dopiero po
+  // przewinięciu hero.
+  const [ukryjWHero, setUkryjWHero] = useState(false);
+
+  useEffect(() => {
+    if (!(isMobile && isHomepage)) {
+      setUkryjWHero(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      setUkryjWHero(window.scrollY < window.innerHeight * 0.85);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile, isHomepage]);
 
   return (
     <>
@@ -27,10 +53,13 @@ export default function QuickContact() {
       {/* ========================================== */}
       {/* TRIGGER BUTTON (zamknięty widget) */}
       {/* ========================================== */}
-<div className="fixed bottom-3 left-1/2 -translate-x-1/2 md:left-auto md:right-[100px] md:translate-x-0 md:bottom-8 z-40 flex items-end pointer-events-none">            <button
+<div className={`fixed bottom-3 left-1/2 -translate-x-1/2 md:left-auto md:right-[100px] md:translate-x-0 md:bottom-8 z-40 flex items-end pointer-events-none transition-opacity duration-300 ${ukryjWHero ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>            <button
           onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer pointer-events-auto group relative overflow-hidden flex items-center gap-3 h-[48px] md:h-[52px] pl-1.5 pr-5 md:pr-6 bg-[#161616]  border-[#ccff00] group-hover:border-[#ccff00] rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(204,255,0,0.25)]"
+          disabled={ukryjWHero}
+          tabIndex={ukryjWHero ? -1 : 0}
+          className={`cursor-pointer group relative overflow-hidden flex items-center gap-3 h-[48px] md:h-[52px] pl-1.5 pr-5 md:pr-6 bg-[#161616]  border-[#ccff00] group-hover:border-[#ccff00] rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition-all duration-300 hover:shadow-[0_12px_30px_rgba(204,255,0,0.25)] ${ukryjWHero ? 'pointer-events-none' : 'pointer-events-auto'}`}
           aria-label="Szybki kontakt Whiteslope"
+          aria-hidden={ukryjWHero}
         >
           {/* TŁO HOVER: wlewająca się animacja z zaokrągleniem (cubic-bezier) */}
           <div className="absolute top-0 left-0 w-[120%] h-full bg-[#ccff00] -translate-x-[105%] rounded-r-[100px] group-hover:translate-x-0 group-hover:rounded-r-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>

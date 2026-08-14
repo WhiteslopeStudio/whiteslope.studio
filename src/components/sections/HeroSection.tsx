@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2, Star } from 'lucide-react';
 import { useInteractiveButton } from '@/utils/hooks';
 
 function AnimatedBlock({
@@ -39,25 +39,12 @@ function AnimatedBlock({
 export default function HeroSection() {
   const mainButton = useInteractiveButton();
   const [isMainHovered, setIsMainHovered] = useState(false);
-  const [offsetY, setOffsetY] = useState(0);
   // FAZA 2c: ten komponent i HeroSectionMobile sa oba w DOM naraz (CSS decyduje
   // ktory jest widoczny), wiec nie mozemy dac <video src=...> na sztywno - oba
   // probowalyby ladowac to samo 1.3MB wideo rownolegle. src wstawiamy dopiero
   // gdy matchMedia potwierdzi ze TA wersja (desktop, min-width 768px) jest
   // faktycznie widoczna.
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffsetY(window.scrollY);
-    };
-
-    // Dodajemy listener (passive: true poprawia wydajność scrollowania)
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Sprzątamy po odmontowaniu komponentu
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
@@ -69,35 +56,27 @@ export default function HeroSection() {
 
   return (
     // Zostawiłem dokładnie Twoje klasy - zaokrąglona sekcja, która wygląda jak "zawieszona"
-    <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[70svh] min-h-[1000px] md:h-[70svh] md:min-h-[800px] overflow-hidden overflow-x-hidden">
+    <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[70svh] min-h-[1000px] md:h-[100svh] md:min-h-[800px] overflow-hidden overflow-x-hidden">
       
       {/* --- WIDEO W TLE --- */}
       {/* 1. Pełna szerokość tła, flex ustawia zawartość na samym środku */}
       <div className="absolute inset-0 z-0 flex justify-center pointer-events-none">
         
-        {/* 2. KONTENER WŁAŚCIWY: max 1640px. To on ma overflow-hidden, więc nic z niego nie wyleje się na boki! */}
-        <div className="relative w-full h-full max-w-[1700px] overflow-hidden">
-          
-          {/* 3. PARALLAX WRAPPER */}
-          <div 
-            className="absolute inset-0 w-full h-full will-change-transform"
-            style={{ transform: `translateY(${offsetY * -0.2}px)` }}
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              aria-hidden="true"
-              poster="/animationHero/HeroShowReel-poster.jpg"
-              preload="auto"
-              fetchPriority="high"
-              /* Wideo wypełnia 1640px, a scale-[2.4] powiększa je, ukrywając znaki wodne. Reszta ucięta przez overflow-hidden rodzica */
-              className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
-              src={videoSrc}
-            />
-          </div>
-
+        {/* 2. KONTENER WŁAŚCIWY: pełna szerokość sekcji. To on ma overflow-hidden, więc nic z niego nie wyleje się na boki! */}
+        <div className="relative w-full h-full overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-hidden="true"
+            poster="/animationHero/HeroShowReel-poster.jpg"
+            preload="auto"
+            fetchPriority="high"
+            /* Wideo wypełnia 1640px, a scale-[2.4] powiększa je, ukrywając znaki wodne. Reszta ucięta przez overflow-hidden rodzica */
+            className="absolute inset-0 w-full h-full object-cover scale-[1.2]"
+            src={videoSrc}
+          />
         </div>
       </div>
 
@@ -125,7 +104,7 @@ export default function HeroSection() {
       />
 
       {/* --- ZAWARTOŚĆ --- */}
-      <div className="relative z-10 h-full w-full max-w-[1640px] mx-auto px-6 md:px-12 pb-2 flex flex-col justify-end items-start text-left">
+      <div className="relative z-10 h-full w-full max-w-[1640px] mx-auto px-6 md:px-12 pb-10 md:pb-20 flex flex-col justify-end items-start text-left">
 
         {/* NOWOŚĆ: Kontener Flex dzielący treść na lewą (H1+Przyciski) i prawą (Lista z ikonami) stronę na desktopie.
             items-end wyrównuje obie kolumny równiutko do dołu. */}
@@ -134,10 +113,38 @@ export default function HeroSection() {
           {/* --- LEWA KOLUMNA (H1, Przyciski, Zbijacze obiekcji) --- */}
           <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[900px]">
 
+            {/* Pasek zaufania: awatary klientów + ocena - NAD H1, w jednej linii jak na mobile */}
+            <div className="flex items-center gap-2 mb-1">
+              <div className="flex -space-x-2 shrink-0">
+                <img
+                  src="/_resources/reviews/slawekWieslawski.webp"
+                  alt="Zadowolony klient"
+                  className="w-7 h-7 rounded-full border-2 border-[#141414] object-cover"
+                />
+                <img
+                  src="/_resources/reviews/damianBogdanowicz.webp"
+                  alt="Zadowolony klient"
+                  className="w-7 h-7 rounded-full border-2 border-[#141414] object-cover"
+                />
+                <img
+                  src="/_resources/reviews/easylesson.webp"
+                  alt="Zadowolony klient"
+                  className="w-7 h-7 rounded-full border-2 border-[#141414] object-cover"
+                />
+              </div>
+              <span className="text-blue-400 text-[13px] font-[600] whitespace-nowrap">
+                Dołącz do zadowolonych klientów
+              </span>
+              <div className="flex items-center gap-1 shrink-0">
+                <Star className="w-[13px] h-[13px] text-yellow-400 fill-yellow-400" />
+                <span className="text-white/80 text-[12px] font-[500]">(5.0)</span>
+              </div>
+            </div>
+
             {/* Nagłówek H1 - KOMPLETNIE NIERUSZONY CSS */}
             <div>
-              <h1 className="text-[50px] font-[700] leading-[0.85] text-left text-white tracking-tight md:text-[60px] ">
-                Twój biznesowy pomysł.<br/> Nasz kod i wdrożenie.
+              <h1 className="text-[42px] font-[700] leading-[0.9] text-left text-white tracking-tight md:text-[52px] ">
+                Strony, produkty i marketing,<br/> które realnie dowożą
               </h1>
             </div>
 
@@ -164,7 +171,7 @@ export default function HeroSection() {
                     scale: isMainHovered ? 1.05 : 1,
                   }}
                 >
-                  Zacznij współpracę
+                  Wyceń projekt
                   <ArrowRight className="w-[16px] h-[16px] ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
 

@@ -18,7 +18,7 @@ export default function LogoTicker() {
 
   return (
     // Zewnętrzna sekcja zapewnia tło na pełną szerokość i linię oddzielającą na dole
-    <section className="relative w-full py-6 md:py-8 bg-[#050505]  flex justify-center">
+    <section className="relative w-full py-6 md:py-8 bg-[#18191B]  flex justify-center">
       
       {/* Wstrzyknięty styl dla płynnej animacji przesuwania (marquee) */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -36,10 +36,10 @@ export default function LogoTicker() {
       <div className="relative w-full max-w-[1640px] overflow-hidden flex items-center">
         
         {/* Lewy gradient - teraz startuje na krawędzi 1640px */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-56 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-        
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-56 bg-gradient-to-r from-[#18191B] to-transparent z-10 pointer-events-none" />
+
         {/* Prawy gradient - teraz startuje na krawędzi 1640px */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-56 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-56 bg-gradient-to-l from-[#18191B] to-transparent z-10 pointer-events-none" />
 
         {/* Kontener z animacją */}
         <div className="flex animate-marquee items-center w-max">

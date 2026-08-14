@@ -1,11 +1,17 @@
-import BreadcrumbNav from '@/components/ui/BreadcrumbNav';
+import BreadcrumbDropdown from '@/components/ui/BreadcrumbDropdown';
 import HeroSection from './HeroSection';
 import HighlightsBar from './HighlightsBar';
 import StatementSection from './StatementSection';
 import TilesSection from './TilesSection';
 import VideoShowcaseSection from './VideoShowcaseSection';
 import CollaboratorsSection from './CollaboratorsSection';
+// Sekcja Magdy wyłączona na razie - patrz komentarz niżej przy jej użyciu w JSX.
+// import CreatorSpotlightSection from './CreatorSpotlightSection';
+// import CreatorSpotlightSectionMobile from './CreatorSpotlightSectionMobile';
+// import CreatorSpotlightSectionTablet from './CreatorSpotlightSectionTablet';
+import MeetTeamSection from './MeetTeamSection';
 import VideoBriefSection from './VideoBriefSection';
+import FaqSection from './FaqSection';
 import { VIDEO_MARKETING_FAQ } from '@/lib/seo/videoMarketingFaq';
 
 export default function VideoMarketingServicePage() {
@@ -39,7 +45,7 @@ export default function VideoMarketingServicePage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-16">
+    <div className="min-h-screen bg-black text-white pt-16 relative overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -49,49 +55,35 @@ export default function VideoMarketingServicePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
 
-      <div className="container mx-auto px-6 pt-8">
-        <BreadcrumbNav serviceName="Video Marketing" serviceId="video-marketing" />
-      </div>
+      <BreadcrumbDropdown aktualnaEtykieta="Marketing" />
 
       <HeroSection />
-      <div className="px-8 md:px-12 lg:px-36">
-        <HighlightsBar />
-      </div>
+      <HighlightsBar />
+      <MeetTeamSection />
 
-      <CollaboratorsSection />
+      {/* Sekcja Magdy wyłączona na razie (zakomentowana) - ma zostać pokazana Magdzie na osobnym linku
+          do podglądu (/pricing/video-marketing-podglad-magda, kopia całej strony z tą sekcją włączoną),
+          zanim trafi na żywo. Nie usuwać - tylko odkomentować, kiedy będzie można to opublikować. */}
+      {/* <CreatorSpotlightSection />
+      <CreatorSpotlightSectionTablet />
+      <CreatorSpotlightSectionMobile /> */}
 
+          <CollaboratorsSection />
       <StatementSection />
 
-      <TilesSection />
+      {/* Wyłączone na razie - zostaje samo "Wideo, które przyciąga. Kontent, który sprzedaje" */}
+      
 
-      <VideoShowcaseSection />
+      
+      
+      <TilesSection />
+      
+
+      {/* <VideoShowcaseSection /> */}
 
       <VideoBriefSection />
 
-      <section className="container mx-auto px-6 md:px-10 lg:px-16 py-16">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-            FAQ: UGC i Video Marketing
-          </h2>
-          <p className="text-zinc-300 mb-10">
-            Odpowiedzi na najczestsze pytania tworcow i firm o agencje UGC, zarobki, cennik, wspolprace i skalowanie contentu.
-          </p>
-
-          <div className="space-y-4">
-            {VIDEO_MARKETING_FAQ.map((item) => (
-              <details
-                key={item.question}
-                className="group rounded-xl border border-white/15 bg-white/[0.03] p-5 open:bg-white/[0.05] transition-colors"
-              >
-                <summary className="cursor-pointer list-none pr-6 text-base md:text-lg font-medium text-white marker:content-none">
-                  {item.question}
-                </summary>
-                <p className="mt-3 text-zinc-300 leading-relaxed">{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection />
     </div>
   );
 }
