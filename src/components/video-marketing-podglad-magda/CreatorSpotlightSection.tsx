@@ -74,6 +74,8 @@ export default function CreatorSpotlightSection() {
       return;
     }
 
+    const tresciElement = tresciRef.current;
+
     const kontekst = gsap.context(() => {
       const vh = window.innerHeight;
 
@@ -148,7 +150,7 @@ export default function CreatorSpotlightSection() {
         // Treść po prawej wjeżdża element po elemencie, z rozmyciem i lekkim odbiciem - "fancy".
         // CTA i strzałka wyłączone z tej grupy - mają własne, osobne animacje (patrz niżej).
         .fromTo(
-          Array.from(tresciRef.current.children).filter(
+          Array.from(tresciElement.children).filter(
             (el) => el !== ctaRef.current && el !== strzalkaRef.current
           ),
           { opacity: 0, y: 28, filter: 'blur(10px)' },
