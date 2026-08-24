@@ -38,7 +38,7 @@ const FILMY_MAGDY = [
 // klikalny, żeby włączyć/wyłączyć dźwięk. Bez pinowania scrolla - dużo prostsze niż desktop.
 export default function CreatorSpotlightSectionTablet() {
   const [otwartyFilm, setOtwartyFilm] = useState<number | null>(null);
-  const [pelnyWyciszony, setPelnyWyciszony] = useState(false);
+  const [pelnyWyciszony, setPelnyWyciszony] = useState(true);
   const [pelnyPauza, setPelnyPauza] = useState(false);
   const [zamontowano, setZamontowano] = useState(false);
   const pelnyVideoRef = useRef<HTMLVideoElement>(null);
@@ -70,7 +70,7 @@ export default function CreatorSpotlightSectionTablet() {
     document.body.style.overflow = otwartyFilm !== null ? 'hidden' : '';
     if (otwartyFilm !== null) {
       setPelnyPauza(false);
-      setPelnyWyciszony(false);
+      setPelnyWyciszony(true);
     }
     return () => {
       document.body.style.overflow = '';

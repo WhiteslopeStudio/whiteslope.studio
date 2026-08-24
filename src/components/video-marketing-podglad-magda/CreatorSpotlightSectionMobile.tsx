@@ -39,7 +39,7 @@ const FILMY_MAGDY = [
 // lustrzanie (tam foto było z prawej). Pod spodem: opis, social media, CTA, a na końcu pozioma karuzela.
 export default function CreatorSpotlightSectionMobile() {
   const [otwartyFilm, setOtwartyFilm] = useState<number | null>(null);
-  const [pelnyWyciszony, setPelnyWyciszony] = useState(false);
+  const [pelnyWyciszony, setPelnyWyciszony] = useState(true);
   const [pelnyPauza, setPelnyPauza] = useState(false);
   const [zamontowano, setZamontowano] = useState(false);
   const pelnyVideoRef = useRef<HTMLVideoElement>(null);
@@ -74,7 +74,7 @@ export default function CreatorSpotlightSectionMobile() {
     document.body.style.overflow = otwartyFilm !== null ? 'hidden' : '';
     if (otwartyFilm !== null) {
       setPelnyPauza(false);
-      setPelnyWyciszony(false);
+      setPelnyWyciszony(true);
     }
     return () => {
       document.body.style.overflow = '';
