@@ -182,7 +182,7 @@ export default function HeroSection() {
               >
                 <img src="/_resources/videoMarketing/Mati.webp" alt="Mateusz" className="w-full h-full object-cover" />
               </a>
-              {/* <a
+              <a
                 href="https://www.instagram.com/magdajzkv/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -193,7 +193,7 @@ export default function HeroSection() {
                   alt="Magda"
                   className="w-full h-full object-cover"
                 />
-              </a> */}
+              </a>
             </div>
             <p className="text-sm xl:text-base text-black/70" style={{ fontFamily: fonts.body }}>
               <span className="font-semibold text-black">Nasz Dział VIDEO</span> - Kręcimy, montujemy i tworzymy

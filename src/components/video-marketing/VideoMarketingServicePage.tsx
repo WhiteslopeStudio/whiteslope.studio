@@ -5,10 +5,9 @@ import StatementSection from './StatementSection';
 import TilesSection from './TilesSection';
 import VideoShowcaseSection from './VideoShowcaseSection';
 import CollaboratorsSection from './CollaboratorsSection';
-// Sekcja Magdy wyłączona na razie - patrz komentarz niżej przy jej użyciu w JSX.
-// import CreatorSpotlightSection from './CreatorSpotlightSection';
-// import CreatorSpotlightSectionMobile from './CreatorSpotlightSectionMobile';
-// import CreatorSpotlightSectionTablet from './CreatorSpotlightSectionTablet';
+import CreatorSpotlightSection from './CreatorSpotlightSection';
+import CreatorSpotlightSectionMobile from './CreatorSpotlightSectionMobile';
+import CreatorSpotlightSectionTablet from './CreatorSpotlightSectionTablet';
 import MeetTeamSection from './MeetTeamSection';
 import VideoBriefSection from './VideoBriefSection';
 import FaqSection from './FaqSection';
@@ -61,23 +60,18 @@ export default function VideoMarketingServicePage() {
       <HighlightsBar />
       <MeetTeamSection />
 
-      {/* Sekcja Magdy wyłączona na razie (zakomentowana) - ma zostać pokazana Magdzie na osobnym linku
-          do podglądu (/pricing/video-marketing-podglad-magda, kopia całej strony z tą sekcją włączoną),
-          zanim trafi na żywo. Nie usuwać - tylko odkomentować, kiedy będzie można to opublikować. */}
-      {/* <CreatorSpotlightSection />
-      <CreatorSpotlightSectionTablet />
-      <CreatorSpotlightSectionMobile /> */}
+      <div id="MagdaUGC" aria-hidden="true" className="relative -mb-px h-px w-full" />
 
-          <CollaboratorsSection />
+        <CreatorSpotlightSection />
+      <CreatorSpotlightSectionTablet />
+        <CreatorSpotlightSectionMobile />
+
       <StatementSection />
 
       {/* Wyłączone na razie - zostaje samo "Wideo, które przyciąga. Kontent, który sprzedaje" */}
-      
+        {/* <CollaboratorsSection /> */}
 
-      
-      
       <TilesSection />
-      
 
       {/* <VideoShowcaseSection /> */}
 

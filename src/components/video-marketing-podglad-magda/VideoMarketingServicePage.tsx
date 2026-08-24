@@ -63,6 +63,8 @@ export default function VideoMarketingServicePage() {
       <HighlightsBar />
       <MeetTeamSection />
 
+      <div id="MagdaUGC" aria-hidden="true" className="relative -mb-px h-px w-full" />
+
       {/* Wszystkie 3 wersje zawsze zamontowane - widoczność steruje CSS (min-[Npx]:flex / hidden w środku
           każdej z nich), a nie warunkowe mount/unmount w Reakcie. Desktop ma GSAP ScrollTrigger z pin:true,
           który fizycznie przenosi węzeł w DOM (pin-spacer) - warunkowe odmontowanie po flipie stanu

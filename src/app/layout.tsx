@@ -114,7 +114,7 @@ export default function RootLayout({
       </head>
       
       {/* Tutaj aplikujemy zmienną Inter na całe body */}
-      <body className={`${inter.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${inter.variable} antialiased`}>
         <ScrollToTop /> {/* <-- DODANE NA SAMYM GÓRZE BODY */}
         <GtagLoader />
         <Header />
