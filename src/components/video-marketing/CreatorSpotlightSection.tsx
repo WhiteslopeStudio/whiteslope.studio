@@ -28,10 +28,10 @@ const paleta = {
 // Jej realizacje - prawdziwe pliki mp4, więc pełny rozmiar i bez overlayu TikToka
 const FILMY_MAGDY = [
   { src: '/_resources/videoMarketing/magda/NEW_Magda_Wideo_wizytowka.mp4', marka: 'Portfolio' },
-  { src: '/_resources/videoMarketing/magda/NEW_Magda_MobilFox.mp4', marka: 'MobilFox' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_hoppa.mp4', marka: 'Hoppa' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry1.mp4', marka: 'Chillberry' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry2.mp4', marka: 'Chillberry' },
+  { src: '/_resources/videoMarketing/magda/NEW_Magda_MobilFox.mp4', marka: 'Akcesoria' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_hoppa.mp4', marka: 'Beauty' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry1.mp4', marka: 'Jedzenie' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry2.mp4', marka: 'Jedzenie' },
 ];
 
 export default function CreatorSpotlightSection() {

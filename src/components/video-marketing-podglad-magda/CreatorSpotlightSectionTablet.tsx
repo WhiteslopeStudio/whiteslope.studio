@@ -25,10 +25,10 @@ const paleta = {
 
 const FILMY_MAGDY = [
   { src: '/_resources/videoMarketing/magda/NEW_Magda_Wideo_wizytowka.mp4', marka: 'Portfolio' },
-  { src: '/_resources/videoMarketing/magda/NEW_Magda_MobilFox.mp4', marka: 'MobilFox' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_hoppa.mp4', marka: 'Hoppa' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry1.mp4', marka: 'Chillberry' },
-  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry2.mp4', marka: 'Chillberry' },
+  { src: '/_resources/videoMarketing/magda/NEW_Magda_MobilFox.mp4', marka: 'Akcesoria' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_hoppa.mp4', marka: 'Beauty' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry1.mp4', marka: 'Jedzenie' },
+  { src: '/_resources/videoMarketing/magda/MAGDA_Chillberry2.mp4', marka: 'Jedzenie' },
 ];
 
 // Wersja "pośrednia" (tablet/mały laptop, ~1024-1549px szerokości) - w tym zakresie nie mieści się
