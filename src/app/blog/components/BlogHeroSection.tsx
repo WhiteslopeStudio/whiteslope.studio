@@ -5,18 +5,6 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ArrowRight, ArrowDown, Play, BookOpen } from 'lucide-react';
 import { useInteractiveButton } from '@/utils/hooks';
 
-// Przykładowe wyróżnione wpisy do karuzeli w tle (podmień na swoje dane z '@/lib/data' jeśli potrzebujesz)
-const FEATURED_POSTS = [
-  {
-    id: 'post-1',
-    title: 'Sekrety Stron Biznesowych – Pozyskuj klientów w 2 minuty!',
-    image: '/_resources/stronyInternetowe/DamianBogdanowicz.webp', // Zmień na ścieżkę do okładki wpisu
-    href: '#artykuly',
-  },
-];
-
-const SLIDE_INTERVAL_MS = 5500;
-
 function AnimatedBlock({
   children,
   delay = 0,
@@ -46,85 +34,21 @@ function AnimatedBlock({
 }
 
 export default function BlogHeroSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const mainButton = useInteractiveButton();
   const [isMainHovered, setIsMainHovered] = useState(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % FEATURED_POSTS.length);
-    }, SLIDE_INTERVAL_MS);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + FEATURED_POSTS.length) % FEATURED_POSTS.length);
-  };
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % FEATURED_POSTS.length);
-  };
-
-  const currentPost = FEATURED_POSTS[activeIndex];
 
   return (
     <section className="relative mx-auto mb-4 md:mb-6 bg-[#141414] rounded-xl md:rounded-[16px] h-[85svh] max-h-[800px] md:h-[65svh] md:max-h-[500px] overflow-hidden overflow-x-hidden">
       
-      {/* Tło dla Mobile */}
-      <div
-        className="absolute inset-0 md:hidden bg-center bg-cover"
-        style={{
-          backgroundImage: `url(/_resources/stronyInternetowe/DamianBogdanowicz.webp)`,
-          filter: 'brightness(0.42) saturate(0.92)',
-        }}
-      />
-      <div
-        className="absolute inset-0 md:hidden"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.9) 100%)',
-        }}
-      />
-
-      {/* Karuzela w tle dla Desktopu */}
-      <div className="absolute inset-0 hidden md:block">
-        {FEATURED_POSTS.map((post, index) => (
-          <div
-            
-            className="absolute inset-0 bg-center bg-cover "
-            style={{
-              backgroundImage: `/_resources/stronyInternetowe/DamianBogdanowicz.webp`,
-              
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Gradienty nakładane na wideo/zdjęcia */}
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{
-          background:
-            'linear-gradient(370deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.2) 48%, rgba(0,0,0,0.14) 66%, rgba(0,0,0,0.02) 84%)',
-        }}
-      />
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.24) 55%, rgba(0,0,0,0.9) 100%)',
-        }}
-      />
-
       {/* Główny kontent tekstowy */}
-      <div className="relative z-10 h-full w-full max-w-[1640px] mx-auto px-6 md:px-12 pb-12 md:pb-24 flex flex-col justify-end items-start text-left">
-        <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[800px]">
+      <div className="relative z-10 h-full w-full max-w-[1640px] mx-auto px-6 md:px-12 pb-8 md:pb-16 flex flex-col justify-end items-center text-center">
+        <div className="flex flex-col items-center gap-4 md:gap-6 w-full max-w-[800px]">
 
         
 
           {/* Nagłówek H1 */}
           <AnimatedBlock delay={120}>
-            <h1 className="text-[34px] sm:text-[40px] md:text-[48px] font-bold leading-[0.95] text-left">
+            <h1 className="text-[34px] sm:text-[40px] md:text-[48px] font-bold leading-[0.95] text-center">
               <span className="md:hidden">
                 <span className="text-transparent bg-clip-text bg-gradient-to-tr from-gray-300 via-gray-100 to-white">
                   Aktualności, technologia
@@ -144,14 +68,14 @@ export default function BlogHeroSection() {
 
           {/* Paragraf */}
           <AnimatedBlock delay={240}>
-            <p className="text-[16px] text-blue-50/90 max-w-[570px] -my-1 leading-[1.3]">
+            <p className="text-[16px] text-blue-50/90 max-w-[570px] -my-1 leading-[1.3] text-center">
               Praktyczne porady z zakresu tworzenia stron, automatyzacji procesów AI oraz e-marketingu. Wybierz format, w którym wolisz przyswajać wiedzę.
             </p>
           </AnimatedBlock>
 
           {/* Przyciski CTA */}
           <AnimatedBlock delay={520}>
-            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-start items-center w-full">
+            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full">
               
               {/* Główny przycisk (Czytaj artykuły) */}
               <Link

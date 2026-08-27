@@ -9,7 +9,8 @@ const PARTNER_LOGOS = [
   { name: 'Easylesson', url: '/_resources/grafika/LogoEasyLessonWhite.webp', invertColor: false, w: 256, h: 58 },
   { name: 'Damian Bogdanowicz', url: '/_resources/logos/damianLogo.webp', invertColor: false, w: 700, h: 1000 },
   { name: 'Patryk Kulesza', url: '/_resources/logo-PatrykKulesza.webp', invertColor: true, w: 1442, h: 494 },
-  { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false, w: 3000, h: 3000 },
+  // { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false, w: 3000, h: 3000 },
+  { name: 'Duo Korki', url: '/_resources/logos/logo_duokorki_White.webp', invertColor: false, w: 6000, h: 2000 },
 ];
 
 export default function LogoTicker() {

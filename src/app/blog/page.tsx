@@ -237,7 +237,7 @@ import { Metadata } from 'next';
 import { blogJsonLd } from '@/lib/schema';
 import BlogSeoSection from './components/BlogSeoSection';
 import BlogHeroSection from './components/BlogHeroSection';
-import BlogPostsSection from './components/BlogPostsSection';
+// BlogPostsSection jest tymczasowo ukryta do czasu poprawy wyglądu artykułów.
 import BlogVideoSection from './components/BlogVideoSection';
 import NewsletterSection from './components/NewsletterSection';
 import TrustOverlay from '@/components/ui/TrustOverlay';
@@ -279,13 +279,7 @@ export default function BlogPage() {
       {/* 1. Hero z wyszukiwarką i tagami */}
       <BlogHeroSection />
 
-      {/* 3. Sekcja z filmami (osobna) */}
       <BlogVideoSection />
-
-      {/* 2. Lista artykułów blogowych (2 rzędy x 3 kolumny + paginacja) */}
-      <BlogPostsSection />
-
-      
 
       {/* 4. Sekcja Newslettera */}
       <NewsletterSection />
