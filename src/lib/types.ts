@@ -20,7 +20,8 @@ export interface ProjectExample {
   category: string;
   href?: string;
   description: string;
-  rowType?: 'web';
+  rowType?: 'web' | 'marketing';
+  video?: string;
   clientName?: string;    
   clientLogo?: string;    
   servicesListed?: string;

@@ -115,12 +115,23 @@ export default function ProjectRow({ title, subtitle, category }: ProjectRowProp
               
               {/* Sekcja Obrazka */}
               <div className="w-full aspect-video overflow-hidden bg-zinc-900 mb-4 shadow-lg group-hover/card:shadow-2xl transition-all duration-300 border border-white/5 rounded-[16px]">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                  draggable={false}
-                />
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                    draggable={false}
+                  />
+                )}
               </div>
 
               {/* Sekcja Tekstowa POD obrazkiem */}

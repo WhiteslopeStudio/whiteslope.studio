@@ -157,18 +157,36 @@ export default function ProjectModal({ projects, initialIndex, isOpen, onClose }
             {/* LEWA STRONA - ZDJĘCIA (70%) */}
             <div className="hidden lg:block lg:w-[70%] h-full bg-zinc-100 relative border-r border-zinc-200 overflow-hidden">
               <AnimatePresence custom={direction} initial={false}>
-                <motion.img
-                  key={`img-${currentProject.id}`}
-                  src={currentProject.image}
-                  alt={currentProject.title}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                />
+                {currentProject.video ? (
+                  <motion.video
+                    key={`video-${currentProject.id}`}
+                    src={currentProject.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                ) : (
+                  <motion.img
+                    key={`img-${currentProject.id}`}
+                    src={currentProject.image}
+                    alt={currentProject.title}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                )}
               </AnimatePresence>
             </div>
 
