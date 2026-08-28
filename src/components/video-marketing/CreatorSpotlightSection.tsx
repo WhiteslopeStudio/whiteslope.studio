@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-import { Instagram, MapPin, ArrowRight, Volume2, VolumeX, Info } from 'lucide-react';
+import { Instagram, MapPin, ArrowRight, Volume2, VolumeX, Info, ChevronLeft, ChevronRight } from 'lucide-react';
 import { colors, fonts, ctaSecondaryBaseClass } from './theme';
 import { useJestWObszarze } from './useJestWObszarze';
 
@@ -56,6 +56,30 @@ export default function CreatorSpotlightSection() {
   // pobierała ich od razu przy wejściu na stronę, tylko dopiero jak użytkownik faktycznie do nich doscrolluje.
   const filmyZaladowane = useJestWObszarze(sekcjaRef);
 
+  // Przełączanie filmików JEST TERAZ RĘCZNE (strzałki/kropki) - scroll steruje tylko animacją wjazdu.
+  // Te same funkcje aktualizują "kierunek" (do slide-transition) i "indeksRef" (źródło prawdy do porównań).
+  const nastepnyFilm = () => {
+    const nowy = (indeksRef.current + 1) % FILMY_MAGDY.length;
+    setKierunek(1);
+    setPoprzedniFilm(indeksRef.current);
+    indeksRef.current = nowy;
+    setAktywnyFilm(nowy);
+  };
+  const poprzedniFilmReczny = () => {
+    const nowy = (indeksRef.current - 1 + FILMY_MAGDY.length) % FILMY_MAGDY.length;
+    setKierunek(-1);
+    setPoprzedniFilm(indeksRef.current);
+    indeksRef.current = nowy;
+    setAktywnyFilm(nowy);
+  };
+  const wybierzFilm = (indeks: number) => {
+    if (indeks === indeksRef.current) return;
+    setKierunek(indeks > indeksRef.current ? 1 : -1);
+    setPoprzedniFilm(indeksRef.current);
+    indeksRef.current = indeks;
+    setAktywnyFilm(indeks);
+  };
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -88,11 +112,11 @@ export default function CreatorSpotlightSection() {
       const pFilmStart = pTrescStart + dlugoscTrescReveal + dlugoscDelayStrzalki + dlugoscStrzalki * 0.25; // filmik wjeżdża jeszcze wcześniej w trakcie pojawiania się strzałki
       const dlugoscFilmFadeIn = vh * 0.35;
       const pFilmWidoczny = pFilmStart + dlugoscFilmFadeIn; // od tego momentu liczymy, który filmik pokazać
-      const dlugoscJednegoFilmu = vh * 0.65; // skrócone - mniej scrolla na każdy filmik, w tym na ostatni
-      const pKoniecFilmow = pFilmWidoczny + dlugoscJednegoFilmu * FILMY_MAGDY.length;
-      const bufor = vh * 0.25; // krótsza chwila spoczynku na ostatnim filmiku, zanim sekcja się odepnie
+      // Scroll steruje TYLKO animacją wjazdu (napis, zalanie, treść, pierwszy filmik) - przełączanie między
+      // filmikami NIE jest już powiązane ze scrollem, tylko z ręcznym kliknięciem (strzałki/kropki niżej).
+      const bufor = vh * 0.25; // krótka chwila spoczynku po pojawieniu się pierwszego filmiku, zanim sekcja się odepnie
 
-      const dlugoscCalkowita = pKoniecFilmow + bufor;
+      const dlugoscCalkowita = pFilmWidoczny + bufor;
       const frakcjaAnimacji = dlugoscAnimacji / dlugoscCalkowita;
       const poz = (px: number) => px / dlugoscCalkowita; // pomocnicza konwersja piksele -> pozycja 0-1 na timeline
 
@@ -107,16 +131,6 @@ export default function CreatorSpotlightSection() {
           onLeave: () => setWyciszony(true),
           onLeaveBack: () => setWyciszony(true),
           onUpdate: (self) => {
-            const scrolniete = self.progress * dlugoscCalkowita;
-            const wFilmach = Math.max(0, scrolniete - pFilmWidoczny);
-            const indeks = Math.min(FILMY_MAGDY.length - 1, Math.floor(wFilmach / dlugoscJednegoFilmu));
-            if (indeks !== indeksRef.current) {
-              setKierunek(indeks > indeksRef.current ? 1 : -1);
-              setPoprzedniFilm(indeksRef.current);
-              indeksRef.current = indeks;
-              setAktywnyFilm(indeks);
-            }
-
             // Czerwony pasek postępu na dole ekranu - jak na YouTube, pokazuje ile zostało do końca animacji
             if (paskRef.current) {
               paskRef.current.style.width = `${self.progress * 100}%`;
@@ -401,42 +415,46 @@ export default function CreatorSpotlightSection() {
             renderze, oba ze świeżo policzonym "kierunek" (1 = scroll w dół, -1 = scroll w górę), więc kierunek
             wjazdu/wyjazdu zawsze jest aktualny i zgodny z tym, w którą stronę użytkownik faktycznie scrolluje.
             Nowy wjeżdża w tym samym czasie co stary wyjeżdża - bez czarnej przerwy pomiędzy nimi. */}
-        {poprzedniFilm !== null && (
+        {/* Kliknięcie w sam filmik też przełącza na kolejny - tak jak u Matiego (strzałki/kropki działają
+            niezależnie, to tylko dodatkowy, wygodny sposób przełączania) */}
+        <div className="absolute inset-0 cursor-pointer" onClick={nastepnyFilm}>
+          {poprzedniFilm !== null && (
+            <motion.div
+              key={`poprzedni-${poprzedniFilm}`}
+              className="absolute inset-0"
+              initial={{ y: 0 }}
+              animate={{ y: kierunek === 1 ? '-100%' : '100%' }}
+              transition={{ duration: 0.55, ease: 'easeInOut' }}
+              onAnimationComplete={() => setPoprzedniFilm((biezacy) => (biezacy === poprzedniFilm ? null : biezacy))}
+            >
+              {filmyZaladowane && (
+                <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+                  <source src={FILMY_MAGDY[poprzedniFilm].src} type="video/mp4" />
+                </video>
+              )}
+            </motion.div>
+          )}
+
           <motion.div
-            key={`poprzedni-${poprzedniFilm}`}
+            key={`aktualny-${aktywnyFilm}`}
             className="absolute inset-0"
-            initial={{ y: 0 }}
-            animate={{ y: kierunek === 1 ? '-100%' : '100%' }}
+            initial={{ y: kierunek === 1 ? '100%' : '-100%' }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.55, ease: 'easeInOut' }}
-            onAnimationComplete={() => setPoprzedniFilm((biezacy) => (biezacy === poprzedniFilm ? null : biezacy))}
           >
             {filmyZaladowane && (
-              <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-                <source src={FILMY_MAGDY[poprzedniFilm].src} type="video/mp4" />
+              <video
+                autoPlay
+                muted={wyciszony}
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src={FILMY_MAGDY[aktywnyFilm].src} type="video/mp4" />
               </video>
             )}
           </motion.div>
-        )}
-
-        <motion.div
-          key={`aktualny-${aktywnyFilm}`}
-          className="absolute inset-0"
-          initial={{ y: kierunek === 1 ? '100%' : '-100%' }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.55, ease: 'easeInOut' }}
-        >
-          {filmyZaladowane && (
-            <video
-              autoPlay
-              muted={wyciszony}
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src={FILMY_MAGDY[aktywnyFilm].src} type="video/mp4" />
-            </video>
-          )}
-        </motion.div>
+        </div>
 
         {/* Duży, rzucający się w oczy przycisk na środku - zachęca do odmutowania, znika po kliknięciu */}
         {wyciszony && (
@@ -465,11 +483,59 @@ export default function CreatorSpotlightSection() {
           </button>
         )}
 
+        {/* Kropki pokazujące, który filmik jest aktywny - na środku dolnego paska, klikalne (tak jak u Matiego) */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center gap-2">
+          {FILMY_MAGDY.map((film, indeks) => (
+            <button
+              key={film.src}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                wybierzFilm(indeks);
+              }}
+              aria-label={`Filmik ${indeks + 1}`}
+              className="w-2 h-2 rounded-full cursor-pointer transition-transform hover:scale-125"
+              style={{ backgroundColor: indeks === aktywnyFilm ? '#fff' : 'rgba(255,255,255,0.4)' }}
+            />
+          ))}
+        </div>
+
+        {/* Strzałki do ręcznego przewijania filmików - obok siebie, w wolnym prawym dolnym rogu */}
+        <div className="absolute bottom-4 right-4 z-30 flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              poprzedniFilmReczny();
+            }}
+            aria-label="Poprzedni filmik"
+            className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110 active:scale-95"
+            style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              nastepnyFilm();
+            }}
+            aria-label="Następny filmik"
+            className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110 active:scale-95"
+            style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
+        </div>
+
         {/* Dolny pasek - większy, bardziej zauważalny przycisk mute, a zaraz obok niego nazwa marki */}
         <div className="absolute bottom-4 left-4 z-30 flex items-center gap-2.5">
           <button
             type="button"
-            onClick={() => setWyciszony((poprzednio) => !poprzednio)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setWyciszony((poprzednio) => !poprzednio);
+            }}
             aria-label={wyciszony ? 'Włącz dźwięk' : 'Wycisz'}
             className="w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110 active:scale-95 shrink-0"
             style={{ backgroundColor: 'rgba(0,0,0,0.65)' }}

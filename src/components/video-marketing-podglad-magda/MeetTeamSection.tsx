@@ -14,7 +14,7 @@ export default function MeetTeamSection() {
         className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal max-w-4xl leading-[0.95]"
         style={{ ...headingStyle, color: colors.white }}
       >
-        Poznajcie naszych twórców
+        Poznajcie naszych sprawdzonych twórców
       </h2>
     </section>
   );

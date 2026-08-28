@@ -8,6 +8,9 @@ import CollaboratorsSection from './CollaboratorsSection';
 import CreatorSpotlightSection from './CreatorSpotlightSection';
 import CreatorSpotlightSectionMobile from './CreatorSpotlightSectionMobile';
 import CreatorSpotlightSectionTablet from './CreatorSpotlightSectionTablet';
+import CreatorSpotlightSectionMati from './CreatorSpotlightSectionMati';
+import CreatorSpotlightSectionMatiTablet from './CreatorSpotlightSectionMatiTablet';
+import CreatorSpotlightSectionMatiMobile from './CreatorSpotlightSectionMatiMobile';
 import MeetTeamSection from './MeetTeamSection';
 import VideoBriefSection from './VideoBriefSection';
 import FaqSection from './FaqSection';
@@ -65,6 +68,10 @@ export default function VideoMarketingServicePage() {
         <CreatorSpotlightSection />
       <CreatorSpotlightSectionTablet />
         <CreatorSpotlightSectionMobile />
+
+      <CreatorSpotlightSectionMati />
+      <CreatorSpotlightSectionMatiTablet />
+      <CreatorSpotlightSectionMatiMobile />
 
       <StatementSection />
 
