@@ -44,7 +44,6 @@ import VideoShowcaseMobile from '@/components/sections/VideoShowcaseMobile';
 import TrustOverlay from '@/components/ui/TrustOverlay';
 import LazyMount from '@/components/ui/LazyMount';
 
-import ServicesIntroMobile from '@/components/sections/ServiceIntroMobile';
 
 export default function HomePage() {
   // ✅ OD RAZU POKAZUJEMY TREŚĆ (bez animacji intro)
@@ -79,7 +78,24 @@ export default function HomePage() {
           <div className="block md:hidden"><HeroSectionMobile /></div>
           <div className="hidden md:block"><HeroSection /></div>
 
-          <LogoTicker />
+          {/* 📱 Na mobile te 3 duże karty usług (Strony/SaaS, Automatyzacje/AI,
+              Marketing/Wideo) siedzą teraz od razu pod Hero, zamiast prostej listy
+              linków - tak jak w mockupie Apple. Na desktopie zostają tam gdzie były
+              (niżej, w sekcji "belowFoldMounted"), więc nic tam nie ruszamy. */}
+          {belowFoldMounted && (
+            <div className="block md:hidden">
+              <LazyMount><WebsitesShowcaseMobile /></LazyMount>
+              <LazyMount><ServicesShowcaseMobile /></LazyMount>
+              <LazyMount><VideoShowcaseMobile /></LazyMount>
+            </div>
+          )}
+
+          {/* Na mobile pas logotypow siedzi juz w Hero (HeroServiceWidget), wiec ticker
+              pod sekcja wideo pokazujemy tylko na desktopie - inaczej te same loga
+              powtarzalyby sie dwa razy na jednym ekranie. */}
+          <div className="hidden md:block">
+            <LogoTicker />
+          </div>
 
           {/* ✅ FAZA 3 (16.07.2026): sekcje ponizej fold nie wplywaja na LCP, ale
               montowanie ich WSZYSTKICH naraz zaraz po hydracji odpalalo caly ich
@@ -92,15 +108,18 @@ export default function HomePage() {
             <>
               <LazyMount>{isMobile ? <ReviewsMobile /> : <Reviews />}</LazyMount>
 
-              <LazyMount>{isMobile ? <ServicesIntroMobile /> : <ServicesIntro />}</LazyMount>
+              {/* Na mobile nagłówek "Sprawdź, jak możemy pomóc Twojej firmie" został usunięty
+                  - karty usług są już wyżej, zaraz pod Hero, więc wstęp był zbędny. */}
+              {!isMobile && <LazyMount><ServicesIntro /></LazyMount>}
 
-              {/* 🌐 WEBSITES & SAAS SHOWCASE */}
-              <LazyMount>{isMobile ? <WebsitesShowcaseMobile /> : <WebsitesShowcase />}</LazyMount>
+              {/* 🌐 WEBSITES & SAAS SHOWCASE - na mobile jest już wyżej, zaraz pod Hero */}
+              {!isMobile && <LazyMount><WebsitesShowcase /></LazyMount>}
 
-              {/* 🛠️ SERVICES SHOWCASE */}
-              <LazyMount>{isMobile ? <ServicesShowcaseMobile /> : <ServicesShowcase />}</LazyMount>
-              {/* 🎬 VIDEO & MARKETING SHOWCASE */}
-              <LazyMount>{isMobile ? <VideoShowcaseMobile /> : <VideoShowcase />}</LazyMount>
+              {/* 🛠️ SERVICES SHOWCASE - na mobile jest już wyżej, zaraz pod Hero */}
+              {!isMobile && <LazyMount><ServicesShowcase /></LazyMount>}
+
+              {/* 🎬 VIDEO & MARKETING SHOWCASE - na mobile jest już wyżej, zaraz pod Hero */}
+              {!isMobile && <LazyMount><VideoShowcase /></LazyMount>}
 
               <LazyMount>{isMobile ? <AboutUsSectionMobile /> : <AboutUsSection />}</LazyMount>
 

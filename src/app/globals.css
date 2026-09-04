@@ -58,6 +58,19 @@ html {
     letter-spacing: -0.05em;
     line-height: 1.1;
   }
+
+  /* Wyjątek: H1 w Hero na mobile ma być jaśniejszy (Apple-style) - klasa (wyższa
+     specyficzność niż sam selektor "h1") nadpisuje globalne wymuszenie 700 wyżej. */
+  .hero-mobile-h1 {
+    font-weight: 500 !important;
+  }
+
+  /* Pytania w FAQ na mobile - lżejsze niż globalne 700, ale nadal czytelnie
+     wyróżnione na tle odpowiedzi. */
+  .faq-question {
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* TUTAJ ZOSTAW SWOJE ZMIENNE KOLORYSTYCZNE :root oraz .dark (oklch) */

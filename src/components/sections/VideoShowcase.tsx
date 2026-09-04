@@ -125,7 +125,7 @@ export default function VideoShowcase() {
   <span className="absolute spinner-element-yellow opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
   
   <Link
-    href="/video-marketing"
+    href="/pricing/video-marketing"
     prefetch={false}
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >

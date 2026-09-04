@@ -125,7 +125,7 @@ className="relative group w-full bg-zinc-50 rounded-[32px] border border-zinc-20
   
   {/* Środek przycisku */}
   <Link
-    href="/website"
+    href="/pricing/website"
     prefetch={false}
     className="relative z-10 inline-flex h-[44px] w-full sm:w-auto items-center justify-center rounded-full bg-black px-6 text-[14px] md:text-[15px] font-semibold text-white"
   >

@@ -1,26 +1,35 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { ArrowRight, Play, Instagram, Facebook, Youtube } from 'lucide-react';
+import { ArrowRight, Instagram } from 'lucide-react';
+import StoriesFeedMobile from './StoriesFeedMobile';
 
-const teamProfiles = [
+type TeamProfile = {
+  name: string;
+  link?: string;
+  image: string;
+  backgroundImage?: string;
+  description: string;
+};
+
+const teamProfiles: TeamProfile[] = [
   {
     name: 'Patryk Kulesza',
     link: 'https://www.linkedin.com/in/patryk-kulesza-788397354/',
-    image: '/_resources/patryk.webp',
+    image: '/_resources/team/Patryk_new.jpg',
     description: 'Full Stack Developer z zamiłowaniem do rozwiązań AI. Ma głowę do wszystkiego i świetnie łączy technologię z podejściem produktowym.',
   },
   {
     name: 'Mateusz Malewski',
     link: 'https://www.linkedin.com/in/mateusz-malewski-b0834927b/',
-    image: '/_resources/mati.webp',
+    image: '/_resources/team/Mati_new.jpg',
     description: 'Frontend, kontakt z klientem oraz obszar kreatywny: grafika i video. Łączy komunikację z realizacją i dba o końcowy efekt wizualny.',
   },
   {
     name: 'Bartłomiej Koźluk',
     link: 'https://www.linkedin.com/in/bart%C5%82omiej-ko%C5%BAluk-5a5391266/',
-    image: 'https://static.licdn.com/sc/h/244xhbkr7g40x6bsu4gi6q4ry',
+    image: '/_resources/team/Bartek_new.jpg',
     description: 'Dba o jakość i standardy kodu. Pilnuje czytelnej architektury, spójności rozwiązań i profesjonalnego porządku w projekcie.',
   },
   {
@@ -31,173 +40,184 @@ const teamProfiles = [
   },
 ];
 
+// Twórcy UGC wspolpracujacy przy projektach wideo - nie sa czescia zespolu
+// (nie sa u nas zatrudnieni), stad osobna, lzejsza sekcja z samymi avatarami.
+type Creator = {
+  name: string;
+  handle: string;
+  image: string;
+  instagram: string;
+  tiktok?: string;
+};
+
+const CREATORS: Creator[] = [
+  {
+    name: 'Magda',
+    handle: '@magdajzkv',
+    image: '/_resources/videoMarketing/magda/MAGDA_PERSON.webp',
+    instagram: 'https://www.instagram.com/magdajzkv/',
+    tiktok: 'https://www.tiktok.com/@magdajzkv',
+  },
+  {
+    name: 'Mateusz',
+    handle: '@mateusz.malewski.10',
+    image: '/_resources/videoMarketing/Mati.webp',
+    instagram: 'https://www.instagram.com/mateusz.malewski.10/',
+  },
+  {
+    name: 'Damian',
+    handle: '@damian_bogdanowicz',
+    image: '/_resources/videoMarketing/Damian.webp',
+    instagram: 'https://www.instagram.com/damian_bogdanowicz/',
+  },
+];
+
 export default function AboutUsMobile() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-
   return (
-    <section className="mx-auto relative w-full bg-white py-12 border-t border-zinc-100 overflow-hidden px-6">
-      
-      {/* --- UPROSZCZONE TŁO MOBILE --- */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-[250px] z-0 pointer-events-none opacity-50"
-        style={{
-          background: 'linear-gradient(to bottom, #c5d6ff 0%, rgba(255,255,255,0) 100%)'
-        }}
-      />
+    <>
+    {/* Na mobile nagłówek "Zróbmy razem coś świetnego", blok wideo i "Tworzymy lokalnie"
+        zostały zastąpione feedem Whiteslope Stories (materiały z Instagrama). */}
+    <StoriesFeedMobile />
 
-      {/* --- GŁÓWNA ZAWARTOŚĆ SEKCJI --- */}
-      <div className="relative z-10 w-full flex flex-col">
-        
-        {/* --- NAGŁÓWEK SEKCJI ORAZ SOCIAL MEDIA --- */}
-        <div className="mb-10 flex flex-col gap-6">
-          <h2 className="text-[32px] font-bold text-zinc-950 leading-[1.1] tracking-tight">
-            Zróbmy razem coś świetnego!
-          </h2>
+    {/* --- ZESPÓŁ: pełnoekranowe kadry 670px, zdjęcie osoby jako tło ---
+         Ten sam schemat co Hero: gradient u góry pod nagłówek, gradient u dołu
+         pod podpis, treść zepchnięta na dół przez mt-auto. */}
+    <section className="relative w-full bg-black">
+      {teamProfiles.map((profile, index) => (
+        <div key={profile.name} className="relative w-full h-[670px] overflow-hidden bg-zinc-900">
+          {/* Osoby z wycinką bez tła dostają najpierw własne tło pod spód */}
+          {profile.backgroundImage && (
+            <Image
+              src={profile.backgroundImage}
+              alt=""
+              fill
+              sizes="100vw"
+              aria-hidden
+              className="object-cover"
+            />
+          )}
 
-          <div className="flex items-center gap-3">
-            <a 
-              href="https://www.instagram.com/whiteslopestudio/" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-[44px] h-[44px] rounded-full bg-[#E1306C] border border-zinc-200 flex items-center justify-center text-white active:scale-95 transition-transform"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            
-            <a 
-              href="https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-[44px] h-[44px] rounded-full bg-[#3b5998] border border-zinc-200 flex items-center justify-center text-white active:scale-95 transition-transform"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </a>
-            
-            <a 
-              href="https://www.youtube.com/@WhiteslopeStudio" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="w-[44px] h-[44px] rounded-full bg-[#FF0000] border border-zinc-200 flex items-center justify-center text-white active:scale-95 transition-transform"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
+          <Image
+            src={profile.image}
+            alt={profile.name}
+            fill
+            sizes="100vw"
+            className={profile.backgroundImage ? 'object-contain object-bottom' : 'object-cover object-top'}
+          />
 
-        {/* --- WIDEO ORAZ INFORMACJE --- */}
-        <div className="flex flex-col gap-6 mb-12">
-          
-          {/* Odtwarzacz YT - zostaje interaktywny klik, by nie obciążać startu */}
-          <div className="flex flex-col w-full">
-            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-zinc-950 border border-zinc-200 shadow-[0_30px_60px_rgba(0,0,0,0.06)]">
-              {isVideoPlaying ? (
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/_4TJyWuqkUk?rel=0&autoplay=1"
-                  title="Whiteslope Corporate Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setIsVideoPlaying(true)}
-                  aria-label="Odtwórz wideo: Whiteslope Corporate Video"
-                  className="group absolute inset-0 w-full h-full cursor-pointer"
-                >
-                  <Image
-                    src="https://img.youtube.com/vi/_4TJyWuqkUk/maxresdefault.jpg"
-                    alt="Miniatura wideo Whiteslope Corporate Video"
-                    fill
-                    sizes="100vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-colors shadow-lg">
-                      <Play className="w-6 h-6 text-zinc-950 fill-zinc-950 ml-1" />
-                    </div>
-                  </div>
-                </button>
-              )}
-            </div>
+          {/* Przyciemnienie od góry - pod nagłówek sekcji */}
+          <div
+            className="absolute inset-x-0 top-0 h-[220px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%)',
+            }}
+          />
 
-            {/* Premium Meta Row - dopasowane marginesy */}
-            <div className="mt-4 flex items-center justify-between border border-zinc-200 bg-zinc-50 p-3 rounded-[16px] shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white border border-zinc-200 flex-shrink-0">
-                  <Image 
-                    src="/_resources/whiteslope studio literka sygnet.png" 
-                    alt="Whiteslope Studio" 
-                    fill
-                    sizes="40px"
-                    className="object-cover p-1"
-                  />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-[14px] text-zinc-950 leading-none">Whiteslope Studio</span>
-                    <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] text-blue-600 flex-shrink-0" fill="currentColor">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" stroke="currentColor" strokeWidth="1" />
-                      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                    </svg>
-                  </div>
-                  <p className="text-[12px] text-zinc-600 font-medium mt-1">Pokaż się online z dobrej strony!</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Przyciemnienie od dołu - pod podpis i opis */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-[340px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 70%, rgba(0,0,0,0.96) 100%)',
+            }}
+          />
 
-          {/* Blok tekstowy zastępujący mapę 3D na mobile */}
-          <div className="w-full flex flex-col bg-zinc-50 rounded-[20px] p-6 border border-zinc-200 shadow-sm">
-            <h3 className="text-[20px] font-bold text-zinc-950 tracking-tight mb-2">
-              Tworzymy lokalnie. Wdrażamy globalnie.
-            </h3>
-            <p className="text-[14px] text-zinc-600 leading-relaxed font-normal">
-              Fizycznie pracujemy z <strong className="font-bold text-zinc-950">Białegostoku</strong>, ale nasze rozwiązania nie znają granic. <strong className="font-bold text-zinc-950">Tworzymy strony, aplikacje i systemy dla firm z całej Polski i zagranicy,</strong> gwarantując najwyższy standard niezależnie od odległości.
-            </p>
-          </div>
-        </div>
+          <div className="absolute inset-0 z-10 flex flex-col px-6 pt-10 pb-10">
+            {/* Nagłówek tylko nad pierwszym kadrem */}
+            {index === 0 && (
+              <h2 className="hero-mobile-h1 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-white tracking-tight">
+                Poznaj nasz zespół
+              </h2>
+            )}
 
-        {/* --- ARCHITEKTURA ZESPOŁU --- */}
-        <div className="w-full pt-10 pb-4">
-          <div className="mb-8">
-            <h3 className="text-[28px] font-bold text-zinc-950 tracking-tight mb-3">Nasz zespół</h3>
-            <p className="text-[15px] text-zinc-600 leading-relaxed font-normal">
-              Kompaktowy zespół to szybsze decyzje i czystsza komunikacja. Poznaj ekspertów, z którymi będziesz współpracować bezpośrednio przy realizacji swojego systemu.
-            </p>
-          </div>
+            <div className="mt-auto">
+              <h3 className="text-white text-[20px] font-bold tracking-tight mb-2">
+                {profile.name}
+              </h3>
+              <p className="text-[14px] text-white/70 leading-relaxed max-w-[380px]">
+                {profile.description}
+              </p>
 
-          <div className="grid grid-cols-1 gap-4">
-            {teamProfiles.map((profile) => (
-              <div key={profile.name} className="flex flex-col p-5 rounded-[20px] bg-white border border-zinc-200 shadow-sm">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border border-zinc-200 flex-shrink-0">
-                    <Image src={profile.image} alt={profile.name} fill sizes="48px" className="object-cover" />
-                  </div>
-                  <h4 className="text-[16px] font-bold text-zinc-950 tracking-tight">{profile.name}</h4>
-                </div>
-                
-                <p className="text-[14px] text-zinc-600 leading-relaxed mb-4 font-normal">
-                  {profile.description}
-                </p>
-                
+              {profile.link && (
                 <a
                   href={profile.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center text-[14px] font-semibold text-blue-600 hover:text-blue-700 transition-colors mt-auto w-max group"
+                  className="inline-flex items-center text-[13px] font-medium text-white mt-4 group"
                 >
-                  Profil LinkedIn <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
+                  Profil LinkedIn
+                  <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
                 </a>
-              </div>
-            ))}
+              )}
+
+            </div>
           </div>
         </div>
+      ))}
+    </section>
 
+    {/* --- BAZA TWÓRCÓW: osoby współpracujące przy projektach wideo/UGC,
+         świadomie oddzielone od sekcji zespołu (nie są u nas zatrudnione) --- */}
+    <section className="relative w-full bg-black px-6 pt-12 pb-14">
+      <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-white tracking-tight">
+        Baza twórców
+      </h2>
+      <p className="text-[14px] leading-relaxed text-white/60 mb-7 max-w-[380px] text-balance">
+        Twórcy, z którymi realizujemy materiały wideo i UGC dla klientów.
+      </p>
+
+      <div className="flex flex-col gap-3">
+        {CREATORS.map((creator) => (
+          <div
+            key={creator.name}
+            className="flex items-center gap-3 rounded-2xl border border-white/10 p-3"
+          >
+            <div className="relative w-12 h-12 rounded-full overflow-hidden bg-zinc-800 shrink-0">
+              <Image
+                src={creator.image}
+                alt={creator.name}
+                fill
+                sizes="48px"
+                className="object-cover object-top"
+              />
+            </div>
+
+            <div className="flex flex-col min-w-0">
+              <span className="text-[14px] font-semibold text-white leading-tight">
+                {creator.name}
+              </span>
+              <span className="text-[12px] text-white/50 truncate">{creator.handle}</span>
+            </div>
+
+            <div className="flex items-center gap-2 ml-auto shrink-0">
+              <a
+                href={creator.instagram}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Instagram ${creator.handle}`}
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white active:scale-95 transition-transform"
+              >
+                <Instagram className="w-[16px] h-[16px]" />
+              </a>
+
+              {creator.tiktok && (
+                <a
+                  href={creator.tiktok}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`TikTok ${creator.handle}`}
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white active:scale-95 transition-transform"
+                >
+                  {/* lucide-react nie ma ikony TikToka - prosty, jednokolorowy glif */}
+                  <svg viewBox="0 0 24 24" className="w-[16px] h-[16px]" fill="currentColor" aria-hidden>
+                    <path d="M16.5 3c.3 2.2 1.6 3.6 3.8 3.8v2.5c-1.3.1-2.5-.2-3.7-.9v5.9c0 4.2-3.6 6.9-7.3 5.5-2.3-.9-3.7-3.2-3.5-5.6.2-2.5 2.2-4.5 4.7-4.8.4 0 .8-.1 1.2 0v2.6c-.3 0-.6.1-.9.1-1.3.2-2.3 1.4-2.1 2.7.1 1.3 1.3 2.3 2.6 2.2 1.3-.1 2.3-1.1 2.3-2.4V3h2.9z" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
+    </>
   );
 }

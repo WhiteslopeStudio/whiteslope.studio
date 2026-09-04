@@ -29,8 +29,9 @@ export const FAQSectionMobile = () => {
         <div className="flex flex-col h-full">
           
           <div className="mb-8">
-            <h2 className="text-[32px] font-bold text-zinc-950 tracking-tight leading-[1.1] mb-3">
-              Najczęściej zadawane pytania  
+            {/* Ten sam styl nagłówka co pozostałe sekcje (klasa .hero-mobile-h1) */}
+            <h2 className="hero-mobile-h1 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-zinc-950 tracking-tight max-w-[380px] text-balance">
+              Najczęściej zadawane pytania
             </h2>
           </div>
           
@@ -44,7 +45,7 @@ export const FAQSectionMobile = () => {
                     onClick={() => toggleItem(item.id)}
                     className="w-full py-5 flex items-center justify-between text-left cursor-pointer group transition-colors duration-300"
                   >
-                    <h3 className="text-[16px] font-bold text-zinc-950 leading-[1.3] group-hover:text-blue-600 transition-colors pr-6">
+                    <h3 className="faq-question text-[15px] text-zinc-950 leading-[1.35] group-hover:text-blue-600 transition-colors pr-6">
                       {item.question}
                     </h3>
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">

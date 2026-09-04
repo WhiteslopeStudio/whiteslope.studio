@@ -365,7 +365,7 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
               {/* Mobile Menu Button */}
               {isMobile && (
                 <button
-                  className="p-2 rounded-full bg-[#262626] text-[#d4d4d4] hover:text-white hover:cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
+                  className="p-2 text-white hover:cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
                 >

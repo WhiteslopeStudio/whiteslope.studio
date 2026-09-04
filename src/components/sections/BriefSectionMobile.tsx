@@ -1,25 +1,41 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle, Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { CheckCircle, Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 // ─── POLE FORMULARZA (z widocznym, szarawym tłem i dolną krawędzią) ─────────
 
-function EtykietaPola({ children, wymagane }: { children: React.ReactNode; wymagane?: boolean }) {
+// Wspolne klasy pol - spojne zaokraglenie rounded-[6px] i czytelny stan focus
+const KLASY_POLA =
+  'w-full bg-white border border-zinc-300 rounded-[6px] px-4 py-3.5 text-[15px] text-zinc-950 placeholder-zinc-600 transition-all duration-200 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30 hover:border-zinc-400';
+
+function EtykietaPola({
+  children,
+  wymagane,
+  htmlFor,
+}: {
+  children: React.ReactNode;
+  wymagane?: boolean;
+  htmlFor: string;
+}) {
   return (
-    <label className="block text-[14px] font-semibold text-zinc-950 mb-2 ml-1">
-      {children} {wymagane && <span className="text-blue-600">*</span>}
+    <label htmlFor={htmlFor} className="block text-[14px] font-semibold text-zinc-950 mb-2">
+      {children}{' '}
+      {wymagane && (
+        <>
+          {/* Gwiazdka jest tylko wizualna - czytniki ekranu dostaja pelne slowo */}
+          <span aria-hidden className="text-[#0057cc]">
+            *
+          </span>
+          <span className="sr-only">(pole wymagane)</span>
+        </>
+      )}
     </label>
   );
 }
 
 function PoleTekstowe({ ...wlasciwosci }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...wlasciwosci}
-      className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-3.5 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300"
-    />
-  );
+  return <input {...wlasciwosci} className={KLASY_POLA} />;
 }
 
 // ─── GŁÓWNY KOMPONENT MOBILE ────────────────────────────────────────────────
@@ -34,16 +50,6 @@ export default function BriefSectionMobile() {
   const [bledy, setBledy] = useState<Record<string, string>>({});
   const [wysylanie, setWysylanie] = useState(false);
   const [wyslano, setWyslano] = useState(false);
-
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 50, y: 100 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePosition({ x, y });
-  };
 
   const waliduje_formularz = () => {
     const nowe_bledy: Record<string, string> = {};
@@ -112,7 +118,12 @@ export default function BriefSectionMobile() {
 
   return (
     // Zmniejszone paddingi pod mobile
-    <section id="BriefHomePage" className="relative w-full bg-white py-12 border-t border-zinc-200 overflow-hidden px-6">
+    <section
+      id="BriefHomePage"
+      className="relative w-full py-14 overflow-hidden px-6"
+      // Subtelny, chlodny gradient - ten sam klimat co jasne sekcje wyzej, tylko slabszy
+      style={{ background: 'linear-gradient(180deg, #eaeeff 0%, #f7f8ff 45%, #ffffff 100%)' }}
+    >
       <div className="w-full mx-auto flex flex-col gap-10">
 
         {/* ── GÓRA: formularz ─────────────────────────── */}
@@ -130,11 +141,11 @@ export default function BriefSectionMobile() {
           ) : (
             <div className="w-full">
               <div className="mb-8">
-                {/* Zmniejszony H2 do text-[32px] */}
-                <h2 className="text-[32px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-3">
+                {/* Ten sam styl nagłówka co pozostałe sekcje (klasa .hero-mobile-h1) */}
+                <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-zinc-950 tracking-tight max-w-[380px] text-balance">
                   Napisz do nas
                 </h2>
-                <p className="text-[15px] text-zinc-500 leading-relaxed">
+                <p className="text-[14px] leading-relaxed text-zinc-700 font-semibold max-w-[380px] text-balance">
                   Zostaw wiadomość, a odezwiemy się najszybciej jak to możliwe.
                 </p>
               </div>
@@ -142,39 +153,77 @@ export default function BriefSectionMobile() {
               <form onSubmit={wysyla_wiadomosc} className="space-y-5">
 
                 <div>
-                  <EtykietaPola wymagane>Imię i nazwisko</EtykietaPola>
+                  <EtykietaPola htmlFor="pole-imie" wymagane>Imię i nazwisko</EtykietaPola>
                   <PoleTekstowe
+                    id="pole-imie"
+                    name="imieNazwisko"
+                    autoComplete="name"
+                    required
+                    aria-required
+                    aria-invalid={Boolean(bledy.imieNazwisko)}
+                    aria-describedby={bledy.imieNazwisko ? 'blad-imie' : undefined}
                     value={imieNazwisko}
                     onChange={(e) => setImieNazwisko(e.target.value)}
                     placeholder="Jan Kowalski"
                   />
-                  {bledy.imieNazwisko && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.imieNazwisko}</p>}
+                  {bledy.imieNazwisko && (
+                    <p id="blad-imie" role="alert" className="text-red-700 text-[13px] mt-1.5">
+                      {bledy.imieNazwisko}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <EtykietaPola wymagane>Email</EtykietaPola>
+                  <EtykietaPola htmlFor="pole-email" wymagane>Email</EtykietaPola>
                   <PoleTekstowe
+                    id="pole-email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
+                    required
+                    aria-required
+                    aria-invalid={Boolean(bledy.email)}
+                    aria-describedby={bledy.email ? 'blad-email' : undefined}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="jan@example.com"
                   />
-                  {bledy.email && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.email}</p>}
+                  {bledy.email && (
+                    <p id="blad-email" role="alert" className="text-red-700 text-[13px] mt-1.5">
+                      {bledy.email}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <EtykietaPola wymagane>Tytuł</EtykietaPola>
+                  <EtykietaPola htmlFor="pole-tytul" wymagane>Tytuł</EtykietaPola>
                   <PoleTekstowe
+                    id="pole-tytul"
+                    name="tytul"
+                    required
+                    aria-required
+                    aria-invalid={Boolean(bledy.tytul)}
+                    aria-describedby={bledy.tytul ? 'blad-tytul' : undefined}
                     value={tytul}
                     onChange={(e) => setTytul(e.target.value)}
                     placeholder="np. Wycena strony internetowej"
                   />
-                  {bledy.tytul && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tytul}</p>}
+                  {bledy.tytul && (
+                    <p id="blad-tytul" role="alert" className="text-red-700 text-[13px] mt-1.5">
+                      {bledy.tytul}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <EtykietaPola wymagane>Treść wiadomości</EtykietaPola>
+                  <EtykietaPola htmlFor="pole-tresc" wymagane>Treść wiadomości</EtykietaPola>
                   <textarea
+                    id="pole-tresc"
+                    name="tresc"
+                    required
+                    aria-required
+                    aria-invalid={Boolean(bledy.tresc)}
+                    aria-describedby={bledy.tresc ? 'blad-tresc' : undefined}
                     value={tresc}
                     onChange={(e) => setTresc(e.target.value)}
                     onInput={(e) => {
@@ -183,35 +232,30 @@ export default function BriefSectionMobile() {
                       pole.style.height = pole.scrollHeight + 'px';
                     }}
                     placeholder="Opisz, w czym możemy Ci pomóc..."
-                    className="w-full bg-zinc-100 hover:bg-zinc-200/70 border-b-2 border-zinc-300 px-4 py-4 text-[15px] text-zinc-950 placeholder-zinc-500 rounded-t-xl focus:outline-none focus:border-blue-600 focus:bg-zinc-100 transition-all duration-300 resize-none overflow-hidden"
+                    className={`${KLASY_POLA} resize-none overflow-hidden`}
                     style={{ minHeight: '8rem' }}
                   />
-                  {bledy.tresc && <p className="text-red-600 text-xs mt-1.5 ml-1">{bledy.tresc}</p>}
+                  {bledy.tresc && (
+                    <p id="blad-tresc" role="alert" className="text-red-700 text-[13px] mt-1.5">
+                      {bledy.tresc}
+                    </p>
+                  )}
                 </div>
 
                 <div className="pt-2">
-                  {/* Przycisk w-full na mobile */}
+                  {/* Ten sam styl i kolor CTA co w kartach usług wyżej (#3561ff, pigułka) */}
                   <button
                     type="submit"
                     disabled={wysylanie}
-                    onMouseMove={handleMouseMove}
-                    onMouseEnter={() => setIsButtonHovered(true)}
-                    onMouseLeave={() => setIsButtonHovered(false)}
-                    className="w-full inline-flex items-center justify-center rounded-full h-[48px] px-6 text-[15px] font-semibold text-white relative overflow-hidden transition-all duration-300 active:scale-95 disabled:opacity-50 group shadow-[0_4px_20px_rgba(0,87,255,0.25)]"
-                    style={{
-                      background: wysylanie ? '#1a75ff' : `radial-gradient(circle at ${isButtonHovered ? mousePosition.x : 50}% ${isButtonHovered ? mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
-                    }}
+                    className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full inline-flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0070ff]/50 focus-visible:ring-offset-2"
                   >
                     {wysylanie ? (
                       <>
-                        <div className="w-4 h-4 mr-2 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         Wysyłanie...
                       </>
                     ) : (
-                      <>
-                        Wyślij wiadomość
-                        <Send className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                      </>
+                      'Wyślij wiadomość'
                     )}
                   </button>
                 </div>
@@ -222,58 +266,60 @@ export default function BriefSectionMobile() {
         </div>
 
         {/* ── DÓŁ: jasna karta kontaktowa ──────────────── */}
-        <div className="w-full bg-[#e8f6c3] border border-zinc-200/80 rounded-[20px] p-6 sm:p-8">
+        {/* Czysta biel + cienka ramka i to samo rounded-[6px] co pola formularza */}
+        <div className="w-full bg-white border border-zinc-200 rounded-[6px] p-6">
 
-          <h3 className="text-[20px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-6">
+          <h3 className="text-[16px] font-bold text-zinc-950 tracking-tight mb-5">
             Dane kontaktowe
           </h3>
 
-          <div className="space-y-6">
-            
-            <div className="flex items-start gap-3 group">
-              <div className="mt-1 shrink-0">
-                <Mail className="w-5 h-5 text-zinc-900" strokeWidth={1.5} />
-              </div>
+          <div className="space-y-5">
+
+            <div className="flex items-start gap-3">
+              <Mail className="w-5 h-5 mt-0.5 shrink-0 text-[#0070ff]" strokeWidth={1.75} aria-hidden />
               <div>
-                <div className="text-zinc-600 text-[13px] font-medium mb-0.5">Email</div>
-                <a href="mailto:kontakt@whiteslope.studio" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[15px]">
+                <div className="text-zinc-600 text-[12px] font-semibold uppercase tracking-wide mb-1">Email</div>
+                <a
+                  href="mailto:kontakt@whiteslope.studio"
+                  className="block text-zinc-950 font-medium text-[15px] rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0070ff]/40"
+                >
                   kontakt@whiteslope.studio
                 </a>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 group">
-              <div className="mt-1 shrink-0">
-                <Phone className="w-5 h-5 text-zinc-900" strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Phone className="w-5 h-5 mt-0.5 shrink-0 text-[#0070ff]" strokeWidth={1.75} aria-hidden />
               <div>
-                <div className="text-zinc-600 text-[13px] font-medium mb-0.5">Telefon</div>
-                <a href="tel:+48662581368" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[15px] mb-1">
+                <div className="text-zinc-600 text-[12px] font-semibold uppercase tracking-wide mb-1">Telefon</div>
+                <a
+                  href="tel:+48662581368"
+                  className="block text-zinc-950 font-medium text-[15px] mb-1 rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0070ff]/40"
+                >
                   +48 662 581 368
                 </a>
-                <a href="tel:+48731721760" className="block text-zinc-950 hover:opacity-60 transition-opacity font-medium text-[15px]">
+                <a
+                  href="tel:+48731721760"
+                  className="block text-zinc-950 font-medium text-[15px] rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0070ff]/40"
+                >
                   +48 731 721 760
                 </a>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 group">
-              <div className="mt-1 shrink-0">
-                <MapPin className="w-5 h-5 text-zinc-900" strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-[#0070ff]" strokeWidth={1.75} aria-hidden />
               <div>
-                <div className="text-zinc-600 text-[13px] font-medium mb-0.5">Lokalizacja</div>
+                <div className="text-zinc-600 text-[12px] font-semibold uppercase tracking-wide mb-1">Lokalizacja</div>
                 <div className="text-zinc-950 font-medium text-[15px]">Białystok, Polska</div>
               </div>
             </div>
 
-            <div className="flex items-start gap-3 group">
-              <div className="mt-1 shrink-0">
-                <Clock className="w-5 h-5 text-zinc-900" strokeWidth={1.5} />
-              </div>
+            <div className="flex items-start gap-3">
+              <Clock className="w-5 h-5 mt-0.5 shrink-0 text-[#0070ff]" strokeWidth={1.75} aria-hidden />
               <div>
-                <div className="text-zinc-600 text-[13px] font-medium mb-0.5">Godziny pracy</div>
-                <div className="text-zinc-950 font-medium text-[15px]">Pon – Pt: 9:00 – 17:00</div>
+                <div className="text-zinc-600 text-[12px] font-semibold uppercase tracking-wide mb-1">Godziny pracy</div>
+                <div className="text-zinc-950 font-medium text-[15px]">Pon &ndash; Pt: 9:00 &ndash; 17:00</div>
               </div>
             </div>
 

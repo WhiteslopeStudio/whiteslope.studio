@@ -1,125 +1,225 @@
 'use client';
 
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Check, ArrowRight } from "lucide-react";
+import { Play, X } from 'lucide-react';
 
-const SERVICES = [
-  { id: 'email', title: 'Email marketing' },
-  { id: 'video', title: 'Video Marketing + UGC' },
-  { id: 'graphics', title: 'Grafika 2D i 3D' },
-  { id: 'audio', title: 'Obróbka dźwięku' },
+type VideoCard = {
+  id: string;
+  src: string;
+  title: string;
+  category: string;
+};
+
+// Magda: tylko jeden filmik - "wizytówka" (o niej samej), nie UGC produktowe.
+// Mati: 3 filmiki motocyklowe z portfolio.
+const VIDEOS: VideoCard[] = [
+  {
+    id: 'magda-wizytowka',
+    src: '/_resources/videoMarketing/magda/NEW_Magda_Wideo_wizytowka.mp4',
+    title: 'Magda',
+    category: 'Wizytówka',
+  },
+  {
+    id: 'jawa-prezentacja',
+    src: '/_resources/videoMarketing/mati/PORTFOLIO_Pokazanie_Jawa_350CL.mp4',
+    title: 'Mati',
+    category: 'Prezentacja motocykla',
+  },
+  {
+    id: 'jawa-skladanie',
+    src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4',
+    title: 'Mati',
+    category: 'Showreel',
+  },
+  {
+    id: 'xzone',
+    src: '/_resources/videoMarketing/mati/PORTFOLIO_XzoneRide.mp4',
+    title: 'Mati',
+    category: 'Showreel',
+  },
 ];
 
-export default function VideoShowcaseMobile() {
+// Pojedyncza karta - odtwarza wideo tylko wtedy, gdy realnie jest widoczna
+// (IntersectionObserver), żeby nie odpalać 6 filmów naraz w tle - to samo
+// podejście do wydajności co reszta strony (patrz komentarze w page.tsx).
+const VideoTile = ({ video }: { video: VideoCard }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    const videoEl = videoRef.current;
+    if (!el || !videoEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoEl.play().catch(() => {
+            // Autoplay bywa blokowane przez przeglądarkę - nie jest to błąd krytyczny.
+          });
+        } else {
+          videoEl.pause();
+        }
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative w-full bg-white py-8 px-6 overflow-hidden">
-      <div className="w-full mx-auto">
-        
-        {/* Główna karta ujednolicona do jasnego motywu (bg-zinc-50) */}
-        <div className="relative group w-full bg-zinc-50 rounded-[28px] border border-zinc-200 overflow-hidden flex flex-col shadow-sm">
-          
-          {/* Niewidoczny link pokrywający całą kartę (Z-index 30) */}
-          <Link href="/pricing/video-marketing" prefetch={false} className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń wideo marketing" />
-          
-          {/* --- TŁO KARTY (JASNE) --- */}
-          {/* Delikatny, jasnożółty gradient na górze karty */}
-          <div className="absolute top-0 left-0 right-0 h-[300px] z-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #fff5cc 0%, #f4f4f5 100%)' }} />
-          <div className="absolute top-[-5%] right-[-10%] w-[80%] h-[200px] rounded-full bg-yellow-400/15 blur-[60px] pointer-events-none z-0" />
+    <>
+      <div
+        ref={wrapperRef}
+        className="relative shrink-0 w-[280px] h-[500px] rounded-lg overflow-hidden bg-zinc-900 snap-center"
+      >
+        <video
+          ref={videoRef}
+          src={video.src}
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-          {/* --- LOGO --- */}
-          {/* Zmienione na czarną wersję dopasowaną do jasnego tła */}
-          <Image 
-            src="/_resources/logos/whiteslopeStudioLogoZolty_dzialAMARKETING_czarny.webp"
-            width={916}
-            height={215}
-            sizes="90px"
-            className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
-            alt="Whiteslope Studio Video Marketing"
-          />
+        {/* Przyciemnienie od dołu, żeby tekst/CTA było czytelne na każdym materiale */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent pointer-events-none" />
 
-          {/* --- GÓRA: ZDJĘCIE --- */}
-          <div className="relative w-full h-[240px] z-10 pointer-events-none">
-            <Image 
-              src="/_resources/videoMarketing/VideoMarketingPicture.webp"
-              alt="Marketing i Wideo Whiteslope"
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            {/* Płynny gradient od dołu, który wtapia zdjęcie w jasne tło karty */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-50 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-l from-white/30 via-transparent to-transparent z-10" />
+        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-white font-bold text-[15px] leading-tight truncate">{video.title}</p>
+            <p className="text-white/70 text-[12px] truncate">{video.category}</p>
           </div>
-
-          {/* --- DÓŁ: TREŚĆ --- */}
-          <div className="w-full flex flex-col items-start text-left p-6 z-20 relative pointer-events-none bg-zinc-50">
-            
-            {/* Ciemny nagłówek (text-zinc-950) */}
-            <h2 className="text-[28px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-3">
-              3. Marketing & Wideo
-            </h2>
-
-            {/* Zwykły, czytelny opis (text-zinc-600) */}
-            <p className="text-[15px] text-zinc-600 leading-relaxed font-normal mb-6">
-              Luksusowe filmy i autentyczny content UGC to najskuteczniejsze narzędzia do budowania autorytetu, zwiększania ruchu i zaufania:
-            </p>
-
-            {/* Jasne akcenty listy usług z żółtym wyróżnieniem */}
-            <ul className="flex flex-col gap-3 mb-8 w-full">
-              {SERVICES.map((service) => (
-                <li key={service.id} className="flex items-center gap-3">
-                  <div className="w-[22px] h-[22px] rounded-full bg-[#ffd000] border border-yellow-300 flex items-center justify-center flex-shrink-0 text-yellow-950 shadow-sm">
-                    <Check size={12} strokeWidth={3} />
-                  </div>
-                  <span className="text-[15px] font-semibold text-zinc-900 tracking-tight">
-                    {service.title}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="group relative inline-flex overflow-hidden rounded-full p-[3px] w-full pointer-events-auto transition-transform active:scale-95">
-              
-              {/* Animacja kręcącej się żółtej obwódki (pozostaje bez zmian, bo świetnie pasuje do motywu) */}
-              <style>{`
-                @keyframes rotateYellowButton {
-                  0% { transform: translate(-50%, -50%) rotate(0deg); }
-                  100% { transform: translate(-50%, -50%) rotate(360deg); }
-                }
-                
-                .spinner-element-yellow {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  width: 250%;
-                  aspect-ratio: 1;
-                  background: conic-gradient(from 0deg, rgba(255, 208, 0, 0) 30%, #ffd000 100%);
-                  transform: translate(-50%, -50%);
-                }
-
-                .group:hover .spinner-element-yellow {
-                  animation: rotateYellowButton 1.2s linear infinite;
-                }
-              `}</style>
-
-              <span className="absolute spinner-element-yellow opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              
-              <Link
-                href="/video-marketing"
-                prefetch={false}
-                className="relative z-10 inline-flex h-[48px] w-full items-center justify-center rounded-full bg-black px-6 text-[15px] font-semibold text-white"
-              >
-                Zobacz więcej
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
-            
-          </div>
-
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-700 text-white text-[12px] font-medium active:scale-95 transition-transform"
+          >
+            <Play className="w-3 h-3 fill-white" />
+            Obejrzyj
+          </button>
         </div>
+      </div>
 
+      {/* Modal - wideo na cały ekran, z dźwiękiem */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-5"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            aria-label="Zamknij"
+            className="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
+          >
+            <X className="w-7 h-7" />
+          </button>
+          <div
+            className="relative w-full max-w-[420px] aspect-[9/16] rounded-lg overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src={video.src}
+              autoPlay
+              loop
+              controls
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default function VideoShowcaseMobile() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleScroll = () => {
+      const firstCard = el.firstElementChild as HTMLElement | null;
+      const cardStep = firstCard ? firstCard.offsetWidth + 16 : 296; // 16px = gap-4
+      const index = Math.round(el.scrollLeft / cardStep);
+      setActive(Math.min(VIDEOS.length - 1, Math.max(0, index)));
+    };
+
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToIndex = (index: number) => {
+    const el = scrollRef.current;
+    const card = el?.children[index] as HTMLElement | undefined;
+    if (el && card) {
+      el.scrollTo({ left: card.offsetLeft - 24, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section
+      className="relative w-full overflow-hidden py-16 px-6"
+      style={{ background: 'linear-gradient(to bottom left, #b8c3ff 0%, #ffffff 100%)' }}
+    >
+      <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-zinc-950 tracking-tight max-w-[380px] text-balance">
+        Wideo, które buduje zasięgi i sprzedaje
+      </h2>
+
+      <p className="mb-4 text-[14px] leading-relaxed text-zinc-700 font-semibold max-w-[380px] text-balance">
+        Realizacje, które robimy dla klientów - UGC, portfolio i content, który zatrzymuje scrolowanie.
+      </p>
+
+      {/* CTA - ten sam styl co w kartach "Strony internetowe" i "Automatyzacja" */}
+      <div className="flex flex-wrap items-center justify-start gap-3 mb-8">
+        <Link
+          href="/pricing/video-marketing"
+          prefetch={false}
+          className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full flex items-center justify-center text-sm active:scale-95 whitespace-nowrap"
+        >
+          Dowiedz się więcej
+        </Link>
+
+        <Link
+          href="/contact"
+          prefetch={false}
+          className="px-5 py-2 border border-[#3561ff] text-[#3561ff] font-medium rounded-full flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap"
+        >
+          Wycena
+        </Link>
+      </div>
+
+      {/* Karuzela - pasek przewijania ukryty przez arbitralne klasy Tailwind */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {VIDEOS.map((video) => (
+          <VideoTile key={video.id} video={video} />
+        ))}
+      </div>
+
+      {/* Kropki nawigacyjne */}
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {VIDEOS.map((video, index) => (
+          <button
+            key={video.id}
+            type="button"
+            aria-label={`Przejdź do filmu ${index + 1}`}
+            onClick={() => scrollToIndex(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              index === active ? 'w-6 bg-[#3561ff]' : 'w-1.5 bg-zinc-300'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );

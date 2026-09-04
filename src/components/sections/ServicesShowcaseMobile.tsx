@@ -1,118 +1,56 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Check, ArrowRight } from "lucide-react";
-
-const SERVICES = [
-  { id: 'support_bot', title: 'Chat Pomoc Techniczna 24/7' },
-  { id: 'booking_bot', title: 'Chatboty Rezerwacje' },
-  { id: 'docs', title: 'Obieg Dokumentów' },
-  { id: 'leads', title: 'Zarządzanie Leadami' },
-  { id: 'api', title: 'Integracje Systemów (API)' }
-];
 
 export default function AutomationShowcaseMobile() {
   return (
-    <section className="relative w-full bg-white py-8 px-6 overflow-hidden">
-      <div className="w-full mx-auto">
-        
-        {/* Układ flex-col pozwalający na naturalne ułożenie miniatury na górze */}
-        <div className="relative group w-full bg-zinc-50 rounded-[28px] border border-zinc-200 overflow-hidden flex flex-col shadow-sm">
-          
-          {/* Niewidoczny link pokrywający całą kartę (Z-index 30) */}
-          <Link href="/pricing/ai-integration/chatbot" prefetch={false} className="absolute inset-0 z-30 rounded-[28px]" aria-label="Wyceń automatyzację" />
+    <section id="automation" className="relative w-full overflow-hidden">
+      {/* Głęboka czerń - kontrast wobec jasnej sekcji "Strony internetowe" powyżej */}
+      <div className="relative w-full flex flex-col items-start text-left px-6 pt-12 bg-black">
+        {/* Nagłówek - ta sama rodzina stylu co H1 w Hero (klasa .hero-mobile-h1), kolor biały na czarnym tle */}
+        <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-white tracking-tight max-w-[380px] text-balance">
+          Automatyzacja procesów i aktywacja AI
+        </h2>
 
-          {/* --- TŁO KARTY --- */}
-          <div className="absolute top-0 left-0 right-0 h-[300px] z-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #dfffd0 0%, #f4f4f5 100%)' }} />
-          <div className="absolute top-[-5%] right-[-10%] w-[80%] h-[200px] rounded-full bg-purple-500/15 blur-[60px] pointer-events-none z-0" />
-          
-          {/* --- LOGO --- */}
-          <Image 
-            src="/_resources/logos/whiteslopeStudioLogoFioletowy_dzialAUTOMATION_AI_czarny.webp"
-            width={916}
-            height={215}
-            sizes="90px"
-            className="absolute top-5 right-5 h-[20px] w-auto object-contain z-20 pointer-events-none"
-            alt="Whiteslope Studio Automation & AI"
-          />
+        <p className="mb-4 text-[14px] leading-relaxed text-gray-300 font-semibold max-w-[380px] text-balance">
+          Budujemy rozwiązania, które łączą kod z inteligencją AI. Eliminują nudę i powtarzalne błędy z Twojej codzienności.
+        </p>
 
-          {/* --- GÓRA: ZDJĘCIE CHATBOTA --- */}
-          <div className="relative w-full h-[240px] pt-12 px-4 flex items-end justify-center z-10 pointer-events-none">
-            <Image 
-              src="/_resources/Automations/chatbotPicture.png"
-              alt="Interaktywne demo chatbota AI"
-              fill
-              sizes="100vw"
-              className="object-contain object-bottom drop-shadow-[0_12px_24px_rgba(147,51,234,0.08)]"
-            />
-          </div>
+        {/* CTA - ten sam kształt/padding/waga co w karcie "Strony internetowe", kolory odwrócone pod czarne tło */}
+        <div className="relative z-20 flex flex-wrap items-center justify-start gap-3">
+          <Link
+            href="/pricing/ai-integration/chatbot"
+            prefetch={false}
+            className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full flex items-center justify-center text-sm active:scale-95 whitespace-nowrap"
+          >
+            Dowiedz się więcej
+          </Link>
 
-          {/* --- DÓŁ: TREŚĆ --- */}
-          <div className="w-full flex flex-col items-start text-left p-6 z-20 relative pointer-events-none bg-zinc-50">
-            
-            <h2 className="text-[28px] font-bold text-zinc-950 leading-[1.1] tracking-tight mb-3">
-              2. Automatyzacja procesów<br />i aktywacja AI
-            </h2>
-
-            <p className="text-[15px] text-zinc-600 leading-relaxed font-normal mb-6">
-              Budujemy rozwiązania, które łączą kod z inteligencją AI, eliminując nudę i powtarzalne błędy z Twojej codzienności:
-            </p>
-
-            {/* Fioletowe akcenty listy usług */}
-            <ul className="flex flex-col gap-3 mb-8 w-full">
-              {SERVICES.map((service) => (
-                <li key={service.id} className="flex items-center gap-3">
-                  <div className="w-[22px] h-[22px] rounded-full bg-purple-400 border border-purple-100 flex items-center justify-center flex-shrink-0 text-purple-100 shadow-sm">
-                    <Check size={12} strokeWidth={3} />
-                  </div>
-                  <span className="text-[15px] font-semibold text-zinc-900 tracking-tight">
-                    {service.title}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="group relative inline-flex overflow-hidden rounded-full p-[3px] w-full pointer-events-auto transition-transform active:scale-95">
-              
-              <style>{`
-                @keyframes rotateLavenderButton {
-                  0% { transform: translate(-50%, -50%) rotate(0deg); }
-                  100% { transform: translate(-50%, -50%) rotate(360deg); }
-                }
-                
-                .spinner-element-lavender {
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  width: 250%;
-                  aspect-ratio: 1;
-                  background: conic-gradient(from 0deg, rgba(183, 148, 244, 0) 30%, #a947ff 100%);
-                  transform: translate(-50%, -50%);
-                }
-
-                .group:hover .spinner-element-lavender {
-                  animation: rotateLavenderButton 1.2s linear infinite;
-                }
-              `}</style>
-
-              <span className="absolute spinner-element-lavender opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              
-              <Link
-                href="/pricing/ai-integration/chatbot"
-                prefetch={false}
-                className="relative z-10 inline-flex h-[48px] w-full items-center justify-center rounded-full bg-black px-6 text-[15px] font-semibold text-white"
-              >
-                Zobacz więcej
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
-            
-          </div>
-
+          <Link
+            href="/contact"
+            prefetch={false}
+            className="px-5 py-2 border border-[#3561ff] text-[#3561ff] font-medium rounded-full flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap"
+          >
+            Wycena
+          </Link>
         </div>
 
+        {/* Grafika - od razu pod CTA, sekcja kończy się zaraz pod obrazkiem (brak paddingu pod spodem).
+             Uwaga: proporcje 4:3 to zgadywanka - nie znam rzeczywistego stosunku szerokości do
+             wysokości chatbotPicture.png (dla poprzedniej karty podałeś mi dokładne 16:9, tu nie).
+             Jeśli obrazek źle się kadruje, daj znać jaki to stosunek. */}
+        {/* pointer-events-none: obrazek jest powiększony (scale-[1.15]) i wychodzi poza
+             swój box, przez co nachodził na przyciski CTA powyżej i przechwytywał kliknięcia */}
+        <div className="relative z-0 pointer-events-none left-1/2 -translate-x-1/2 w-screen scale-[1.15] aspect-[4/3]">
+          <Image
+            src="/_resources/Automations/chatbotPicture.png"
+            alt="Interaktywne demo chatbota AI"
+            fill
+            sizes="100vw"
+            className="object-contain object-bottom"
+          />
+        </div>
       </div>
     </section>
   );
