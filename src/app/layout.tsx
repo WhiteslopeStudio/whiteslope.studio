@@ -50,12 +50,14 @@ export const metadata: Metadata = {
     description: "Digitalizujemy firmy w Podlaskiem. Tworzymy strony internetowe i upraszczamy codzienne funkcjonowanie biznesu. Osobiste podejście, hosting gratis.",
     url: "https://www.whiteslope.studio",
     siteName: "Whiteslope Studio",
+    // Grafika pokazywana przy udostepnianiu linku (Facebook, Messenger, LinkedIn) -
+    // pierwsza grafika tla z Hero, zamiast samego logo.
     images: [
       {
-        url: "/_resources/logoWhiteSlope.webp",
+        url: "/_resources/hero/tlo.jfif",
         width: 1200,
         height: 630,
-        alt: "WhiteSlope Studio - Digitalizacja firm Podlaskie",
+        alt: "WhiteSlope Studio - strony internetowe, aplikacje i automatyzacje",
       },
     ],
     locale: "pl_PL",
@@ -66,7 +68,7 @@ export const metadata: Metadata = {
     title: "Digitalizacja Firm Podlaskie | WhiteSlope Studio",
     description: "Tworzymy strony internetowe dla firm. Upraszczamy codzienne funkcjonowanie biznesu w internecie. Hosting gratis.",
     creator: "@whiteslope",
-    images: ["https://www.whiteslope.studio/og-image.jpg"],
+    images: ["https://www.whiteslope.studio/_resources/hero/tlo.jfif"],
   },
   robots: {
     index: true,
