@@ -86,7 +86,7 @@ function RadioGroup<T extends string>({
       {options.map(o => (
         <label
           key={o.id}
-          className={`flex items-start gap-3 cursor-pointer rounded-xl border px-4 py-3 transition-all duration-200 ${
+          className={`flex items-start gap-3 cursor-pointer rounded-[6px] border px-4 py-3 transition-all duration-200 ${
             value === o.id
               ? 'border-blue-500 bg-blue-500/10'
               : 'border-white/10 bg-white/5 hover:border-white/25'
@@ -155,7 +155,7 @@ function Input({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors"
+      className="w-full bg-white/5 border border-white/10 rounded-[6px] px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30 transition-all"
     />
   );
 }
@@ -167,7 +167,7 @@ function SelectNative({ value, onChange, children }: {
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-full rounded-xl px-4 py-3 focus:outline-none focus:border-blue-400 transition-colors appearance-none cursor-pointer border border-white/10"
+      className="w-full rounded-[6px] px-4 py-3 focus:outline-none focus:border-blue-400 transition-colors appearance-none cursor-pointer border border-white/10"
       style={{ colorScheme: 'dark', background: '#1c1c1e', color: '#ffffff' }}
     >
       {children}
@@ -391,21 +391,18 @@ export default function BriefSection() {
   };
 
   return (
-    <section id="brief" className="relative bg-black border-b border-white/10 overflow-clip py-20 md:py-28">
+    <section id="brief" className="relative bg-black overflow-clip py-14 md:py-28">
 
       <div className="relative z-10 container mx-auto px-6">
-        {/* Nagłówek */}
-        <div className="max-w-2xl mb-12">
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-[1.1] tracking-tight">
-            Wypełnij brief projektowy<br />
-            <span className="bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
-              i otrzymaj ofertę na maila
-            </span>
+        {/* Nagłówek - ta sama rodzina stylu co pozostałe sekcje na mobile */}
+        <div className="max-w-2xl mb-8 md:mb-12">
+          <h2 className="hero-mobile-h1 text-[clamp(23px,6.1vw,28px)] md:text-[40px] lg:text-5xl leading-[1.25] md:leading-[1.1] text-white tracking-tight">
+            Wypełnij brief projektowy{' '}
+            <span className="text-[#3561ff]">i otrzymaj ofertę na maila</span>
           </h2>
-          <p className="mt-5 text-white/55 text-lg leading-relaxed">
+          <p className="mt-2 md:mt-5 text-[14px] md:text-lg font-semibold md:font-normal text-white/60 leading-relaxed max-w-[380px] md:max-w-none text-balance">
             Skonfiguruj swój projekt i wyślij wiadomość.{' '}
-            <span className="text-white font-medium">Wycena w ciągu 72h.</span>
+            <span className="text-white">Wycena w ciągu 72 h.</span>
           </p>
         </div>
 
@@ -502,7 +499,7 @@ export default function BriefSection() {
                               key={kategoria.id}
                               type="button"
                               onClick={() => wybiera_kategorie(kategoria.id)}
-                              className={`text-left rounded-xl border px-4 py-4 transition-all duration-200 ${
+                              className={`text-left rounded-[6px] border px-4 py-4 transition-all duration-200 ${
                                 aktywna
                                   ? 'border-blue-500 bg-blue-500/10'
                                   : 'border-white/10 bg-white/5 hover:border-white/25'
@@ -574,7 +571,7 @@ export default function BriefSection() {
                           onChange={e => setMessage(e.target.value)}
                           onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
                           placeholder="Opisz swój projekt, cele, grupę docelową, co chcesz osiągnąć..."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
+                          className="w-full bg-white/5 border border-white/10 rounded-[6px] px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30 transition-all resize-none overflow-hidden"
                           style={{ minHeight: '7.5rem' }}
                         />
                       </div>
@@ -586,7 +583,7 @@ export default function BriefSection() {
                           onChange={e => setInspirations(e.target.value)}
                           onInput={e => { const t = e.currentTarget; t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }}
                           placeholder="Linki do stron, które Ci się podobają lub które chcesz przypominać..."
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-400 transition-colors resize-none overflow-hidden"
+                          className="w-full bg-white/5 border border-white/10 rounded-[6px] px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30 transition-all resize-none overflow-hidden"
                           style={{ minHeight: '5rem' }}
                         />
                       </div>
@@ -653,7 +650,7 @@ export default function BriefSection() {
                   {QUICK_ACTIONS.map(({ label, href, icon: Icon, desc }) => (
                     <Link
                       key={label} href={href}
-                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all group"
+                      className="flex items-center gap-3 rounded-[6px] border border-white/10 bg-white/5 px-4 py-3 text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all group"
                     >
                       <Icon className="w-4 h-4 shrink-0 text-white/40 group-hover:text-blue-400 transition-colors" />
                       <div>

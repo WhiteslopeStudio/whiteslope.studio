@@ -1,95 +1,105 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { useInteractiveButton } from '@/utils/hooks';
+import Image from 'next/image';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+
+// Zrzuty realizacji rotujące w tle Hero
+const REALIZACJE = [
+  { src: '/_resources/stronyInternetowe/WieslawskiStudio.webp', alt: 'Realizacja: Wiesławski Studio' },
+  { src: '/_resources/stronyInternetowe/Easylesson.webp', alt: 'Realizacja: Easylesson.app' },
+  { src: '/_resources/stronyInternetowe/DamianBogdanowicz.webp', alt: 'Realizacja: Damian Bogdanowicz' },
+];
+
+const CZAS_ZMIANY_MS = 3000;
 
 export default function HeroSectionMobile() {
-  const mainButton = useInteractiveButton();
-  const [isMainHovered, setIsMainHovered] = useState(false);
+  const [aktywne, setAktywne] = useState(0);
+
+  useEffect(() => {
+    const licznik = setInterval(() => {
+      setAktywne((poprzednie) => (poprzednie + 1) % REALIZACJE.length);
+    }, CZAS_ZMIANY_MS);
+
+    return () => clearInterval(licznik);
+  }, []);
 
   return (
-    // Zmiana struktury na flex-col, co naturalnie układa elementy bez ryzyka nachodzenia
-    <section className="relative mx-auto mb-4 bg-[#141414] rounded-xl overflow-hidden flex flex-col min-h-[85svh]">
-      
-      {/* --- TŁO STATYCZNE (Mobile) --- */}
-      <div
-        className="absolute inset-0 z-0 bg-center bg-cover"
-        style={{
-          backgroundImage: 'url(/_resources/stronyInternetowe/DamianBogdanowicz.webp)',
-          filter: 'brightness(0.42) saturate(0.92)',
-        }}
-      />
-
-      {/* --- PŁYNNY GRADIENT ZACIEMNIAJĄCY --- */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.95) 100%)',
-        }}
-      />
-
-      {/* --- GÓRA: LOGO --- */}
-      {/* Ułożone naturalnie w gridzie, nie ma szans na nachodzenie z tekstem z dołu */}
-      <div className="relative z-20 w-full px-6 pt-8 flex justify-start pointer-events-none top-15">
-        <img 
-          src="/_resources/logos/whiteslopeStudioLogoNiebieski_dzialWEBDEV.webp" 
-          alt="Whiteslope Studio Web Development" 
-          className="h-[30px] w-auto opacity-90 drop-shadow-md"
+    // Ten sam schemat co Hero na stronie głównej: sztywna wysokość, grafika w tle
+    // przycięta od góry, gradient ciemniejący ku dołowi i blok tekstowy na dole.
+    <section className="relative w-full h-[667px] overflow-hidden bg-black">
+      {REALIZACJE.map((realizacja, index) => (
+        <Image
+          key={realizacja.src}
+          src={realizacja.src}
+          alt={realizacja.alt}
+          fill
+          sizes="100vw"
+          priority={index === 0}
+          // object-cover object-top: zrzut wypełnia całą wysokość sekcji od góry do dołu
+          className={`object-cover object-top z-0 transition-opacity duration-700 ease-out ${
+            index === aktywne ? 'opacity-100' : 'opacity-0'
+          }`}
         />
-      </div>
+      ))}
 
-      {/* --- SPACER --- */}
-      {/* Wypycha treść na sam dół ekranu, zachowując bezpieczny odstęp od logo */}
-      <div className="flex-1 min-h-[40px]" />
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 38%, rgba(0,0,0,0.75) 66%, rgba(0,0,0,0.96) 100%)',
+        }}
+      />
 
-      {/* --- DÓŁ: TREŚĆ I PRZYCISKI --- */}
-      <div className="relative z-20 w-full px-6 pb-10 flex flex-col gap-5">
-        
-        {/* Zmniejszony i zoptymalizowany nagłówek */}
-        <h1 className="text-[28px] font-bold leading-[1.05] text-left text-white tracking-tight">
-          Projektujemy strony internetowe, systemy B2B i produkty SaaS
-        </h1>
+      <div className="absolute inset-0 z-10 w-full max-w-[500px] mx-auto px-6 pt-[110px] pb-10 flex flex-col h-full">
+        <div className="mt-auto flex flex-col items-start text-left max-w-[420px]">
+          <div className="mb-4 inline-flex items-center gap-[6px] px-3 py-1 rounded-full border border-white/25 text-[12px] text-white/80 font-medium">
+            <CheckCircle2 className="w-[13px] h-[13px] shrink-0 text-green-400" />
+            Wycena w 24 h
+          </div>
 
-        <p className="text-[15px] text-blue-50/80 leading-relaxed">
-          Od konwertujących wizytówek po rozbudowane platformy edukacyjne i narzędzia do zarządzania zespołem. Dostarczamy intuicyjne aplikacje, które realnie rozwijają Twoją firmę.
-        </p>
+          <h1 className="hero-mobile-h1 mb-4 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-white tracking-tight">
+            Strony internetowe,<br />
+            systemy B2B i SaaS.
+          </h1>
 
-        {/* Przyciski w kolumnie (w-full) dla łatwego klikania */}
-        <div className="flex flex-col gap-3 mt-2 w-full">
-          <Link
-            href="#brief"
-            onMouseMove={mainButton.handleMouseMove}
-            onMouseEnter={() => {
-              setIsMainHovered(true);
-              if (mainButton.handleMouseEnter) mainButton.handleMouseEnter();
-            }}  
-            onMouseLeave={() => {
-              setIsMainHovered(false);
-              if (mainButton.handleMouseLeave) mainButton.handleMouseLeave();
-            }}
-            className="w-full inline-flex items-center justify-center rounded-full h-[48px] px-6 text-[15px] font-semibold text-white relative overflow-hidden transition-transform duration-300 active:scale-95 group shadow-[0_4px_20px_rgba(0,87,255,0.25)]"
-            style={{
-              background: `radial-gradient(circle at ${isMainHovered ? mainButton.mousePosition.x : 50}% ${isMainHovered ? mainButton.mousePosition.y : 100}%, #1a75ff, #0057ff 40%, #004ae6 80%, #003bba)`,
-            }}
-          >
-            Wyceń projekt
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          <p className="mb-7 text-[14px] leading-relaxed text-gray-300 font-semibold text-balance">
+            Od wizytówek, które dowożą zapytania, po platformy i narzędzia do zarządzania firmą.
+          </p>
 
-          <Link
-            href="/projects"
-            className="w-full inline-flex items-center justify-center h-[48px] px-4 text-[15px] font-medium text-white/80 hover:text-white transition-colors duration-300 group"
-          >
-            <span className="relative pb-0.5 border-b border-white/30 group-hover:border-white transition-colors">
+          <div className="w-full flex flex-wrap items-center justify-start gap-3">
+            <Link
+              href="#brief"
+              prefetch={false}
+              className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full flex items-center justify-center text-sm active:scale-95 whitespace-nowrap"
+            >
+              Wyceń projekt
+            </Link>
+
+            <Link
+              href="/projects"
+              prefetch={false}
+              className="px-5 py-2 border border-white/50 text-white font-medium rounded-full flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap"
+            >
               Zobacz realizacje
-            </span>
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Kropki pokazujące, która realizacja jest w tle */}
+          <div className="mt-6 flex items-center gap-2">
+            {REALIZACJE.map((realizacja, index) => (
+              <span
+                key={realizacja.src}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  index === aktywne ? 'w-6 bg-white' : 'w-1.5 bg-white/30'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      
     </section>
   );
 }

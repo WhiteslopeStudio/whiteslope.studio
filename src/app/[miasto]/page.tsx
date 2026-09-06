@@ -39,7 +39,7 @@ export async function generateMetadata({
       siteName: "Whiteslope Studio",
       images: [
         {
-          url: "/_resources/image.jpg",
+          url: "/_resources/hero/tlo.jfif",
           width: 1200,
           height: 630,
           alt: `Whiteslope Studio - Strony internetowe ${metadata.cityName} od 1500 zł`,
@@ -54,7 +54,7 @@ export async function generateMetadata({
       title: metadata.title,
       description: metadata.description,
       creator: "@whiteslope",
-      images: ["https://whiteslope.studio/og-image.jpg"],
+      images: ["https://www.whiteslope.studio/_resources/hero/tlo.jfif"],
     },
     
     robots: {

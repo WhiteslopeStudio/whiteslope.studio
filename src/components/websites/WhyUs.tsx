@@ -24,26 +24,29 @@ const teamProfiles = [
 
 export default function WhyUs() {
   return (
-    <section className="relative bg-zinc-50 py-12 md:py-20">
+    <section
+      className="relative py-14 md:py-20"
+      style={{ background: 'linear-gradient(180deg, #b8c3ff 0%, #ffffff 100%)' }}
+    >
       <div className="mx-auto w-full max-w-[1640px] px-6 md:px-12">
-        
+
         {/* --- NAGŁÓWEK SEKCJI --- */}
-        <div className="mb-10 text-left">
-          <h2 className="text-[28px] font-semibold tracking-tight text-zinc-950">
+        <div className="mb-8 md:mb-10 text-left">
+          <h2 className="hero-mobile-h1 text-[clamp(23px,6.1vw,28px)] md:text-[40px] leading-[1.25] tracking-tight text-zinc-950">
             Dlaczego my?
           </h2>
-          <p className="mt-3 max-w-2xl text-[16px] text-zinc-600 ">
+          <p className="mt-2 max-w-2xl text-[14px] md:text-[16px] font-semibold md:font-normal text-zinc-700 leading-relaxed">
             Jesteśmy małym zgranym zespołem, który tworzy strony internetowe i platformy SaaS dla firm. Nasze produkty są solidne, niezawodne i przystępne cenowo.
           </p>
         </div>
 
         {/* --- 3 KAFELKI (BENTO GRID - BIAŁE) --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mb-8 md:mb-12">
           
           {/* Kafelek 1: Zespół */}
-          <article className="group relative flex overflow-hidden rounded-[20px]  bg-white shadow-sm transition-all hover:shadow-md min-h-[160px]">
-            {/* Prawa strona: Avatary i Gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-[60%] z-0 flex items-center justify-end pr-5">
+          <article className="group relative flex overflow-hidden rounded-2xl border border-zinc-200/80 bg-white transition-all md:min-h-[160px]">
+            {/* Prawa strona: Avatary i Gradient - tylko desktop, na mobile robiły bałagan */}
+            <div className="hidden md:flex absolute right-0 top-0 bottom-0 w-[60%] z-0 items-center justify-end pr-5">
               {/* Gradient maskujący lewą krawędź avatarów */}
               <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
               {/* Siatka 2x2 (Kwadrat) */}
@@ -61,19 +64,19 @@ export default function WhyUs() {
             </div>
 
             {/* Lewa strona: Tekst */}
-            <div className="relative z-20 flex flex-col justify-center p-6 text-left w-[85%]">
-              <h3 className="text-[22px] font-semibold text-zinc-950 ">
+            <div className="relative z-20 flex flex-col justify-center p-5 md:p-6 text-left w-full md:w-[85%]">
+              <h3 className="text-[17px] md:text-[22px] font-bold tracking-tight text-zinc-950">
                 1. Bezpośredni kontakt
               </h3>
-              <p className="mt-3 text-[15px]  text-zinc-600">
+              <p className="mt-2 text-[13px] md:text-[15px] leading-relaxed text-zinc-600">
 <strong>Bezpośredni kontakt z zespołem technicznym.</strong> Taki model współpracy eliminuje pośredników, przyspiesza wprowadzanie zmian i gwarantuje, że <em>każdy detal techniczny ustalasz od razu z ekspertem</em>.              </p>
             </div>
           </article>
 
           {/* Kafelek 2: Ceny */}
-          <article className="group relative flex overflow-hidden rounded-[20px]  bg-white shadow-sm transition-all hover:shadow-md min-h-[160px]">
+          <article className="group relative flex overflow-hidden rounded-2xl border border-zinc-200/80 bg-white transition-all md:min-h-[160px]">
             {/* Prawa strona: Wideo i Gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-[65%] z-0 overflow-hidden">
+            <div className="hidden md:block absolute right-0 top-0 bottom-0 w-[65%] z-0 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
               <video 
                 autoPlay loop muted playsInline 
@@ -84,20 +87,20 @@ export default function WhyUs() {
             </div>
 
             {/* Lewa strona: Tekst */}
-            <div className="relative z-20 flex flex-col justify-center p-6 text-left w-[85%]">
-              <h3 className="text-[22px] font-semibold text-zinc-950 ">
+            <div className="relative z-20 flex flex-col justify-center p-5 md:p-6 text-left w-full md:w-[85%]">
+              <h3 className="text-[17px] md:text-[22px] font-bold tracking-tight text-zinc-950">
                 2. Przystępne ceny i wysoka jakość
               </h3>
-              <p className="mt-3 text-[15px]  text-zinc-600">
+              <p className="mt-2 text-[13px] md:text-[15px] leading-relaxed text-zinc-600">
 Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong>polskie firmy mogły szybciej się rozwijać</strong> i od początku wyglądać w sieci w pełni profesjonalnie.           
                 </p>
             </div>
           </article>
 
           {/* Kafelek 3: Technologie (AI) */}
-          <article className="group relative flex overflow-hidden rounded-[20px] bg-white shadow-sm transition-all hover:shadow-md min-h-[160px]">
+          <article className="group relative flex overflow-hidden rounded-2xl border border-zinc-200/80 bg-white transition-all md:min-h-[160px]">
             {/* Prawa strona: Wideo i Gradient */}
-            <div className="absolute right-0 top-0 bottom-0 w-[65%] z-0 overflow-hidden">
+            <div className="hidden md:block absolute right-0 top-0 bottom-0 w-[65%] z-0 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
               <video 
                 autoPlay loop muted playsInline 
@@ -108,11 +111,11 @@ Tworzymy dopracowane strony w <em>przystępnych cenach</em>. Chcemy, aby <strong
             </div>
 
             {/* Lewa strona: Tekst */}
-            <div className="relative z-20 flex flex-col justify-center p-6 text-left w-[85%]">
-              <h3 className="text-[22px] font-semibold text-zinc-950 ">
+            <div className="relative z-20 flex flex-col justify-center p-5 md:p-6 text-left w-full md:w-[85%]">
+              <h3 className="text-[17px] md:text-[22px] font-bold tracking-tight text-zinc-950">
                 3. Nowoczesne technologie i AI
               </h3>
-              <p className="mt-3 text-[15px] text-zinc-600">
+              <p className="mt-2 text-[13px] md:text-[15px] leading-relaxed text-zinc-600">
                 Projektujemy od zera i wzbogacamy strony o <strong>gotowe funkcje AI</strong>. Wdrażamy w Twoim systemie <em>inteligentne chatboty oraz automatyzacje</em>, które usprawnią obsługę klientów.
               </p>
             </div>

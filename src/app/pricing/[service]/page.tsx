@@ -23,6 +23,16 @@ const serviceAnimations = {
   'individual': '/\_resources/invidual.json',
 };
 
+// Grafika pokazywana przy udostepnianiu linku (Facebook, Messenger, LinkedIn).
+// Metadane podstrony nadpisuja caly obiekt openGraph z layoutu, wiec obrazek trzeba
+// podac tutaj jawnie - inaczej link do podstrony leci bez miniaturki.
+const OG_OBRAZEK = {
+  url: '/_resources/hero/tlo.jfif',
+  width: 1200,
+  height: 630,
+  alt: 'WhiteSlope Studio - strony internetowe, aplikacje i automatyzacje',
+};
+
 const PLACEHOLDER_GALLERY = [
   '/_resources/portfolio1.webp',
   '/_resources/portfolio2.webp',
@@ -120,11 +130,13 @@ export async function generateMetadata({
         siteName: 'WHITESLOPE',
         type: 'website',
         locale: 'pl_PL',
+        images: [OG_OBRAZEK],
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Agencja UGC i Video Marketing - FAQ i Cennik',
         description: videoMarketingDescription,
+        images: [OG_OBRAZEK.url],
       },
       robots: {
         index: true,
@@ -175,11 +187,13 @@ export async function generateMetadata({
         siteName: 'WHITESLOPE',
         type: 'website',
         locale: 'pl_PL',
+        images: [OG_OBRAZEK],
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Strony Internetowe Białystok - Opinie i Cennik',
         description: websiteBialystokDescription,
+        images: [OG_OBRAZEK.url],
       },
       robots: {
         index: true,
@@ -208,11 +222,13 @@ export async function generateMetadata({
       siteName: 'WHITESLOPE',
       type: 'website',
       locale: 'pl_PL',
+      images: [OG_OBRAZEK],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${service.title} - Pakiety ${priceRange}`,
       description: service.description,
+      images: [OG_OBRAZEK.url],
     },
     robots: {
       index: true,

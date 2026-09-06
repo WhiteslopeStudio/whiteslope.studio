@@ -45,23 +45,17 @@ const PROJECTS = [
 export default function ProjectsSectionMobile() {
   return (
     // Zmniejszony padding pionowy na potrzeby urządzeń mobilnych
-    <section className="relative bg-white border-b border-zinc-100 py-12 overflow-hidden px-6">
-      
+    <section className="relative overflow-hidden bg-white py-14 px-6">
       <div className="w-full mx-auto flex flex-col gap-10">
-        
-        {/* --- NAGŁÓWEK I PRZYCISK --- */}
-        <div className="flex flex-col gap-5">
-          <div>
-            {/* Nagłówek H2 dostosowany do mobile (text-[32px]) */}
-            <h2 className="text-[32px] font-bold tracking-tight text-zinc-950 leading-[1.1]">
-              Portfolio & Case Studies
-            </h2>
-            <p className="mt-3 text-[15px] text-zinc-600 leading-relaxed">
-              Poznaj wybrane realizacje. Od konwertujących wizytówek po zaawansowane aplikacje webowe i panele SaaS.
-            </p>
-          </div>
-          
-          
+
+        {/* --- NAGŁÓWEK --- */}
+        <div className="flex flex-col">
+          <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-zinc-950 tracking-tight max-w-[380px] text-balance">
+            Portfolio i case studies
+          </h2>
+          <p className="text-[14px] leading-relaxed text-zinc-700 font-semibold max-w-[380px] text-balance">
+            Wybrane realizacje - od konwertujących wizytówek po aplikacje webowe i panele SaaS.
+          </p>
         </div>
 
         {/* --- LISTA CASE STUDIES (1 Kolumna) --- */}
@@ -70,7 +64,7 @@ export default function ProjectsSectionMobile() {
             <div key={i} className="flex flex-col">
               
               {/* Zaokrąglone zdjęcie (aspect-video) */}
-              <div className="rounded-[16px] overflow-hidden shadow-sm border border-zinc-200 aspect-video relative mb-4 bg-zinc-100 shrink-0">
+              <div className="rounded-2xl overflow-hidden border border-zinc-200/80 aspect-video relative mb-4 bg-zinc-100 shrink-0">
                 <img 
                   src={project.image} 
                   alt={`Realizacja: ${project.title}`}
@@ -81,10 +75,10 @@ export default function ProjectsSectionMobile() {
 
               {/* Opis */}
               <div className="flex flex-col">
-                <h3 className="text-[20px] font-bold text-zinc-950 tracking-tight">
+                <h3 className="text-[17px] font-bold text-zinc-950 tracking-tight">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-zinc-600">
+                <p className="mt-2 text-[13px] leading-relaxed text-zinc-600">
                   {project.description}
                 </p>
               </div>
@@ -94,24 +88,36 @@ export default function ProjectsSectionMobile() {
         </div>
 
         {/* --- CYTAT --- */}
-        <div className="mt-4 border-t border-zinc-100 pt-10 text-center flex flex-col items-center">
-          <Quote className="w-8 h-8 text-zinc-200 rotate-180 mb-4" />
-          <p className="text-[16px] font-medium text-zinc-900 leading-relaxed italic tracking-tight">
-            "Zwykle ciężko mnie zaskoczyć, ale ten projekt robi ogromne wrażenie. Zupełnie inna jakość."
+        <div className="border-t border-zinc-200/70 pt-8 flex flex-col items-start">
+          <Quote className="w-7 h-7 text-zinc-300 rotate-180 mb-3" />
+          <p className="text-[15px] font-medium text-zinc-900 leading-relaxed italic tracking-tight max-w-[380px]">
+            &bdquo;Zwykle ciężko mnie zaskoczyć, ale ten projekt robi ogromne wrażenie. Zupełnie inna
+            jakość.&rdquo;
           </p>
-          <p className="mt-4 text-[12px] text-zinc-500 font-bold tracking-widest uppercase">
-            — Damian Bogdanowicz
+          <p className="mt-3 text-[11px] text-zinc-500 font-bold tracking-widest uppercase">
+            Damian Bogdanowicz
           </p>
         </div>
 
-        {/* Przycisk CTA rozciągnięty na pełną szerokość (w-full) */}
-          <Link 
-            href="/projects" 
-            className="w-full inline-flex items-center justify-center rounded-full bg-zinc-950 text-white active:bg-zinc-800 h-[48px] px-6 text-[15px] font-semibold transition-all duration-300 active:scale-95 shadow-sm group"
+        {/* CTA - ten sam styl pigułek co na stronie głównej */}
+        <div className="flex flex-wrap items-center justify-start gap-3">
+          <Link
+            href="/projects"
+            prefetch={false}
+            className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full flex items-center justify-center text-sm active:scale-95 whitespace-nowrap"
           >
             Zobacz wszystkie realizacje
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
+
+          <Link
+            href="#brief"
+            prefetch={false}
+            className="px-5 py-2 border border-[#3561ff] text-[#3561ff] font-medium rounded-full flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap"
+          >
+            Wyceń projekt
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
 
       </div>
 

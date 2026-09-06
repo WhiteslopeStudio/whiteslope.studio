@@ -20,6 +20,19 @@ import { useSearchEngine } from '@/utils/hooks/useSearchEngine';
 
 
 
+// Usługi w rozwijanym menu mobilnym - płaska lista, dokładnie te same pozycje
+// co w widgecie wyboru usług w sekcji Hero.
+const USLUGI_MOBILE = [
+  { label: 'Strony internetowe', href: '/pricing/website' },
+  { label: 'Aplikacje SaaS', href: '/pricing/website' },
+  { label: 'Poprawki stron', href: '/pricing/optimization' },
+  { label: 'SEO', href: '/pricing/website' },
+  { label: 'Automatyzacja AI', href: '/pricing/ai-integration/chatbot' },
+  { label: 'Chatbot', href: '/pricing/ai-integration/chatbot' },
+  { label: 'Marketing', href: '/pricing/video-marketing' },
+  { label: 'UGC', href: '/pricing/video-marketing' },
+];
+
 export const Header = () => {
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
   const toggleMenu = (key: string) => {
@@ -827,139 +840,31 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                   {expandedMenus['oferta'] && (
                     <motion.div
                       initial={{ maxHeight: 0, opacity: 0 }}
-                      animate={{ maxHeight: 1400, opacity: 1 }}
+                      animate={{ maxHeight: 700, opacity: 1 }}
                       exit={{ maxHeight: 0, opacity: 0 }}
                       className="overflow-hidden bg-zinc-50/50"
                     >
-                      
-                      {/* 3.1 Web development */}
-                      <button
-                        onClick={() => toggleMenu('webdev')}
-                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
-                      >
-                        Web development
-                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['webdev'] ? 'rotate-90' : ''}`} />
-                      </button>
-                      
-                      <AnimatePresence>
-                        {expandedMenus['webdev'] && (
-                          <motion.div
-                            initial={{ maxHeight: 0, opacity: 0 }}
-                            animate={{ maxHeight: 320, opacity: 1 }}
-                            exit={{ maxHeight: 0, opacity: 0 }}
-                            className="overflow-hidden bg-zinc-100/50"
+                      {/* Płaska lista usług - te same pozycje co w widgecie wyboru usług
+                          w Hero. Bez podziału na trzy działy, bo usług jest już mniej. */}
+                      {USLUGI_MOBILE.map((item) => {
+                        const isActive = lastClickedItem === item.label;
+
+                        return (
+                          <button
+                            key={item.label}
+                            onClick={() => {
+                              setLastClickedItem(item.label);
+                              setIsMenuOpen(false);
+                              router.push(item.href);
+                            }}
+                            className={`block w-full text-left pl-10 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-100 transition-colors ${
+                              isActive ? 'text-[#0057ff] font-semibold' : 'text-zinc-700'
+                            }`}
                           >
-                            {[
-                              { label: 'Strony internetowe', href: '/pricing/website' },
-                              { label: 'Aplikacje SaaS', href: '/pricing/website' },
-                              { label: 'Poprawki istniejących stron', href: '/pricing/website' },
-                              { label: 'Systemy do zarządzania firmą ERP', href: '/pricing/website' },
-                              { label: 'Pozycjonowanie SEO', href: '/pricing/website' },
-                            ].map((item, index, array) => {
-                              // Logika unikania wielokrotnego podświetlenia na tym samym URL
-                              const isMatchedPath = pathname === item.href;
-                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
-                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
-
-                              return (
-                                <button 
-                                  key={item.label} 
-                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
-                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
-                                >
-                                  {item.label}
-                                </button>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* 3.2 Automatyzacja & AI */}
-                      <button
-                        onClick={() => toggleMenu('ai')}
-                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
-                      >
-                        Automatyzacja & AI
-                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['ai'] ? 'rotate-90' : ''}`} />
-                      </button>
-
-                      <AnimatePresence>
-                        {expandedMenus['ai'] && (
-                          <motion.div
-                            initial={{ maxHeight: 0, opacity: 0 }}
-                            animate={{ maxHeight: 380, opacity: 1 }}
-                            exit={{ maxHeight: 0, opacity: 0 }}
-                            className="overflow-hidden bg-zinc-100/50"
-                          >
-                            {[
-                              { label: 'Chatbot AI - pomoc techniczna 24/7', href: '/pricing/ai-integration/chatbot' },
-                              { label: 'Chatbot AI - doradca e-commerce', href: '/pricing/ai-integration/chatbot' },
-                              { label: 'Chatbot AI - asystent ds. Rezerwacji spotkań', href: '/pricing/ai-integration/chatbot' },
-                              { label: 'Obieg dokumentów i danych', href: '/pricing/ai-integration/chatbot' },
-                              { label: 'Zarządzanie leadami', href: '/pricing/ai-integration/chatbot' },
-                              { label: 'Integracje Systemów (API)', href: '/pricing/ai-integration/chatbot' },
-                            ].map((item, index, array) => {
-                              const isMatchedPath = pathname === item.href;
-                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
-                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
-
-                              return (
-                                <button 
-                                  key={item.label} 
-                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
-                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
-                                >
-                                  {item.label}
-                                </button>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* 3.3 Marketing & Video */}
-                      <button
-                        onClick={() => toggleMenu('marketing')}
-                        className="flex items-center justify-between w-full text-left pl-10 pr-6 py-4 border-b border-zinc-200/60 text-zinc-900 font-medium active:bg-zinc-100 transition-colors"
-                      >
-                        Marketing & Video
-                        <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform duration-300 ${expandedMenus['marketing'] ? 'rotate-90' : ''}`} />
-                      </button>
-
-                      <AnimatePresence>
-                        {expandedMenus['marketing'] && (
-                          <motion.div
-                            initial={{ maxHeight: 0, opacity: 0 }}
-                            animate={{ maxHeight: 320, opacity: 1 }}
-                            exit={{ maxHeight: 0, opacity: 0 }}
-                            className="overflow-hidden bg-zinc-100/50"
-                          >
-                            {[
-                              { label: 'Email marketing', href: '/pricing/video-marketing' },
-                              { label: 'Video Marketing', href: '/pricing/video-marketing' },
-                              { label: 'Grafika 2D i 3D', href: '/pricing/video-marketing' },
-                              { label: 'Produkcja treści UGC', href: '/pricing/video-marketing' },
-                              { label: 'Obróbka i postprodukcja dźwięku', href: '/pricing/video-marketing' },
-                            ].map((item, index, array) => {
-                              const isMatchedPath = pathname === item.href;
-                              const isFirstMatch = isMatchedPath && index === array.findIndex(i => i.href === pathname);
-                              const isActive = lastClickedItem === item.label || (!lastClickedItem && isFirstMatch);
-
-                              return (
-                                <button 
-                                  key={item.label} 
-                                  onClick={() => { setLastClickedItem(item.label); setIsMenuOpen(false); router.push(item.href); }} 
-                                  className={`block w-full text-left pl-14 pr-6 py-3.5 border-b border-zinc-200/50 text-[15px] active:bg-zinc-200/50 transition-colors ${isActive ? "text-[#0057ff] font-semibold" : "text-zinc-600"}`}
-                                >
-                                  {item.label}
-                                </button>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
+                            {item.label}
+                          </button>
+                        );
+                      })}
                     </motion.div>
                   )}
                 </AnimatePresence>

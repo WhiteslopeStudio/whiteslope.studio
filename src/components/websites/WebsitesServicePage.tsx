@@ -23,6 +23,7 @@ import BentoGridMobile from './BentoGridMobile'; // Dodany import wersji mobilne
 import { WEBSITE_BIALYSTOK_FAQ } from '@/lib/seo/websiteBialystokFaq';
 import { ChevronDown, ChevronRight, Plus } from 'lucide-react';
 import TrustOverlay from '../ui/TrustOverlay';
+import QuickLeadForm from '../ui/QuickLeadForm';
 import WhyUs from './WhyUs';
 
 export default function WebsitesServicePage() {
@@ -84,7 +85,7 @@ export default function WebsitesServicePage() {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen bg-black text-white pt-16 relative overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -95,7 +96,7 @@ export default function WebsitesServicePage() {
       />
 
       {/* --- MINIMALIST BREADCRUMB Z DROPDOWNEM --- */}
-      <div className="absolute top-24 left-0 w-full z-[20]">
+      <div className="absolute top-20 md:top-24 left-0 w-full z-[20]">
         <div className="w-full max-w-[1640px] mx-auto px-6 md:px-12 flex justify-start">
           
           <div className="flex items-center gap-2 px-4 py-1.5 bg-[#050505]  rounded-lg text-[13px] md:text-sm font-medium text-white/90">
@@ -139,6 +140,13 @@ export default function WebsitesServicePage() {
       {/* --- WARUNKOWE RENDEROWANIE HERO --- */}
       {isMobile ? <HeroSectionMobile /> : <HeroSection />}
 
+      {/* Formularz szybkiego kontaktu od razu pod Hero - ten sam, co na /darmowy-projekt */}
+      {isMobile && (
+        <div className="w-full bg-black px-4 py-10">
+          <QuickLeadForm />
+        </div>
+      )}
+
       {isMobile ? <BentoGridMobile /> : <BentoGrid />}            
      
       {/* <OfferTickerSection /> */}
@@ -153,17 +161,17 @@ export default function WebsitesServicePage() {
       <TrustOverlay />
 
       {/* FAQ SECTION (Dark Mode Premium) */}
-      <section className="relative w-full border-t border-white/5 bg-black py-16 md:py-24">
+      <section className="relative w-full bg-black py-14 md:py-24">
         <div className="mx-auto w-full max-w-[1640px] px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
             
             {/* Lewa kolumna: Tytuł (przyklejona do góry przy scrollowaniu) */}
-            <div className="sticky top-32">
-              <h2 className="text-[32px] md:text-[40px] font-bold text-white tracking-tight leading-[1.1] mb-4">
-                FAQ: Tworzenie stron internetowych
+            <div className="lg:sticky lg:top-32">
+              <h2 className="hero-mobile-h1 text-[clamp(23px,6.1vw,28px)] md:text-[40px] leading-[1.25] md:leading-[1.1] text-white tracking-tight mb-2 md:mb-4 max-w-[380px] md:max-w-none text-balance">
+                FAQ: tworzenie stron internetowych
               </h2>
-              <p className="text-[16px] text-zinc-400 font-normal leading-relaxed max-w-[400px]">
-                Poznaj odpowiedzi na najczęstsze pytania dotyczące wyceny, czasu realizacji oraz naszego procesu projektowego.
+              <p className="text-[14px] md:text-[16px] font-semibold md:font-normal text-white/60 leading-relaxed max-w-[380px] md:max-w-[400px] text-balance">
+                Odpowiedzi na najczęstsze pytania o wycenę, czas realizacji i nasz proces projektowy.
               </p>
             </div>
 
@@ -174,22 +182,22 @@ export default function WebsitesServicePage() {
                   key={item.question}
                   className="group border-b border-white/10 last:border-b-0"
                 >
-                  <summary className="flex w-full cursor-pointer list-none items-center justify-between py-6 text-left transition-colors md:py-8 [&::-webkit-details-marker]:hidden">
-                    <h3 className="pr-6 text-[16px] md:text-[19px] font-bold text-white leading-[1.3] transition-colors group-hover:text-blue-500">
+                  <summary className="flex w-full cursor-pointer list-none items-center justify-between py-5 text-left transition-colors md:py-8 [&::-webkit-details-marker]:hidden">
+                    <h3 className="faq-question pr-6 text-[15px] md:text-[19px] text-white leading-[1.35] transition-colors group-hover:text-[#3561ff]">
                       {item.question}
                     </h3>
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5 transition-colors group-hover:bg-blue-500/10">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5 transition-colors">
                       {/* Ikona Plus obraca się przy otwarciu o 45 stopni */}
-                      <Plus 
-                        className="h-4 w-4 text-zinc-400 transition-transform duration-500 group-open:rotate-45 group-open:text-blue-500 group-hover:text-blue-500" 
-                        strokeWidth={2.5} 
+                      <Plus
+                        className="h-4 w-4 text-white/40 transition-transform duration-500 group-open:rotate-45 group-open:text-[#3561ff]"
+                        strokeWidth={2.5}
                       />
                     </div>
                   </summary>
-                  
+
                   {/* Wnętrze odpowiedzi */}
-                  <div className="pb-8 pr-8 md:pr-12 animate-in fade-in duration-500">
-                    <p className="text-[15px] md:text-[16px] leading-relaxed text-zinc-400">
+                  <div className="pb-6 pr-4 md:pr-12 animate-in fade-in duration-500">
+                    <p className="text-[14px] md:text-[16px] leading-relaxed text-white/60">
                       {item.answer}
                     </p>
                   </div>

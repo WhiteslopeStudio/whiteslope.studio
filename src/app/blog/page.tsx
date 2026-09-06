@@ -253,7 +253,8 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://whiteslope.studio/blog-og-image.jpg',
+        // Plik blog-og-image.jpg nie istnieje w public/ - link leciał bez miniaturki.
+        url: 'https://www.whiteslope.studio/_resources/hero/tlo.jfif',
         width: 1200,
         height: 630,
         alt: 'Aktualności WHITESLOPE STUDIO',
