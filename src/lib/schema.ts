@@ -72,15 +72,47 @@ export const jsonLd = {
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5.0',
-    reviewCount: '3',
+    reviewCount: '4',
     bestRating: '5',
     worstRating: '1'
   },
-  
+
+  // Pojedyncze opinie - te same treści, które są widoczne w sekcji opinii na stronie
+  review: [
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Dariusz Kuciel' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      reviewBody:
+        'Dobre podejście do klienta. Szybko, sprawnie, elastycznie. Warto sprawdzić. Będę korzystał regularnie z usług.'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Sławek Wiesławski' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      reviewBody:
+        'Pierwsze zapytania od klientów pojawiły się bardzo szybko po starcie strony. Dobry i bezproblemowy kontakt.'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Damian Bogdanowicz' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      reviewBody: 'Zupełnie inna jakość. Strona jest estetyczna. Jestem pod wrażeniem!'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Organization', name: 'Easylesson.app' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      reviewBody:
+        'Naszym celem było stworzenie produktu SaaS dla korepetytorów. Chłopaki z Whiteslope wykonali całą stronę, dashboard i tablicę interaktywną, na której uczniowie mogą rysować i pisać w czasie rzeczywistym. Wszystko działa świetnie! Na pewno będziemy wracać po więcej.'
+    }
+  ],
+
   sameAs: [
     'https://www.facebook.com/profile.php?id=61583927894860&locale=pl_PL',
     'https://www.instagram.com/whiteslopestudio/',
-    'https://linkedin.com/company/whiteslope'
+    'https://linkedin.com/company/whiteslope',
+    'https://maps.app.goo.gl/ijbMhGdJGPKJ2xMZA'
   ],
   
   // Navigation dla Google Sitelinks
@@ -280,9 +312,10 @@ export const serviceJsonLd = {
     ]
   },
   aggregateRating: {
+    // Liczba zgodna z opiniami realnie pokazywanymi na stronie (4 opinie, w tym Google)
     '@type': 'AggregateRating',
     ratingValue: '5.0',
-    reviewCount: '6', 
+    reviewCount: '4',
     bestRating: '5',
     worstRating: '1'
   }

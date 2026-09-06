@@ -1,78 +1,34 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ArrowRight, Gift } from 'lucide-react';
+
+// Strona, na którą prowadzi pasek - tam samego paska już nie pokazujemy
+const DOCELOWA_PODSTRONA = '/darmowy-projekt';
 
 export default function PromoBar() {
+  const pathname = usePathname();
+
+  if (pathname === DOCELOWA_PODSTRONA) return null;
+
   return (
-    <div 
-      className="w-full py-2 relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(90deg, #2d1b4e 0%, #4a2d6e 50%, #2d1b4e 100%)',
-        backgroundSize: '200% 100%',
-        animation: 'gradientShift 4s ease infinite',
-      }}
-    >
-      {/* Subtelny shimmer */}
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)',
-          backgroundSize: '200% 100%',
-          animation: 'shimmer 3s ease-in-out infinite',
-        }}
-      />
-
-      {/* Zawartość */}
-      <div className="container mx-auto px-4 relative z-10">
-        <Link 
-          href="/contact"
-          className="flex items-center justify-center gap-2 sm:gap-3 text-center group"
-        >
-          
-          {/* Tekst promocyjny - kompaktowy */}
-          <span 
-            className="text-white font-bold text-xs sm:text-sm tracking-wide"
-            style={{ 
-              fontFamily: 'inherit',
-              textShadow: '0 1px 3px rgba(0,0,0,0.5)'
-            }}
-          >
-            🎉 NOWI KLIENCI -5%
-          </span>
-          
-          {/* Separator - tylko desktop */}
-          <span className="hidden sm:inline text-white/40">|</span>
-          
-          {/* CTA - mały */}
-          <span 
-            className="text-white/90 font-medium text-xs sm:text-sm group-hover:text-white transition-colors underline underline-offset-2"
-            style={{ fontFamily: 'inherit' }}
-          >
-            Skorzystaj →
-          </span>
-        </Link>
-      </div>
-
-      {/* CSS dla animacji */}
-      <style jsx>{`
-        @keyframes gradientShift {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-
-        @keyframes shimmer {
-          0% {
-            background-position: -200% 0;
-          }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-      `}</style>
+    // W normalnym flow strony (nie w fixed headerze) - zajmuje własne miejsce na samej
+    // górze i wyjeżdża wraz ze scrollem, więc nic nie zasłania.
+    <div id="promo-bar" className="relative z-[60] w-full bg-[#0070ff]">
+      <Link href={DOCELOWA_PODSTRONA} className="block px-10 sm:px-16 py-2.5 text-center group">
+        {/* Twardy podział linii przed "przed" (tylko na mobile) + ciasny leading,
+            żeby obie linie trzymały się blisko siebie. Strzałka w tym samym bloku
+            tekstu, żeby szła tuż za wykrzyknikiem. */}
+        <span className="block text-white font-semibold text-[12px] sm:text-[13px] leading-[1.25]">
+          {/* Ikona prezentu z lucide (czysty SVG, nie emoji) */}
+          <Gift className="inline-block align-[-2px] mr-1.5 w-[14px] h-[14px]" aria-hidden />
+          Odbierz bezpłatną wizualizację strony
+          <br className="sm:hidden" />{' '}
+          przed decyzją o zakupie!
+          <ArrowRight className="inline-block align-[-2px] ml-1.5 w-[14px] h-[14px] transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      </Link>
     </div>
   );
 }

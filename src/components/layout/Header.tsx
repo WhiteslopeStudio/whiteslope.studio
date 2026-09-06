@@ -32,6 +32,10 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
   const [activeMegaColumn, setActiveMegaColumn] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  // O tyle pikseli header jest zsunięty w dół, żeby nie nachodzić na pasek promocyjny.
+  // Pasek jest w normalnym flow strony, więc przy scrollu offset maleje do zera i header
+  // wraca na samą górę - dzięki temu nigdy nie zasłania więcej treści niż wcześniej.
+  const [gornyOffset, setGornyOffset] = useState(0);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const offersDropdownRef = useRef<HTMLDivElement>(null);
@@ -79,6 +83,12 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
       // żeby header był transparentny/rozmyty przez większość hero.
       setIsScrolled(window.scrollY > window.innerHeight * 0.75);
 
+      // Header podąża za paskiem promocyjnym: dopóki pasek jest widoczny u góry,
+      // header stoi pod nim; po przewinięciu paska wskakuje na top: 0.
+      const pasek = document.getElementById('promo-bar');
+      const wysokoscPaska = pasek?.offsetHeight ?? 0;
+      setGornyOffset(Math.max(0, wysokoscPaska - window.scrollY));
+
       if (!isHomepage) return;
 
       const sectionIds = sections.map((item) => item.href.substring(1));
@@ -101,8 +111,13 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Wysokość paska zmienia się przy zmianie szerokości ekranu (1 albo 2 linie tekstu)
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isHomepage, sections]);
 
   const isOnServicePage =
@@ -148,21 +163,27 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
       {/* ref owijamy cały obszar headera + mega menu żeby clickOutside działał */}
       <div ref={offersDropdownRef}>
         <motion.header
-          className={`fixed top-0 left-0 right-0 z-[50] transition-all duration-300 ${
-            isMobile && !isScrolled
-              ? "bg-transparent border-b border-transparent"
-              : isScrolled
+          // Wariant mobilny vs desktopowy rozstrzyga CSS (breakpoint md), a nie JS.
+          // Dzięki temu przy pierwszym renderze na telefonie nie miga wersja desktopowa,
+          // która wcześniej pokazywała się do czasu wykonania efektu useMobileDetection.
+          style={{ top: gornyOffset }}
+          // Uwaga: transition tylko na kolorach/tle. Gdyby objęło "top", header
+          // opóźniałby się o 300 ms przy każdym scrollu i skakał za paskiem.
+          className={`fixed left-0 right-0 z-[50] transition-[background-color,border-color,box-shadow] duration-300 ${
+            isScrolled
               ? "bg-black/87 backdrop-blur-xl border-b border-white/10 shadow-lg"
-              : "bg-black/87 backdrop-blur-xl border-b border-white/5"
+              : "bg-transparent border-b border-transparent md:bg-black/87 md:backdrop-blur-xl md:border-white/5"
           }`}
         >
+          {/* Topbar promocyjny - wewnątrz fixed headera, żeby zawsze siedział na
+              samej górze i nie rozjeżdżał offsetów podstron */}
           {/* Na mobile, dopóki nie przewinięto strony (jesteśmy w hero), zamiast
               pełnego czarnego paska dajemy tylko rozmycie, które gaśnie w dół -
               żeby wideo w tle hero było widoczne pod headerem. */}
-          {isMobile && !isScrolled && (
+          {!isScrolled && (
             <>
               <div
-                className="absolute inset-0 z-0 pointer-events-none"
+                className="absolute inset-0 z-0 pointer-events-none md:hidden"
                 style={{
                   backdropFilter: 'blur(16px)',
                   WebkitBackdropFilter: 'blur(16px)',
@@ -172,13 +193,14 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
               />
               {/* Dodatkowe przyciemnienie gradientowe od góry - dla czytelności tekstu na jasnym wideo */}
               <div
-                className="absolute inset-0 z-0 pointer-events-none"
+                className="absolute inset-0 z-0 pointer-events-none md:hidden"
                 style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 60%, transparent 100%)' }}
               />
             </>
           )}
 
-          <div className="relative z-10 container mx-auto px-6 py-4">
+          {/* Niższy pasek na mobile (py-2.5), na desktopie bez zmian (py-4) */}
+          <div className="relative z-10 container mx-auto px-6 py-2.5 md:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {/* Logo */}
@@ -200,9 +222,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 </motion.div>
               </div>
 
-              {/* Desktop Menu */}
-              {!isMobile && (
-                <nav className="flex items-center gap-2 flex-1 justify-end">
+              {/* Desktop Menu - ukrywane CSS-em, nie JS-em (brak migotania na starcie) */}
+              {(
+                <nav className="hidden md:flex items-center gap-2 flex-1 justify-end">
                   <div className="flex items-center gap-1">
 
                     <button
@@ -362,10 +384,10 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
                 </nav>
               )}
 
-              {/* Mobile Menu Button */}
-              {isMobile && (
+              {/* Mobile Menu Button - również sterowany CSS-em */}
+              {(
                 <button
-                  className="p-2 text-white hover:cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
+                  className="md:hidden p-2 text-white hover:cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
                 >
@@ -407,7 +429,9 @@ const [lastClickedItem, setLastClickedItem] = useState<string | null>(null);
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.18, ease: 'easeInOut' }}
               className="fixed left-0 right-0 z-[49] flex justify-center px-6"
-              style={{ top: isScrolled ? '65px' : '69px' }}
+              // Mega menu musi startować pod realną dolną krawędzią headera, a ta
+              // przesuwa się w dół o wysokość paska promocyjnego (gornyOffset).
+              style={{ top: gornyOffset + (isScrolled ? 65 : 69) }}
               onMouseEnter={() => setIsOffersDropdownOpen(true)}
               onMouseLeave={() => {
                 setIsOffersDropdownOpen(false);

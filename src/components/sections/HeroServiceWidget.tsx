@@ -123,7 +123,7 @@ export const HeroServiceWidget = () => {
                 alt={`Logo ${logo.name}`}
                 fill
                 sizes="170px"
-                className={`object-contain grayscale opacity-45 ${logo.tweak}`}
+                className={`object-contain grayscale ${logo.tweak}`}
               />
             </div>
           ))}

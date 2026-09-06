@@ -11,6 +11,22 @@ export interface TrustReview {
   text: string;
   rating: number;
   link?: string;
+  zGoogle?: boolean;
+}
+
+// Wizytówka Google Whiteslope Studio
+const LINK_WIZYTOWKA_GOOGLE = 'https://maps.app.goo.gl/ijbMhGdJGPKJ2xMZA';
+
+// Kolorowe logo Google jako czysty SVG (brak takiej ikony w lucide-react)
+function IkonaGoogle({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={`${className} shrink-0`} aria-hidden="true">
+      <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z" />
+      <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z" />
+      <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z" />
+      <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z" />
+    </svg>
+  );
 }
 
 interface TrustOverlayProps {
@@ -24,6 +40,15 @@ interface TrustOverlayProps {
 }
 
 const DEFAULT_REVIEWS: TrustReview[] = [
+  {
+    name: 'Dariusz Kuciel',
+    company: 'Lokalny przewodnik w Google',
+    headline: 'Szybko, sprawnie, elastycznie',
+    text: 'Dobre podejście do klienta. Szybko, sprawnie, elastycznie. Warto sprawdzić. Będę korzystał regularnie z usług.',
+    rating: 5,
+    link: LINK_WIZYTOWKA_GOOGLE,
+    zGoogle: true,
+  },
   {
     name: 'Sławek Wiesławski',
     company: 'Wiesławski Studio',
@@ -50,8 +75,9 @@ const DEFAULT_REVIEWS: TrustReview[] = [
   },
 ];
 
-// Ta sama zielona ikonka gwiazdki, używana i na małej zakładce, i na górze dużego panelu.
-// Kolor bierze się z "currentColor", więc ustawiamy go przez klasę text-*, np. text-green-500.
+// Dawna zielona ikonka - zastąpiona logo Google na zakładce i w panelu.
+// Zostaje w kodzie, bo może się przydać w innym miejscu.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function TrustBadgeIcon({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -149,7 +175,7 @@ export default function TrustOverlay({
           {accentLabel}
         </div>
 
-        <TrustBadgeIcon className="-mr-1 -mb-2 w-10 h-10 shrink-0 text-green-500" />
+        <IkonaGoogle className="w-8 h-8 my-1" />
 
         {/* Ocena na grubo */}
         <div className="text-2xl font-bold text-gray-900 -mb-2">
@@ -177,7 +203,7 @@ export default function TrustOverlay({
         <div className="flex shrink-0 items-center justify-between border-b border-gray-100 bg-gray-50/50 p-6">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <TrustBadgeIcon className="w-12 h-12 shrink-0 text-green-500" />
+              <IkonaGoogle className="w-10 h-10" />
               <span className="text-4xl font-bold text-gray-900">{scoreText}</span>
             </div>
             <div className="mt-2 text-yellow-400">
@@ -205,7 +231,10 @@ export default function TrustOverlay({
                 className="border-b border-gray-100 pb-8 last:border-0 last:pb-0"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <div className="font-bold text-gray-900 text-lg">{review.name}</div>
+                  <div className="flex items-center gap-2 font-bold text-gray-900 text-lg">
+                    {review.name}
+                    {review.zGoogle && <IkonaGoogle className="w-[18px] h-[18px]" />}
+                  </div>
                   <Stars rating={review.rating} />
                 </div>
 
@@ -226,13 +255,26 @@ export default function TrustOverlay({
                       rel="noreferrer"
                       className="font-semibold text-blue-600 hover:underline hover:text-blue-700"
                     >
-                      Zobacz realizację
+                      {review.zGoogle ? 'Zobacz opinię w Google' : 'Zobacz realizację'}
                     </a>
                   )}
                 </div>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Stopka panelu - przejście do wizytówki w Mapach Google */}
+        <div className="shrink-0 border-t border-gray-100 bg-gray-50/50 p-6">
+          <a
+            href={LINK_WIZYTOWKA_GOOGLE}
+            target="_blank"
+            rel="noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white border border-gray-200 hover:border-gray-300 text-gray-900 text-sm font-semibold shadow-sm transition-colors"
+          >
+            <IkonaGoogle className="w-[18px] h-[18px]" />
+            Zobacz opinie w Mapach Google
+          </a>
         </div>
       </aside>
     </>

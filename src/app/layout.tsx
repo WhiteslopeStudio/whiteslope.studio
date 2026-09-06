@@ -119,6 +119,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${inter.variable} antialiased`}>
         <ScrollToTop /> {/* <-- DODANE NA SAMYM GÓRZE BODY */}
         <GtagLoader />
+        <PromoBar />
         <Header />
         {children}
         <SearchEngineProvider />
