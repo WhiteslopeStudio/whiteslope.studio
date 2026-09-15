@@ -68,11 +68,13 @@ export default function HeroSectionMobile() {
             Od wizytówek, które dowożą zapytania, po platformy i narzędzia do zarządzania firmą.
           </p>
 
-          <div className="w-full flex flex-wrap items-center justify-start gap-3">
+          {/* flex-nowrap + mniejszy padding: oba przyciski mieszczą się w jednej
+              linii nawet na wąskim ekranie iPhone'a SE (320 px). */}
+          <div className="w-full flex flex-nowrap items-center justify-start gap-2">
             <Link
               href="#brief"
               prefetch={false}
-              className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full flex items-center justify-center text-sm active:scale-95 whitespace-nowrap"
+              className="px-4 py-2 bg-white text-black font-medium rounded-full flex items-center justify-center text-[13px] active:scale-95 whitespace-nowrap shrink-0"
             >
               Wyceń projekt
             </Link>
@@ -80,24 +82,13 @@ export default function HeroSectionMobile() {
             <Link
               href="/projects"
               prefetch={false}
-              className="px-5 py-2 border border-white/50 text-white font-medium rounded-full flex items-center justify-center gap-2 text-sm active:scale-95 transition-transform whitespace-nowrap"
+              className="px-4 py-2 border border-white/50 text-white font-medium rounded-full flex items-center justify-center gap-1.5 text-[13px] active:scale-95 transition-transform whitespace-nowrap shrink-0"
             >
               Zobacz realizacje
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          {/* Kropki pokazujące, która realizacja jest w tle */}
-          <div className="mt-6 flex items-center gap-2">
-            {REALIZACJE.map((realizacja, index) => (
-              <span
-                key={realizacja.src}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === aktywne ? 'w-6 bg-white' : 'w-1.5 bg-white/30'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

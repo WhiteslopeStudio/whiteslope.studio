@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 
 import HeroSection from './HeroSection';
 import HeroSectionMobile from './HeroSectionMobile'; // Dodany import wersji mobilnej
@@ -21,9 +20,10 @@ import BentoGrid from './BentoGrid';
 import BentoGridMobile from './BentoGridMobile'; // Dodany import wersji mobilnej
 
 import { WEBSITE_BIALYSTOK_FAQ } from '@/lib/seo/websiteBialystokFaq';
-import { ChevronDown, ChevronRight, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import TrustOverlay from '../ui/TrustOverlay';
 import QuickLeadForm from '../ui/QuickLeadForm';
+import ServiceSubHeader from './ServiceSubHeader';
 import WhyUs from './WhyUs';
 
 export default function WebsitesServicePage() {
@@ -58,13 +58,6 @@ export default function WebsitesServicePage() {
     })),
   };
 
-  const SERVICES_MENU = [
-    { name: 'Strony internetowe', href: '/pricing/website' },
-    { name: 'Integracje AI', href: '/pricing/ai-integration/chatbot' },
-    { name: 'Automatyzacje procesów', href: '/pricing/ai-integration/chatbot' },
-    { name: 'Marketing', href: '/pricing/video-marketing' },
-  ];
-
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -95,47 +88,15 @@ export default function WebsitesServicePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
 
-      {/* --- MINIMALIST BREADCRUMB Z DROPDOWNEM --- */}
-      <div className="absolute top-20 md:top-24 left-0 w-full z-[20]">
-        <div className="w-full max-w-[1640px] mx-auto px-6 md:px-12 flex justify-start">
-          
-          <div className="flex items-center gap-2 px-4 py-1.5 bg-[#050505]  rounded-lg text-[13px] md:text-sm font-medium text-white/90">
-            
-            <Link 
-              href="/" 
-              className="text-white/80 hover:text-white/90 transition-colors duration-300 cursor-pointer"
-            >
-              Whiteslope
-            </Link>
-            
-            <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
-            
-            <div className="relative group">
-              <div className="flex items-center gap-1.5 text-gray-200 hover:text-white transition-colors duration-300 cursor-default py-1">
-                Strony internetowe
-                <ChevronDown className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" />
-              </div>
-
-              <div className="absolute top-full left-0 mt-2 w-max min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-[#050505] border border-white/10 rounded-lg shadow-2xl overflow-hidden z-[70]">
-                <ul className="flex flex-col py-1.5">
-                  {SERVICES_MENU.map((service) => (
-                    <li key={service.name}>
-                      <Link 
-                        href={service.href} 
-                        className="block px-5 py-2.5 text-[13px] text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-                      >
-                        {service.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-          </div>
-          
-        </div>
-      </div>
+      {/* Pasek produktowy - pojawia się po przewinięciu Hero, wtedy główny header
+          i topbar chowają się, żeby na ekranie była tylko jedna belka. */}
+      <ServiceSubHeader
+        tytul="Strony internetowe"
+        cena="już od 1500 zł"
+        ctaLabel="Bezpłatna wycena"
+        ctaHref="#brief"
+        prog={700}
+      />
 
       {/* --- WARUNKOWE RENDEROWANIE HERO --- */}
       {isMobile ? <HeroSectionMobile /> : <HeroSection />}

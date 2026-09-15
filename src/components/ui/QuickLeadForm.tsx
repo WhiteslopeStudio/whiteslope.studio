@@ -6,8 +6,10 @@ import { CheckCircle2, Mail, MessageSquare, Phone } from 'lucide-react';
 
 const LIMIT_WIADOMOSCI = 1000;
 
+// placeholder-zinc-700 zamiast zinc-500: mocniejszy kontrast na białym tle (ok. 8:1),
+// z zapasem ponad próg WCAG 2.0 AA dla tekstu.
 const KLASY_POLA =
-  'w-full bg-white border border-zinc-300 rounded-[6px] pl-9 pr-3 py-3 text-[13px] sm:text-[15px] text-zinc-950 placeholder-zinc-500 transition-all duration-200 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30';
+  'w-full bg-white border border-zinc-300 rounded-[6px] pl-9 pr-3 py-3 text-[13px] sm:text-[15px] text-zinc-950 placeholder-zinc-700 transition-all duration-200 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30';
 
 /**
  * Formularz szybkiego kontaktu (bezpłatna wizualizacja strony).
@@ -83,18 +85,12 @@ export default function QuickLeadForm() {
 
   return (
     <div className="w-full max-w-[720px] mx-auto bg-white rounded-[6px] border border-zinc-200 shadow-[0_20px_60px_rgba(0,0,0,0.35)] p-5 sm:p-7">
-      <p className="text-[19px] sm:text-[24px] font-bold text-zinc-950 leading-[1.25] tracking-tight text-center max-w-[460px] mx-auto mb-3 text-balance">
-        <MessageSquare className="inline-block align-[-3px] mr-2 w-5 h-5 text-zinc-950" aria-hidden />
-        Zostaw kontakt, a skontaktujemy się z Tobą i przygotujemy bezpłatną wizualizację Twojej
-        strony
-      </p>
-
-      <p className="text-[13px] text-zinc-600 leading-relaxed text-center max-w-[460px] mx-auto mb-5">
-        Bezpłatnie przygotowujemy{' '}
-        <strong className="font-semibold text-zinc-900">poglądowy szablon wyglądu</strong> strony
-        &ndash; grafikę pokazującą, jak strona mogłaby wyglądać. To nie jest gotowa, działająca
-        strona internetowa. Wykonanie i wdrożenie pełnej strony jest usługą płatną, wycenianą
-        indywidualnie.
+      {/* Reszta zdania lżejsza (font-medium), akcent tylko na "bezpłatną wizualizację" */}
+      <p className="text-[19px] sm:text-[24px] font-medium text-zinc-800 leading-[1.25] tracking-tight text-center max-w-[460px] mx-auto mb-5 text-balance">
+        <MessageSquare className="inline-block align-[-3px] mr-2 w-5 h-5 text-zinc-800" aria-hidden />
+        Zostaw kontakt, a skontaktujemy się z Tobą i przygotujemy{' '}
+        <span className="font-bold text-zinc-950">bezpłatną wizualizację</span>{' '}
+        Twojej strony
       </p>
 
       {/* Dwie kolumny również na telefonie: wiadomość po lewej, kontakt po prawej */}
@@ -117,7 +113,7 @@ export default function QuickLeadForm() {
             value={wiadomosc}
             onChange={(e) => setWiadomosc(e.target.value)}
             placeholder="Wpisz swoją wiadomość (opcjonalnie)"
-            className="flex-1 min-h-[132px] w-full bg-white border border-zinc-300 rounded-[6px] px-3 py-3 text-[13px] sm:text-[15px] text-zinc-950 placeholder-zinc-500 resize-none transition-all duration-200 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30"
+            className="flex-1 min-h-[132px] w-full bg-white border border-zinc-300 rounded-[6px] px-3 py-3 text-[13px] sm:text-[15px] text-zinc-950 placeholder-zinc-700 resize-none transition-all duration-200 focus:outline-none focus:border-[#0070ff] focus:ring-1 focus:ring-[#0070ff]/30"
           />
         </div>
 
@@ -126,7 +122,7 @@ export default function QuickLeadForm() {
             <label htmlFor="pole-telefon" className="sr-only">
               Telefon
             </label>
-            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" aria-hidden />
+            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" aria-hidden />
             <input
               id="pole-telefon"
               name="telefon"
@@ -145,7 +141,7 @@ export default function QuickLeadForm() {
             <label htmlFor="pole-email" className="sr-only">
               Adres mailowy
             </label>
-            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" aria-hidden />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" aria-hidden />
             <input
               id="pole-email"
               name="email"

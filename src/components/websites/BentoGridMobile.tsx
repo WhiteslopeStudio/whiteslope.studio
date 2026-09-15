@@ -1,24 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Check } from 'lucide-react';
-
-type Usluga = {
-  id: string;
-  label: string;
-  opis: string;
-};
-
-// Ten sam zestaw usług co w widgecie w Hero na stronie głównej
-const USLUGI: Usluga[] = [
-  { id: 'strony', label: 'Strony internetowe', opis: 'Wizytówki i strony firmowe' },
-  { id: 'saas', label: 'Aplikacje SaaS', opis: 'Produkty, panele, systemy' },
-  { id: 'poprawki', label: 'Poprawki stron', opis: 'Audyt i przyspieszanie' },
-  { id: 'seo', label: 'SEO', opis: 'Widoczność w Google' },
-  { id: 'systemy', label: 'Dedykowane systemy', opis: 'CRM, ERP, automatyzacje' },
-];
 
 // Białe wersje logotypów - te same pliki co w LogoTicker i w Hero na stronie głównej
 const LOGOTYPY = [
@@ -43,86 +25,15 @@ const IkonaGoogle = () => (
   </svg>
 );
 
+/**
+ * Pas marek, z którymi pracowaliśmy, plus przejście do wizytówki Google.
+ * Sekcja z wyborem usług została stąd usunięta - ten sam widget jest już w Hero
+ * na stronie głównej, a tutaj wystarczy dowód społeczny.
+ */
 export default function BentoGridMobile() {
-  const [wybrane, setWybrane] = useState<string[]>([]);
-
-  const przelacza_usluge = (id: string) => {
-    setWybrane((poprzednie) =>
-      poprzednie.includes(id) ? poprzednie.filter((item) => item !== id) : [...poprzednie, id]
-    );
-  };
-
-  // Uwaga: /contact nie czyta jeszcze parametru "service" z URL (logika prefillu
-  // jest tam zakomentowana), więc wybór na razie nie wypełnia formularza.
-  const ctaHref = wybrane.length > 0 ? `/contact?service=${wybrane.join(',')}` : '/contact';
-
   return (
-    <section className="relative w-full overflow-hidden bg-black py-14 px-6">
-      <h2 className="hero-mobile-h1 mb-2 text-[clamp(23px,6.1vw,28px)] leading-[1.25] text-white tracking-tight max-w-[380px] text-balance">
-        W czym możemy Ci{' '}
-        <span className="text-white underline decoration-[#0070ff] decoration-[2px] underline-offset-[3px] [text-decoration-skip-ink:none]">
-          pomóc?
-        </span>
-      </h2>
-
-      <p className="mb-7 text-[14px] leading-relaxed text-white/60 max-w-[380px] text-balance">
-        Zaznacz, co Cię interesuje - resztę ustalimy przy wycenie.
-      </p>
-
-      {/* Siatka kafelków - mechanika ta sama co w widgecie w Hero: klikalne
-          checkboxy, aktywny kafelek podświetla się na firmowy niebieski. */}
-      <div className="grid grid-cols-2 gap-3 mb-7">
-        {USLUGI.map((usluga) => {
-          const isActive = wybrane.includes(usluga.id);
-
-          return (
-            <button
-              key={usluga.id}
-              type="button"
-              onClick={() => przelacza_usluge(usluga.id)}
-              aria-pressed={isActive}
-              className={`flex flex-col items-start text-left px-3.5 py-4 rounded-2xl border transition-all duration-300 ${
-                isActive
-                  ? 'bg-[#0070ff]/15 border-[#0070ff] text-white'
-                  : 'bg-white/[0.03] border-white/10 text-white/70'
-              }`}
-            >
-              <span
-                className={`flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border transition-colors duration-300 mb-3 ${
-                  isActive ? 'bg-[#0070ff] border-[#0070ff]' : 'bg-transparent border-white/25'
-                }`}
-              >
-                {isActive && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
-              </span>
-
-              <span className="text-[13px] font-semibold leading-snug">{usluga.label}</span>
-              <span className="text-[11px] text-white/45 leading-snug mt-1">{usluga.opis}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap items-center justify-start gap-3">
-        <Link
-          href={ctaHref}
-          prefetch={false}
-          className="px-5 py-2 bg-[#3561ff] text-white font-medium rounded-full inline-flex items-center justify-center gap-2 text-sm active:scale-95 whitespace-nowrap"
-        >
-          {wybrane.length > 0 ? `Wyceń projekt (${wybrane.length})` : 'Wyceń projekt'}
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-
-        <Link
-          href="#brief"
-          prefetch={false}
-          className="px-5 py-2 border border-[#3561ff] text-[#3561ff] font-medium rounded-full inline-flex items-center justify-center text-sm active:scale-95 transition-transform whitespace-nowrap"
-        >
-          Wypełnij brief
-        </Link>
-      </div>
-
-      {/* Marki, z którymi pracowaliśmy */}
-      <p className="mt-12 mb-5 text-[12px] font-semibold uppercase tracking-wide text-white/40">
+    <section className="relative w-full overflow-hidden bg-black pt-4 pb-14 px-6">
+      <p className="mb-6 text-[12px] font-semibold uppercase tracking-wide text-white/40">
         Zaufali nam
       </p>
 

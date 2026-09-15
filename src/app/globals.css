@@ -73,4 +73,16 @@ html {
   }
 }
 
+/* Gdy na podstronie ofertowej pojawia się pasek produktowy (ServiceSubHeader),
+   główny header i pasek promocyjny chowają się, żeby nie było dwóch belek naraz.
+   Atrybut ustawia komponent paska. */
+body[data-ukryj-header='true'] > header,
+body[data-ukryj-header='true'] > div > header,
+body[data-ukryj-header='true'] #promo-bar {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
 /* TUTAJ ZOSTAW SWOJE ZMIENNE KOLORYSTYCZNE :root oraz .dark (oklch) */
