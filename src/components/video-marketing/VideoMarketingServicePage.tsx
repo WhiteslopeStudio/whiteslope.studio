@@ -11,6 +11,9 @@ import CreatorSpotlightSectionTablet from './CreatorSpotlightSectionTablet';
 import CreatorSpotlightSectionMati from './CreatorSpotlightSectionMati';
 import CreatorSpotlightSectionMatiTablet from './CreatorSpotlightSectionMatiTablet';
 import CreatorSpotlightSectionMatiMobile from './CreatorSpotlightSectionMatiMobile';
+import CreatorSpotlightSectionPatrycja from './CreatorSpotlightSectionPatrycja';
+import CreatorSpotlightSectionPatrycjaTablet from './CreatorSpotlightSectionPatrycjaTablet';
+import CreatorSpotlightSectionPatrycjaMobile from './CreatorSpotlightSectionPatrycjaMobile';
 import MeetTeamSection from './MeetTeamSection';
 import VideoBriefSection from './VideoBriefSection';
 import FaqSection from './FaqSection';
@@ -68,6 +71,12 @@ export default function VideoMarketingServicePage() {
         <CreatorSpotlightSection />
       <CreatorSpotlightSectionTablet />
         <CreatorSpotlightSectionMobile />
+
+      <div id="PatrycjaUGC" aria-hidden="true" className="relative -mb-px h-px w-full" />
+
+      <CreatorSpotlightSectionPatrycja />
+      <CreatorSpotlightSectionPatrycjaTablet />
+      <CreatorSpotlightSectionPatrycjaMobile />
 
       <CreatorSpotlightSectionMati />
       <CreatorSpotlightSectionMatiTablet />
