@@ -111,7 +111,8 @@ export default function CreatorSpotlightSectionPatrycjaTablet() {
             className="text-xs leading-snug max-w-md"
             style={{ fontFamily: fonts.body, color: `${paleta.tekst}cc` }}
           >
-            Patrycja to UGC Creator z Warszawy, tworząca content w klimacie lifestyle, food i travel.
+            Patrycja to UGC Creator z Warszawy, tworząca content w kategoriach content creator, eventy,
+            food, usługi, travel i beauty.
           </p>
 
           <div className="flex items-center gap-4 flex-wrap mt-1">

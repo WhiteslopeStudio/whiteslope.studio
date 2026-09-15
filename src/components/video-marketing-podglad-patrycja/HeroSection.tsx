@@ -194,6 +194,18 @@ export default function HeroSection() {
                   className="w-full h-full object-cover"
                 />
               </a>
+              <a
+                href="https://www.instagram.com/_pgrzywa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-full overflow-hidden border-2 border-white shadow-sm"
+              >
+                <img
+                  src="/_resources/videoMarketing/patrycja/patrycja.webp"
+                  alt="Patrycja"
+                  className="w-full h-full object-cover"
+                />
+              </a>
             </div>
             <p className="text-sm xl:text-base text-black/70" style={{ fontFamily: fonts.body }}>
               <span className="font-semibold text-black">Nasz Dział VIDEO</span> - Kręcimy, montujemy i tworzymy

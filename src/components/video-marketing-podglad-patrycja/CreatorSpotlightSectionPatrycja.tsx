@@ -90,8 +90,8 @@ export default function CreatorSpotlightSectionPatrycja() {
           style={{ fontFamily: fonts.body, color: `${paleta.tekst}cc` }}
         >
           Patrycja to UGC Creator z Warszawy - kreatywna dusza z pozytywną energią. Tworzy content w
-          klimacie lifestyle, food i travel, stawiając na storytelling, mocne hooki i materiały dopasowane
-          do aktualnych trendów.
+          kategoriach content creator, eventy, food, usługi, travel i beauty, stawiając na storytelling,
+          mocne hooki i materiały dopasowane do aktualnych trendów.
         </p>
 
         <div className="flex items-center gap-5">
