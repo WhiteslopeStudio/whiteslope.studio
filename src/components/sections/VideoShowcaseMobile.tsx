@@ -21,6 +21,18 @@ const VIDEOS: VideoCard[] = [
     category: 'Wizytówka',
   },
   {
+    id: 'marek-suslik',
+    src: '/_resources/videoMarketing/mati/Whiteslope_MarekSuslik.mp4',
+    title: 'Mati',
+    category: 'Marek Suślik',
+  },
+  {
+    id: 'patrycja-travel',
+    src: '/_resources/videoMarketing/patrycja/PORTFOLIO_Patrycja_1.mp4',
+    title: 'Patrycja',
+    category: 'Travel Content',
+  },
+  {
     id: 'jawa-prezentacja',
     src: '/_resources/videoMarketing/mati/PORTFOLIO_Pokazanie_Jawa_350CL.mp4',
     title: 'Mati',
@@ -29,12 +41,6 @@ const VIDEOS: VideoCard[] = [
   {
     id: 'jawa-skladanie',
     src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4',
-    title: 'Mati',
-    category: 'Showreel',
-  },
-  {
-    id: 'xzone',
-    src: '/_resources/videoMarketing/mati/PORTFOLIO_XzoneRide.mp4',
     title: 'Mati',
     category: 'Showreel',
   },
