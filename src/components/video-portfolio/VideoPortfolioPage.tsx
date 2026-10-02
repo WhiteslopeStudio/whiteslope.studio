@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Play, X } from 'lucide-react';
+import { Play, X, Info } from 'lucide-react';
 
 type Film = { src: string; marka: string };
 
@@ -119,12 +119,14 @@ function SekcjaTworcy({
   opis,
   zdjecie,
   filmy,
+  uwaga,
 }: {
   imie: string;
   rola: string;
   opis: string;
   zdjecie: string;
   filmy: Film[];
+  uwaga?: string;
 }) {
   return (
     <section className="w-full max-w-[1400px] mx-auto px-6 md:px-10 py-14 md:py-20 border-b border-zinc-100 last:border-none">
@@ -150,6 +152,13 @@ function SekcjaTworcy({
           <KartaWideo key={film.src} film={film} />
         ))}
       </div>
+
+      {uwaga && (
+        <div className="flex items-start gap-1.5 mt-5 max-w-[500px]">
+          <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-black/50" />
+          <span className="text-xs leading-snug text-black/50">{uwaga}</span>
+        </div>
+      )}
     </section>
   );
 }
@@ -186,6 +195,7 @@ export default function VideoPortfolioPage() {
         opis="Beauty, jedzenie i akcesoria - naturalny content, który sprzedaje."
         zdjecie="/_resources/videoMarketing/magda/MAGDA_PERSON.webp"
         filmy={FILMY_MAGDY}
+        uwaga="Prezentowane materiały wideo powstały we współpracy z Magdą przed jej dołączeniem do zespołu Whiteslope Studio i są publikowane za jej zgodą."
       />
 
       <SekcjaTworcy
