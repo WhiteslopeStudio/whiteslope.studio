@@ -21,7 +21,7 @@ const FILMY_MATIEGO = [
   { src: '/_resources/videoMarketing/mati/Whiteslope_MarekSuslik.mp4', marka: 'Marek Suslik' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_Pokazanie_Jawa_350CL.mp4', marka: 'Jawa 350' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4', marka: 'Montaż Jawy' },
-  { src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_reklama_czesci_4.2.mp4', marka: 'Jawa - Części' },
+  { src: '/_resources/videoMarketing/mati/Whiteslope_2Jawa_reklama_czesci_4.mp4', marka: 'Jawa - Części' },
   { src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_ubrania_5.mp4', marka: 'Jawa - Ubrania' },
 ];
 

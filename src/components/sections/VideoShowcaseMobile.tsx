@@ -40,7 +40,7 @@ const VIDEOS: VideoCard[] = [
   },
   {
     id: 'jawa-czesci',
-    src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_reklama_czesci_4.2.mp4',
+    src: '/_resources/videoMarketing/mati/Whiteslope_2Jawa_reklama_czesci_4.mp4',
     title: 'Mati',
     category: 'Jawa - Części',
   },
