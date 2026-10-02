@@ -240,9 +240,9 @@ export default function HeroSection() {
           wyższa niż ekran, więc wyśrodkowanie CAŁEGO bloku ciągnęło h1 w górę, pod nawigację. Zamiast tego
           justify-start + duży padding-top liczony w vh, żeby SAM h1 lądował mniej więcej na środku ekranu,
           niezależnie od tego ile treści jest pod nim. */}
-      <div className="flex lg:hidden flex-col items-center justify-start min-h-[100svh] px-8 pt-[24vh] pb-14">
+      <div className="flex lg:hidden flex-col items-center justify-start min-h-[100svh] px-8 pt-[16vh] pb-14">
         <motion.h1
-          className="text-4xl md:text-5xl font-normal mb-6 text-black text-center"
+          className="text-3xl md:text-5xl font-normal mb-6 text-black text-center"
           style={headingStyle}
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}

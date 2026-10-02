@@ -17,7 +17,7 @@ const paleta = {
 };
 
 const FILMY_MATIEGO = [
-  { src: '/_resources/videoMarketing/mati/Whiteslope_MarekSuslik.mp4', marka: 'Marek Suślik' },
+  { src: '/_resources/videoMarketing/mati/Whiteslope_MarekSuslik.mp4', marka: 'Marek Suslik' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_Pokazanie_Jawa_350CL.mp4', marka: 'Jawa 350' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4', marka: 'Montaż Jawy' },
 ];

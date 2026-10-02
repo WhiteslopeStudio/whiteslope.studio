@@ -24,7 +24,7 @@ const VIDEOS: VideoCard[] = [
     id: 'marek-suslik',
     src: '/_resources/videoMarketing/mati/Whiteslope_MarekSuslik.mp4',
     title: 'Mati',
-    category: 'Marek Suślik',
+    category: 'Marek Suslik',
   },
   {
     id: 'patrycja-travel',
