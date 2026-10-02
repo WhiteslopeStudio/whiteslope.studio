@@ -25,6 +25,8 @@ const FILMY_MATIEGO: Film[] = [
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_Pokazanie_Jawa_350CL.mp4', marka: 'Jawa 350' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4', marka: 'Montaż Jawy' },
   { src: '/_resources/videoMarketing/mati/PORTFOLIO_XzoneRide.mp4', marka: 'X-Zone Ride' },
+  { src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_reklama_czesci_4.2.mp4', marka: 'Jawa - Części' },
+  { src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_ubrania_5.mp4', marka: 'Jawa - Ubrania' },
 ];
 
 // Pojedyncza karta wideo - odtwarza się automatycznie tylko gdy jest widoczna na ekranie

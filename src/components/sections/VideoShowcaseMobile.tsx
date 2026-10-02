@@ -39,6 +39,18 @@ const VIDEOS: VideoCard[] = [
     category: 'Prezentacja motocykla',
   },
   {
+    id: 'jawa-czesci',
+    src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_reklama_czesci_4.2.mp4',
+    title: 'Mati',
+    category: 'Jawa - Części',
+  },
+  {
+    id: 'jawa-ubrania',
+    src: '/_resources/videoMarketing/mati/Whiteslope_Jawa_ubrania_5.mp4',
+    title: 'Mati',
+    category: 'Jawa - Ubrania',
+  },
+  {
     id: 'jawa-skladanie',
     src: '/_resources/videoMarketing/mati/PORTFOLIO_skladanie_jawy8_poprawka.mp4',
     title: 'Mati',
