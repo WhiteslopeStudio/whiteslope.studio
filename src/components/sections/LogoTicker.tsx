@@ -12,6 +12,7 @@ const PARTNER_LOGOS = [
   // { name: 'Matiava', url: '/_resources/grafika/matiava.webp', invertColor: false, w: 3000, h: 3000 },
   { name: 'Duo Korki', url: '/_resources/logos/logo_duokorki_White.webp', invertColor: false, w: 6000, h: 2000 },
   {name: "Jawa Białystok", url: "/_resources/logos/jawa_bialystok.webp", invertColor: false, w: 256, h: 58},
+  { name: 'Adventure Riders Poland', url: '/_resources/logos/AdventureRidersPolandLogo.png', invertColor: false, w: 275, h: 285, grayscale: true },
 ];
 
 export default function LogoTicker() {
@@ -54,9 +55,9 @@ export default function LogoTicker() {
                 height={logo.h}
                 sizes={`${Math.ceil((logo.w / logo.h) * 45)}px`}
                 // Jeśli logo.invertColor jest true, dodajemy klasę 'invert', która robi z czarnego biały
-                className={`${logo.name === 'Jawa Białystok' ? 'max-h-[55px] md:max-h-[70px]' : 'max-h-[35px] md:max-h-[45px]'} w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 ${
+                className={`${logo.name === 'Jawa Białystok' || logo.name === 'Adventure Riders Poland' ? 'max-h-[55px] md:max-h-[70px]' : 'max-h-[35px] md:max-h-[45px]'} w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 ${
                   logo.invertColor ? 'invert' : ''
-                }`}
+                } ${'grayscale' in logo && logo.grayscale ? 'grayscale' : ''}`}
               />
             </div>
           ))}

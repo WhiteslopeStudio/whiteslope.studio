@@ -45,6 +45,8 @@ const PARTNER_LOGOS = [
   { name: 'Jawa Białystok', url: '/_resources/logos/jawa_bialystok.webp', w: 256, h: 58, tweak: '' },
   // Logo pionowe (700x1000) - przy tej samej wysokości boxa wygląda drobniej, stąd powiększenie
   { name: 'Damian Bogdanowicz', url: '/_resources/logos/damianLogo.webp', w: 700, h: 1000, tweak: 'scale-125' },
+  // Okrągła odznaka (275x285) - kolorowa w pliku, szarość robi klasa grayscale z siatki
+  { name: 'Adventure Riders Poland', url: '/_resources/logos/AdventureRidersPolandLogo.png', w: 275, h: 285, tweak: 'scale-110' },
 ];
 
 export const HeroServiceWidget = () => {
